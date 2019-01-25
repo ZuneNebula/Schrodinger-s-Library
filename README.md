@@ -16,7 +16,8 @@ Schrodinger’s Library is envisioned to be an Android app, which will be access
 
 The project will be considered successful if: 
 
-* a) a new customer can find, select, and order their book in under 10 clicks/taps
-* b) current customers express above 60% satisfaction or preference over similar systems when polled/surveyed after making a purchase.
+ a) a new customer can find, select, and order their book in under 10 clicks/taps.
+ 
+ b) current customers express above 60% satisfaction or preference over similar systems when polled/surveyed after making a purchase.
 
 If both a) and b) are accomplished, we will consider our system a success
