@@ -14,4 +14,6 @@ Since the application will present different details about the books on display,
 
 Schrodinger’s Library is envisioned to be an Android app, which will be accessible via the Google Play Store or a standard web browser. Our system will improve upon current designs by providing a simple, flexible, and streamlined interface. It will focus on being free of clutter, making it accessible on most portable devices. 
 
-The project will be considered successful if: a) a new customer can find, select, and order their book in under 10 clicks/taps and b) current customers express above 60% satisfaction or preference over similar systems when polled/surveyed after making a purchase. If both a) and b) are accomplished, we will consider our system a success
+The project will be considered successful if: 
+a) a new customer can find, select, and order their book in under 10 clicks/taps
+b) current customers express above 60% satisfaction or preference over similar systems when polled/surveyed after making a purchase. If both a) and b) are accomplished, we will consider our system a success
