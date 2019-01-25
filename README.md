@@ -20,4 +20,4 @@ The project will be considered successful if:
  
  b) current customers express above 60% satisfaction or preference over similar systems when polled/surveyed after making a purchase.
 
-If both a) and b) are accomplished, we will consider our system a success
+If both a) and b) are accomplished, we will consider our system a success.
