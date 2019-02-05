@@ -9,8 +9,8 @@ public class Book {
   private final String bookStock;
   private final String rating;
 
-    public Book(String bookID, String bookName, String author, String price, String genre, String bookStock, String rating) {
 
+    public Book(String bookID, String bookName, String author, String price, String genre, String bookStock, String rating) {
         this.bookID = bookID;
         this.bookName = bookName;
         this.author = author;
@@ -40,7 +40,6 @@ public class Book {
     public String getGenre() {
         return genre;
     }
-
 
 
     public String getBookStock() {
