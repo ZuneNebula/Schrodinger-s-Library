@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">schrodingers</string>
+    <string name="action_search">action_search</string>
+    <string name="action_settings">action_settings</string>
 </resources>
