@@ -1,10 +1,45 @@
 package comp3350.schrodingers.persistence.stubs;
 
 import comp3350.schrodingers.Objects.User;
-import java.util.List;
+import comp3350.schrodingers.persistence.UsersPersistence;
 
-public interface UsersPersistence{
-    List<User> getUserbyName(String userName);
-    User addUser(User newUser);
-    User removeUser(User deleteUser);
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Iterator;
+
+public class UsersPersistenceStub implements UsersPersistence
+{
+    private List<User> users; // list of all users
+
+    public UsersPersistenceStub() //constructor
+    {
+        this.users = new ArrayList<>();
+        users.add(new User("zunenebula@gmail.com","Zune", "shield-hero"));
+
+    }
+
+    public User findUser(String email) // returns the user which matches the email
+    {
+        Iterator<User> userIterator = users.iterator();
+        while(userIterator.hasNext())
+        {
+            User nextUser = userIterator.next();
+            if(nextUser.getEmail().equals(email))
+            {
+                return nextUser;
+            }
+        }
+        return null;
+    }
+
+    public User insertUser(User newUser) // adds a new user to the list
+    {
+        users.add(newUser);
+        return newUser;
+    }
+
+    public void deleteUser(String email) //deletes the user which matches the email from the list
+    {
+        users.remove(findUser(email));
+    }
 }
