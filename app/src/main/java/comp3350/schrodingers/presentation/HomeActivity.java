@@ -1,7 +1,10 @@
 package comp3350.schrodingers.presentation;
 
+import android.content.Intent;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -50,6 +53,10 @@ public class HomeActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        //SEARCH:
+        //set action_search
+        //see https://www.youtube.com/watch?v=9OWmnYPX1uc&t=147s or https://www.youtube.com/watch?v=sJ-Z9G0SDhc&t=299s
+
         return true;
     }
 
@@ -76,6 +83,8 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.my_account) {
             //TODO: open new window to create an account if not logged in, go to user preferences if logged in
+            Intent loggedIntent = new Intent(HomeActivity.this, LoggedActivity.class);
+            HomeActivity.this.startActivity(loggedIntent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
