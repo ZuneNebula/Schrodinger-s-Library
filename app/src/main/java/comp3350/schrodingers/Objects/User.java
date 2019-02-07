@@ -2,7 +2,8 @@ package comp3350.schrodingers.Objects;
 
 import java.util.Date;
 public class User {
-    public class Address{
+
+    public class Address{  // class which stores the address
         int houseNumber;
         String streetName;
         String postalCode;
@@ -18,7 +19,7 @@ public class User {
         }
     }
 
-    public class Billing{
+    public class Billing{ // class which stores billing information
         double cardNumber;
         String fullName;
         Date expiry;
@@ -32,21 +33,27 @@ public class User {
         }
     }
 
-    private String name;
-    private final String userName;
+    private String email;  // distinct key
+    private final String username;
     private String password;
-    boolean isAddress = false;
+    boolean isAddress = false; // to keep track if the user has added address/billing info or not
     boolean isBilling = false;
     private Address address;
     private Billing billing;
 
-    public User(String name, String userName, String password)
-    {
-        this.name = name;
-        this.userName = userName;
+    public User(String email, String username, String password) // constructor
+    {//input field tests
+        assert (email!=null);
+        assert(username!=null);
+        assert (password!=null);
+
+        this.email = email;
+        this.username = username;
         this.password = password;
     }
 
-    public String getUserName() {return userName;}
+    public String getUserName() {return username;}
+
+    public String getEmail() { return email;}
 
 }
