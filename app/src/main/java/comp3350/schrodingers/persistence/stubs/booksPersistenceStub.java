@@ -18,6 +18,8 @@ public class booksPersistenceStub implements BooksPersistence {
         books.add(new Book("1","The Chronicles of Comp 3150", "Random", "$200", "Educational","10","4"));
         books.add(new Book("2","Adventures of Comp 3150", "Tom", "$300", "Fictional","20","3"));
         books.add(new Book("3","The Art of jumping", "Franklin", "$400", "Jumpinig","30","1"));
+        books.add(new Book("4","The Art of jumping", "Franklin", "$400", "Jumpinig","30","1"));
+
     }
 
 
@@ -34,6 +36,20 @@ public class booksPersistenceStub implements BooksPersistence {
         }
         return authorBook; //returns a list of books by the author.
     }
+
+    @Override
+    public Book getBookById(String id){
+        Iterator<Book> bookIterator = books.iterator();
+        while(bookIterator.hasNext()) {
+            Book nextBook = bookIterator.next();  //holds the element to be compared to find the author
+            if (nextBook.getBookID().equals(id)) {
+                return nextBook;
+            }
+
+        }//returns a books by the author.
+        return null;
+    }
+
 
     @Override
     public List<Book> getBookByTitle(String title) {

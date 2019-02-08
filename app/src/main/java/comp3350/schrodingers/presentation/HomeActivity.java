@@ -79,7 +79,7 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.my_account) {
-            //TODO: open new window to create an account if not logged in, go to user preferences if logged in
+            //TODO:\ open new window to create an account if not logged in, go to user preferences if logged in
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
