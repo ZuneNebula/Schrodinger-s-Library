@@ -9,6 +9,7 @@ public class Book {
   private final String bookStock;
   private final String rating;
 
+
     public Book(String bookID, String bookName, String author, String price, String genre, String bookStock, String rating) {
         this.bookID = bookID;
         this.bookName = bookName;
@@ -40,6 +41,7 @@ public class Book {
         return genre;
     }
 
+
     public String getBookStock() {
         return bookStock;
     }
@@ -51,6 +53,7 @@ public class Book {
     @Override
     public String toString() {
         return "Book{" +
+
                 "bookID='" + bookID + '\'' +
                 ", bookName='" + bookName + '\'' +
                 ", author='" + author + '\'' +
