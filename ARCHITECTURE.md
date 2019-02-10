@@ -3,7 +3,7 @@
 
 ## Packages and Files
 
-### Java
+### *Java*
 
 #### application
     - Services.java
@@ -32,7 +32,7 @@
 
 
 
-### XML
+### *XML*
 
 #### drawable
     - ic_launcher_background.xml
