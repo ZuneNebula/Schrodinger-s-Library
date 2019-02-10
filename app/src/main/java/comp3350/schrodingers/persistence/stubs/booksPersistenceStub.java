@@ -15,13 +15,18 @@ public class booksPersistenceStub implements BooksPersistence {
     public booksPersistenceStub() {
         //initializing the list
         this.books = new ArrayList<>();
-        books.add(new Book("1","The Chronicles of Comp 3150", "Random", "$200", "Educational","10","4"));
-        books.add(new Book("2","Adventures of Comp 3150", "Tom", "$300", "Fictional","20","3"));
-        books.add(new Book("3","The Art of jumping", "Franklin", "$400", "Jumpinig","30","1"));
-        books.add(new Book("4","The Art of jumping", "Franklin", "$400", "Jumpinig","30","1"));
+        books.add(new Book("1","The Chronicles of Comp 3150", "Random", "$200", "Educational","10","4",1));
+        books.add(new Book("2","Adventures of Comp 3150", "Tom", "$300", "Fictional","20","3",2));
+        books.add(new Book("3","The Art of jumping", "Franklin", "$400", "Jumpinig","30","1",3));
+        books.add(new Book("4","The Art of jumping", "Franklin", "$400", "Jumpinig","30","1",4));
 
     }
 
+    public List<Book> getBooks() {
+        List <Book> res = new ArrayList<>();
+        res.addAll(this.books);
+        return res;
+    }
 
     @Override
     public List<Book> getBookByAuthor(String author) {
@@ -29,7 +34,7 @@ public class booksPersistenceStub implements BooksPersistence {
         Iterator<Book> bookIterator = books.iterator();
         while(bookIterator.hasNext()){
           Book nextBook = bookIterator.next();  //holds the element to be compared to find the author
-          if (nextBook.getAuthor().equals(author)){
+          if ((nextBook.getAuthor().toLowerCase()).contains(author)){
               authorBook.add(nextBook);
           }
 
@@ -42,7 +47,7 @@ public class booksPersistenceStub implements BooksPersistence {
         Iterator<Book> bookIterator = books.iterator();
         while(bookIterator.hasNext()) {
             Book nextBook = bookIterator.next();  //holds the element to be compared to find the author
-            if (nextBook.getBookID().equals(id)) {
+            if (nextBook.getBookID().toLowerCase().contains(id)) {
                 return nextBook;
             }
 
@@ -57,7 +62,7 @@ public class booksPersistenceStub implements BooksPersistence {
         Iterator<Book> bookIterator = books.iterator();
         while(bookIterator.hasNext()){
             Book nextBook = bookIterator.next();  //holds the element to be compared to find the title
-            if (nextBook.getBookName().equals(title)){
+            if ((nextBook.getBookName().toLowerCase()).contains(title)){
                 titleBook.add(nextBook);
             }
 

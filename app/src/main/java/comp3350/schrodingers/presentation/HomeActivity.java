@@ -1,8 +1,10 @@
 package comp3350.schrodingers.presentation;
 
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.design.widget.Snackbar;
@@ -11,14 +13,29 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.ListView;
+import android.support.v7.widget.SearchView;
+import android.app.SearchManager;
+import android.widget.SearchView.OnQueryTextListener;
 
+import java.util.ArrayList;
+import java.util.List;
 
-
+import comp3350.schrodingers.Objects.Book;
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.application.BookAdapter;
+import comp3350.schrodingers.business.FindBook;
+import comp3350.schrodingers.persistence.BooksPersistence;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+   // SearchView searchView = (SearchView) findViewById(R.id.action_search);
+   FindBook bookList ;
+    ListView viewbookList;
+    BookAdapter arrayAdapter;
+    List<String> name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +51,20 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        bookList = new FindBook();
+
+
+        arrayAdapter = new BookAdapter(this, bookList);
+        viewbookList = (ListView) findViewById(R.id.booklist);
+        //ImageView bookImage = (ImageView) findViewById(R.id.bookImage);
+        //String imageName = bookList.searchBookById("3").getBookName().toLowerCase();
+
+        //bookImage.setImageResource(R.drawable.theartofjumping);
+
+        viewbookList.setAdapter(arrayAdapter);
+
+
     }
 
     @Override
@@ -53,7 +84,33 @@ public class HomeActivity extends AppCompatActivity
         //SEARCH:
         //set action_search
         //see https://www.youtube.com/watch?v=9OWmnYPX1uc&t=147s or https://www.youtube.com/watch?v=sJ-Z9G0SDhc&t=299s
-        
+
+        MenuItem myActionMenuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView)myActionMenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if(TextUtils.isEmpty(s)){
+                    arrayAdapter.filter("");
+
+                    viewbookList.clearTextFilter();
+
+                }
+                else{
+
+                    arrayAdapter.filter(s);
+
+
+
+                }
+                return true;
+            }
+        });
         return true;
     }
 

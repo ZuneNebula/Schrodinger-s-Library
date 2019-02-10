@@ -11,4 +11,6 @@
     <string name="title_activity_view_book_info">ViewBookInfoActivity</string>
     <string name="todo">TODO</string>
     <string name="book_image">book image</string>
+    <string name="title_activity_seaech">SeaechActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
 </resources>
