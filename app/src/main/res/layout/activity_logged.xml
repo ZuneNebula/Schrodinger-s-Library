@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".presentation.LoggedActivity">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
@@ -15,77 +16,32 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="Hi,"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/greeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/username"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textSize="36sp" />
+    <Button
+        android:id="@+id/personalInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/email"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Payment Information:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/billing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/billing"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/address"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phone Number"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/phone"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:onClick="buttonInformationOnClick"
+        android:text="Personal Information" />
 
     <Button
-        android:id="@+id/resetPassButton"
+        android:id="@+id/paymentInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset Password" />
+        android:onClick="buttonPaymentOnClick"
+        android:text="Payment Information" />
 
 
 </LinearLayout>

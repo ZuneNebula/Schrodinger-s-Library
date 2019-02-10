@@ -8,9 +8,12 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="username" />
-    <string name="email" />
-    <string name="billing" />
-    <string name="address" />
-    <string name="phone" />
+    <string name="username">Not logged in</string>
+    <string name="email">No email provided</string>
+    <string name="billing">No credit card added</string>
+    <string name="address">No address provided</string>
+    <string name="phone">No phone number added</string>
+    <string name="title_activity_person_info">PersonInfo</string>
+    <string name="cardDate">01/99</string>
+    <string name="cardCvv">123</string>
 </resources>

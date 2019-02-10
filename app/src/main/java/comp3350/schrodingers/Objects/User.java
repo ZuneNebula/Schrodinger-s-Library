@@ -4,11 +4,11 @@ import java.util.Date;
 public class User {
 
     public class Address{  // class which stores the address
-        int houseNumber;
-        String streetName;
-        String postalCode;
-        String state;
-        String country;
+        private int houseNumber;
+        private String streetName;
+        private String postalCode;
+        private String state;
+        private String country;
         public Address(int houseNumber, String streetName, String postalCode,String state, String country)
         {
             this.houseNumber = houseNumber;
@@ -20,9 +20,9 @@ public class User {
     }
 
     public class Billing{ // class which stores billing information
-        double cardNumber;
-        String fullName;
-        Date expiry;
+        private double cardNumber;
+        private String fullName;
+        private Date expiry;
         int CV;
         public Billing(int cardNumber, String fullName, Date expiry, int CV)
         {
@@ -30,6 +30,11 @@ public class User {
             this.fullName = fullName;
             this.expiry = expiry;
             this.CV = CV;
+        }
+
+
+        public String toString(){
+            return "Visa ending in"+ (cardNumber%1000);
         }
     }
 
