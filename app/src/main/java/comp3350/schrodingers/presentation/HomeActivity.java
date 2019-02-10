@@ -59,22 +59,11 @@ public class HomeActivity extends AppCompatActivity
         viewbookList = (ListView) findViewById(R.id.booklist);
         //ImageView bookImage = (ImageView) findViewById(R.id.bookImage);
         //String imageName = bookList.searchBookById("3").getBookName().toLowerCase();
-
         //bookImage.setImageResource(R.drawable.theartofjumping);
 
         viewbookList.setAdapter(arrayAdapter);
 
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
     @Override
@@ -104,8 +93,6 @@ public class HomeActivity extends AppCompatActivity
                 else{
 
                     arrayAdapter.filter(s);
-
-
 
                 }
                 return true;

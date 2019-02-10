@@ -15,10 +15,12 @@ public class booksPersistenceStub implements BooksPersistence {
     public booksPersistenceStub() {
         //initializing the list
         this.books = new ArrayList<>();
-        books.add(new Book("1","The Chronicles of Comp 3150", "Random", "$200", "Educational","10","4",1));
-        books.add(new Book("2","Adventures of Comp 3150", "Tom", "$300", "Fictional","20","3",2));
-        books.add(new Book("3","The Art of jumping", "Franklin", "$400", "Jumpinig","30","1",3));
-        books.add(new Book("4","The Art of jumping", "Franklin", "$400", "Jumpinig","30","1",4));
+        books.add(new Book("1","The Chronicles of Comp 3150", "Random", "$200", "Educational","10","4","reading"));
+        books.add(new Book("2","Adventures of Comp 3150", "Tom", "$300", "Fictional","20","3","bookRead"));
+        books.add(new Book("3","The Art of jumping", "Franklin", "$400", "Jumpinig","30","1","pet"));
+        books.add(new Book("4","The Art of Dancing", "Ryan", "$400", "Racing","30","1","theartofjumping"));
+        books.add(new Book("5","The Art of jumping", "Walker", "$400", "Comedy","30","1","theartofjumping"));
+        books.add(new Book("6","Software Engineering", "Ayobami", "$400", "Jumpinig","30","1","theartofjumping"));
 
     }
 

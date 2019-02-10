@@ -8,10 +8,10 @@ public class Book {
   private final String genre;
   private final String bookStock;
   private final String rating;
-  private final int iconId;
+  private final String iconId;
 
 
-    public Book(String bookID, String bookName, String author, String price, String genre, String bookStock, String rating, int iconId) {
+    public Book(String bookID, String bookName, String author, String price, String genre, String bookStock, String rating, String iconId) {
         this.bookID = bookID;
         this.bookName = bookName;
         this.author = author;
@@ -51,7 +51,7 @@ public class Book {
         return rating;
     }
 
-    public int getIconId() {
+    public String getIconId() {
         return iconId;
     }
 
