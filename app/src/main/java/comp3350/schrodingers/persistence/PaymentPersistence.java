@@ -1,9 +1,12 @@
 package comp3350.schrodingers.persistence;
 
+import java.util.List;
+
 import comp3350.schrodingers.Objects.User.Billing;
 
 public interface PaymentPersistence {
-    void addCreditCard(Billing creditCard);
-    void updateCreditCard(Billing creditCard);
+    Billing addCreditCard(Billing creditCard);
+    Billing updateCreditCard(Billing creditCard);
     void deleteCreditCard(Billing creditCard);
+    List<Billing> getCards();
 }

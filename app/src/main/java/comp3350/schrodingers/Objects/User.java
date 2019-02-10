@@ -1,6 +1,9 @@
 package comp3350.schrodingers.Objects;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 public class User {
 
     public class Address{  // class which stores the address
@@ -20,16 +23,28 @@ public class User {
     }
 
     public static class Billing{ // class which stores billing information
-        private int cardNumber;
+        private long cardNumber;
         private String fullName;
-        private Date expiry;
-        int cvv;
-        public Billing(int cardNumber, String fullName, Date expiry, int cvv)
+        private String expiry;
+        private int cvv;
+        public Billing(long cardNumber, String fullName, String expiry, int cvv)
         {
             this.cardNumber = cardNumber;
             this.fullName = fullName;
             this.expiry = expiry;
             this.cvv = cvv;
+        }
+        public long getCardNumber(){
+            return cardNumber;
+        }
+        public String getFullName(){
+            return fullName;
+        }
+        public String getExpiry(){
+            return expiry;
+        }
+        public int getCvv(){
+            return cvv;
         }
 
 
@@ -44,7 +59,7 @@ public class User {
     boolean isAddress = false; // to keep track if the user has added address/billing info or not
     boolean isBilling = false;
     private Address address;
-    private Billing billing;
+    private List<Billing> billing;
 
     public User(String email, String username, String password) // constructor
     {//input field tests
@@ -55,10 +70,16 @@ public class User {
         this.email = email;
         this.username = username;
         this.password = password;
+        billing = new ArrayList<>();
     }
 
     public String getUserName() {return username;}
 
     public String getEmail() { return email;}
+
+    public List<Billing> getBilling(){
+        return billing;
+    }
+
 
 }

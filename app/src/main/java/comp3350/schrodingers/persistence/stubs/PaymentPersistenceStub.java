@@ -1,32 +1,45 @@
 package comp3350.schrodingers.persistence.stubs;
 
+import comp3350.schrodingers.Objects.User;
 import comp3350.schrodingers.Objects.User.Billing;
+import comp3350.schrodingers.persistence.stubs.UsersPersistenceStub;
 import comp3350.schrodingers.persistence.PaymentPersistence;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
 public class PaymentPersistenceStub implements PaymentPersistence {
-    private List<Billing> bills;
+    private UsersPersistenceStub userStub;
+    private User user;
+    private List<Billing> cards;
     public PaymentPersistenceStub(){
-        bills = new ArrayList<>();
+        userStub = new UsersPersistenceStub();
+        user = userStub.getUser();
+        cards = user.getBilling();
     }
     @Override
-    public void addCreditCard(Billing creditCard){
-        bills.add(creditCard);
+    public Billing addCreditCard(Billing creditCard){
+        cards.add(creditCard);
+        return creditCard;
+    }
+
+    public List<Billing> getCards(){
+        return Collections.unmodifiableList(cards);
     }
     @Override
-    public void updateCreditCard(Billing creditCard){
-        int index = bills.indexOf(creditCard);
+    public Billing updateCreditCard(Billing creditCard){
+        int index = cards.indexOf(creditCard);
         if(index >= 0)
-            bills.set(index,creditCard);
+            cards.set(index,creditCard);
+        return creditCard;
     }
     @Override
     public void deleteCreditCard(Billing creditCard){
-        int index = bills.indexOf(creditCard);
+        int index = cards.indexOf(creditCard);
         if(index >= 0)
-            bills.remove(index);
+            cards.remove(index);
     }
 
 }

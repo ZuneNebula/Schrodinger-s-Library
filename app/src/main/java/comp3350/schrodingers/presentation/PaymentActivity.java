@@ -8,13 +8,19 @@ import android.view.View;
 import android.widget.EditText;
 
 
+import java.util.Calendar;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import comp3350.schrodingers.Objects.User.Billing;
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.business.AccessPaymentInfo;
 
 public class PaymentActivity extends AppCompatActivity {
 
+    private AccessPaymentInfo accessCards;
+    private List<Billing> cards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +29,21 @@ public class PaymentActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        EditText userBilling = (EditText) findViewById(R.id.billing);
+        accessCards = new AccessPaymentInfo();
+        cards = accessCards.getCards();
+
+
+        if(cards.size() != 0){
+            Billing singleCard = cards.get(0);
+            EditText userBilling = (EditText) findViewById(R.id.billing);
+            EditText expDate = (EditText) findViewById(R.id.expDate);
+            EditText cvv = (EditText) findViewById(R.id.cvv);
+            EditText cardName = (EditText) findViewById(R.id.cardName);
+            userBilling.setText(""+singleCard.getCardNumber());
+            expDate.setText(singleCard.getExpiry());
+            cvv.setText(""+singleCard.getCvv());
+            cardName.setText(singleCard.getFullName());
+        }
         //userBilling.setText(User.getBilling());
     }
     public void buttonChangePayment(View v){
@@ -34,7 +54,16 @@ public class PaymentActivity extends AppCompatActivity {
         String validate = validateInfo(editCardNum.getText().toString(),
                 editExpDate.getText().toString(), editCvv.getText().toString(), editCardName.getText().toString());
         if (validate == null) {
-            System.out.println();
+            long cn = Long.parseLong(editCardNum.getText().toString());
+            String exp = editExpDate.getText().toString();
+            String name = editCardName.getText().toString();
+            int cv = Integer.parseInt(editCvv.getText().toString());
+            Billing newCard = new Billing(cn,name,exp,cv);
+            if(cards.size() != 0)
+                accessCards.updateCard(newCard);
+            else
+                accessCards.insertCard(newCard);
+
             Snackbar.make(findViewById(R.id.payment_info), R.string.changes_applied,
                     Snackbar.LENGTH_SHORT).show();
         }else{
@@ -56,6 +85,14 @@ public class PaymentActivity extends AppCompatActivity {
             Matcher matcher = pattern.matcher(date);
             if(!matcher.matches())
                 return "Please write Date in the correct format: \'01/99\'";
+            else{
+                String[] checkDate = date.split("/");
+                int month = Integer.parseInt(checkDate[0]);
+                int year = Integer.parseInt(checkDate[1]) + 2000;
+                Calendar cal = Calendar.getInstance();
+                if(year < cal.get(Calendar.YEAR) || (year == cal.get(Calendar.YEAR) && month <= cal.get(Calendar.MONTH)) )
+                    return "Card expired";
+            }
         }
 
         if(cvv.length() == 0)
