@@ -8,9 +8,10 @@ public class Book {
   private final String genre;
   private final String bookStock;
   private final String rating;
+  private final String iconId;
 
 
-    public Book(String bookID, String bookName, String author, String price, String genre, String bookStock, String rating) {
+    public Book(String bookID, String bookName, String author, String price, String genre, String bookStock, String rating, String iconId) {
         this.bookID = bookID;
         this.bookName = bookName;
         this.author = author;
@@ -18,7 +19,7 @@ public class Book {
         this.genre = genre;
         this.bookStock= bookStock;
         this.rating= rating;
-
+        this.iconId = iconId;
     }
 
     public String getBookID() {
@@ -50,6 +51,10 @@ public class Book {
         return rating;
     }
 
+    public String getIconId() {
+        return iconId;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -61,6 +66,7 @@ public class Book {
                 ", genre='" + genre + '\'' +
                 ", bookStock='" + bookStock + '\'' +
                 ", rating='" + rating + '\'' +
+                ", iconId='" + iconId + '\'' +
                 '}';
     }
 }

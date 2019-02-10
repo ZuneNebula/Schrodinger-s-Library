@@ -21,5 +21,10 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main_menu" />
+    <ListView
+        android:id="@+id/booklist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="55dp" />
 
 </android.support.design.widget.CoordinatorLayout>
