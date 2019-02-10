@@ -17,11 +17,9 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLength="16"
         android:text="Card number:"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -34,7 +32,8 @@
         android:paddingEnd="10dp"
         android:digits="1234567890"
         android:inputType="number"
-        android:text="@string/billing"
+        android:maxLength="16"
+        android:hint="@string/billing"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <GridLayout
@@ -59,8 +58,10 @@
             android:id="@+id/expDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:digits="1234567890"
-            android:text="@string/cardDate"
+            android:inputType="date"
+            android:maxLength="5"
+            android:digits="1234567890/"
+            android:hint="@string/cardDate"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
@@ -69,15 +70,33 @@
             android:layout_height="wrap_content"
             android:digits="1234567890"
             android:inputType="number"
-            android:text="@string/cardCvv"
+            android:maxLength="3"
+            android:hint="@string/cardCvv"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </GridLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name in Card:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+    <EditText
+        android:id="@+id/cardName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:inputType="textCapCharacters"
+        android:hint="@string/cardName"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
         android:id="@+id/resetPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="buttonChangePayment"
         android:text="Change" />
 
 

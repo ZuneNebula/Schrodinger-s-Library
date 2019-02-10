@@ -8,14 +8,15 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="username">Not logged in</string>
-    <string name="email">No email provided</string>
-    <string name="billing">No credit card added</string>
-    <string name="address">No address provided</string>
-    <string name="phone">No phone number added</string>
+    <string name="username">username</string>
+    <string name="email">juanito@gmail.com</string>
+    <string name="billing">0000000000000000</string>
+    <string name="address">6 Chancellor Circle</string>
+    <string name="phone">+120488888888</string>
     <string name="title_activity_person_info">PersonInfo</string>
     <string name="cardDate">01/99</string>
     <string name="cardCvv">123</string>
     <string name="fatalError">Fatal Error</string>
     <string name="warning">Warning</string>
+    <string name="cardName">JUANITO ALCACHOFA</string>
 </resources>
