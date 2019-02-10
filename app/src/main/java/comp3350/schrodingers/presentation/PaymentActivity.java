@@ -92,6 +92,8 @@ public class PaymentActivity extends AppCompatActivity {
                 Calendar cal = Calendar.getInstance();
                 if(year < cal.get(Calendar.YEAR) || (year == cal.get(Calendar.YEAR) && month <= cal.get(Calendar.MONTH)) )
                     return "Card expired";
+                else if(year > cal.get(Calendar.YEAR) + 20)
+                    return "Are you from a far future or past?";
             }
         }
 
