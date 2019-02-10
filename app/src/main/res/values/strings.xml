@@ -20,4 +20,8 @@
     <string name="warning">Warning</string>
     <string name="cardName">JUANITO ALCACHOFA</string>
     <string name="changes_applied">Changes Applied</string>
+    <string name="city">Winnipeg</string>
+    <string name="province">Manitoba</string>
+    <string name="zip">R3T 2N2</string>
+    <string name="country">Canada</string>
 </resources>
