@@ -19,17 +19,17 @@ public class User {
         }
     }
 
-    public class Billing{ // class which stores billing information
-        private double cardNumber;
+    public static class Billing{ // class which stores billing information
+        private int cardNumber;
         private String fullName;
         private Date expiry;
-        int CV;
-        public Billing(int cardNumber, String fullName, Date expiry, int CV)
+        int cvv;
+        public Billing(int cardNumber, String fullName, Date expiry, int cvv)
         {
             this.cardNumber = cardNumber;
             this.fullName = fullName;
             this.expiry = expiry;
-            this.CV = CV;
+            this.cvv = cvv;
         }
 
 
