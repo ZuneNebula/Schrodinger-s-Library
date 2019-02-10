@@ -80,6 +80,7 @@
         android:id="@+id/resetInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="buttonInfoUpdate"
         android:text="Update Info" />
 
 

@@ -16,4 +16,6 @@
     <string name="title_activity_person_info">PersonInfo</string>
     <string name="cardDate">01/99</string>
     <string name="cardCvv">123</string>
+    <string name="fatalError">Fatal Error</string>
+    <string name="warning">Warning</string>
 </resources>
