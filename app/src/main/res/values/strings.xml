@@ -19,4 +19,5 @@
     <string name="fatalError">Fatal Error</string>
     <string name="warning">Warning</string>
     <string name="cardName">JUANITO ALCACHOFA</string>
+    <string name="changes_applied">Changes Applied</string>
 </resources>
