@@ -22,7 +22,7 @@ import comp3350.schrodingers.business.FindBook;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
    // SearchView searchView = (SearchView) findViewById(R.id.action_search);
-   FindBook bookList ;
+    FindBook bookList ;
     ListView viewbookList;
     BookAdapter arrayAdapter;
     List<String> name;
@@ -115,10 +115,6 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.my_account) {
             Intent loggedIntent = new Intent(HomeActivity.this, LoggedActivity.class);
             HomeActivity.this.startActivity(loggedIntent);
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
