@@ -45,6 +45,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.LoggedActivity" />
+        <activity android:name=".presentation.PersonInfo" />
+        <activity android:name=".presentation.PaymentActivity"></activity>
     </application>
 
 </manifest>

@@ -42,4 +42,9 @@ public class UsersPersistenceStub implements UsersPersistence
     {
         users.remove(findUser(email));
     }
+
+    public User getUser(){
+        //created to be able to test the logged activity
+        return users.get(0);
+    }
 }

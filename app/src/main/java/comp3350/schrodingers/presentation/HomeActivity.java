@@ -1,8 +1,10 @@
 package comp3350.schrodingers.presentation;
 
+import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -123,7 +125,8 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.my_account) {
-            //TODO:\ open new window to create an account if not logged in, go to user preferences if logged in
+            Intent loggedIntent = new Intent(HomeActivity.this, LoggedActivity.class);
+            HomeActivity.this.startActivity(loggedIntent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

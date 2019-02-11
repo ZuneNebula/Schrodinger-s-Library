@@ -13,4 +13,20 @@
     <string name="book_image">book image</string>
     <string name="title_activity_seaech">SeaechActivity</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="username">username</string>
+    <string name="email">juanito@gmail.com</string>
+    <string name="billing">0000000000000000</string>
+    <string name="address">6 Chancellor Circle</string>
+    <string name="phone">+120488888888</string>
+    <string name="title_activity_person_info">PersonInfo</string>
+    <string name="cardDate">01/99</string>
+    <string name="cardCvv">123</string>
+    <string name="fatalError">Fatal Error</string>
+    <string name="warning">Warning</string>
+    <string name="cardName">JUANITO ALCACHOFA</string>
+    <string name="changes_applied">Changes Applied</string>
+    <string name="city">Winnipeg</string>
+    <string name="province">Manitoba</string>
+    <string name="zip">R3T 2N2</string>
+    <string name="country">Canada</string>
 </resources>
