@@ -9,8 +9,9 @@
     - Services.java
 
 #### business 
-    - FindBook.java
     - AccessPaymentInfo.java
+    - FindBook.java
+    - PaymentProcessor
 
 #### objects 
     - Book.java
@@ -18,14 +19,15 @@
     
 #### persistance
 ##### Stubs
-    - booksPersistenceStub.java
+    - BooksPersistenceStub.java
     - UsersPersistenceStub.java
     - PaymentPersistenceStub.java
     
 ##### Interfaces
     - BooksPersistence.java
-    - UsersPersistence.java
     - PaymentPersistence.java
+    - PaymentProcessorInt.java
+    - UsersPersistence.java
 
 #### presentation 
     - BookAdapter.java
