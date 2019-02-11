@@ -3,7 +3,7 @@ package comp3350.schrodingers.tests.objects;
 import org.junit.Test;
 import comp3350.schrodingers.objects.Book;
 import static org.junit.Assert.*;
-public class Booktest {
+public class BookTest {
     @Test
     public void testBook1(){
         Book book;
