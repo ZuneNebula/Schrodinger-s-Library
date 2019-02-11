@@ -58,6 +58,7 @@ public class User {
     private String password;
     boolean isAddress = false; // to keep track if the user has added address/billing info or not
     boolean isBilling = false;
+    boolean isLoggedIn = false;
     private Address address;
     private List<Billing> billing;
 
@@ -76,6 +77,8 @@ public class User {
     public String getUserName() {return username;}
 
     public String getEmail() { return email;}
+
+    public String getPassword() {return password;}
 
     public List<Billing> getBilling(){
         return billing;
