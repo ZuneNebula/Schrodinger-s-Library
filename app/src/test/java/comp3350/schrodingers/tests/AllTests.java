@@ -9,6 +9,7 @@ import comp3350.schrodingers.tests.objects.Booktest;
 @Suite.SuiteClasses({
         BillingTest.class,
         Booktest.class
+        UserTest.class
 })
 public class AllTests
 {
