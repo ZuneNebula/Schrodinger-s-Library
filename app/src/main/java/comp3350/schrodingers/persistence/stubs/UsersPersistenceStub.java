@@ -1,6 +1,6 @@
 package comp3350.schrodingers.persistence.stubs;
 
-import comp3350.schrodingers.Objects.User;
+import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
 import java.util.ArrayList;

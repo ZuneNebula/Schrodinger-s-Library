@@ -1,4 +1,4 @@
-package comp3350.schrodingers.Objects;
+package comp3350.schrodingers.objects;
 
 public class Book {
   private final String bookID;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import comp3350.schrodingers.Objects.Book;
+import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.persistence.BooksPersistence;
 
 public class booksPersistenceStub implements BooksPersistence {

@@ -2,7 +2,7 @@ package comp3350.schrodingers.persistence;
 
 import java.util.List;
 
-import comp3350.schrodingers.Objects.User.Billing;
+import comp3350.schrodingers.objects.User.Billing;
 
 public interface PaymentPersistence {
     Billing addCreditCard(Billing creditCard);

@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import comp3350.schrodingers.persistence.stubs.UsersPersistenceStub;
-import comp3350.schrodingers.Objects.User;
+import comp3350.schrodingers.objects.User;
 
 import comp3350.schrodingers.R;
 

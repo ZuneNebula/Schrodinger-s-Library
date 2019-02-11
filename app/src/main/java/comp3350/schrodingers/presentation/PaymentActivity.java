@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import comp3350.schrodingers.Objects.User.Billing;
+import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessPaymentInfo;
 
