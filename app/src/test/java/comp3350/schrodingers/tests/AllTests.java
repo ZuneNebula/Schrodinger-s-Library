@@ -13,7 +13,6 @@ import comp3350.schrodingers.tests.objects.UserTest;
         BillingTest.class,
         BookTest.class,
         UserTest.class,
-        BillingTest.class,
         PaymentProcessorTest.class
 })
 public class AllTests
