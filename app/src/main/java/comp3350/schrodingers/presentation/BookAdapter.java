@@ -1,4 +1,4 @@
-package comp3350.schrodingers.application;
+package comp3350.schrodingers.presentation;
 
 import android.content.Context;
 import android.content.Intent;

@@ -1,7 +1,6 @@
 package comp3350.schrodingers.presentation;
 
 import android.content.Intent;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -9,27 +8,16 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.widget.ArrayAdapter;
-import android.widget.Filter;
 import android.widget.ListView;
-import android.support.v7.widget.SearchView;
-import android.app.SearchManager;
-import android.widget.SearchView.OnQueryTextListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.schrodingers.Objects.Book;
 import comp3350.schrodingers.R;
-import comp3350.schrodingers.application.BookAdapter;
 import comp3350.schrodingers.business.FindBook;
-import comp3350.schrodingers.persistence.BooksPersistence;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

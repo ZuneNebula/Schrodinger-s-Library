@@ -4,10 +4,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import comp3350.schrodingers.tests.objects.BillingTest;
-
+import comp3350.schrodingers.tests.objects.Booktest;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        BillingTest.class
+        BillingTest.class,
+        Booktest.class
 })
 public class AllTests
 {
