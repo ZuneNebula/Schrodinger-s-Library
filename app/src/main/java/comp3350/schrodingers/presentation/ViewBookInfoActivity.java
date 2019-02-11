@@ -64,6 +64,4 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
 }
