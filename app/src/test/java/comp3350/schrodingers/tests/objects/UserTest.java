@@ -16,9 +16,11 @@ public class UserTest {
     @Test
     public void constructorIsCorrect()
     {
+        System.out.println("\nStarting user test\n");
         assertEquals(testUser.getEmail(), "axa@gmail.com");
         assertEquals(testUser.getUserName(), "michael");
         assertEquals(testUser.getPassword(), "voo");
+        System.out.println("\nFinished user test\n");
 
     }
 
