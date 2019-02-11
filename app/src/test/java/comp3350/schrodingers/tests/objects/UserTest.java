@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.List;
 
-import comp3350.schrodingers.Objects.User;
+import comp3350.schrodingers.objects.User;
 
 // tests the user class's constructor and main fields
 //to do later - add address tests

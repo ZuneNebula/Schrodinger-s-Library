@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import comp3350.schrodingers.Objects.Book;
+import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.persistence.BooksPersistence;
 
-public class booksPersistenceStub implements BooksPersistence {
+public class BooksPersistenceStub implements BooksPersistence {
 
     private List<Book> books; // list of books
 
     //Constructor
-    public booksPersistenceStub() {
+    public BooksPersistenceStub() {
         //initializing the list
         this.books = new ArrayList<>();
         books.add(new Book("1","The Chronicles of Comp 3150", "Random", "$200", "Educational","10","4","reading"));

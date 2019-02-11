@@ -1,7 +1,7 @@
 package comp3350.schrodingers.application;
 
 import comp3350.schrodingers.persistence.BooksPersistence;
-import comp3350.schrodingers.persistence.stubs.booksPersistenceStub;
+import comp3350.schrodingers.persistence.stubs.BooksPersistenceStub;
 import comp3350.schrodingers.persistence.UsersPersistence;
 import comp3350.schrodingers.persistence.stubs.UsersPersistenceStub;
 import comp3350.schrodingers.persistence.PaymentPersistence;
@@ -14,7 +14,7 @@ public class Services {
 
     public static synchronized BooksPersistence getBooksPersistence(){
         if (booksPersistence == null){
-            booksPersistence= new booksPersistenceStub();
+            booksPersistence= new BooksPersistenceStub();
         }
         return booksPersistence;
     }

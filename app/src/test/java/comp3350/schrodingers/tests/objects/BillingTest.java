@@ -1,7 +1,7 @@
 package comp3350.schrodingers.tests.objects;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import comp3350.schrodingers.Objects.User.Billing;
+import comp3350.schrodingers.objects.User.Billing;
 
 public class BillingTest {
     @Test

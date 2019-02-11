@@ -1,6 +1,6 @@
 package comp3350.schrodingers.persistence;
 
-import comp3350.schrodingers.Objects.User;
+import comp3350.schrodingers.objects.User;
 
 public interface UsersPersistence {
 

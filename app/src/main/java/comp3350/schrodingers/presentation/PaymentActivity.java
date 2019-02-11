@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 import java.util.List;
 
-import comp3350.schrodingers.Objects.User.Billing;
+import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessPaymentInfo;
 import comp3350.schrodingers.business.PaymentProcessor;

@@ -1,11 +1,9 @@
 package comp3350.schrodingers.persistence.stubs;
 
-import comp3350.schrodingers.Objects.User;
-import comp3350.schrodingers.Objects.User.Billing;
-import comp3350.schrodingers.persistence.stubs.UsersPersistenceStub;
+import comp3350.schrodingers.objects.User;
+import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.persistence.PaymentPersistence;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

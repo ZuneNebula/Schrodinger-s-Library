@@ -1,25 +1,17 @@
 package comp3350.schrodingers.presentation;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
-import java.io.File;
 import java.util.List;
-import java.util.logging.Logger;
 
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.FindBook;
-import comp3350.schrodingers.Objects.Book;
+import comp3350.schrodingers.objects.Book;
 public class SearchActivity extends AppCompatActivity {
 
     @Override

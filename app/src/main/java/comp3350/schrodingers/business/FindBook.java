@@ -2,8 +2,9 @@ package comp3350.schrodingers.business;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import comp3350.schrodingers.persistence.BooksPersistence;
-import comp3350.schrodingers.Objects.Book;
+import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.application.Services;
 
 public class FindBook {

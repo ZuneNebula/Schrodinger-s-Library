@@ -1,7 +1,6 @@
-package comp3350.schrodingers.Objects;
+package comp3350.schrodingers.objects;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class User {

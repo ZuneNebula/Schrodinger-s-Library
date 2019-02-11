@@ -9,11 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import comp3350.schrodingers.Objects.Book;
+import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.FindBook;
-import comp3350.schrodingers.presentation.ViewBookInfoActivity;
 
 import java.util.*;
 
