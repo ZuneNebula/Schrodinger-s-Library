@@ -6,8 +6,8 @@ import comp3350.schrodingers.business.AccessPaymentInfo;
 public class AccessPaymentInfoTest {
     @Test
     public void testPaymentInfo(){
-        System.out.println("\nStarting testBilling");
+        System.out.println("\nStarting testAccessPaymentInfo");
 
-        System.out.println("Finished testBilling");
+        System.out.println("Finished testAccessPaymentInfo");
     }
 }
