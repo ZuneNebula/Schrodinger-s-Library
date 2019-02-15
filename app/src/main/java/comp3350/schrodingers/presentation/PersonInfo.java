@@ -16,6 +16,7 @@ import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.R;
 
 public class PersonInfo extends AppCompatActivity {
+
     private UsersPersistenceStub userList = new UsersPersistenceStub();
     private User user = userList.getUser();
 
@@ -23,24 +24,24 @@ public class PersonInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_info);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        EditText userName = (EditText) findViewById(R.id.username);
+        EditText userName = findViewById(R.id.username);
         userName.setText(user.getUserName());
-        EditText userEmail = (EditText) findViewById(R.id.email);
+        EditText userEmail = findViewById(R.id.email);
         userEmail.setText(user.getEmail());
-        EditText userAddress = (EditText) findViewById(R.id.address);
+        EditText userAddress = findViewById(R.id.address);
         //userAddress.setText(User.getAddress());
-        EditText userPhone = (EditText) findViewById(R.id.phone);
+        EditText userPhone = findViewById(R.id.phone);
         //userPhone.setText(User.getPhone());
     }
 
     public void buttonInfoUpdate(View v){
-        EditText editName = (EditText)findViewById(R.id.username);
-        EditText editEmail = (EditText)findViewById(R.id.email);
-        EditText editAddress = (EditText)findViewById(R.id.address);
-        EditText editPhone = (EditText)findViewById(R.id.phone);
+        EditText editName = findViewById(R.id.username);
+        EditText editEmail = findViewById(R.id.email);
+        EditText editAddress = findViewById(R.id.address);
+        EditText editPhone = findViewById(R.id.phone);
 
         String validate = validateInfo(editName.getText().toString(),editEmail.getText().toString());
         if(validate == null){
@@ -55,6 +56,7 @@ public class PersonInfo extends AppCompatActivity {
 
 
     }
+
     private String validateInfo(String name, String email){
         if(name.length() == 0)
             return "Name required";

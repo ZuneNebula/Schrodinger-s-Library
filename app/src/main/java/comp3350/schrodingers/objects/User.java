@@ -6,11 +6,13 @@ import java.util.List;
 public class User {
 
     public class Address{  // class which stores the address
+
         private int houseNumber;
         private String streetName;
         private String postalCode;
         private String state;
         private String country;
+
         public Address(int houseNumber, String streetName, String postalCode,String state, String country)
         {
             this.houseNumber = houseNumber;
@@ -22,10 +24,12 @@ public class User {
     }
 
     public static class Billing{ // class which stores billing information
+
         private long cardNumber;
         private String fullName;
         private String expiry;
         private int cvv;
+
         public Billing(long cardNumber, String fullName, String expiry, int cvv)
         {
             this.cardNumber = cardNumber;
@@ -33,6 +37,7 @@ public class User {
             this.expiry = expiry;
             this.cvv = cvv;
         }
+
         public long getCardNumber(){
             return cardNumber;
         }
@@ -61,8 +66,9 @@ public class User {
     private Address address;
     private List<Billing> billing;
 
+    //input field tests
     public User(String email, String username, String password) // constructor
-    {//input field tests
+    {
         assert (email!=null);
         assert(username!=null);
         assert (password!=null);
@@ -82,6 +88,5 @@ public class User {
     public List<Billing> getBilling(){
         return billing;
     }
-
 
 }

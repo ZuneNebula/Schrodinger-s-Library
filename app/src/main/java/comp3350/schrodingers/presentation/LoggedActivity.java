@@ -12,6 +12,7 @@ import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.R;
 
 public class LoggedActivity extends AppCompatActivity {
+
     private UsersPersistenceStub userList = new UsersPersistenceStub();
     private User user = userList.getUser();
 
@@ -19,10 +20,10 @@ public class LoggedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        TextView userName = (TextView) findViewById(R.id.greeting);
+        TextView userName = findViewById(R.id.greeting);
         userName.setText(user.getUserName());
 
     }
@@ -31,6 +32,7 @@ public class LoggedActivity extends AppCompatActivity {
         Intent personIntent = new Intent(LoggedActivity.this, PersonInfo.class);
         LoggedActivity.this.startActivity(personIntent);
     }
+
     public void buttonPaymentOnClick(View v){
         Intent payIntent = new Intent(LoggedActivity.this, PaymentActivity.class);
         LoggedActivity.this.startActivity(payIntent);
