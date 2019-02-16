@@ -30,8 +30,17 @@ public class PersonInfo extends AppCompatActivity {
         userName.setText(user.getUserName());
         EditText userEmail = (EditText) findViewById(R.id.email);
         userEmail.setText(user.getEmail());
-        EditText userAddress = (EditText) findViewById(R.id.address);
-        //userAddress.setText(User.getAddress());
+
+        if(!user.getAddress().isEmpty()) {
+            EditText userAddress = (EditText) findViewById(R.id.address);
+            userAddress.setText(user.getAddress().getAddress());
+            EditText userState = (EditText) findViewById(R.id.province);
+            userState.setText(user.getAddress().getState());
+            EditText userZip = (EditText) findViewById(R.id.zip);
+            userZip.setText(user.getAddress().getPostalCode());
+            EditText userCountry = (EditText) findViewById(R.id.country);
+            userCountry.setText(user.getAddress().getCountry());
+        }
         EditText userPhone = (EditText) findViewById(R.id.phone);
         //userPhone.setText(User.getPhone());
     }
@@ -40,6 +49,9 @@ public class PersonInfo extends AppCompatActivity {
         EditText editName = (EditText)findViewById(R.id.username);
         EditText editEmail = (EditText)findViewById(R.id.email);
         EditText editAddress = (EditText)findViewById(R.id.address);
+        EditText editState = (EditText) findViewById(R.id.province);
+        EditText editZip = (EditText) findViewById(R.id.zip);
+        EditText editCountry = (EditText) findViewById(R.id.country);
         EditText editPhone = (EditText)findViewById(R.id.phone);
 
         String validate = validateInfo(editName.getText().toString(),editEmail.getText().toString());

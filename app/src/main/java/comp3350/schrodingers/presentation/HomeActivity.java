@@ -13,19 +13,25 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.FindBook;
+import comp3350.schrodingers.objects.User;
+import comp3350.schrodingers.persistence.stubs.UsersPersistenceStub;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
    // SearchView searchView = (SearchView) findViewById(R.id.action_search);
+   private UsersPersistenceStub userList = new UsersPersistenceStub();
     FindBook bookList ;
     ListView viewbookList;
     BookAdapter arrayAdapter;
     List<String> name;
+    private User user = userList.getUser();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +66,11 @@ public class HomeActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        TextView userName = (TextView) findViewById(R.id.username);
+        userName.setText(user.getUserName());
+        TextView userEmail = (TextView) findViewById(R.id.email);
+        userEmail.setText(user.getEmail());
         //SEARCH:
         //set action_search
         //see https://www.youtube.com/watch?v=9OWmnYPX1uc&t=147s or https://www.youtube.com/watch?v=sJ-Z9G0SDhc&t=299s

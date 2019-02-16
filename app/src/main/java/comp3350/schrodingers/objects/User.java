@@ -11,6 +11,12 @@ public class User {
         private String postalCode;
         private String state;
         private String country;
+        public Address(){
+            streetName = "";
+            postalCode = "";
+            state = "";
+            country = "";
+        }
         public Address(int houseNumber, String streetName, String postalCode,String state, String country)
         {
             this.houseNumber = houseNumber;
@@ -18,6 +24,22 @@ public class User {
             this.postalCode = postalCode;
             this.state = state;
             this.country = country;
+        }
+        public String getAddress(){
+            return ""+houseNumber+" "+streetName;
+        }
+        public String getPostalCode(){
+            return postalCode;
+        }
+        public String getState(){
+            return state;
+        }
+        public String getCountry(){
+            return country;
+        }
+
+        public boolean isEmpty(){
+            return streetName.equals("");
         }
     }
 
@@ -71,6 +93,7 @@ public class User {
         this.username = username;
         this.password = password;
         billing = new ArrayList<>();
+        address = new Address();
     }
 
     public String getUserName() {return username;}
@@ -83,5 +106,8 @@ public class User {
         return billing;
     }
 
+    public Address getAddress(){
+        return address;
+    }
 
 }
