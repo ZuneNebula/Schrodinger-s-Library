@@ -37,6 +37,16 @@ public class UsersPersistenceStub implements UsersPersistence
         users.add(newUser);
         return newUser;
     }
+    public User editUser(User newUser){
+        /*
+        int index = users.indexOf(newUser);
+        if(index >= 0)
+            users.set(index,newUser);
+            */
+        users.set(0, newUser);
+        return newUser;
+    }
+
 
     public void deleteUser(String email) //deletes the user which matches the email from the list
     {

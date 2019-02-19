@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-import comp3350.schrodingers.persistence.stubs.UsersPersistenceStub;
+import comp3350.schrodingers.persistence.UsersPersistence;
 import comp3350.schrodingers.objects.User;
+import comp3350.schrodingers.application.Services;
 
 import comp3350.schrodingers.R;
 
 public class LoggedActivity extends AppCompatActivity {
-    private UsersPersistenceStub userList = new UsersPersistenceStub();
+    private UsersPersistence userList = Services.getUsersPersistence();
     private User user = userList.getUser();
 
     @Override
@@ -21,8 +22,8 @@ public class LoggedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_logged);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-
         TextView userName = (TextView) findViewById(R.id.greeting);
+        user = userList.getUser();
         userName.setText(user.getUserName());
 
     }

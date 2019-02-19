@@ -6,4 +6,6 @@ public interface UsersPersistence {
 
     User insertUser (final User newUser);
     void  deleteUser (final String email);
+    User getUser();
+    User editUser(User newUser);
 }

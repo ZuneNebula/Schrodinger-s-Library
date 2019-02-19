@@ -20,12 +20,13 @@ import java.util.List;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.FindBook;
 import comp3350.schrodingers.objects.User;
-import comp3350.schrodingers.persistence.stubs.UsersPersistenceStub;
+import comp3350.schrodingers.persistence.UsersPersistence;
+import comp3350.schrodingers.application.Services;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
    // SearchView searchView = (SearchView) findViewById(R.id.action_search);
-   private UsersPersistenceStub userList = new UsersPersistenceStub();
+   private UsersPersistence userList = Services.getUsersPersistence();
     FindBook bookList ;
     ListView viewbookList;
     BookAdapter arrayAdapter;
@@ -66,7 +67,7 @@ public class HomeActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
-
+        user = userList.getUser();
         TextView userName = (TextView) findViewById(R.id.username);
         userName.setText(user.getUserName());
         TextView userEmail = (TextView) findViewById(R.id.email);
