@@ -1,5 +1,6 @@
 package comp3350.schrodingers.presentation;
 
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,7 +28,6 @@ public class PersonInfo extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         EditText userName = (EditText) findViewById(R.id.username);
-        user = userList.getUser();
         userName.setText(user.getUserName());
         EditText userEmail = (EditText) findViewById(R.id.email);
         userEmail.setText(user.getEmail());

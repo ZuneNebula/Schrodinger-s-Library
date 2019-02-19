@@ -51,7 +51,6 @@ public class HomeActivity extends AppCompatActivity
 
         bookList = new FindBook();
 
-
         arrayAdapter = new BookAdapter(this, bookList);
         viewbookList = (ListView) findViewById(R.id.booklist);
         //ImageView bookImage = (ImageView) findViewById(R.id.bookImage);
@@ -59,23 +58,21 @@ public class HomeActivity extends AppCompatActivity
         //bookImage.setImageResource(R.drawable.theartofjumping);
 
         viewbookList.setAdapter(arrayAdapter);
-
-
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+    private void updateDisplayUser(){
+        userList = Services.getUsersPersistence();
         user = userList.getUser();
         TextView userName = (TextView) findViewById(R.id.username);
         userName.setText(user.getUserName());
         TextView userEmail = (TextView) findViewById(R.id.email);
         userEmail.setText(user.getEmail());
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        updateDisplayUser();
         //SEARCH:
-        //set action_search
-        //see https://www.youtube.com/watch?v=9OWmnYPX1uc&t=147s or https://www.youtube.com/watch?v=sJ-Z9G0SDhc&t=299s
-
         MenuItem myActionMenuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView)myActionMenuItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -88,14 +85,10 @@ public class HomeActivity extends AppCompatActivity
             public boolean onQueryTextChange(String s) {
                 if(TextUtils.isEmpty(s)){
                     arrayAdapter.filter("");
-
                     viewbookList.clearTextFilter();
-
                 }
                 else{
-
                     arrayAdapter.filter(s);
-
                 }
                 return true;
             }
@@ -132,5 +125,12 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        userList = Services.getUsersPersistence();
+        user = userList.getUser();
+        //updateDisplayUser();
     }
 }

@@ -22,11 +22,14 @@ public class LoggedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_logged);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        TextView userName = (TextView) findViewById(R.id.greeting);
-        user = userList.getUser();
-        userName.setText(user.getUserName());
+        updateGreeting();
 
     }
+    private void updateGreeting(){
+        TextView userName = (TextView) findViewById(R.id.greeting);
+        userName.setText(user.getUserName());
+    }
+
 
     public void buttonInformationOnClick(View v){
         Intent personIntent = new Intent(LoggedActivity.this, PersonInfo.class);
@@ -36,4 +39,13 @@ public class LoggedActivity extends AppCompatActivity {
         Intent payIntent = new Intent(LoggedActivity.this, PaymentActivity.class);
         LoggedActivity.this.startActivity(payIntent);
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        userList = Services.getUsersPersistence();
+        user = userList.getUser();
+        updateGreeting();
+    }
+
 }
