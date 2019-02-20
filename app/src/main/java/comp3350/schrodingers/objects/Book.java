@@ -1,6 +1,7 @@
 package comp3350.schrodingers.objects;
 
 public class Book {
+
   private final String bookID;
   private final String bookName;
   private final String author;

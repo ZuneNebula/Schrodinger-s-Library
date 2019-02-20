@@ -29,4 +29,5 @@
     <string name="province">Manitoba</string>
     <string name="zip">R3T 2N2</string>
     <string name="country">Canada</string>
+    <string name="book_image_button">Book Image Button</string>
 </resources>
