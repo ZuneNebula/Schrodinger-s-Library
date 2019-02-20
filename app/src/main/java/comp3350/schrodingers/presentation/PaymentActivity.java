@@ -13,13 +13,11 @@ import comp3350.schrodingers.business.CardException;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessPaymentInfo;
-import comp3350.schrodingers.business.PaymentProcessorInt;
 
 public class PaymentActivity extends AppCompatActivity {
 
     private AccessPaymentInfo accessCards;
     private List<Billing> cards;
-    private PaymentProcessorInt cardValidator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

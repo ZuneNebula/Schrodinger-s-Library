@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 import comp3350.schrodingers.objects.User.Billing;
 
-public class PaymentProcessor implements PaymentProcessorInt {
+public class PaymentProcessor{
 
     public boolean validateCard(Billing card) throws CardException{
         String number = ""+card.getCardNumber();
