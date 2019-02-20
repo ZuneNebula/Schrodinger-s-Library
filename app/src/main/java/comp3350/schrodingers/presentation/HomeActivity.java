@@ -2,7 +2,6 @@ package comp3350.schrodingers.presentation;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -71,7 +70,7 @@ public class HomeActivity extends AppCompatActivity
             public boolean onMenuItemClick(MenuItem item) {
                 searchLayout = findViewById(R.id.booklist);
                 searchLayout.setAdapter(arrayAdapter);
-                browseLayout.setVisibility(ConstraintLayout.INVISIBLE);
+                browseLayout.setVisibility(ScrollView.INVISIBLE);
                 return true;
             }
         });
