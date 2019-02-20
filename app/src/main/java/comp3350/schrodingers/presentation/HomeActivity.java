@@ -17,7 +17,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.widget.ListView;
 import android.widget.ImageButton;
-import android.media.AudioManager;
 import android.widget.ScrollView;
 
 import java.util.List;
@@ -30,6 +29,7 @@ public class HomeActivity extends AppCompatActivity
 
     FindBook bookList;
     ListView searchLayout;
+    ScrollView browseLayout;
     BookAdapter arrayAdapter;
     List<String> name;
 
@@ -54,11 +54,9 @@ public class HomeActivity extends AppCompatActivity
         arrayAdapter = new BookAdapter(this, bookList);
 
         // Image Button (book catalog) Listeners
-        createImageButtonListeners();
+        createBookCatalogListeners();
 
     }
-
-    ScrollView browseLayout;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -136,10 +134,10 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
-    // Book catalog button listeners
-    public void createImageButtonListeners(){
+    // Book Catalog button listeners
+    public void createBookCatalogListeners(){
 
-        // ImageButton Handlers
+        // Create image button listeners
         ImageButton mClickButton1 = findViewById(R.id.imageButton1);
         mClickButton1.setOnClickListener(this);
         ImageButton mClickButton2 = findViewById(R.id.imageButton2);
@@ -184,16 +182,86 @@ public class HomeActivity extends AppCompatActivity
         mClickButton21.setOnClickListener(this);
     }
 
-    static AudioManager audioManager; // Used for 'tap'/'click' sound
 
+    // Book Catalog button handler
     public void onClick(View v) {
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
+        int buttonID = v.getId();
+        int bookID = -1;
+
+        // Determine which button was pressed
+        switch (v.getId()) {
+            case R.id.imageButton1:
+                bookID = 1;
+                break;
+            case R.id.imageButton2:
+                bookID = 2;
+                break;
+            case R.id.imageButton3:
+                bookID = 3;
+                break;
+            case R.id.imageButton4:
+                bookID = 4;
+                break;
+            case R.id.imageButton5:
+                bookID = 5;
+                break;
+            case R.id.imageButton6:
+                bookID = 6;
+                break;
+            case R.id.imageButton7:
+                bookID = 1;
+                break;
+            case R.id.imageButton8:
+                bookID = 2;
+                break;
+            case R.id.imageButton9:
+                bookID = 3;
+                break;
+            case R.id.imageButton10:
+                bookID = 4;
+                break;
+            case R.id.imageButton11:
+                bookID = 5;
+                break;
+            case R.id.imageButton12:
+                bookID = 6;
+                break;
+            case R.id.imageButton13:
+                bookID = 1;
+                break;
+            case R.id.imageButton14:
+                bookID = 2;
+                break;
+            case R.id.imageButton15:
+                bookID = 3;
+                break;
+            case R.id.imageButton16:
+                bookID = 4;
+                break;
+            case R.id.imageButton17:
+                bookID = 5;
+                break;
+            case R.id.imageButton18:
+                bookID = 6;
+                break;
+            case R.id.imageButton19:
+                bookID = 1;
+                break;
+            case R.id.imageButton20:
+                bookID = 2;
+                break;
+            case R.id.imageButton21:
+                bookID = 3;
+                break;
+        }
+        
+        // Change to appropriate 'View Book Info' activity
         Context homeContext = HomeActivity.this;
         Class viewBookClass = ViewBookInfoActivity.class;
 
         Intent intent = new Intent(homeContext, viewBookClass);
-        intent.putExtra("id","1");
+        intent.putExtra("id", Integer.toString(bookID));
         HomeActivity.this.startActivity(intent);
         
     }
