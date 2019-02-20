@@ -51,10 +51,14 @@ public class PaymentActivity extends AppCompatActivity {
         EditText editCvv = (EditText)findViewById(R.id.cvv);
         EditText editCardName = (EditText)findViewById(R.id.cardName);
 
-        long cn = Long.parseLong(editCardNum.getText().toString());
+        long cn = 0L;
+        if(editCardNum.getText().toString().length() != 0)
+            cn = Long.parseLong(editCardNum.getText().toString());
         String exp = editExpDate.getText().toString();
         String name = editCardName.getText().toString();
-        int cv = Integer.parseInt(editCvv.getText().toString());
+        int cv = 0;
+        if(editCvv.getText().toString().length() !=0)
+            cv = Integer.parseInt(editCvv.getText().toString());
         Billing newCard = new Billing(cn,name,exp,cv);
 
         try{
