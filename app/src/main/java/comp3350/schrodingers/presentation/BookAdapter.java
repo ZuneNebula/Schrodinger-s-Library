@@ -17,12 +17,12 @@ import java.util.*;
 
 public class BookAdapter extends BaseAdapter {
 
-    Context context;
-    LayoutInflater inflater;
-    List <Book> bookList;
-    ArrayList<Book> arrayList;
-    FindBook book;
-    List <Book> temp;
+    private Context context;
+    private LayoutInflater inflater;
+    private List <Book> bookList;
+    private ArrayList<Book> arrayList;
+    private FindBook book;
+    private List <Book> temp;
 
     public BookAdapter(Context context, FindBook book) {
 
@@ -33,11 +33,10 @@ public class BookAdapter extends BaseAdapter {
         this.bookList = book.getAllBooks();
 
         inflater = LayoutInflater.from(this.context);
-        arrayList = new ArrayList<Book>();
+        arrayList = new ArrayList<>();
         this.arrayList.addAll(bookList);
 
     }
-
 
     public class ViewHolder{
         TextView title, author;

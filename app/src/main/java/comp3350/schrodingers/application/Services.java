@@ -8,6 +8,7 @@ import comp3350.schrodingers.persistence.PaymentPersistence;
 import comp3350.schrodingers.persistence.stubs.PaymentPersistenceStub;
 
 public class Services {
+
     private static BooksPersistence booksPersistence = null;
     private static UsersPersistence usersPersistence = null;
     private static PaymentPersistence paymentPersistence = null;

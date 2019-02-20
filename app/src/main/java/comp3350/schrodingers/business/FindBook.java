@@ -8,19 +8,17 @@ import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.application.Services;
 
 public class FindBook {
-    private BooksPersistence booksPersistence;
-    List <Book> foundBook;
-    public FindBook() {
 
-   //constructor
+    private BooksPersistence booksPersistence;
+    private List <Book> foundBook;
+
+    //constructor
+    public FindBook() {
         foundBook = null;
         booksPersistence = Services.getBooksPersistence();
-
     }
 
     public List<Book> searchBookByAuthor(String author){
-        
-
         foundBook= booksPersistence.getBookByAuthor(author);
         return foundBook;
     }
@@ -34,8 +32,6 @@ public class FindBook {
         foundBook= booksPersistence.getBooks();
         return foundBook;
     }
-
-
 
     public List <String> getBookDetails(String id){
 

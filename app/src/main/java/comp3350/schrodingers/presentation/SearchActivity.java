@@ -12,6 +12,7 @@ import java.util.List;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.FindBook;
 import comp3350.schrodingers.objects.Book;
+
 public class SearchActivity extends AppCompatActivity {
 
     @Override
@@ -21,22 +22,16 @@ public class SearchActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SearchView searchView = (SearchView) findViewById(R.id.action_search);
+        SearchView searchView = findViewById(R.id.action_search);
         FindBook bookList = new FindBook();
         if(searchView != null) {
 
             List<Book> list = bookList.searchBookByAuthor(searchView.getQuery().toString());
-
             ArrayAdapter<Book> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-            ListView viewbookList = (ListView) findViewById(R.id.searchList);
-            //ImageView bookImage = (ImageView) findViewById(R.id.bookImage);
-            //String imageName = bookList.searchBookById("3").getBookName().toLowerCase();
 
-            //bookImage.setImageResource(R.drawable.theartofjumping);
-
-            viewbookList.setAdapter(arrayAdapter);
+            ListView bookListView = findViewById(R.id.searchList);
+            bookListView.setAdapter(arrayAdapter);
         }
-        
 
     }
 
