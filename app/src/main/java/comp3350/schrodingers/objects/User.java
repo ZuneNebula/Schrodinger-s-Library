@@ -5,28 +5,29 @@ import java.util.List;
 
 public class User {
 
-    public class Address{  // class which stores the address
-        private int houseNumber;
-        private String streetName;
+    public static class Address{  // class which stores the address
+        private String streetAndNumber;
         private String postalCode;
+        private String city;
         private String state;
         private String country;
         public Address(){
-            streetName = "";
+            streetAndNumber = "";
             postalCode = "";
             state = "";
             country = "";
+            city = "";
         }
-        public Address(int houseNumber, String streetName, String postalCode,String state, String country)
+        public Address(String streetName, String postalCode, String city, String state, String country)
         {
-            this.houseNumber = houseNumber;
-            this.streetName = streetName;
+            this.streetAndNumber = streetName;
             this.postalCode = postalCode;
             this.state = state;
             this.country = country;
+            this.city = city;
         }
         public String getAddress(){
-            return ""+houseNumber+" "+streetName;
+            return streetAndNumber;
         }
         public String getPostalCode(){
             return postalCode;
@@ -37,9 +38,12 @@ public class User {
         public String getCountry(){
             return country;
         }
+        public String getCity(){
+            return city;
+        }
 
         public boolean isEmpty(){
-            return streetName.equals("");
+            return streetAndNumber.equals("");
         }
     }
 
@@ -94,6 +98,18 @@ public class User {
         this.password = password;
         billing = new ArrayList<>();
         address = new Address();
+    }
+    public User(String email, String username, String password, Address address, List<Billing> billing) // constructor
+    {//input field tests
+        assert (email!=null);
+        assert(username!=null);
+        assert (password!=null);
+
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.billing = billing;
+        this.address = address;
     }
 
     public String getUserName() {return username;}

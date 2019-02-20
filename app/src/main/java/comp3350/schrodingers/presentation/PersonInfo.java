@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 import comp3350.schrodingers.persistence.UsersPersistence;
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.objects.User;
+import comp3350.schrodingers.objects.User.Address;
 
 import comp3350.schrodingers.R;
 
@@ -35,6 +36,8 @@ public class PersonInfo extends AppCompatActivity {
         if(!user.getAddress().isEmpty()) {
             EditText userAddress = (EditText) findViewById(R.id.address);
             userAddress.setText(user.getAddress().getAddress());
+            EditText userCity = (EditText) findViewById(R.id.city);
+            userCity.setText(user.getAddress().getCity());
             EditText userState = (EditText) findViewById(R.id.province);
             userState.setText(user.getAddress().getState());
             EditText userZip = (EditText) findViewById(R.id.zip);
@@ -50,6 +53,7 @@ public class PersonInfo extends AppCompatActivity {
         EditText editName = (EditText)findViewById(R.id.username);
         EditText editEmail = (EditText)findViewById(R.id.email);
         EditText editAddress = (EditText)findViewById(R.id.address);
+        EditText editCity = (EditText) findViewById(R.id.city);
         EditText editState = (EditText) findViewById(R.id.province);
         EditText editZip = (EditText) findViewById(R.id.zip);
         EditText editCountry = (EditText) findViewById(R.id.country);
@@ -57,18 +61,20 @@ public class PersonInfo extends AppCompatActivity {
 
         String validate = validateInfo(editName.getText().toString(),editEmail.getText().toString());
         if(validate == null){
-            User newUser = new User(editEmail.getText().toString(), editName.getText().toString(),user.getPassword());
+            Address address = new Address(editAddress.getText().toString(),
+                    editZip.getText().toString(), editCity.getText().toString(),
+                    editState.getText().toString(), editCountry.getText().toString());
+
+            User newUser = new User(editEmail.getText().toString(),
+                    editName.getText().toString(), user.getPassword(), address, user.getBilling());
+
             user = userList.editUser(newUser);
-            //user.changeName(editName.getText().toString());
-            //user.changeEmail(editEmail.getText().toString());
             System.out.println();
             Snackbar.make(findViewById(R.id.person_info), R.string.changes_applied,
                     Snackbar.LENGTH_SHORT).show();
         }else{
             Messages.warning(this, validate);
         }
-
-
     }
     private String validateInfo(String name, String email){
         if(name.length() == 0)
