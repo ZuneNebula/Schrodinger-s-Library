@@ -1,5 +1,7 @@
 package comp3350.schrodingers.business;
 
+import comp3350.schrodingers.objects.User.Billing;
+
 public interface PaymentProcessorInt {
-    String validateCard(final String number, final String date, final String cvv, final String name);
+    boolean validateCard(Billing card) throws CardException;
 }

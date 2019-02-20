@@ -7,6 +7,7 @@ import java.util.List;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.persistence.PaymentPersistence;
+import comp3350.schrodingers.business.PaymentProcessor;
 
 public class AccessPaymentInfo {
     private PaymentPersistence payPersistence;
@@ -19,8 +20,12 @@ public class AccessPaymentInfo {
         cards = payPersistence.getCards();
         return Collections.unmodifiableList(cards);
     }
-    public Billing insertCard(Billing card){
-        return payPersistence.addCreditCard(card);
+    public Billing insertCard(Billing card) throws CardException{
+        PaymentProcessor p = new PaymentProcessor();
+        p.validateCard(card);
+        if(cards.size() == 0)
+            return payPersistence.addCreditCard(card);
+        else return updateCard(card);
     }
     public void deleteCard(Billing card){
         payPersistence.deleteCreditCard(card);
