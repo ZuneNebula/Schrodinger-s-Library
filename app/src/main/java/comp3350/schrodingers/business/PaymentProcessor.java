@@ -4,8 +4,6 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import comp3350.schrodingers.persistence.PaymentProcessorInt;
-
 public class PaymentProcessor implements PaymentProcessorInt {
 
     public String validateCard(final String number, final String date, final String cvv, final String name){
