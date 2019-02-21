@@ -81,8 +81,9 @@
                     android:id="@+id/imageButton6"
                     android:layout_width="@dimen/book_catalog_button_width"
                     android:layout_height="@dimen/book_catalog_button_height"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
                     app:srcCompat="@drawable/nowaybutdown" />
             </TableRow>
 
