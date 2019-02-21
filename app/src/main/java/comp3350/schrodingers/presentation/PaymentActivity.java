@@ -9,16 +9,15 @@ import android.widget.EditText;
 
 import java.util.List;
 
+import comp3350.schrodingers.business.CardException;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessPaymentInfo;
-import comp3350.schrodingers.business.PaymentProcessor;
 
 public class PaymentActivity extends AppCompatActivity {
 
     private AccessPaymentInfo accessCards;
     private List<Billing> cards;
-    private PaymentProcessor cardValidator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +26,10 @@ public class PaymentActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+        //cardValidator
+
         accessCards = new AccessPaymentInfo();
         cards = accessCards.getCards();
-        cardValidator = new PaymentProcessor();
 
         if(cards.size() != 0){
             Billing singleCard = cards.get(0);
@@ -48,24 +48,23 @@ public class PaymentActivity extends AppCompatActivity {
         EditText editExpDate = findViewById(R.id.expDate);
         EditText editCvv = findViewById(R.id.cvv);
         EditText editCardName = findViewById(R.id.cardName);
-        String validate = cardValidator.validateCard(editCardNum.getText().toString(),
-                editExpDate.getText().toString(), editCvv.getText().toString(), editCardName.getText().toString());
 
-        if (validate == null) {
-            long cn = Long.parseLong(editCardNum.getText().toString());
-            String exp = editExpDate.getText().toString();
-            String name = editCardName.getText().toString();
-            int cv = Integer.parseInt(editCvv.getText().toString());
-            Billing newCard = new Billing(cn,name,exp,cv);
-            if(cards.size() != 0)
-                accessCards.updateCard(newCard);
-            else
-                accessCards.insertCard(newCard);
+        long cn = 0L;
+        if(editCardNum.getText().toString().length() != 0)
+            cn = Long.parseLong(editCardNum.getText().toString());
+        String exp = editExpDate.getText().toString();
+        String name = editCardName.getText().toString();
+        int cv = 0;
+        if(editCvv.getText().toString().length() !=0)
+            cv = Integer.parseInt(editCvv.getText().toString());
+        Billing newCard = new Billing(cn,name,exp,cv);
 
+        try{
+            accessCards.insertCard(newCard);
             Snackbar.make(findViewById(R.id.payment_info), R.string.changes_applied,
                     Snackbar.LENGTH_SHORT).show();
-        }else{
-            Messages.warning(this, validate);
+        }catch(CardException c){
+            Messages.warning(this, c.toString());
         }
     }
 }
