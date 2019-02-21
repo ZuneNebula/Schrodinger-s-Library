@@ -4,10 +4,7 @@ import java.util.List;
 import comp3350.schrodingers.objects.Book;
 
 public interface BooksPersistence {
-    List<Book> getBooks();
-    List<Book> getBookByAuthor(final String author);
-    List<Book> getBookByTitle(final String title);
-    Book getBookById(final String id);
+    List<Book> getAllBooks();
     Book insertBook (final Book newBook);
     void  deleteBook (final Book newBook);
 }

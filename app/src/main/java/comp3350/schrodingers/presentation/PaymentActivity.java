@@ -24,7 +24,7 @@ public class PaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         accessCards = new AccessPaymentInfo();
@@ -33,10 +33,10 @@ public class PaymentActivity extends AppCompatActivity {
 
         if(cards.size() != 0){
             Billing singleCard = cards.get(0);
-            EditText userBilling = (EditText) findViewById(R.id.billing);
-            EditText expDate = (EditText) findViewById(R.id.expDate);
-            EditText cvv = (EditText) findViewById(R.id.cvv);
-            EditText cardName = (EditText) findViewById(R.id.cardName);
+            EditText userBilling = findViewById(R.id.billing);
+            EditText expDate = findViewById(R.id.expDate);
+            EditText cvv = findViewById(R.id.cvv);
+            EditText cardName = findViewById(R.id.cardName);
             userBilling.setText(""+singleCard.getCardNumber());
             expDate.setText(singleCard.getExpiry());
             cvv.setText(""+singleCard.getCvv());
@@ -44,10 +44,10 @@ public class PaymentActivity extends AppCompatActivity {
         }
     }
     public void buttonChangePayment(View v){
-        EditText editCardNum = (EditText)findViewById(R.id.billing);
-        EditText editExpDate = (EditText)findViewById(R.id.expDate);
-        EditText editCvv = (EditText)findViewById(R.id.cvv);
-        EditText editCardName = (EditText)findViewById(R.id.cardName);
+        EditText editCardNum = findViewById(R.id.billing);
+        EditText editExpDate = findViewById(R.id.expDate);
+        EditText editCvv = findViewById(R.id.cvv);
+        EditText editCardName = findViewById(R.id.cardName);
         String validate = cardValidator.validateCard(editCardNum.getText().toString(),
                 editExpDate.getText().toString(), editCvv.getText().toString(), editCardName.getText().toString());
 

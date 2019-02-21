@@ -13,7 +13,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import comp3350.schrodingers.R;
-import comp3350.schrodingers.business.FindBook;
+import comp3350.schrodingers.business.AccessBooks;
 
 public class ViewBookInfoActivity extends AppCompatActivity {
 
@@ -28,11 +28,11 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
 
-        FindBook bookList = new FindBook();
+        AccessBooks bookList = new AccessBooks();
         List <String> list = bookList.getBookDetails(id);
         ArrayAdapter <String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,list);
-        ListView viewbookList = (ListView) findViewById(R.id.bookDetail);
-        ImageView bookImage = (ImageView) findViewById(R.id.bookImage);
+        ListView viewbookList = findViewById(R.id.bookDetail);
+        ImageView bookImage = findViewById(R.id.bookImage);
         String imageName = bookList.searchBookById(id).getBookName().toLowerCase();
 
         bookImage.setImageResource(R.drawable.theartofjumping);

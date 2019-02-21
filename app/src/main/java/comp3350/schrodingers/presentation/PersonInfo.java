@@ -26,38 +26,38 @@ public class PersonInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_info);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        EditText userName = (EditText) findViewById(R.id.username);
+        EditText userName = findViewById(R.id.username);
         userName.setText(user.getUserName());
-        EditText userEmail = (EditText) findViewById(R.id.email);
+        EditText userEmail = findViewById(R.id.email);
         userEmail.setText(user.getEmail());
 
         if(!user.getAddress().isEmpty()) {
-            EditText userAddress = (EditText) findViewById(R.id.address);
+            EditText userAddress = findViewById(R.id.address);
             userAddress.setText(user.getAddress().getAddress());
-            EditText userCity = (EditText) findViewById(R.id.city);
+            EditText userCity = findViewById(R.id.city);
             userCity.setText(user.getAddress().getCity());
-            EditText userState = (EditText) findViewById(R.id.province);
+            EditText userState = findViewById(R.id.province);
             userState.setText(user.getAddress().getState());
-            EditText userZip = (EditText) findViewById(R.id.zip);
+            EditText userZip = findViewById(R.id.zip);
             userZip.setText(user.getAddress().getPostalCode());
-            EditText userCountry = (EditText) findViewById(R.id.country);
+            EditText userCountry = findViewById(R.id.country);
             userCountry.setText(user.getAddress().getCountry());
         }
-        EditText userPhone = (EditText) findViewById(R.id.phone);
+        EditText userPhone = findViewById(R.id.phone);
         //userPhone.setText(User.getPhone());
     }
 
     public void buttonInfoUpdate(View v){
-        EditText editName = (EditText)findViewById(R.id.username);
-        EditText editEmail = (EditText)findViewById(R.id.email);
-        EditText editAddress = (EditText)findViewById(R.id.address);
-        EditText editCity = (EditText) findViewById(R.id.city);
-        EditText editState = (EditText) findViewById(R.id.province);
-        EditText editZip = (EditText) findViewById(R.id.zip);
-        EditText editCountry = (EditText) findViewById(R.id.country);
-        EditText editPhone = (EditText)findViewById(R.id.phone);
+        EditText editName = findViewById(R.id.username);
+        EditText editEmail = findViewById(R.id.email);
+        EditText editAddress = findViewById(R.id.address);
+        EditText editCity = findViewById(R.id.city);
+        EditText editState = findViewById(R.id.province);
+        EditText editZip = findViewById(R.id.zip);
+        EditText editCountry = findViewById(R.id.country);
+        EditText editPhone = findViewById(R.id.phone);
 
         String validate = validateInfo(editName.getText().toString(),editEmail.getText().toString());
         if(validate == null){

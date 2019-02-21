@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.R;
-import comp3350.schrodingers.business.FindBook;
+import comp3350.schrodingers.business.AccessBooks;
 
 import java.util.*;
 
@@ -21,10 +21,10 @@ public class BookAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List <Book> bookList;
     private ArrayList<Book> arrayList;
-    private FindBook book;
+    private AccessBooks book;
     private List <Book> temp;
 
-    public BookAdapter(Context context, FindBook book) {
+    public BookAdapter(Context context, AccessBooks book) {
 
         this.context = context;
         this.book = book;
@@ -98,21 +98,19 @@ public class BookAdapter extends BaseAdapter {
 
     public void filter(String query){
 
-        System.out.print(book);
-
         List <Book> compareList  = new <Book> ArrayList();
         query = query.toLowerCase().trim();
         bookList.clear();
-        System.out.print(book);
+
         if(query.length() == 0){
             bookList.addAll(arrayList);
         }
         else{
+
             List <Book> listbyTitle = book.searchBookByTitle(query);
             compareList.addAll(listbyTitle);
             List <Book> listbyAuthor = book.searchBookByAuthor(query);
             compareList.addAll(listbyAuthor);
-
 
             for (Book item : compareList)  {
 
