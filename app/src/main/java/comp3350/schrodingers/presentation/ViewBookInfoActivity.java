@@ -35,12 +35,10 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         ImageView bookImage = findViewById(R.id.bookImage);
         String imageName = bookList.searchBookById(id).getBookName().toLowerCase();
 
-        bookImage.setImageResource(R.drawable.theartofjumping);
+        bookImage.setImageResource(R.drawable.theperfectchild);
 
         viewbookList.setAdapter(arrayAdapter);
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

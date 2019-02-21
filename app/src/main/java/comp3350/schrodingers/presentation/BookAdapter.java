@@ -78,10 +78,19 @@ public class BookAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        // Set book title and author
         holder.title.setText(bookList.get(position).getBookName());
         holder.author.setText(bookList.get(position).getAuthor());
-        holder.icon.setImageResource(R.drawable.theartofjumping );    //bookList.get(position).getIconId());
 
+        // Acquire icon/picture and set as relevant picture
+        int iconID = -1;
+        try {
+            iconID = R.drawable.class.getField(bookList.get(position).getIconId()).getInt(null);
+        } catch (Exception e) {
+            System.out.println("Cannot find drawable");
+        }
+
+        holder.icon.setImageResource(iconID);
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override

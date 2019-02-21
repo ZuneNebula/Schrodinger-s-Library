@@ -25,9 +25,10 @@
                     android:id="@+id/imageButton1"
                     android:layout_width="@dimen/book_button_width"
                     android:layout_height="@dimen/book_button_height"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
                     android:contentDescription="@string/book_image_button"
-                    android:scaleType="center"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    app:srcCompat="@drawable/annabellefightslife" />
 
                 <ImageButton
                     android:id="@+id/imageButton2"
@@ -35,17 +36,19 @@
                     android:layout_height="@dimen/book_button_height"
                     android:layout_marginLeft="@dimen/book_button_margin_middle"
                     android:layout_marginRight="@dimen/book_button_margin_middle"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
                     android:contentDescription="@string/book_image_button"
-                    android:scaleType="center"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    app:srcCompat="@drawable/emberofthechildren" />
 
                 <ImageButton
                     android:id="@+id/imageButton3"
                     android:layout_width="@dimen/book_button_width"
                     android:layout_height="@dimen/book_button_height"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/escapefromthehill" />
             </TableRow>
 
             <TableRow
@@ -58,9 +61,10 @@
                     android:id="@+id/imageButton4"
                     android:layout_width="@dimen/book_button_width"
                     android:layout_height="@dimen/book_button_height"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/herebychoice" />
 
                 <ImageButton
                     android:id="@+id/imageButton5"
@@ -68,9 +72,10 @@
                     android:layout_height="@dimen/book_button_height"
                     android:layout_marginRight="@dimen/book_button_margin_middle"
                     android:layout_marginLeft="@dimen/book_button_margin_middle"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/dangerouscrusaders" />
 
                 <ImageButton
                     android:id="@+id/imageButton6"
@@ -78,7 +83,7 @@
                     android:layout_height="@dimen/book_button_height"
                     android:scaleType="center"
                android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    app:srcCompat="@drawable/nowaybutdown" />
             </TableRow>
 
             <TableRow
@@ -91,9 +96,10 @@
                     android:id="@+id/imageButton7"
                     android:layout_width="@dimen/book_button_width"
                     android:layout_height="@dimen/book_button_height"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/otherworld" />
 
                 <ImageButton
                     android:id="@+id/imageButton8"
@@ -101,17 +107,19 @@
                     android:layout_height="@dimen/book_button_height"
                     android:layout_marginRight="@dimen/book_button_margin_middle"
                     android:layout_marginLeft="@dimen/book_button_margin_middle"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/survivalofthefittest" />
 
                 <ImageButton
                     android:id="@+id/imageButton9"
                     android:layout_width="@dimen/book_button_width"
                     android:layout_height="@dimen/book_button_height"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/thebadboy" />
             </TableRow>
 
             <TableRow
@@ -124,9 +132,10 @@
                     android:id="@+id/imageButton10"
                     android:layout_width="@dimen/book_button_width"
                     android:layout_height="@dimen/book_button_height"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/thedealer" />
 
                 <ImageButton
                     android:id="@+id/imageButton11"
@@ -134,17 +143,19 @@
                     android:layout_height="@dimen/book_button_height"
                     android:layout_marginRight="@dimen/book_button_margin_middle"
                     android:layout_marginLeft="@dimen/book_button_margin_middle"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/theedgeoftheuniverse" />
 
                 <ImageButton
                     android:id="@+id/imageButton12"
                     android:layout_width="@dimen/book_button_width"
                     android:layout_height="@dimen/book_button_height"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/thefourthwind" />
             </TableRow>
 
             <TableRow
@@ -157,9 +168,10 @@
                     android:id="@+id/imageButton13"
                     android:layout_width="@dimen/book_button_width"
                     android:layout_height="@dimen/book_button_height"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/theperfectchild" />
 
                 <ImageButton
                     android:id="@+id/imageButton14"
@@ -167,17 +179,19 @@
                     android:layout_height="@dimen/book_button_height"
                     android:layout_marginRight="@dimen/book_button_margin_middle"
                     android:layout_marginLeft="@dimen/book_button_margin_middle"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/theredcordofmarriage" />
 
                 <ImageButton
                     android:id="@+id/imageButton15"
                     android:layout_width="@dimen/book_button_width"
                     android:layout_height="@dimen/book_button_height"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/theredplanet" />
             </TableRow>
 
             <TableRow
@@ -190,9 +204,10 @@
                     android:id="@+id/imageButton16"
                     android:layout_width="@dimen/book_button_width"
                     android:layout_height="@dimen/book_button_height"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/therisingcaptive" />
 
                 <ImageButton
                     android:id="@+id/imageButton17"
@@ -200,17 +215,19 @@
                     android:layout_height="@dimen/book_button_height"
                     android:layout_marginRight="@dimen/book_button_margin_middle"
                     android:layout_marginLeft="@dimen/book_button_margin_middle"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/thewaywegetby" />
 
                 <ImageButton
                     android:id="@+id/imageButton18"
                     android:layout_width="@dimen/book_button_width"
                     android:layout_height="@dimen/book_button_height"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/thirteenreasonstoforgetyou" />
             </TableRow>
 
             <TableRow
@@ -223,9 +240,10 @@
                     android:id="@+id/imageButton19"
                     android:layout_width="@dimen/book_button_width"
                     android:layout_height="@dimen/book_button_height"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/twilightfortress" />
 
                 <ImageButton
                     android:id="@+id/imageButton20"
@@ -233,17 +251,19 @@
                     android:layout_height="@dimen/book_button_height"
                     android:layout_marginRight="@dimen/book_button_margin_middle"
                     android:layout_marginLeft="@dimen/book_button_margin_middle"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/whereiscecilia" />
 
                 <ImageButton
                     android:id="@+id/imageButton21"
                     android:layout_width="@dimen/book_button_width"
                     android:layout_height="@dimen/book_button_height"
-                    android:scaleType="center"
-               android:contentDescription="@string/book_image_button"
-                    app:srcCompat="@drawable/theartofjumping" />
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/book_image_button"
+                    app:srcCompat="@drawable/whirlwind" />
             </TableRow>
         </TableLayout>
     </ScrollView>

@@ -286,6 +286,5 @@ public class HomeActivity extends AppCompatActivity
         Intent intent = new Intent(homeContext, viewBookClass);
         intent.putExtra("id", Integer.toString(bookID));
         HomeActivity.this.startActivity(intent);
-
     }
 }
