@@ -1,4 +1,4 @@
-package comp3350.schrodingers.persistence.stubs;
+package comp3350.schrodingers.tests.persistence;
 
 import java.util.ArrayList;
 import java.util.Iterator;
