@@ -31,7 +31,7 @@ public class BooksPersistenceStub implements BooksPersistence {
         books.add(new Book("14","The Red Cord of Marriage", "Nicole Henderson", "$300", "Fiction","20","3","theredcordofmarriage"));
         books.add(new Book("15","The Red Planet", "O.G. Hopkins", "$400", "Space","30","1","theredplanet"));
         books.add(new Book("16","The Rising Captive", "Courtney Bishop", "$400", "Fiction","30","1","therisingcaptive"));
-        books.add(new Book("17","The Way We Get By", "Reed Baron", "$400", "Non-Fiction","30","1","thewaywegetby"));
+        books.add(new Book("17","The Way We Get By", "Reed Barron", "$400", "Non-Fiction","30","1","thewaywegetby"));
         books.add(new Book("18","Thirteen Reasons to Forget You", "Susan Williams", "$400", "Drama","30","1","thirteenreasonstoforgetyou"));
         books.add(new Book("19","Twilight Fortress", "Gregory Barrett", "$200", "Fantasy","10","4","twilightfortress"));
         books.add(new Book("20","Where is Cecilia?", "Beatrice Parkins", "$300", "Fiction","20","3","whereiscecilia"));
