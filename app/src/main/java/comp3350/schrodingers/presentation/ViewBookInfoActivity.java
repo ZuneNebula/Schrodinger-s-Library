@@ -33,9 +33,17 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         ArrayAdapter <String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,list);
         ListView viewbookList = findViewById(R.id.bookDetail);
         ImageView bookImage = findViewById(R.id.bookImage);
-        String imageName = bookList.searchBookById(id).getBookName().toLowerCase();
+        String imageName = bookList.searchBookById(id).getIconId();
 
-        bookImage.setImageResource(R.drawable.theperfectchild);
+        // Acquire icon/picture and set as relevant picture
+        int iconID = -1;
+        try {
+            iconID = R.drawable.class.getField(imageName).getInt(null);
+        } catch (Exception e) {
+            System.out.println("Cannot find drawable");
+        }
+
+        bookImage.setImageResource(iconID);
 
         viewbookList.setAdapter(arrayAdapter);
     }
