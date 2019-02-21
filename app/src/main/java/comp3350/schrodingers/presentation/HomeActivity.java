@@ -233,49 +233,49 @@ public class HomeActivity extends AppCompatActivity
                 bookID = 6;
                 break;
             case R.id.imageButton7:
-                bookID = 1;
+                bookID = 7;
                 break;
             case R.id.imageButton8:
-                bookID = 2;
+                bookID = 8;
                 break;
             case R.id.imageButton9:
-                bookID = 3;
+                bookID = 9;
                 break;
             case R.id.imageButton10:
-                bookID = 4;
+                bookID = 10;
                 break;
             case R.id.imageButton11:
-                bookID = 5;
+                bookID = 11;
                 break;
             case R.id.imageButton12:
-                bookID = 6;
+                bookID = 12;
                 break;
             case R.id.imageButton13:
-                bookID = 1;
+                bookID = 13;
                 break;
             case R.id.imageButton14:
-                bookID = 2;
+                bookID = 14;
                 break;
             case R.id.imageButton15:
-                bookID = 3;
+                bookID = 15;
                 break;
             case R.id.imageButton16:
-                bookID = 4;
+                bookID = 16;
                 break;
             case R.id.imageButton17:
-                bookID = 5;
+                bookID = 17;
                 break;
             case R.id.imageButton18:
-                bookID = 6;
+                bookID = 18;
                 break;
             case R.id.imageButton19:
-                bookID = 1;
+                bookID = 19;
                 break;
             case R.id.imageButton20:
-                bookID = 2;
+                bookID = 20;
                 break;
             case R.id.imageButton21:
-                bookID = 3;
+                bookID = 21;
                 break;
         }
 
