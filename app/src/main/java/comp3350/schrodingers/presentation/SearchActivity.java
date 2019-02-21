@@ -10,7 +10,7 @@ import android.widget.SearchView;
 import java.util.List;
 
 import comp3350.schrodingers.R;
-import comp3350.schrodingers.business.FindBook;
+import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.objects.Book;
 
 public class SearchActivity extends AppCompatActivity {
@@ -23,7 +23,7 @@ public class SearchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         SearchView searchView = findViewById(R.id.action_search);
-        FindBook bookList = new FindBook();
+        AccessBooks bookList = new AccessBooks();
         if(searchView != null) {
 
             List<Book> list = bookList.searchBookByAuthor(searchView.getQuery().toString());

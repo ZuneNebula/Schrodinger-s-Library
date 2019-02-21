@@ -22,7 +22,7 @@ import android.widget.ScrollView;
 import java.util.List;
 
 import comp3350.schrodingers.R;
-import comp3350.schrodingers.business.FindBook;
+import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.UsersPersistence;
 import comp3350.schrodingers.application.Services;
@@ -30,7 +30,7 @@ import comp3350.schrodingers.application.Services;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    FindBook bookList;
+    AccessBooks bookList;
     ListView searchLayout;
     ScrollView browseLayout;
     BookAdapter arrayAdapter;
@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         // Create book list and adapter
-        bookList = new FindBook();
+        bookList = new AccessBooks();
         arrayAdapter = new BookAdapter(this, bookList);
 
         // Image Button (book catalog) Listeners
@@ -66,9 +66,9 @@ public class HomeActivity extends AppCompatActivity
     private void updateDisplayUser(){
         userList = Services.getUsersPersistence();
         user = userList.getUser();
-        TextView userName = (TextView) findViewById(R.id.username);
+        TextView userName = findViewById(R.id.username);
         userName.setText(user.getUserName());
-        TextView userEmail = (TextView) findViewById(R.id.email);
+        TextView userEmail = findViewById(R.id.email);
         userEmail.setText(user.getEmail());
     }
 
@@ -233,49 +233,49 @@ public class HomeActivity extends AppCompatActivity
                 bookID = 6;
                 break;
             case R.id.imageButton7:
-                bookID = 1;
+                bookID = 7;
                 break;
             case R.id.imageButton8:
-                bookID = 2;
+                bookID = 8;
                 break;
             case R.id.imageButton9:
-                bookID = 3;
+                bookID = 9;
                 break;
             case R.id.imageButton10:
-                bookID = 4;
+                bookID = 10;
                 break;
             case R.id.imageButton11:
-                bookID = 5;
+                bookID = 11;
                 break;
             case R.id.imageButton12:
-                bookID = 6;
+                bookID = 12;
                 break;
             case R.id.imageButton13:
-                bookID = 1;
+                bookID = 13;
                 break;
             case R.id.imageButton14:
-                bookID = 2;
+                bookID = 14;
                 break;
             case R.id.imageButton15:
-                bookID = 3;
+                bookID = 15;
                 break;
             case R.id.imageButton16:
-                bookID = 4;
+                bookID = 16;
                 break;
             case R.id.imageButton17:
-                bookID = 5;
+                bookID = 17;
                 break;
             case R.id.imageButton18:
-                bookID = 6;
+                bookID = 18;
                 break;
             case R.id.imageButton19:
-                bookID = 1;
+                bookID = 19;
                 break;
             case R.id.imageButton20:
-                bookID = 2;
+                bookID = 20;
                 break;
             case R.id.imageButton21:
-                bookID = 3;
+                bookID = 21;
                 break;
         }
 
@@ -286,6 +286,5 @@ public class HomeActivity extends AppCompatActivity
         Intent intent = new Intent(homeContext, viewBookClass);
         intent.putExtra("id", Integer.toString(bookID));
         HomeActivity.this.startActivity(intent);
-
     }
 }

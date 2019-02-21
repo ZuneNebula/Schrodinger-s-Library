@@ -20,13 +20,13 @@ public class LoggedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         updateGreeting();
 
     }
     private void updateGreeting(){
-        TextView userName = (TextView) findViewById(R.id.greeting);
+        TextView userName = findViewById(R.id.greeting);
         userName.setText(user.getUserName());
     }
 

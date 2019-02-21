@@ -22,30 +22,27 @@
 
     <include layout="@layout/content_view_book_info" />
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="55dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingTop="20dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="30dp">
+        android:paddingTop="@dimen/view_book_padding"
+        android:paddingRight="@dimen/view_book_padding"
+        android:paddingBottom="@dimen/view_book_padding">
 
         <ImageView
             android:id="@+id/bookImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/book_image"
-            tools:srcCompat="@drawable/theartofjumping" />
+            android:layout_width="@dimen/view_book_image_width"
+            android:layout_height="@dimen/view_book_image_height"
+            android:contentDescription="@string/book_image" />
 
         <ListView
             android:id="@+id/bookDetail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/view_book_padding"/>
     </LinearLayout>
-
 
 </android.support.design.widget.CoordinatorLayout>
