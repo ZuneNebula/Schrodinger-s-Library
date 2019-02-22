@@ -29,7 +29,7 @@ public class Services {
 
     public static synchronized PaymentPersistence getPaymentPersistence(){
         if (paymentPersistence == null){
-            paymentPersistence = new PaymentPersistenceHSQLDB();
+            paymentPersistence = new PaymentPersistenceHSQLDB(Main.getDBPathName());
         }
         return paymentPersistence;
     }
