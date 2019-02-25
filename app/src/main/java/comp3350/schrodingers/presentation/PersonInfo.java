@@ -11,7 +11,7 @@ import android.widget.EditText;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import comp3350.schrodingers.persistence.UsersPersistence;
+import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Address;
@@ -19,8 +19,8 @@ import comp3350.schrodingers.objects.User.Address;
 import comp3350.schrodingers.R;
 
 public class PersonInfo extends AppCompatActivity {
-    private UsersPersistence userList = Services.getUsersPersistence();
-    private User user = userList.getUser();
+    private AccessUserInfo userList;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,10 @@ public class PersonInfo extends AppCompatActivity {
         setContentView(R.layout.activity_person_info);
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        userList = new AccessUserInfo();
+        user = userList.getUser();
+
         EditText userName = findViewById(R.id.username);
         userName.setText(user.getUserName());
         EditText userEmail = findViewById(R.id.email);
@@ -59,36 +63,21 @@ public class PersonInfo extends AppCompatActivity {
         EditText editCountry = findViewById(R.id.country);
         EditText editPhone = findViewById(R.id.phone);
 
-        String validate = validateInfo(editName.getText().toString(),editEmail.getText().toString());
-        if(validate == null){
-            Address address = new Address(editAddress.getText().toString(),
-                    editZip.getText().toString(), editCity.getText().toString(),
-                    editState.getText().toString(), editCountry.getText().toString());
 
-            User newUser = new User(editEmail.getText().toString(),
-                    editName.getText().toString(), user.getPassword(), address, user.getBilling());
+        Address address = new Address(editAddress.getText().toString(),
+                editZip.getText().toString(), editCity.getText().toString(),
+                editState.getText().toString(), editCountry.getText().toString());
 
-            user = userList.editUser(newUser);
-            System.out.println();
+        User newUser = new User(editEmail.getText().toString(),
+                editName.getText().toString(), user.getPassword(), address, user.getBilling());
+
+        try {
+            user = userList.insertUser(newUser);
             Snackbar.make(findViewById(R.id.person_info), R.string.changes_applied,
                     Snackbar.LENGTH_SHORT).show();
-        }else{
-            Messages.warning(this, validate);
+        }catch(Exception e){
+            Messages.warning(this, e.toString());
         }
     }
-    private String validateInfo(String name, String email){
-        if(name.length() == 0)
-            return "Name required";
 
-        if(email.length() == 0)
-            return "Email required";
-        else{
-            String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(email);
-            if(!matcher.matches())
-                return "Email not valid";
-        }
-        return null;
-    }
 }

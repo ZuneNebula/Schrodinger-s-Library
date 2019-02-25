@@ -3,8 +3,12 @@ package comp3350.schrodingers.business;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import comp3350.schrodingers.objects.User;
+
 public class UserValidator {
-    public boolean validateInfo(String name, String email) throws Exception{
+    public boolean validateInfo(User user) throws Exception{
+        String name = user.getUserName();
+        String email = user.getEmail();
         if(name.length() == 0)
             throw new Exception("Name required");
 

@@ -126,4 +126,8 @@ public class User {
         return address;
     }
 
+    public boolean isLoggedIn(){
+        return isLoggedIn;
+    }
+
 }

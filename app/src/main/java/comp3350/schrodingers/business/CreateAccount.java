@@ -19,7 +19,15 @@ public class CreateAccount {
 
     public User insertUser(String email, String userName, String password) {
         User newUser = new User(email, userName, password);
-        return usersPersistence.insertUser(newUser);
+        UserValidator u = new UserValidator();
+        try {
+            u.validateInfo(newUser);
+            return usersPersistence.insertUser(newUser);
+        }catch(Exception e){
+            System.out.println(e.toString()); //TODO: change to throw a message
+            return null;
+        }
+
 
     }
 
