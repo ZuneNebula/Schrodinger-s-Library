@@ -81,7 +81,4 @@ public class AccessBooks {
         booksPersistence.insertBook(newBook);
     }
 
-    public void deleteBook(Book book){
-        booksPersistence.deleteBook(book);
-    }
 }
