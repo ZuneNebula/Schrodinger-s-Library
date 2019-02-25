@@ -10,10 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
+import comp3350.schrodingers.objects.Book;
 
 public class ViewBookInfoActivity extends AppCompatActivity {
 
@@ -29,7 +31,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         String id = intent.getStringExtra("id");
 
         AccessBooks bookList = new AccessBooks();
-        List <String> list = bookList.getBookDetails(id);
+        List <String> list = getBookDetails(bookList, id);
         ArrayAdapter <String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,list);
         ListView viewbookList = findViewById(R.id.bookDetail);
         ImageView bookImage = findViewById(R.id.bookImage);
@@ -68,6 +70,20 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public List <String> getBookDetails(AccessBooks accessBooks, String  id){
+
+        Book book = accessBooks.searchBookById(id);
+        List <String> bookInfo = new ArrayList<>();
+        bookInfo.add("Book ID : " + book.getBookID());
+        bookInfo.add("Book Title : " + book.getBookName());
+        bookInfo.add("Book Author : " + book.getAuthor());
+        bookInfo.add("Book Price : " + book.getPrice());
+        bookInfo.add("Book Genre : " + book.getGenre());
+        bookInfo.add("Book Left In Stock : " + book.getBookStock());
+        bookInfo.add("Book Rating : " + book.getRating());
+        return bookInfo;
     }
 
 }
