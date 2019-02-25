@@ -37,11 +37,4 @@ public class PaymentPersistenceStub implements PaymentPersistence {
         return creditCard;
     }
 
-    @Override
-    public void deleteCreditCard(Billing creditCard){
-        int index = cards.indexOf(creditCard);
-        if(index >= 0)
-            cards.remove(index);
-    }
-
 }

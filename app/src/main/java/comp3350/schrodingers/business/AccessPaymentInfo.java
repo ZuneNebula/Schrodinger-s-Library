@@ -30,10 +30,6 @@ public class AccessPaymentInfo {
         else return updateCard(card);
     }
 
-    public void deleteCard(Billing card){
-        payPersistence.deleteCreditCard(card);
-    }
-
     public Billing updateCard(Billing card){
         return payPersistence.updateCreditCard(card);
     }

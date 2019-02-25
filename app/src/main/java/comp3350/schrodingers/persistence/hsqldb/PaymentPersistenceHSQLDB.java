@@ -58,9 +58,6 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
             throw new PersistenceException(e);
         }
     }
-    public void deleteCreditCard(Billing creditCard){
-
-    }
 
     public List<Billing> getCards(){
         final List<Billing> cards = new ArrayList<>();
