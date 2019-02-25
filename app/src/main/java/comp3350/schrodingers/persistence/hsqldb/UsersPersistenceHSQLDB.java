@@ -16,4 +16,6 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
     public User editUser(User newUser){
         return null;
     }
+    public User findUser(final String email){return null;}
+
 }

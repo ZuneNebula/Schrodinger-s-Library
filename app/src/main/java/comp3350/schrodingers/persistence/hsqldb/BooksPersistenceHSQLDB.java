@@ -6,7 +6,7 @@ import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.persistence.BooksPersistence;
 
 public class BooksPersistenceHSQLDB implements BooksPersistence {
-    public List<Book> getBooks(){
+    public List<Book> getAllBooks(){
         return null;
     }
     public List<Book> getBookByAuthor(final String author){
