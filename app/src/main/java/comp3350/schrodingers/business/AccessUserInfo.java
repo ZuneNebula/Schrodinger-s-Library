@@ -12,17 +12,20 @@ public class AccessUserInfo {
     }
 
     public User getUser(){
+        // Get the user already logged (returns null if not logged in)
         logged = userPersistence.getUser();
         return logged;
     }
     public User insertUser(User user) throws Exception{
+        //add new user
         UserValidator u = new UserValidator();
         u.validateInfo(user);
-        return userPersistence.insertUser(user);
+        if(logged == null)
+            return userPersistence.insertUser(user);
+        return updateUser(user);
     }
     public User updateUser(User user){
+        //edit user
         return userPersistence.editUser(user);
     }
-
-
 }

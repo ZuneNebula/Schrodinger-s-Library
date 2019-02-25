@@ -17,5 +17,8 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         return null;
     }
     public User findUser(final String email){return null;}
+    public User getUserAndLogin(String email){
+        return null;
+    }
 
 }

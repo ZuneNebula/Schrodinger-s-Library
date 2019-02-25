@@ -9,4 +9,5 @@ public interface UsersPersistence {
     User findUser (final String email);
     User getUser();
     User editUser(User newUser);
+    User getUserAndLogin(String email);
 }

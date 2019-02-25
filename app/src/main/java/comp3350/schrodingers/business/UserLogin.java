@@ -18,7 +18,7 @@ public class UserLogin {
     }
 
     public User checkLogin(String email, String password) {
-        User curr = usersPersistence.findUser(email);
+        User curr = usersPersistence.getUserAndLogin(email);
         if (curr!=null && curr.getPassword()==password)
         {
             return curr;
