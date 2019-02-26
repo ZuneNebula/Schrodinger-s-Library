@@ -1,7 +1,6 @@
 package comp3350.schrodingers.tests.persistence;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import comp3350.schrodingers.objects.Book;
