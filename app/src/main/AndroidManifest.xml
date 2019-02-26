@@ -49,6 +49,11 @@
             android:name=".presentation.LoggedActivity" />
         <activity android:name=".presentation.PersonInfo" />
         <activity android:name=".presentation.PaymentActivity"></activity>
+
+        <activity android:name=".presentation.CreateAccountActivity" />
+        <activity android:name=".presentation.LoginActivity" />
+        <activity android:name=".presentation.NotLoggedActivity" />
+
     </application>
 
 </manifest>

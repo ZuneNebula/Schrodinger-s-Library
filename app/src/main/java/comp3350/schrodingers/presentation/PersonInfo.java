@@ -32,25 +32,27 @@ public class PersonInfo extends AppCompatActivity {
         userList = new AccessUserInfo();
         user = userList.getUser();
 
-        EditText userName = findViewById(R.id.username);
-        userName.setText(user.getUserName());
-        EditText userEmail = findViewById(R.id.email);
-        userEmail.setText(user.getEmail());
+        if(user != null) {
+            EditText userName = findViewById(R.id.username);
+            userName.setText(user.getUserName());
+            EditText userEmail = findViewById(R.id.email);
+            userEmail.setText(user.getEmail());
 
-        if(!user.getAddress().isEmpty()) {
-            EditText userAddress = findViewById(R.id.address);
-            userAddress.setText(user.getAddress().getAddress());
-            EditText userCity = findViewById(R.id.city);
-            userCity.setText(user.getAddress().getCity());
-            EditText userState = findViewById(R.id.province);
-            userState.setText(user.getAddress().getState());
-            EditText userZip = findViewById(R.id.zip);
-            userZip.setText(user.getAddress().getPostalCode());
-            EditText userCountry = findViewById(R.id.country);
-            userCountry.setText(user.getAddress().getCountry());
+            if (!user.getAddress().isEmpty()) {
+                EditText userAddress = findViewById(R.id.address);
+                userAddress.setText(user.getAddress().getAddress());
+                EditText userCity = findViewById(R.id.city);
+                userCity.setText(user.getAddress().getCity());
+                EditText userState = findViewById(R.id.province);
+                userState.setText(user.getAddress().getState());
+                EditText userZip = findViewById(R.id.zip);
+                userZip.setText(user.getAddress().getPostalCode());
+                EditText userCountry = findViewById(R.id.country);
+                userCountry.setText(user.getAddress().getCountry());
+            }
+            EditText userPhone = findViewById(R.id.phone);
+            //userPhone.setText(User.getPhone());
         }
-        EditText userPhone = findViewById(R.id.phone);
-        //userPhone.setText(User.getPhone());
     }
 
     public void buttonInfoUpdate(View v){

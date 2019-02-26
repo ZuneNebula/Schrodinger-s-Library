@@ -23,9 +23,9 @@ import java.util.List;
 
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
-import comp3350.schrodingers.objects.User;
-import comp3350.schrodingers.persistence.UsersPersistence;
+import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.objects.User;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -35,8 +35,8 @@ public class HomeActivity extends AppCompatActivity
     ScrollView browseLayout;
     BookAdapter arrayAdapter;
     List<String> name;
-    private UsersPersistence userList = Services.getUsersPersistence();
-    private User user = userList.getUser();
+    private AccessUserInfo userList;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,9 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        userList = new AccessUserInfo();
+        user = userList.getUser();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -64,12 +67,13 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void updateDisplayUser(){
-        userList = Services.getUsersPersistence();
         user = userList.getUser();
         TextView userName = findViewById(R.id.username);
-        userName.setText(user.getUserName());
         TextView userEmail = findViewById(R.id.email);
-        userEmail.setText(user.getEmail());
+        if(user != null) {
+            userName.setText(user.getUserName());
+            userEmail.setText(user.getEmail());
+        }
     }
 
     @Override
@@ -104,14 +108,10 @@ public class HomeActivity extends AppCompatActivity
             public boolean onQueryTextChange(String s) {
                 if(TextUtils.isEmpty(s)){
                     arrayAdapter.filter("");
-
                     searchLayout.clearTextFilter();
-
                 }
                 else{
-
                     arrayAdapter.filter(s);
-
                 }
                 return true;
             }
@@ -141,8 +141,13 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.my_account) {
-            Intent loggedIntent = new Intent(HomeActivity.this, LoggedActivity.class);
-            HomeActivity.this.startActivity(loggedIntent);
+            if(user != null) {
+                Intent loggedIntent = new Intent(HomeActivity.this, LoggedActivity.class);
+                HomeActivity.this.startActivity(loggedIntent);
+            }else {
+                Intent notLoggedIntent = new Intent(HomeActivity.this, NotLoggedActivity.class);
+                HomeActivity.this.startActivity(notLoggedIntent);
+            }
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -152,8 +157,8 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onResume(){
         super.onResume();
-        userList = Services.getUsersPersistence();
-        user = userList.getUser();
+        if(user != null)
+            user = userList.getUser();
         //updateDisplayUser();
     }
 
