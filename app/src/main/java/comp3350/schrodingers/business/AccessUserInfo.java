@@ -28,4 +28,7 @@ public class AccessUserInfo {
         //edit user
         return userPersistence.editUser(user);
     }
+    public boolean logout(){
+        return userPersistence.logout();
+    }
 }

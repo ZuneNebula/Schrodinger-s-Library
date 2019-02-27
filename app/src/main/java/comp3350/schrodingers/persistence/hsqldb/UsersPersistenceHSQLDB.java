@@ -20,5 +20,6 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
     public User getUserAndLogin(String email){
         return null;
     }
+    public boolean logout(){return false;}
 
 }

@@ -66,4 +66,9 @@ public class UsersPersistenceStub implements UsersPersistence
         //get logged user
         return logged;
     }
+    public boolean logout(){
+        logged = null;
+        return true;
+    }
+
 }

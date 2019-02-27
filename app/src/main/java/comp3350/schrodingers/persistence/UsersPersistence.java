@@ -10,4 +10,5 @@ public interface UsersPersistence {
     User getUser();
     User editUser(User newUser);
     User getUserAndLogin(String email);
+    boolean logout();
 }
