@@ -45,6 +45,7 @@ public class LoggedActivity extends AppCompatActivity {
     }
     public void buttonLogoutOnClick(View v){
         userList.logout();
+        finish();
     }
 
     @Override
