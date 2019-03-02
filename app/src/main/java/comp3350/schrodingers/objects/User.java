@@ -76,6 +76,9 @@ public class User {
         public int getCvv(){
             return cvv;
         }
+        public boolean isEmpty(){
+            return cardNumber == 0L;
+        }
 
 
         public String toString(){
@@ -134,5 +137,10 @@ public class User {
     public boolean isLoggedIn(){
         return isLoggedIn;
     }
+
+    public boolean isEmpty(){
+        return email.compareTo("") == 0;
+    }
+
 
 }

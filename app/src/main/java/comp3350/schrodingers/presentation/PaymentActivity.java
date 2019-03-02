@@ -31,7 +31,7 @@ public class PaymentActivity extends AppCompatActivity {
         accessCards = new AccessPaymentInfo();
         card = accessCards.getCard();
 
-        if(card != null){
+        if(!card.isEmpty()){
             Billing singleCard = card;
             EditText userBilling = findViewById(R.id.billing);
             EditText expDate = findViewById(R.id.expDate);

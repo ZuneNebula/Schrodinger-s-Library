@@ -27,16 +27,16 @@ public class Services {
 
     public static synchronized UsersPersistence getUsersPersistence(){
         if (usersPersistence == null){
-            usersPersistence= new UsersPersistenceHSQLDB(Main.getDBPathName());
-            //usersPersistence= new UsersPersistenceStub();
+            //usersPersistence= new UsersPersistenceHSQLDB(Main.getDBPathName());
+            usersPersistence= new UsersPersistenceStub();
         }
         return usersPersistence;
     }
 
     public static synchronized PaymentPersistence getPaymentPersistence(){
         if (paymentPersistence == null){
-            paymentPersistence = new PaymentPersistenceHSQLDB(Main.getDBPathName());
-            //paymentPersistence = new PaymentPersistenceStub();
+            //paymentPersistence = new PaymentPersistenceHSQLDB(Main.getDBPathName());
+            paymentPersistence = new PaymentPersistenceStub();
         }
         return paymentPersistence;
     }
