@@ -17,7 +17,7 @@ import comp3350.schrodingers.business.AccessPaymentInfo;
 public class PaymentActivity extends AppCompatActivity {
 
     private AccessPaymentInfo accessCards;
-    private List<Billing> cards;
+    private Billing card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +29,10 @@ public class PaymentActivity extends AppCompatActivity {
         //cardValidator
 
         accessCards = new AccessPaymentInfo();
-        cards = accessCards.getCards();
+        card = accessCards.getCard();
 
-        if(cards.size() != 0){
-            Billing singleCard = cards.get(0);
+        if(card != null){
+            Billing singleCard = card;
             EditText userBilling = findViewById(R.id.billing);
             EditText expDate = findViewById(R.id.expDate);
             EditText cvv = findViewById(R.id.cvv);

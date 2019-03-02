@@ -12,20 +12,23 @@ import comp3350.schrodingers.business.PaymentProcessor;
 public class AccessPaymentInfo {
 
     private PaymentPersistence payPersistence;
-    private List<Billing> cards;
+    private Billing card;
 
     public AccessPaymentInfo(){
         payPersistence = Services.getPaymentPersistence();
     }
-
-    public List<Billing> getCards(){
-        cards = payPersistence.getCards();
-        return Collections.unmodifiableList(cards);
+    public AccessPaymentInfo(final PaymentPersistence payPers){
+        this();
+        this.payPersistence = payPers;
+    }
+    public Billing getCard(){
+        card = payPersistence.getCard();
+        return card;
     }
     public Billing insertCard(Billing card) throws CardException{
         PaymentProcessor p = new PaymentProcessor();
         p.validateCard(card);
-        if(cards.size() == 0)
+        if(getCard() == null)
             return payPersistence.addCreditCard(card);
         else return updateCard(card);
     }

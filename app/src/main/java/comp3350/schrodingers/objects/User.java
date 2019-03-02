@@ -52,6 +52,11 @@ public class User {
         private String fullName;
         private String expiry;
         private int cvv;
+        public Billing(){
+            cardNumber = 0L;
+            fullName = "";
+            cvv = 0;
+        }
         public Billing(long cardNumber, String fullName, String expiry, int cvv)
         {
             this.cardNumber = cardNumber;
@@ -85,7 +90,7 @@ public class User {
     boolean isBilling = false;
     boolean isLoggedIn = false;
     private Address address;
-    private List<Billing> billing;
+    private Billing billing;
 
     public User(String email, String username, String password) // constructor
     {//input field tests
@@ -96,10 +101,10 @@ public class User {
         this.email = email;
         this.username = username;
         this.password = password;
-        billing = new ArrayList<>();
+        billing = new Billing();
         address = new Address();
     }
-    public User(String email, String username, String password, Address address, List<Billing> billing) // constructor
+    public User(String email, String username, String password, Address address, Billing billing) // constructor
     {//input field tests
         assert (email!=null);
         assert(username!=null);
@@ -118,7 +123,7 @@ public class User {
 
     public String getPassword() {return password;}
 
-    public List<Billing> getBilling(){
+    public Billing getBilling(){
         return billing;
     }
 

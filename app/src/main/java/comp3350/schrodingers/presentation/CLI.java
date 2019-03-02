@@ -20,6 +20,10 @@ public class CLI  // command-line interface
 	public static String[] inputTokens;
 	
 	public static User currentUser;
+	public static Billing currentCard;
+
+	public static String userEmail;
+	public static long cardNum;
 
 	
 	public static String indent = "  ";
