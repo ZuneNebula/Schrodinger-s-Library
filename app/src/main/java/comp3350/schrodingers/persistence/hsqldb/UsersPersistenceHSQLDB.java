@@ -25,8 +25,6 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
     public UsersPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
         logged = findLoggedUser();
-        //TODO: infinite loop here
-        //payPersistence = Services.getPaymentPersistence();
     }
     private Connection connection() throws SQLException{
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
@@ -43,7 +41,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
             return new User(email,username,password);
         else{
             payPersistence = Services.getPaymentPersistence();
-            User.Billing card = payPersistence.getCard();
+            User.Billing card = payPersistence.findCard(cardNum);
             return new User(email,username,password,new User.Address(),card);
         }
     }

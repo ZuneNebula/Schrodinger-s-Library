@@ -8,4 +8,5 @@ public interface PaymentPersistence {
     Billing addCreditCard(Billing creditCard);
     Billing updateCreditCard(Billing creditCard);
     Billing getCard();
+    Billing findCard(long number);
 }

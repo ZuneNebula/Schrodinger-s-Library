@@ -22,10 +22,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
     private UsersPersistence userPersistence;
     public PaymentPersistenceHSQLDB(final String dbPath){
         this.dbPath = dbPath;
-        userPersistence = Services.getUsersPersistence();
-        user = userPersistence.getUser();
-        card = user.getBilling();
-
+        card = new Billing();
     }
     private Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
@@ -37,6 +34,8 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
         final int cvv = rs.getInt("cvv");
         return new Billing(cardNum,cardName,expiryDate,cvv);
     }
+
+    @Override
     public Billing addCreditCard(Billing creditCard){
         try(final Connection c = connection()){
             final PreparedStatement st = c.prepareStatement("INSERT INTO creditCard VALUES(?, ?, ?, ?)");
@@ -46,6 +45,8 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
             st.setInt(4, creditCard.getCvv());
 
             st.executeUpdate();
+            userPersistence = Services.getUsersPersistence();
+            user = userPersistence.getUser();
             userPersistence.editUser(new User(user.getEmail(),user.getUserName(),user.getPassword(), user.getAddress(), creditCard));
 
             return creditCard;
@@ -64,6 +65,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
         }
     }
 
+    @Override
     public Billing updateCreditCard(Billing creditCard){
         try(final Connection c = connection()){
             if(card.getCardNumber() == creditCard.getCardNumber()) {
@@ -74,6 +76,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
                 st.setInt(4, creditCard.getCvv());
 
                 st.executeUpdate();
+                card = creditCard;
             }else{
                 deleteCard(card.getCardNumber());
                 card = addCreditCard(creditCard);
@@ -85,10 +88,12 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
         }
     }
 
+    @Override
     public Billing getCard(){
-        return findCard(card.getCardNumber());
+        return card;
     }
 
+    @Override
     public Billing findCard(final long number){
         try(final Connection c = connection()){
             final PreparedStatement st = c.prepareStatement("SELECT * FROM creditCard WHERE cardNum = ?");
@@ -103,6 +108,8 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
 
             rs.close();
             st.close();
+
+            card=b;
 
             return b;
         }

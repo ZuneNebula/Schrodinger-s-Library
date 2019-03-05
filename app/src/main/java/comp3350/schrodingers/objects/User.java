@@ -12,7 +12,7 @@ public class User {
         private String state;
         private String country;
         public Address(){
-            streetAndNumber = "";
+            streetAndNumber = "NOADDRESS!";
             postalCode = "";
             state = "";
             country = "";
@@ -43,7 +43,7 @@ public class User {
         }
 
         public boolean isEmpty(){
-            return streetAndNumber.equals("");
+            return streetAndNumber.compareTo("NOADDRESS!") == 0;
         }
     }
 

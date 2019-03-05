@@ -39,6 +39,10 @@ public class PaymentPersistenceStub implements PaymentPersistence {
         newUser(card);
         return card;
     }
+    @Override
+    public Billing findCard(long number){
+        return card;
+    }
     private User newUser(Billing c){
         return userPersistence.editUser(new User(user.getEmail(),user.getUserName(),user.getPassword(), user.getAddress(), c));
     }
