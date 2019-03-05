@@ -95,8 +95,11 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
             st.setLong(1, number);
 
             final ResultSet rs = st.executeQuery();
-
-            final Billing b = fromResultSet(rs);
+            final Billing b;
+            if(rs.next())
+                b = fromResultSet(rs);
+            else
+                b = new Billing();
 
             rs.close();
             st.close();

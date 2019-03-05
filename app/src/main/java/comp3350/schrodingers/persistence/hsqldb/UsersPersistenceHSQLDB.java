@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +24,11 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
 
     public UsersPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
-        logged = findUser("zunenebula@gmail.com");
+        logged = findLoggedUser();
         //TODO: infinite loop here
-        payPersistence = Services.getPaymentPersistence();
+        //payPersistence = Services.getPaymentPersistence();
     }
     private Connection connection() throws SQLException{
-
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
@@ -42,6 +42,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         if(cardNum == 0 && address.compareTo("") == 0)
             return new User(email,username,password);
         else{
+            payPersistence = Services.getPaymentPersistence();
             User.Billing card = payPersistence.getCard();
             return new User(email,username,password,new User.Address(),card);
         }
@@ -49,12 +50,16 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
 
     public User insertUser (final User newUser){
         try(final Connection c = connection()){
-            final PreparedStatement st = c.prepareStatement("INSERT INTO user VALUES(?, ?, ?, ?, ?)");
+            final Statement up = c.createStatement();
+            up.executeQuery("UPDATE user SET LOGGED = FALSE");
+
+            final PreparedStatement st = c.prepareStatement("INSERT INTO user VALUES(?, ?, ?, ?, ?, ?)");
             st.setString(1, newUser.getEmail());
             st.setString(2, newUser.getUserName());
-            st.setString(2, newUser.getPassword());
-            st.setLong(2, newUser.getBilling().getCardNumber());
-            st.setString(2, newUser.getAddress().getAddress());
+            st.setString(3, newUser.getPassword());
+            st.setBoolean(4,true);
+            st.setLong(5, newUser.getBilling().getCardNumber());
+            st.setString(6, newUser.getAddress().getAddress());
 
             st.executeUpdate();
             logged = newUser;
@@ -76,10 +81,51 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         return logged;
     }
     public User editUser(User newUser){
-        deleteUser(logged.getEmail());
-        insertUser(newUser);
+        if(newUser.getEmail().compareTo(logged.getEmail()) == 0){
+            try(final Connection c = connection()){
+                final PreparedStatement st = c.prepareStatement("UPDATE user SET name = ?, password = ?, logged = TRUE, cardNum = ?, numAndStreet = ? WHERE email = ?");
+                st.setString(1, newUser.getUserName());
+                st.setString(2, newUser.getPassword());
+                st.setLong(3, newUser.getBilling().getCardNumber());
+                st.setString(4, newUser.getAddress().getAddress());
+                st.setString(5, logged.getEmail());
+
+                st.executeUpdate();
+
+                logged = newUser;
+                return logged;
+            } catch (final SQLException e) {
+                throw new PersistenceException(e);
+            }
+        }else {
+            deleteUser(logged.getEmail());
+            insertUser(newUser);
+        }
         return logged;
     }
+    public User findLoggedUser(){
+        try(final Connection c = connection()){
+            final PreparedStatement st = c.prepareStatement("SELECT * FROM user WHERE logged = TRUE");
+
+            final ResultSet rs = st.executeQuery();
+
+            final User user;
+            if(rs.next())
+                user = fromResultSet(rs);
+            else
+                user = null;
+
+            rs.close();
+            st.close();
+
+            return user;
+        }
+        catch (final SQLException e)
+        {
+            throw new PersistenceException(e);
+        }
+    }
+
     public User findUser(final String email){
         try(final Connection c = connection()){
             final PreparedStatement st = c.prepareStatement("SELECT * FROM user WHERE email = ?");
@@ -126,6 +172,16 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         logged = findUser(email);
         return logged;
     }
-    public boolean logout(){return false;}
+    public boolean logout(){
+        try(final Connection c = connection()){
+            final PreparedStatement st = c.prepareStatement("UPDATE user SET LOGGED = FALSE WHERE email=?");
+            st.setString(1, logged.getEmail());
+            st.executeUpdate();
+            logged = null;
+            return true;
+        }catch(final SQLException e){
+            throw new PersistenceException(e);
+        }
+    }
 
 }
