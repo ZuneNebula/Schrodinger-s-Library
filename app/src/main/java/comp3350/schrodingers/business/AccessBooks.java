@@ -77,8 +77,4 @@ public class AccessBooks {
         return bookInfo;
     }
 
-    public void insertBook(Book newBook){
-        booksPersistence.insertBook(newBook);
-    }
-
 }
