@@ -44,14 +44,14 @@ public class BooksPersistenceStub implements BooksPersistence {
         return bookList;
     }
 
-    @Override
+
     public Book insertBook(Book newBook) {
         //This function insets the book given has parameter to the List
         books.add(newBook);
         return newBook;
     }
 
-    @Override
+
     public void deleteBook(Book newBook) {
         //This function deletes the book given has parameter from the List
         if (books.indexOf(newBook)>=0)

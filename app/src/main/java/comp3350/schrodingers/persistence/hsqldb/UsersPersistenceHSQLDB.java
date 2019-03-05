@@ -24,16 +24,17 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
     public UsersPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
         logged = findUser("zunenebula@gmail.com");
+        //TODO: infinite loop here
         payPersistence = Services.getPaymentPersistence();
     }
     private Connection connection() throws SQLException{
-        //TODO: getting an error here
+
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
     private User fromResultSet(final ResultSet rs) throws SQLException {
         final String email = rs.getString("email");
-        final String username = rs.getString("username");
+        final String username = rs.getString("name");
         final String password = rs.getString("password");
         final long cardNum = rs.getLong("cardNum");
         final String address = rs.getString("numAndStreet");
@@ -86,7 +87,11 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
 
             final ResultSet rs = st.executeQuery();
 
-            final User user = fromResultSet(rs);
+            final User user;
+            if(rs.next())
+                user = fromResultSet(rs);
+            else
+                user = null;
 
             rs.close();
             st.close();
