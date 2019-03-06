@@ -14,7 +14,7 @@ public class AccessUserInfo {
     }
 
     public AccessUserInfo(final UsersPersistence userPers) {
-        this();
+        //this();
         this.userPersistence = userPers;
     }
 

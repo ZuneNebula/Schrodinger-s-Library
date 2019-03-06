@@ -19,7 +19,7 @@ public class AccessPaymentInfo {
     }
 
     public AccessPaymentInfo(final PaymentPersistence payPers) {
-        this();
+        //this();
         this.payPersistence = payPers;
     }
 
