@@ -7,6 +7,7 @@ import java.util.Locale;
 
 import comp3350.schrodingers.business.AccessPaymentInfo;
 import comp3350.schrodingers.business.AccessBooks;
+import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.objects.User.Address;
@@ -80,11 +81,23 @@ public class CLI  // command-line interface
     }
 
     public static void processGetUser() {
-
+        AccessUserInfo accessUserInfo;
+        accessUserInfo = new AccessUserInfo();
+        if(inputTokens.length>2){
+            if(inputTokens[2].equalsIgnoreCase("orphan")){
+                System.out.println(accessUserInfo.getUser().getUserName());
+            }
+        }
     }
 
     public static void processGetPayment() {
-
+        AccessPaymentInfo accessPayInfo;
+        accessPayInfo = new AccessPaymentInfo();
+        if(inputTokens.length>2){
+            if(inputTokens[2].equalsIgnoreCase("orphan")){
+                System.out.println(accessPayInfo.getCard());
+            }
+        }
     }
 
 

@@ -1,8 +1,5 @@
 package comp3350.schrodingers.tests.persistence;
 
-import java.util.Collections;
-import java.util.List;
-
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Billing;
@@ -12,38 +9,40 @@ import comp3350.schrodingers.persistence.UsersPersistence;
 
 public class PaymentPersistenceStub implements PaymentPersistence {
 
-   private User user;
-    private List<Billing> cards;
+    private User user;
+    private Billing card;
     private UsersPersistence userPersistence;
 
-    public PaymentPersistenceStub(){
+    public PaymentPersistenceStub() {
         userPersistence = Services.getUsersPersistence();
         user = userPersistence.getUser();
-        cards = user.getBilling();
+        card = user.getBilling();
     }
 
     @Override
-    public Billing addCreditCard(Billing creditCard){
-        cards.add(creditCard);
-        newUser();
-        return creditCard;
+    public Billing addCreditCard(Billing creditCard) {
+        card = creditCard;
+        newUser(card);
+        return card;
     }
 
-    public List<Billing> getCards(){
-        return Collections.unmodifiableList(cards);
+    public Billing getCard() {
+        return card;
     }
 
     @Override
-    public Billing updateCreditCard(Billing creditCard){
-        int index = cards.indexOf(creditCard);
-        if(index >= 0) {
-            cards.set(index, creditCard);
-            newUser();
-            return creditCard;
-        }
-        return null;
+    public Billing updateCreditCard(Billing creditCard) {
+        card = creditCard;
+        newUser(card);
+        return card;
     }
-    private User newUser(){
-        return userPersistence.editUser(new User(user.getEmail(),user.getUserName(),user.getPassword(), user.getAddress(), cards));
+
+    @Override
+    public Billing findCard(long number) {
+        return card;
+    }
+
+    private User newUser(Billing c) {
+        return userPersistence.editUser(new User(user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), c));
     }
 }
