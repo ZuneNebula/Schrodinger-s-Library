@@ -19,10 +19,10 @@ public class BookAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
-    private List <Book> bookList;
+    private List<Book> bookList;
     private ArrayList<Book> arrayList;
     private AccessBooks book;
-    private List <Book> temp;
+    private List<Book> temp;
 
     public BookAdapter(Context context, AccessBooks book) {
 
@@ -38,7 +38,7 @@ public class BookAdapter extends BaseAdapter {
 
     }
 
-    public class ViewHolder{
+    public class ViewHolder {
         TextView title, author;
         ImageView icon;
     }
@@ -61,7 +61,7 @@ public class BookAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        if(convertView == null){
+        if (convertView == null) {
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.item, null);
 
@@ -72,8 +72,7 @@ public class BookAdapter extends BaseAdapter {
 
             convertView.setTag(holder);
 
-        }
-        else {
+        } else {
 
             holder = (ViewHolder) convertView.getTag();
         }
@@ -96,7 +95,7 @@ public class BookAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ViewBookInfoActivity.class);
-                intent.putExtra("id",bookList.get(position).getBookID() );
+                intent.putExtra("id", bookList.get(position).getBookID());
                 context.startActivity(intent);
             }
         });
@@ -105,25 +104,24 @@ public class BookAdapter extends BaseAdapter {
         return convertView;
     } // end of getView
 
-    public void filter(String query){
+    public void filter(String query) {
 
-        List <Book> compareList  = new <Book> ArrayList();
+        List<Book> compareList = new <Book>ArrayList();
         query = query.toLowerCase().trim();
         bookList.clear();
 
-        if(query.length() == 0){
+        if (query.length() == 0) {
             bookList.addAll(arrayList);
-        }
-        else{
+        } else {
 
-            List <Book> listbyTitle = book.searchBookByTitle(query);
+            List<Book> listbyTitle = book.searchBookByTitle(query);
             compareList.addAll(listbyTitle);
-            List <Book> listbyAuthor = book.searchBookByAuthor(query);
+            List<Book> listbyAuthor = book.searchBookByAuthor(query);
             compareList.addAll(listbyAuthor);
 
-            for (Book item : compareList)  {
+            for (Book item : compareList) {
 
-                if(!bookList.contains(item)){
+                if (!bookList.contains(item)) {
                     bookList.add(item);
                 }
             }

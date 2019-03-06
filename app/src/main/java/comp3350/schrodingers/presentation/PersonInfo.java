@@ -32,7 +32,7 @@ public class PersonInfo extends AppCompatActivity {
         userList = new AccessUserInfo();
         user = userList.getUser();
 
-        if(user != null) {
+        if (user != null) {
             EditText userName = findViewById(R.id.username);
             userName.setText(user.getUserName());
             EditText userEmail = findViewById(R.id.email);
@@ -55,7 +55,7 @@ public class PersonInfo extends AppCompatActivity {
         }
     }
 
-    public void buttonInfoUpdate(View v){
+    public void buttonInfoUpdate(View v) {
         EditText editName = findViewById(R.id.username);
         EditText editEmail = findViewById(R.id.email);
         EditText editAddress = findViewById(R.id.address);
@@ -77,7 +77,7 @@ public class PersonInfo extends AppCompatActivity {
             user = userList.insertUser(newUser);
             Snackbar.make(findViewById(R.id.person_info), R.string.changes_applied,
                     Snackbar.LENGTH_SHORT).show();
-        }catch(Exception e){
+        } catch (Exception e) {
             Messages.warning(this, e.toString());
         }
     }

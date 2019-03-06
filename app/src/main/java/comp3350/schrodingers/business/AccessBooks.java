@@ -17,15 +17,15 @@ public class AccessBooks {
         booksPersistence = Services.getBooksPersistence();
     }
 
-    public List <Book> getAllBooks(){
-        List <Book> allBooks = booksPersistence.getAllBooks();
+    public List<Book> getAllBooks() {
+        List<Book> allBooks = booksPersistence.getAllBooks();
         return allBooks;
     }
 
-    public Book searchBookById(String id){
-        List <Book> books = booksPersistence.getAllBooks();
+    public Book searchBookById(String id) {
+        List<Book> books = booksPersistence.getAllBooks();
         Iterator<Book> bookIterator = books.iterator();
-        while(bookIterator.hasNext()) {
+        while (bookIterator.hasNext()) {
             Book nextBook = bookIterator.next();  //holds the element to be compared to find the author
             if (nextBook.getBookID().toLowerCase().contains(id)) {
                 return nextBook;
@@ -35,13 +35,13 @@ public class AccessBooks {
         return null;
     }
 
-    public List<Book> searchBookByAuthor(String author){
-        List <Book> authorBook= new ArrayList<>();
-        List <Book> books = booksPersistence.getAllBooks();
+    public List<Book> searchBookByAuthor(String author) {
+        List<Book> authorBook = new ArrayList<>();
+        List<Book> books = booksPersistence.getAllBooks();
         Iterator<Book> bookIterator = books.iterator();
-        while(bookIterator.hasNext()){
+        while (bookIterator.hasNext()) {
             Book nextBook = bookIterator.next();  //holds the element to be compared to find the author
-            if ((nextBook.getAuthor().toLowerCase()).contains(author)){
+            if ((nextBook.getAuthor().toLowerCase()).contains(author)) {
                 authorBook.add(nextBook);
             }
 
@@ -49,13 +49,13 @@ public class AccessBooks {
         return authorBook; //returns a list of books by the author.
     }
 
-    public List <Book> searchBookByTitle(String title){
-        List <Book> titleBook= new ArrayList<>();
-        List <Book> books = booksPersistence.getAllBooks();
+    public List<Book> searchBookByTitle(String title) {
+        List<Book> titleBook = new ArrayList<>();
+        List<Book> books = booksPersistence.getAllBooks();
         Iterator<Book> bookIterator = books.iterator();
-        while(bookIterator.hasNext()){
+        while (bookIterator.hasNext()) {
             Book nextBook = bookIterator.next();  //holds the element to be compared to find the title
-            if ((nextBook.getBookName().toLowerCase()).contains(title)){
+            if ((nextBook.getBookName().toLowerCase()).contains(title)) {
                 titleBook.add(nextBook);
             }
 
@@ -63,10 +63,10 @@ public class AccessBooks {
         return titleBook; //returns a list of books by the title.
     }
 
-    public List <String> getBookDetails(String id){
+    public List<String> getBookDetails(String id) {
 
         Book book = searchBookById(id);
-        List <String> bookInfo = new ArrayList<>();
+        List<String> bookInfo = new ArrayList<>();
         bookInfo.add("Book ID : " + book.getBookID());
         bookInfo.add("Book Title : " + book.getBookName());
         bookInfo.add("Book Author : " + book.getAuthor());

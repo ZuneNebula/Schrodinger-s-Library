@@ -23,7 +23,7 @@ public class CreateAccount {
         try {
             u.validateInfo(newUser);
             return usersPersistence.insertUser(newUser);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.toString()); //TODO: change to throw a message
             return null;
         }

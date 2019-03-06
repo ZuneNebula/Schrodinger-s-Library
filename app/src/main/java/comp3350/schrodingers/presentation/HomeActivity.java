@@ -73,11 +73,11 @@ public class HomeActivity extends AppCompatActivity
 
     }
 
-    private void updateDisplayUser(){
+    private void updateDisplayUser() {
         user = userList.getUser();
         TextView userName = findViewById(R.id.username);
         TextView userEmail = findViewById(R.id.email);
-        if(user != null) {
+        if (user != null) {
             userName.setText(user.getUserName());
             userEmail.setText(user.getEmail());
         }
@@ -104,7 +104,7 @@ public class HomeActivity extends AppCompatActivity
         });
 
         // Perform search and update search list
-        SearchView searchView = (SearchView)searchIcon.getActionView();
+        SearchView searchView = (SearchView) searchIcon.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -113,11 +113,10 @@ public class HomeActivity extends AppCompatActivity
 
             @Override
             public boolean onQueryTextChange(String s) {
-                if(TextUtils.isEmpty(s)){
+                if (TextUtils.isEmpty(s)) {
                     arrayAdapter.filter("");
                     searchLayout.clearTextFilter();
-                }
-                else{
+                } else {
                     arrayAdapter.filter(s);
                 }
                 return true;
@@ -148,10 +147,10 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.my_account) {
-            if(user != null) {
+            if (user != null) {
                 Intent loggedIntent = new Intent(HomeActivity.this, LoggedActivity.class);
                 HomeActivity.this.startActivity(loggedIntent);
-            }else {
+            } else {
                 Intent notLoggedIntent = new Intent(HomeActivity.this, NotLoggedActivity.class);
                 HomeActivity.this.startActivity(notLoggedIntent);
             }
@@ -161,16 +160,17 @@ public class HomeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
-        if(user != null)
+        if (user != null)
             user = userList.getUser();
         //updateDisplayUser();
     }
 
     // Book Catalog button listeners
-    public void createBookCatalogListeners(){
+    public void createBookCatalogListeners() {
 
         // Create image button listeners
         ImageButton mClickButton1 = findViewById(R.id.imageButton1);

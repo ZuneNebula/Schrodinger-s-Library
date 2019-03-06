@@ -29,27 +29,30 @@ public class LoggedActivity extends AppCompatActivity {
         updateGreeting();
 
     }
-    private void updateGreeting(){
+
+    private void updateGreeting() {
         TextView userName = findViewById(R.id.greeting);
         userName.setText(user.getUserName());
     }
 
 
-    public void buttonInformationOnClick(View v){
+    public void buttonInformationOnClick(View v) {
         Intent personIntent = new Intent(LoggedActivity.this, PersonInfo.class);
         LoggedActivity.this.startActivity(personIntent);
     }
-    public void buttonPaymentOnClick(View v){
+
+    public void buttonPaymentOnClick(View v) {
         Intent payIntent = new Intent(LoggedActivity.this, PaymentActivity.class);
         LoggedActivity.this.startActivity(payIntent);
     }
-    public void buttonLogoutOnClick(View v){
+
+    public void buttonLogoutOnClick(View v) {
         userList.logout();
         finish();
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         user = userList.getUser();
         updateGreeting();

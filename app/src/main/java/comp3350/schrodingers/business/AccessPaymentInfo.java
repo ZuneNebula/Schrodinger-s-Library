@@ -14,26 +14,29 @@ public class AccessPaymentInfo {
     private PaymentPersistence payPersistence;
     private Billing card;
 
-    public AccessPaymentInfo(){
+    public AccessPaymentInfo() {
         payPersistence = Services.getPaymentPersistence();
     }
-    public AccessPaymentInfo(final PaymentPersistence payPers){
+
+    public AccessPaymentInfo(final PaymentPersistence payPers) {
         this();
         this.payPersistence = payPers;
     }
-    public Billing getCard(){
+
+    public Billing getCard() {
         card = payPersistence.getCard();
         return card;
     }
-    public Billing insertCard(Billing card) throws CardException{
+
+    public Billing insertCard(Billing card) throws CardException {
         PaymentProcessor p = new PaymentProcessor();
         p.validateCard(card);
-        if(getCard().isEmpty())
+        if (getCard().isEmpty())
             return payPersistence.addCreditCard(card);
         else return updateCard(card);
     }
 
-    public Billing updateCard(Billing card){
+    public Billing updateCard(Billing card) {
         return payPersistence.updateCreditCard(card);
     }
 

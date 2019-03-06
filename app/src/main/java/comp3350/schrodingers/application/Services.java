@@ -15,24 +15,24 @@ public class Services {
     private static UsersPersistence usersPersistence = null;
     private static PaymentPersistence paymentPersistence = null;
 
-    public static synchronized BooksPersistence getBooksPersistence(){
-        if (booksPersistence == null){
+    public static synchronized BooksPersistence getBooksPersistence() {
+        if (booksPersistence == null) {
             //booksPersistence= new BooksPersistenceStub();
-            booksPersistence= new BooksPersistenceHSQLDB(Main.getDBPathName());
+            booksPersistence = new BooksPersistenceHSQLDB(Main.getDBPathName());
         }
         return booksPersistence;
     }
 
-    public static synchronized UsersPersistence getUsersPersistence(){
-        if (usersPersistence == null){
+    public static synchronized UsersPersistence getUsersPersistence() {
+        if (usersPersistence == null) {
             //usersPersistence= new UsersPersistenceStub();
-            usersPersistence= new UsersPersistenceHSQLDB(Main.getDBPathName());
+            usersPersistence = new UsersPersistenceHSQLDB(Main.getDBPathName());
         }
         return usersPersistence;
     }
 
-    public static synchronized PaymentPersistence getPaymentPersistence(){
-        if (paymentPersistence == null){
+    public static synchronized PaymentPersistence getPaymentPersistence() {
+        if (paymentPersistence == null) {
             //paymentPersistence = new PaymentPersistenceStub();
             paymentPersistence = new PaymentPersistenceHSQLDB(Main.getDBPathName());
         }

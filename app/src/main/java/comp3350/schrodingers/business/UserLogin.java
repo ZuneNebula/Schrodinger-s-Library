@@ -10,8 +10,7 @@ import comp3350.schrodingers.persistence.UsersPersistence;
 public class UserLogin {
     private UsersPersistence usersPersistence;
 
-    public UserLogin()
-    {
+    public UserLogin() {
         //constructor
         usersPersistence = Services.getUsersPersistence();
 
@@ -19,12 +18,9 @@ public class UserLogin {
 
     public User checkLogin(String email, String password) {
         User curr = usersPersistence.getUserAndLogin(email);
-        if (curr!=null && curr.getPassword()==password)
-        {
+        if (curr != null && curr.getPassword() == password) {
             return curr;
-        }
-        else
-        {
+        } else {
             //System.out.println("failed login");
             return null;
         }

@@ -2,17 +2,15 @@ package comp3350.schrodingers.application;
 
 import comp3350.schrodingers.presentation.CLI;
 
-public class Main
-{
-	private static String dbName="SC";
+public class Main {
+    private static String dbName = "SC";
 
-	public static void main(String[] args)
-	{
-		CLI.run();
-		System.out.println("All done");
-	}
+    public static void main(String[] args) {
+        CLI.run();
+        System.out.println("All done");
+    }
 
-	public static void setDBPathName(final String name) {
+    public static void setDBPathName(final String name) {
         try {
             Class.forName("org.hsqldb.jdbcDriver").newInstance();
         } catch (InstantiationException e) {
@@ -23,9 +21,9 @@ public class Main
             e.printStackTrace();
         }
         dbName = name;
-	}
+    }
 
-	public static String getDBPathName() {
-		return dbName;
-	}
+    public static String getDBPathName() {
+        return dbName;
+    }
 }

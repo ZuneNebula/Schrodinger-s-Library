@@ -15,7 +15,7 @@ public class Messages {
         alertDialog.setMessage(message);
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             public void onCancel(DialogInterface dialog) {
-            	owner.finish();
+                owner.finish();
             }
         });
 

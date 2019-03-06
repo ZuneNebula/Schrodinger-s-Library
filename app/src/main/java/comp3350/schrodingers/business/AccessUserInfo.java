@@ -8,31 +8,37 @@ import comp3350.schrodingers.persistence.UsersPersistence;
 public class AccessUserInfo {
     private UsersPersistence userPersistence;
     private User logged;
-    public AccessUserInfo(){
+
+    public AccessUserInfo() {
         userPersistence = Services.getUsersPersistence();
     }
-    public AccessUserInfo(final UsersPersistence userPers){
+
+    public AccessUserInfo(final UsersPersistence userPers) {
         this();
         this.userPersistence = userPers;
     }
-    public User getUser(){
+
+    public User getUser() {
         // Get the user already logged (returns null if not logged in)
         logged = userPersistence.getUser();
         return logged;
     }
-    public User insertUser(User user) throws Exception{
+
+    public User insertUser(User user) throws Exception {
         //add new user
         UserValidator u = new UserValidator();
         u.validateInfo(user);
-        if(logged == null)
+        if (logged == null)
             return userPersistence.insertUser(user);
         return updateUser(user);
     }
-    public User updateUser(User user){
+
+    public User updateUser(User user) {
         //edit user
         return userPersistence.editUser(user);
     }
-    public boolean logout(){
+
+    public boolean logout() {
         return userPersistence.logout();
     }
 }

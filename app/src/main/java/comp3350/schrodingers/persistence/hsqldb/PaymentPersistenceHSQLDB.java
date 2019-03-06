@@ -20,24 +20,27 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
     private User user;
     private Billing card;
     private UsersPersistence userPersistence;
-    public PaymentPersistenceHSQLDB(final String dbPath){
+
+    public PaymentPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
         card = new Billing();
     }
+
     private Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
+
     private Billing fromResultSet(final ResultSet rs) throws SQLException {
         final long cardNum = rs.getLong("cardNum");
         final String cardName = rs.getString("cardName");
         final String expiryDate = rs.getString("expiryDate");
         final int cvv = rs.getInt("cvv");
-        return new Billing(cardNum,cardName,expiryDate,cvv);
+        return new Billing(cardNum, cardName, expiryDate, cvv);
     }
 
     @Override
-    public Billing addCreditCard(Billing creditCard){
-        try(final Connection c = connection()){
+    public Billing addCreditCard(Billing creditCard) {
+        try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("INSERT INTO creditCard VALUES(?, ?, ?, ?)");
             st.setLong(1, creditCard.getCardNumber());
             st.setString(2, creditCard.getFullName());
@@ -47,7 +50,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
             st.executeUpdate();
             userPersistence = Services.getUsersPersistence();
             user = userPersistence.getUser();
-            userPersistence.editUser(new User(user.getEmail(),user.getUserName(),user.getPassword(), user.getAddress(), creditCard));
+            userPersistence.editUser(new User(user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), creditCard));
             card = creditCard;
 
             return creditCard;
@@ -56,8 +59,8 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
         }
     }
 
-    private void  deleteCard (final long number){
-        try(final Connection c = connection()){
+    private void deleteCard(final long number) {
+        try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("DELETE FROM creditCard WHERE cardNum = ?");
             st.setLong(1, number);
             st.executeUpdate();
@@ -67,9 +70,9 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
     }
 
     @Override
-    public Billing updateCreditCard(Billing creditCard){
-        try(final Connection c = connection()){
-            if(card.getCardNumber() == creditCard.getCardNumber()) {
+    public Billing updateCreditCard(Billing creditCard) {
+        try (final Connection c = connection()) {
+            if (card.getCardNumber() == creditCard.getCardNumber()) {
                 final PreparedStatement st = c.prepareStatement("UPDATE creditCard SET name = ?, expiryDate = ?, cvv = ? WHERE cardNum = ?");
                 st.setString(1, creditCard.getFullName());
                 st.setString(2, creditCard.getExpiry());
@@ -78,7 +81,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
 
                 st.executeUpdate();
                 card = creditCard;
-            }else{
+            } else {
                 deleteCard(card.getCardNumber());
                 card = addCreditCard(creditCard);
             }
@@ -90,19 +93,19 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
     }
 
     @Override
-    public Billing getCard(){
+    public Billing getCard() {
         return card;
     }
 
     @Override
-    public Billing findCard(final long number){
-        try(final Connection c = connection()){
+    public Billing findCard(final long number) {
+        try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("SELECT * FROM creditCard WHERE cardNum = ?");
             st.setLong(1, number);
 
             final ResultSet rs = st.executeQuery();
             final Billing b;
-            if(rs.next())
+            if (rs.next())
                 b = fromResultSet(rs);
             else
                 b = new Billing();
@@ -110,12 +113,10 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
             rs.close();
             st.close();
 
-            card=b;
+            card = b;
 
             return b;
-        }
-        catch (final SQLException e)
-        {
+        } catch (final SQLException e) {
             throw new PersistenceException(e);
         }
     }

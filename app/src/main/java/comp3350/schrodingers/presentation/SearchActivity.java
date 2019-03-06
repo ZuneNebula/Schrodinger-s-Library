@@ -24,7 +24,7 @@ public class SearchActivity extends AppCompatActivity {
 
         SearchView searchView = findViewById(R.id.action_search);
         AccessBooks bookList = new AccessBooks();
-        if(searchView != null) {
+        if (searchView != null) {
 
             List<Book> list = bookList.searchBookByAuthor(searchView.getQuery().toString());
             ArrayAdapter<Book> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);

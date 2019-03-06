@@ -2,14 +2,14 @@ package comp3350.schrodingers.objects;
 
 public class Book {
 
-  private final String bookID;
-  private final String bookName;
-  private final String author;
-  private final String price;
-  private final String genre;
-  private final String bookStock;
-  private final String rating;
-  private final String iconId;
+    private final String bookID;
+    private final String bookName;
+    private final String author;
+    private final String price;
+    private final String genre;
+    private final String bookStock;
+    private final String rating;
+    private final String iconId;
 
 
     public Book(String bookID, String bookName, String author, String price, String genre, String bookStock, String rating, String iconId) {
@@ -18,8 +18,8 @@ public class Book {
         this.author = author;
         this.price = price;
         this.genre = genre;
-        this.bookStock= bookStock;
-        this.rating= rating;
+        this.bookStock = bookStock;
+        this.rating = rating;
         this.iconId = iconId;
     }
 

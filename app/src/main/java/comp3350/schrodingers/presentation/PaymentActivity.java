@@ -31,39 +31,40 @@ public class PaymentActivity extends AppCompatActivity {
         accessCards = new AccessPaymentInfo();
         card = accessCards.getCard();
 
-        if(!card.isEmpty()){
+        if (!card.isEmpty()) {
             Billing singleCard = card;
             EditText userBilling = findViewById(R.id.billing);
             EditText expDate = findViewById(R.id.expDate);
             EditText cvv = findViewById(R.id.cvv);
             EditText cardName = findViewById(R.id.cardName);
-            userBilling.setText(""+singleCard.getCardNumber());
+            userBilling.setText("" + singleCard.getCardNumber());
             expDate.setText(singleCard.getExpiry());
-            cvv.setText(""+singleCard.getCvv());
+            cvv.setText("" + singleCard.getCvv());
             cardName.setText(singleCard.getFullName());
         }
     }
-    public void buttonChangePayment(View v){
+
+    public void buttonChangePayment(View v) {
         EditText editCardNum = findViewById(R.id.billing);
         EditText editExpDate = findViewById(R.id.expDate);
         EditText editCvv = findViewById(R.id.cvv);
         EditText editCardName = findViewById(R.id.cardName);
 
         long cn = 0L;
-        if(editCardNum.getText().toString().length() != 0)
+        if (editCardNum.getText().toString().length() != 0)
             cn = Long.parseLong(editCardNum.getText().toString());
         String exp = editExpDate.getText().toString();
         String name = editCardName.getText().toString();
         int cv = 0;
-        if(editCvv.getText().toString().length() !=0)
+        if (editCvv.getText().toString().length() != 0)
             cv = Integer.parseInt(editCvv.getText().toString());
-        Billing newCard = new Billing(cn,name,exp,cv);
+        Billing newCard = new Billing(cn, name, exp, cv);
 
-        try{
+        try {
             accessCards.insertCard(newCard);
             Snackbar.make(findViewById(R.id.payment_info), R.string.changes_applied,
                     Snackbar.LENGTH_SHORT).show();
-        }catch(CardException c){
+        } catch (CardException c) {
             Messages.warning(this, c.toString());
         }
     }

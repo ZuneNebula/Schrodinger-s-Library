@@ -6,46 +6,46 @@ import java.util.regex.Pattern;
 
 import comp3350.schrodingers.objects.User.Billing;
 
-public class PaymentProcessor{
+public class PaymentProcessor {
 
-    public boolean validateCard(Billing card) throws CardException{
-        String number = ""+card.getCardNumber();
+    public boolean validateCard(Billing card) throws CardException {
+        String number = "" + card.getCardNumber();
         String date = card.getExpiry();
-        String cvv = ""+card.getCvv();
+        String cvv = "" + card.getCvv();
         String name = card.getFullName();
 
-        if(number.length() == 0)
+        if (number.length() == 0)
             throw new CardException("Credit Card Number Required");
-        else if(number.length() < 16)
-            throw new CardException( "Credit Card Number needs 16 digits");
+        else if (number.length() < 16)
+            throw new CardException("Credit Card Number needs 16 digits");
 
-        if(date.length() == 0)
-            throw new CardException( "Date required");
-        else{
+        if (date.length() == 0)
+            throw new CardException("Date required");
+        else {
             String regex = "^(0[1-9]|1[0-2])\\/\\d{2}$";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(date);
-            if(!matcher.matches())
-                throw new CardException( "Please write Date in the correct format: \'01/99\'");
-            else{
+            if (!matcher.matches())
+                throw new CardException("Please write Date in the correct format: \'01/99\'");
+            else {
                 String[] checkDate = date.split("/");
                 int month = Integer.parseInt(checkDate[0]);
                 int year = Integer.parseInt(checkDate[1]) + 2000;
                 Calendar cal = Calendar.getInstance();
-                if(year < cal.get(Calendar.YEAR) || (year == cal.get(Calendar.YEAR) && month <= cal.get(Calendar.MONTH)) )
-                    throw new CardException( "Card expired");
-                else if(year > cal.get(Calendar.YEAR) + 20)
-                    throw new CardException( "Are you from a far future or past?");
+                if (year < cal.get(Calendar.YEAR) || (year == cal.get(Calendar.YEAR) && month <= cal.get(Calendar.MONTH)))
+                    throw new CardException("Card expired");
+                else if (year > cal.get(Calendar.YEAR) + 20)
+                    throw new CardException("Are you from a far future or past?");
             }
         }
 
-        if(cvv.length() == 0)
-            throw new CardException( "CVV required");
-        else if(cvv.length() < 3)
+        if (cvv.length() == 0)
+            throw new CardException("CVV required");
+        else if (cvv.length() < 3)
             throw new CardException("CVV needs 3 digits");
 
-        if(name.length() == 0)
-            throw new CardException( "Name in credit card required");
+        if (name.length() == 0)
+            throw new CardException("Name in credit card required");
         return true;
     }
 

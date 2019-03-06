@@ -17,29 +17,30 @@ public class BooksPersistenceHSQLDB implements BooksPersistence {
     public BooksPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
     }
-    private Connection connection() throws SQLException{
+
+    private Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
     private Book fromResultSet(final ResultSet rs) throws SQLException {
-        final String bookID= rs.getString("bookID");
-        final String bookName= rs.getString("bookName");
-        final String author= rs.getString("author");
-        final String price= rs.getString("price");
-        final String genre= rs.getString("genre");
-        final String stock= rs.getString("stock");
-        final String rating= rs.getString("rating");
-        final String iconId= rs.getString("iconId");
-        return new Book(bookID,bookName,author,price,genre,stock,rating,iconId);
+        final String bookID = rs.getString("bookID");
+        final String bookName = rs.getString("bookName");
+        final String author = rs.getString("author");
+        final String price = rs.getString("price");
+        final String genre = rs.getString("genre");
+        final String stock = rs.getString("stock");
+        final String rating = rs.getString("rating");
+        final String iconId = rs.getString("iconId");
+        return new Book(bookID, bookName, author, price, genre, stock, rating, iconId);
     }
+
     @Override
-    public List<Book> getAllBooks(){
-        List <Book> bookList = new ArrayList<>();
+    public List<Book> getAllBooks() {
+        List<Book> bookList = new ArrayList<>();
         try (final Connection c = connection()) {
             final Statement st = c.createStatement();
             final ResultSet rs = st.executeQuery("SELECT * FROM books");
-            while (rs.next())
-            {
+            while (rs.next()) {
                 Book book = fromResultSet(rs);
                 bookList.add(book);
             }
@@ -47,9 +48,7 @@ public class BooksPersistenceHSQLDB implements BooksPersistence {
             st.close();
 
             return bookList;
-        }
-        catch (final SQLException e)
-        {
+        } catch (final SQLException e) {
             throw new PersistenceException(e);
         }
 

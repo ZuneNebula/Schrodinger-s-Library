@@ -5,84 +5,96 @@ import java.util.List;
 
 public class User {
 
-    public static class Address{  // class which stores the address
+    public static class Address {  // class which stores the address
         private String streetAndNumber;
         private String postalCode;
         private String city;
         private String state;
         private String country;
-        public Address(){
+
+        public Address() {
             streetAndNumber = "NOADDRESS!";
             postalCode = "";
             state = "";
             country = "";
             city = "";
         }
-        public Address(String streetName, String postalCode, String city, String state, String country)
-        {
+
+        public Address(String streetName, String postalCode, String city, String state, String country) {
             this.streetAndNumber = streetName;
             this.postalCode = postalCode;
             this.state = state;
             this.country = country;
             this.city = city;
         }
-        public String getAddress(){
+
+        public String getAddress() {
             return streetAndNumber;
         }
-        public String getPostalCode(){
+
+        public String getPostalCode() {
             return postalCode;
         }
-        public String getState(){
+
+        public String getState() {
             return state;
         }
-        public String getCountry(){
+
+        public String getCountry() {
             return country;
         }
-        public String getCity(){
+
+        public String getCity() {
             return city;
         }
 
-        public boolean isEmpty(){
+        public boolean isEmpty() {
             return streetAndNumber.compareTo("NOADDRESS!") == 0;
         }
     }
 
-    public static class Billing{ // class which stores billing information
+    public static class Billing { // class which stores billing information
         private long cardNumber;
         private String fullName;
         private String expiry;
         private int cvv;
-        public Billing(){
+
+        public Billing() {
             cardNumber = 0L;
             fullName = "";
             cvv = 0;
         }
-        public Billing(long cardNumber, String fullName, String expiry, int cvv)
-        {
+
+        public Billing(long cardNumber, String fullName, String expiry, int cvv) {
             this.cardNumber = cardNumber;
             this.fullName = fullName;
             this.expiry = expiry;
             this.cvv = cvv;
         }
-        public long getCardNumber(){
+
+        public long getCardNumber() {
             return cardNumber;
         }
-        public String getFullName(){
+
+        public String getFullName() {
             return fullName;
         }
-        public String getExpiry(){
+
+        public String getExpiry() {
             return expiry;
         }
-        public int getCvv(){
+
+        public int getCvv() {
             return cvv;
         }
-        public boolean isEmpty(){
+
+        public boolean isEmpty() {
             return cardNumber == 0L;
         }
 
 
-        public String toString(){
-            return "Visa ending in"+ (cardNumber%1000);
+        public String toString() {
+            return "Visa ending in" + (cardNumber % 1000);
         }
     }
 
@@ -97,9 +109,9 @@ public class User {
 
     public User(String email, String username, String password) // constructor
     {//input field tests
-        assert (email!=null);
-        assert(username!=null);
-        assert (password!=null);
+        assert (email != null);
+        assert (username != null);
+        assert (password != null);
 
         this.email = email;
         this.username = username;
@@ -107,11 +119,12 @@ public class User {
         billing = new Billing();
         address = new Address();
     }
+
     public User(String email, String username, String password, Address address, Billing billing) // constructor
     {//input field tests
-        assert (email!=null);
-        assert(username!=null);
-        assert (password!=null);
+        assert (email != null);
+        assert (username != null);
+        assert (password != null);
 
         this.email = email;
         this.username = username;
@@ -120,25 +133,31 @@ public class User {
         this.address = address;
     }
 
-    public String getUserName() {return username;}
+    public String getUserName() {
+        return username;
+    }
 
-    public String getEmail() { return email;}
+    public String getEmail() {
+        return email;
+    }
 
-    public String getPassword() {return password;}
+    public String getPassword() {
+        return password;
+    }
 
-    public Billing getBilling(){
+    public Billing getBilling() {
         return billing;
     }
 
-    public Address getAddress(){
+    public Address getAddress() {
         return address;
     }
 
-    public boolean isLoggedIn(){
+    public boolean isLoggedIn() {
         return isLoggedIn;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return email.compareTo("") == 0;
     }
 
