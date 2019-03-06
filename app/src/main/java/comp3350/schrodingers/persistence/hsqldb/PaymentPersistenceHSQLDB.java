@@ -48,6 +48,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
             userPersistence = Services.getUsersPersistence();
             user = userPersistence.getUser();
             userPersistence.editUser(new User(user.getEmail(),user.getUserName(),user.getPassword(), user.getAddress(), creditCard));
+            card = creditCard;
 
             return creditCard;
         } catch (final SQLException e) {
@@ -70,10 +71,10 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
         try(final Connection c = connection()){
             if(card.getCardNumber() == creditCard.getCardNumber()) {
                 final PreparedStatement st = c.prepareStatement("UPDATE creditCard SET name = ?, expiryDate = ?, cvv = ? WHERE cardNum = ?");
-                st.setLong(1, creditCard.getCardNumber());
-                st.setString(2, creditCard.getFullName());
-                st.setString(3, creditCard.getExpiry());
-                st.setInt(4, creditCard.getCvv());
+                st.setString(1, creditCard.getFullName());
+                st.setString(2, creditCard.getExpiry());
+                st.setInt(3, creditCard.getCvv());
+                st.setLong(4, creditCard.getCardNumber());
 
                 st.executeUpdate();
                 card = creditCard;

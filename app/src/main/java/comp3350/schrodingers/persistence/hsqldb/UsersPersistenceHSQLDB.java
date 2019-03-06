@@ -85,7 +85,10 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
                 st.setString(1, newUser.getUserName());
                 st.setString(2, newUser.getPassword());
                 st.setLong(3, newUser.getBilling().getCardNumber());
-                st.setString(4, newUser.getAddress().getAddress());
+                if(newUser.getAddress().getAddress().compareTo("") != 0)
+                    st.setString(4, newUser.getAddress().getAddress());
+                else
+                    st.setString(4, "NOADDRESS!");
                 st.setString(5, logged.getEmail());
 
                 st.executeUpdate();

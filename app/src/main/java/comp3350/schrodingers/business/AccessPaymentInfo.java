@@ -28,7 +28,7 @@ public class AccessPaymentInfo {
     public Billing insertCard(Billing card) throws CardException{
         PaymentProcessor p = new PaymentProcessor();
         p.validateCard(card);
-        if(getCard() == null)
+        if(getCard().isEmpty())
             return payPersistence.addCreditCard(card);
         else return updateCard(card);
     }
