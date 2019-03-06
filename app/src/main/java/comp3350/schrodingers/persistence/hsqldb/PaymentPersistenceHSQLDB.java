@@ -82,6 +82,9 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
                 st.executeUpdate();
                 card = creditCard;
             } else {
+                userPersistence = Services.getUsersPersistence();
+                user = userPersistence.getUser();
+                userPersistence.editUser(new User(user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), new User.Billing()));
                 deleteCard(card.getCardNumber());
                 card = addCreditCard(creditCard);
             }

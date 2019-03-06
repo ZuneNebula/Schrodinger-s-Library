@@ -43,7 +43,8 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         else {
             payPersistence = Services.getPaymentPersistence();
             User.Billing card = payPersistence.findCard(cardNum);
-            return new User(email, username, password, new User.Address(), card);
+            User.Address add = findAddress(address);
+            return new User(email, username, password, add, card);
         }
     }
 
@@ -92,10 +93,17 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
                 st.setString(1, newUser.getUserName());
                 st.setString(2, newUser.getPassword());
                 st.setLong(3, newUser.getBilling().getCardNumber());
-                if (newUser.getAddress().getAddress().compareTo("") != 0)
-                    st.setString(4, newUser.getAddress().getAddress());
-                else
+                String address = newUser.getAddress().getAddress();
+
+                if(address.compareTo("") == 0)
                     st.setString(4, "NOADDRESS!");
+                else if(logged.getAddress().getAddress().compareTo(address) == 0 && !findAddress(address).isEmpty())
+                    st.setString(4, address);
+                else{
+                    insertAddress(newUser.getAddress());
+                    st.setString(4, address);
+                }
+
                 st.setString(5, logged.getEmail());
 
                 st.executeUpdate();
@@ -155,23 +163,55 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         }
     }
 
-    private User findByAddress(final String house) {
+    private User.Address insertAddress(final User.Address address) {
         try (final Connection c = connection()) {
-            final PreparedStatement st = c.prepareStatement("SELECT * FROM user WHERE numAndStreet = ?");
-            st.setString(1, house);
+            final PreparedStatement st = c.prepareStatement("INSERT INTO address VALUES(?, ?, ?, ?, ?)");
+            st.setString(1, address.getAddress());
+            st.setString(2, address.getPostalCode());
+            st.setString(3, address.getCity());
+            st.setString(4, address.getState());
+            st.setString(5, address.getCountry());
 
-            final ResultSet rs = st.executeQuery();
+            st.executeUpdate();
 
-            final User user = fromResultSet(rs);
-
-            rs.close();
-            st.close();
-
-            return user;
+            return address;
         } catch (final SQLException e) {
             throw new PersistenceException(e);
         }
     }
+
+    private User.Address findAddress(final String house) {
+        try (final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("SELECT * FROM address WHERE numAndStreet = ?");
+            st.setString(1, house);
+
+            final ResultSet rs = st.executeQuery();
+
+            final User.Address address;
+            if (rs.next())
+                address = fromResultAdress(rs);
+            else
+                address = new User.Address();
+
+            rs.close();
+            st.close();
+
+            return address;
+        } catch (final SQLException e) {
+            throw new PersistenceException(e);
+        }
+    }
+
+    private User.Address fromResultAdress(final ResultSet rs) throws SQLException {
+        final String house = rs.getString("numAndStreet");
+        final String zip = rs.getString("PC");
+        final String city = rs.getString("city");
+        final String state = rs.getString("state");
+        final String country = rs.getString("country");
+
+        return new User.Address(house, zip, city, state, country);
+    }
+
 
     public User getUserAndLogin(String email) {
         logged = findUser(email);
