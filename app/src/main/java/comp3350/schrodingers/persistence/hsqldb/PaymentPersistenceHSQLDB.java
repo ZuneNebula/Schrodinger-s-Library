@@ -73,7 +73,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
     public Billing updateCreditCard(Billing creditCard) {
         try (final Connection c = connection()) {
             if (card.getCardNumber() == creditCard.getCardNumber()) {
-                final PreparedStatement st = c.prepareStatement("UPDATE creditCard SET name = ?, expiryDate = ?, cvv = ? WHERE cardNum = ?");
+                final PreparedStatement st = c.prepareStatement("UPDATE creditCard SET cardName = ?, expiryDate = ?, cvv = ? WHERE cardNum = ?");
                 st.setString(1, creditCard.getFullName());
                 st.setString(2, creditCard.getExpiry());
                 st.setInt(3, creditCard.getCvv());
