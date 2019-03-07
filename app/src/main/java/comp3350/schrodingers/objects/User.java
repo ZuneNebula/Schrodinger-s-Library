@@ -51,6 +51,10 @@ public class User {
         public boolean isEmpty() {
             return streetAndNumber.compareTo("NOADDRESS!") == 0;
         }
+
+        public String toString(){
+            return streetAndNumber+", "+postalCode+", "+city+", "+state+", "+country;
+        }
     }
 
     public static class Billing { // class which stores billing information

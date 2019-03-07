@@ -31,7 +31,7 @@ public class NotLoggedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NotLoggedActivity.this, LoginActivity.class);
-                startActivity(intent);
+                NotLoggedActivity.this.startActivity(intent);
 
             }
         });
@@ -40,8 +40,7 @@ public class NotLoggedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NotLoggedActivity.this, CreateAccountActivity.class);
-                startActivity(intent);
-
+                NotLoggedActivity.this.startActivity(intent);
             }
         });
     }

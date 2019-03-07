@@ -11,40 +11,40 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="98dp"></LinearLayout>
+        tools:layout_editor_absoluteX="98dp">
 
-    <TextView
-        android:id="@+id/loginMessage"
-        android:layout_width="415dp"
-        android:layout_height="55dp"
-        android:text="TextView"
-        android:textSize="36sp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="143dp"
-        tools:text="Have an Account?" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
 
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="209dp" />
+        <TextView
+            android:id="@+id/loginMessage"
+            android:layout_width="415dp"
+            android:layout_height="55dp"
+            android:textSize="36sp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="143dp"
+            android:text="Have an Account?" />
 
-    <Button
-        android:id="@+id/account_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create an Account"
-        tools:layout_editor_absoluteX="132dp"
-        tools:layout_editor_absoluteY="209dp" />
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="209dp" />
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        <Button
+            android:id="@+id/account_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create an Account"
+            tools:layout_editor_absoluteX="132dp"
+            tools:layout_editor_absoluteY="209dp" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

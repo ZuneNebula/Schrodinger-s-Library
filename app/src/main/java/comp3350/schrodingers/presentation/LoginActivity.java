@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Email = (EditText) findViewById(R.id.edtEmail);
         Password = (EditText) findViewById(R.id.edtPassword);
-        Login = (Button) findViewById(R.id.login_button);
+        Login = (Button) findViewById(R.id.btnLogin);
         Info = (TextView) findViewById(R.id.edtView);
 
         Login.setOnClickListener(new View.OnClickListener() {
