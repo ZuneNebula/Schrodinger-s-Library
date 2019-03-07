@@ -40,7 +40,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (Username != null && Password != null && Email != null) // add more test cases later
-                    validate(Username.getText().toString(), Email.getText().toString(), Password.getText().toString());
+                    validate(Email.getText().toString(), Username.getText().toString(), Password.getText().toString());
 
             }
         });
@@ -48,11 +48,12 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     private void validate(String Username, String Email, String Password) {
-
-        User newUser = newAcc.insertUser(Username, Email, Password);
-        if (newUser != null) {
+        try {
+            User newUser = newAcc.insertUser(Username, Email, Password);
             Intent intent = new Intent(CreateAccountActivity.this, LoggedActivity.class);
             startActivity(intent);
+        }catch(Exception e){
+            Messages.warning(this, e.toString());
         }
 
     }
