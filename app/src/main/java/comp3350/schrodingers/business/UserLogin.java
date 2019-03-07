@@ -4,21 +4,20 @@ import java.util.Collections;
 import java.util.List;
 
 import comp3350.schrodingers.objects.User;
-import comp3350.schrodingers.application.Services;
-import comp3350.schrodingers.persistence.UsersPersistence;
+
 
 public class UserLogin {
-    private UsersPersistence usersPersistence;
+    private AccessUserInfo accessUserInfo;
 
     public UserLogin() {
         //constructor
-        usersPersistence = Services.getUsersPersistence();
+        accessUserInfo = new AccessUserInfo();
 
     }
 
     public User checkLogin(String email, String password) {
-        User curr = usersPersistence.getUserAndLogin(email);
-        if (curr != null && curr.getPassword() == password) {
+        User curr = accessUserInfo.login(email);
+        if (curr != null && curr.getPassword().equals(password)) {
             return curr;
         } else {
             //System.out.println("failed login");

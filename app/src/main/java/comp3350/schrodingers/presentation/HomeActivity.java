@@ -164,8 +164,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onResume() {
         super.onResume();
-        if (user != null)
-            user = userList.getUser();
+        user = userList.getUser();
         //updateDisplayUser();
     }
 

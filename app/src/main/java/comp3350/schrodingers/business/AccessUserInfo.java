@@ -24,6 +24,12 @@ public class AccessUserInfo {
         return logged;
     }
 
+    public User login(String email){
+        logged = userPersistence.getUserAndLogin(email);
+        return logged;
+    }
+
+
     public User insertUser(User user) throws Exception {
         //add new user
         UserValidator u = new UserValidator();
