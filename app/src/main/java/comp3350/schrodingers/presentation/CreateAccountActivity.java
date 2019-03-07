@@ -28,7 +28,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_login);
+        setContentView(R.layout.activity_create_account);
 
         Username = (EditText) findViewById(R.id.edtName);
         Email = (EditText) findViewById(R.id.edtEmail);
