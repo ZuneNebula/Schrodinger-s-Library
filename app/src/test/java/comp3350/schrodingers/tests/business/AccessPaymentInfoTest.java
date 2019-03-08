@@ -22,7 +22,7 @@ public class AccessPaymentInfoTest {
         final Billing card;
         System.out.println("\nStarting test AccessPaymentInfo");
         card = accessPayInfo.getCard();
-        assertNull("\tno cards in DB, should be null", card);
+        assertTrue("\tno cards in DB, should be null", card.isEmpty());
         System.out.println("\nFinished test AccessPaymentInfo");
     }
 }

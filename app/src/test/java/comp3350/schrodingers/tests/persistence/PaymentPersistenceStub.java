@@ -14,7 +14,7 @@ public class PaymentPersistenceStub implements PaymentPersistence {
     private UsersPersistence userPersistence;
 
     public PaymentPersistenceStub() {
-        userPersistence = Services.getUsersPersistence();
+        userPersistence = new UsersPersistenceStub();
         user = userPersistence.getUser();
         card = user.getBilling();
     }
