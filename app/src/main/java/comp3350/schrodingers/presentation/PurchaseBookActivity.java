@@ -11,12 +11,11 @@ public class PurchaseBookActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_purchase_books);
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-//        getSupportActionBar().setTitle("Schrodingers Library");
-//        myToolbar.setTitleTextColor(0XFFFFFFFF);
-
-
+        getSupportActionBar().setTitle("Schrodingers Library");
+        myToolbar.setTitleTextColor(0XFFFFFFFF);
 
     }
 }
