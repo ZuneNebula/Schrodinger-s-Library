@@ -1,8 +1,10 @@
 package comp3350.schrodingers.application;
 
 import comp3350.schrodingers.persistence.BooksPersistence;
+import comp3350.schrodingers.persistence.UserBookPersistence;
 import comp3350.schrodingers.persistence.hsqldb.BooksPersistenceHSQLDB;
 import comp3350.schrodingers.persistence.UsersPersistence;
+import comp3350.schrodingers.persistence.hsqldb.UserBookPersistenceHSQLDB;
 import comp3350.schrodingers.persistence.hsqldb.UsersPersistenceHSQLDB;
 import comp3350.schrodingers.persistence.PaymentPersistence;
 import comp3350.schrodingers.persistence.hsqldb.PaymentPersistenceHSQLDB;
@@ -14,6 +16,7 @@ public class Services {
     private static BooksPersistence booksPersistence = null;
     private static UsersPersistence usersPersistence = null;
     private static PaymentPersistence paymentPersistence = null;
+    private static UserBookPersistence userBookPersistence=null;
 
     public static synchronized BooksPersistence getBooksPersistence() {
         if (booksPersistence == null) {
@@ -38,5 +41,15 @@ public class Services {
         }
         return paymentPersistence;
     }
+
+    public static synchronized  UserBookPersistence getUserBookPersistence(){
+        if (userBookPersistence == null) {
+            //usersPersistence= new UsersPersistenceStub();
+            userBookPersistence = new UserBookPersistenceHSQLDB(Main.getDBPathName());
+        }
+        return userBookPersistence;
+    }
+
+
 
 }
