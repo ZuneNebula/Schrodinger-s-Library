@@ -220,7 +220,6 @@ public class HomeActivity extends AppCompatActivity
     // Book Catalog button handler
     public void onClick(View v) {
 
-        int buttonID = v.getId();
         int bookID = -1;
 
         // Determine which button was pressed
@@ -296,7 +295,7 @@ public class HomeActivity extends AppCompatActivity
 
         Intent intent = new Intent(homeContext, viewBookClass);
         intent.putExtra("id", Integer.toString(bookID));
-        HomeActivity.this.startActivity(intent);
+        startActivity(intent);
     }
 
     private void copyDatabaseToDevice() {
