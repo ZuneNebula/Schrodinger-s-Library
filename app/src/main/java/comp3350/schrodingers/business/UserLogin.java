@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import comp3350.schrodingers.objects.User;
-
+import comp3350.schrodingers.persistence.UsersPersistence;
 
 public class UserLogin {
     private AccessUserInfo accessUserInfo;
@@ -13,6 +13,9 @@ public class UserLogin {
         //constructor
         accessUserInfo = new AccessUserInfo();
 
+    }
+    public UserLogin(final UsersPersistence u){
+        accessUserInfo = new AccessUserInfo(u);
     }
 
     public User checkLogin(String email, String password) {
