@@ -31,6 +31,7 @@
     - PaymentPersistenceHSQLDB.java
     - PersistenceException.java
     - UsersPersistenceHSQLDB.java
+    - RatingPersistenceHSQLDB.java
     
 ##### Stubs
     - BooksPersistenceStub.java
@@ -40,8 +41,8 @@
 ##### Interfaces
     - BooksPersistence.java
     - PaymentPersistence.java
-    - PaymentProcessorInt.java
     - UsersPersistence.java
+    - RatingPersistence
 
 #### presentation 
     - BookAdapter.java
