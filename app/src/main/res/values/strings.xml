@@ -11,7 +11,6 @@
     <string name="title_activity_view_book_info">ViewBookInfoActivity</string>
     <string name="todo">TODO</string>
     <string name="book_image">book image</string>
-    <string name="title_activity_seaech">SeaechActivity</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="username">username</string>
     <string name="email">juanito@gmail.com</string>
@@ -35,5 +34,6 @@
     <string name="rateheaer">Please rate this book</string>
     <string name="please_rate_this_book">Please Rate This Book</string>
     <string name="rateButton">Submit</string>
-
+    <string name="purchase_book_button">Purchase Book</string>
+    <string name="shopping_cart_button">Add to Shopping Cart</string>
 </resources>
