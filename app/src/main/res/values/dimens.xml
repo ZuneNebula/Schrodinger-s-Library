@@ -13,5 +13,6 @@
     <dimen name="view_book_image_width">300dp</dimen>
     <dimen name="view_book_image_height">425dp</dimen>
     <dimen name="view_book_padding">20dp</dimen>
-    <dimen name="view_book_margin">20dp</dimen>
+    <dimen name="view_book_top_margin">55dp</dimen>
+    <dimen name="view_book_left_margin">20dp</dimen>
 </resources>
