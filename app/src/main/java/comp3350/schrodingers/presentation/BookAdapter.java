@@ -95,7 +95,7 @@ public class BookAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ViewBookInfoActivity.class);
-                intent.putExtra("id", bookList.get(position).getBookID());
+                intent.putExtra("id", Integer.toString(bookList.get(position).getBookID()));
                 context.startActivity(intent);
             }
         });
