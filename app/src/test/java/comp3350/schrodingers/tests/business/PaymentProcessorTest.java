@@ -11,7 +11,6 @@ import comp3350.schrodingers.objects.User.Billing;
 
 public class PaymentProcessorTest extends TestCase {
     private PaymentProcessor validator;
-    private boolean messageValid;
     private long correctNum = 1234123412341234L;
     private int correctCvv = 123;
     private String correctDate = "11/22";
@@ -23,11 +22,11 @@ public class PaymentProcessorTest extends TestCase {
         validator = new PaymentProcessor();
         card=null;
     }
-    private void cardHandler(Billing card){
+    private void cardHandler(Billing c){
         try {
-            validator.validateCard(card);
-        }catch(CardException c){
-            System.out.println("\t"+c);
+            validator.validateCard(c);
+        }catch(CardException e){
+            System.out.println("\t"+e);
         }
     }
 
