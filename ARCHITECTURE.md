@@ -42,7 +42,7 @@
     - BooksPersistence.java
     - PaymentPersistence.java
     - UsersPersistence.java
-    - RatingPersistence
+    - RatingPersistence.java
 
 #### presentation 
     - BookAdapter.java
