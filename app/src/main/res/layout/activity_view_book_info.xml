@@ -62,15 +62,14 @@
                     android:text="@string/purchase_book_button"
                     android:textColor="@android:color/white" />
 
-                <Button
-                    android:id="@+id/cartButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/view_book_button_margin"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/shopping_cart_button"
-                    android:textColor="@android:color/white" />
-
+                <!--<Button-->
+                    <!--android:id="@+id/cartButton"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="@dimen/view_book_button_margin"-->
+                    <!--android:background="@color/colorPrimary"-->
+                    <!--android:text="@string/shopping_cart_button"-->
+                    <!--android:textColor="@android:color/white" />-->
             </LinearLayout>
 
             <ListView
