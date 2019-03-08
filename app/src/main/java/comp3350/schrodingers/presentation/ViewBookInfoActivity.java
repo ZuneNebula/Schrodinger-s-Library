@@ -112,7 +112,7 @@ public class ViewBookInfoActivity extends AppCompatActivity implements View.OnCl
     // Create Button Listeners
     public void createButtonListeners() {
 
-             // Create image button listeners
+         // Create button listeners
         Button button1 = findViewById(R.id.purchaseButton);
         button1.setOnClickListener(this);
         Button button2 = findViewById(R.id.cartButton);
