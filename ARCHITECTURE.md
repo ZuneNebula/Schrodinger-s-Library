@@ -16,8 +16,10 @@
     - CardException.java
     - CreateAccount.java
     - PaymentProcessor
+    - UserException.java
     - UserLogin.java
     - UserValidator.java
+    
 
 #### objects 
     - Book.java
@@ -43,6 +45,7 @@
 
 #### presentation 
     - BookAdapter.java
+    - CLI.java
     - CreateAccountActivity.java
     - HomeActivity.java
     - LoggedActivity.java
@@ -64,7 +67,27 @@
     - ic_menu_share.xml
     - ic_search.xml
     - side_nav_bar.xml
-
+    - annabellefightslife.png
+    - dangerouscrusaders.png
+    - emberofthechildren.png
+    - escapefromthehill.png
+    - herebychoice.png
+    - nowaybutdown.png
+    - otherworld.png
+    - survivalofthefittest.png
+    - thebadboy.png
+    - thedealer.png
+    - theedgeoftheuniverse.png
+    - thefourthwind.png
+    - theperfectchild.png
+    - theredcordofmarriage.png
+    - theredplanet.png
+    - therisingcaptive.png
+    - thewaywegetby.png
+    - thirteenreasonstoforgetyou.png
+    - twilightfortress.png
+    - whereiscecilia.png
+    - whirlwind.png
 #### layout
     - activity_create_account.xml
     - activity_home.xml
