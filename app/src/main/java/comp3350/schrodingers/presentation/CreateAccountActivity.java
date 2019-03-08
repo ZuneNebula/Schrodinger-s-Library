@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import comp3350.schrodingers.business.UserException;
 import comp3350.schrodingers.persistence.stubs.UsersPersistenceStub;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.business.CreateAccount;
@@ -52,7 +53,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             User newUser = newAcc.insertUser(Username, Email, Password);
             Intent intent = new Intent(CreateAccountActivity.this, LoggedActivity.class);
             startActivity(intent);
-        }catch(Exception e){
+        }catch(UserException e){
             Messages.warning(this, e.toString());
         }
 
