@@ -22,12 +22,12 @@ public class AccessBooks {
         return allBooks;
     }
 
-    public Book searchBookById(String id) {
+    public Book searchBookById(int id) {
         List<Book> books = booksPersistence.getAllBooks();
         Iterator<Book> bookIterator = books.iterator();
         while (bookIterator.hasNext()) {
             Book nextBook = bookIterator.next();  //holds the element to be compared to find the author
-            if (nextBook.getBookID().toLowerCase().contains(id)) {
+            if (nextBook.getBookID() == id) {
                 return nextBook;
             }
 
@@ -63,7 +63,7 @@ public class AccessBooks {
         return titleBook; //returns a list of books by the title.
     }
 
-    public List<String> getBookDetails(String id) {
+    public List<String> getBookDetails(int id) {
 
         Book book = searchBookById(id);
         List<String> bookInfo = new ArrayList<>();

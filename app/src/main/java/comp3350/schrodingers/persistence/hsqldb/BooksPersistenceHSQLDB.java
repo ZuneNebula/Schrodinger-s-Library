@@ -23,7 +23,7 @@ public class BooksPersistenceHSQLDB implements BooksPersistence {
     }
 
     private Book fromResultSet(final ResultSet rs) throws SQLException {
-        final String bookID = rs.getString("bookID");
+        final int bookID = rs.getInt("bookID");
         final String bookName = rs.getString("bookName");
         final String author = rs.getString("author");
         final String price = rs.getString("price");

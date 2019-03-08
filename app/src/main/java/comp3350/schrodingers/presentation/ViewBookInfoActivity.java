@@ -28,14 +28,16 @@ public class ViewBookInfoActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String id = intent.getStringExtra("id");
+        String str_id = intent.getStringExtra("id");
+        int int_id = Integer.parseInt(str_id);
+
 
         AccessBooks bookList = new AccessBooks();
-        List<String> list = getBookDetails(bookList, id);
+        List<String> list = getBookDetails(bookList, int_id);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         ListView viewbookList = findViewById(R.id.bookDetail);
         ImageView bookImage = findViewById(R.id.bookImage);
-        String imageName = bookList.searchBookById(id).getIconId();
+        String imageName = bookList.searchBookById(int_id).getIconId();
 
         // Acquire icon/picture and set as relevant picture
         int iconID = -1;
@@ -72,7 +74,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public List<String> getBookDetails(AccessBooks accessBooks, String id) {
+    public List<String> getBookDetails(AccessBooks accessBooks, int id) {
 
         Book book = accessBooks.searchBookById(id);
         List<String> bookInfo = new ArrayList<>();

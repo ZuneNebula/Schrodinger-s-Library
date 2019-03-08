@@ -2,7 +2,7 @@ package comp3350.schrodingers.objects;
 
 public class Book {
 
-    private final String bookID;
+    private final int bookID;
     private final String bookName;
     private final String author;
     private final String price;
@@ -12,7 +12,7 @@ public class Book {
     private final String iconId;
 
 
-    public Book(String bookID, String bookName, String author, String price, String genre, String bookStock, String rating, String iconId) {
+    public Book(int bookID, String bookName, String author, String price, String genre, String bookStock, String rating, String iconId) {
         this.bookID = bookID;
         this.bookName = bookName;
         this.author = author;
@@ -23,7 +23,7 @@ public class Book {
         this.iconId = iconId;
     }
 
-    public String getBookID() {
+    public int getBookID() {
         return bookID;
     }
 

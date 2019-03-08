@@ -8,6 +8,7 @@ import comp3350.schrodingers.persistence.PaymentPersistence;
 import comp3350.schrodingers.persistence.hsqldb.PaymentPersistenceHSQLDB;
 import comp3350.schrodingers.persistence.stubs.PaymentPersistenceStub;
 import comp3350.schrodingers.persistence.stubs.UsersPersistenceStub;
+import comp3350.schrodingers.persistence.stubs.BooksPersistenceStub;
 
 public class Services {
 
@@ -17,8 +18,8 @@ public class Services {
 
     public static synchronized BooksPersistence getBooksPersistence() {
         if (booksPersistence == null) {
-            //booksPersistence= new BooksPersistenceStub();
-            booksPersistence = new BooksPersistenceHSQLDB(Main.getDBPathName());
+            booksPersistence= new BooksPersistenceStub();
+            //booksPersistence = new BooksPersistenceHSQLDB(Main.getDBPathName());
         }
         return booksPersistence;
     }
