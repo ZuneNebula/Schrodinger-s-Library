@@ -11,7 +11,6 @@ import comp3350.schrodingers.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Viewholder>  {
 
-    private
 
 
 
