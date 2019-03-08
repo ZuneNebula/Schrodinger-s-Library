@@ -3,7 +3,6 @@ package comp3350.schrodingers.tests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import comp3350.schrodingers.business.CreateAccount;
 import comp3350.schrodingers.tests.business.AccessPaymentInfoTest;
 import comp3350.schrodingers.tests.business.AccessUserInfoTest;
 import comp3350.schrodingers.tests.business.CreateAccountTest;
