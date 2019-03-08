@@ -78,6 +78,7 @@ public class PersonInfo extends AppCompatActivity {
             user = userList.insertUser(newUser);
             Snackbar.make(findViewById(R.id.person_info), R.string.changes_applied,
                     Snackbar.LENGTH_SHORT).show();
+            finish();
         } catch (UserException e) {
             Messages.warning(this, e.toString());
         }

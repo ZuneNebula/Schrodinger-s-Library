@@ -64,6 +64,7 @@ public class PaymentActivity extends AppCompatActivity {
             accessCards.insertCard(newCard);
             Snackbar.make(findViewById(R.id.payment_info), R.string.changes_applied,
                     Snackbar.LENGTH_SHORT).show();
+            finish();
         } catch (CardException c) {
             Messages.warning(this, c.toString());
         }
