@@ -8,11 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import comp3350.schrodingers.business.AccessUserInfo;
-import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.UserException;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Address;
@@ -53,8 +49,6 @@ public class PersonInfo extends AppCompatActivity {
                 EditText userCountry = findViewById(R.id.country);
                 userCountry.setText(user.getAddress().getCountry());
             }
-            EditText userPhone = findViewById(R.id.phone);
-            //userPhone.setText(User.getPhone());
         }
     }
 
@@ -66,7 +60,6 @@ public class PersonInfo extends AppCompatActivity {
         EditText editState = findViewById(R.id.province);
         EditText editZip = findViewById(R.id.zip);
         EditText editCountry = findViewById(R.id.country);
-        EditText editPhone = findViewById(R.id.phone);
 
 
         Address address = new Address(editAddress.getText().toString(),

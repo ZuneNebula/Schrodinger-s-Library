@@ -51,23 +51,6 @@
             android:hint="@string/email"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone Number"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        <EditText
-            android:id="@+id/phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:inputType="phone"
-            android:maxLength="12"
-            android:hint="@string/phone"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
 
         <TextView
             android:layout_width="wrap_content"
