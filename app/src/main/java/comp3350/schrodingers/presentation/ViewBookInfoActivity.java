@@ -1,12 +1,15 @@
 package comp3350.schrodingers.presentation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -17,7 +20,7 @@ import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.objects.Book;
 
-public class ViewBookInfoActivity extends AppCompatActivity {
+public class ViewBookInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,6 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String str_id = intent.getStringExtra("id");
         int int_id = Integer.parseInt(str_id);
-
 
         AccessBooks bookList = new AccessBooks();
         List<String> list = getBookDetails(bookList, int_id);
@@ -50,6 +52,9 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         bookImage.setImageResource(iconID);
 
         viewbookList.setAdapter(arrayAdapter);
+
+        // Purchase Button Listeners
+        createButtonListeners();
     }
 
     @Override
@@ -88,4 +93,35 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         return bookInfo;
     }
 
+    // Create Button Listeners
+    public void createButtonListeners() {
+
+             // Create image button listeners
+        Button button1 = findViewById(R.id.purchaseButton);
+        button1.setOnClickListener(this);
+        Button button2 = findViewById(R.id.cartButton);
+        button2.setOnClickListener(this);
+
+    }
+
+    public void onClick(View v) {
+
+        // Determine which button was pressed and change to appropriate activity
+        switch (v.getId()) {
+            case R.id.purchaseButton:
+
+                Context homeContext = ViewBookInfoActivity.this;
+                Class purchaseBookClass = PurchaseBookActivity.class;
+
+                Intent intent = new Intent(homeContext, purchaseBookClass);
+                //intent.putExtra("id", Integer.toString(bookID));
+                startActivity(intent);
+
+                break;
+
+            case R.id.cartButton:
+                break;
+        }
+
+    }
 }

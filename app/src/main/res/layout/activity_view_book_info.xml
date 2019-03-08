@@ -58,7 +58,7 @@
                     android:textColor="@android:color/white" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/cartButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/view_book_button_margin"
