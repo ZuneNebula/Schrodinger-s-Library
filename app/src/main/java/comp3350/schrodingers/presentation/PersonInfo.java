@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.UserException;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Address;
 
@@ -77,7 +78,7 @@ public class PersonInfo extends AppCompatActivity {
             user = userList.insertUser(newUser);
             Snackbar.make(findViewById(R.id.person_info), R.string.changes_applied,
                     Snackbar.LENGTH_SHORT).show();
-        } catch (Exception e) {
+        } catch (UserException e) {
             Messages.warning(this, e.toString());
         }
     }

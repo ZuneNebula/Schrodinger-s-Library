@@ -30,7 +30,7 @@ public class AccessUserInfo {
     }
 
 
-    public User insertUser(User user) throws Exception {
+    public User insertUser(User user) throws UserException {
         //add new user
         UserValidator u = new UserValidator();
         u.validateInfo(user);
