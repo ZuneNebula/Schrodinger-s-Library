@@ -29,7 +29,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_book_info);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setTitle("Schrodingers Library");
 
         Intent intent = getIntent();
         String str_id = intent.getStringExtra("id");

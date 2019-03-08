@@ -4,20 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import comp3350.schrodingers.persistence.stubs.UsersPersistenceStub;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.business.UserLogin;
 
 import comp3350.schrodingers.R;
 
 public class LoginActivity extends AppCompatActivity {
-
-    //private UsersPersistenceStub userList = new UsersPersistenceStub();
     private Button Login;
     private EditText Email;
     private EditText Password;

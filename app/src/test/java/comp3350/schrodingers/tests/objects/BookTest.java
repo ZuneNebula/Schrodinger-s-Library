@@ -8,9 +8,9 @@ public class BookTest {
     public void testBook1(){
         Book book;
         System.out.println("\nStarting testBook1");
-        book = new Book("1","book1","author1","$100","random","10","4","icon");
+        book = new Book(1,"book1","author1","$100","random","10","4","icon");
         assertNotNull("it is not null", book);
-        assertTrue("1".equals(book.getBookID()));
+        assertTrue(1 == book.getBookID());
         assertTrue("book1".equals(book.getBookName()));
         assertTrue("author1".equals(book.getAuthor()));
         assertTrue("$100".equals(book.getPrice()));

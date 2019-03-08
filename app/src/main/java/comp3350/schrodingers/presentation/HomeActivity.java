@@ -30,7 +30,6 @@ import comp3350.schrodingers.R;
 import comp3350.schrodingers.application.Main;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessUserInfo;
-import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.objects.User;
 
 public class HomeActivity extends AppCompatActivity
@@ -220,7 +219,6 @@ public class HomeActivity extends AppCompatActivity
     // Book Catalog button handler
     public void onClick(View v) {
 
-        int buttonID = v.getId();
         int bookID = -1;
 
         // Determine which button was pressed
@@ -296,7 +294,7 @@ public class HomeActivity extends AppCompatActivity
 
         Intent intent = new Intent(homeContext, viewBookClass);
         intent.putExtra("id", Integer.toString(bookID));
-        HomeActivity.this.startActivity(intent);
+        startActivity(intent);
     }
 
     private void copyDatabaseToDevice() {

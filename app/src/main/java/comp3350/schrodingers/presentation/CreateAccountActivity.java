@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import comp3350.schrodingers.business.UserException;
-import comp3350.schrodingers.persistence.stubs.UsersPersistenceStub;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.business.CreateAccount;
 

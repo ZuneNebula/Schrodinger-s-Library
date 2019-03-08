@@ -8,9 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import comp3350.schrodingers.business.AccessUserInfo;
-import comp3350.schrodingers.persistence.UsersPersistence;
 import comp3350.schrodingers.objects.User;
-import comp3350.schrodingers.application.Services;
 
 import comp3350.schrodingers.R;
 
@@ -24,6 +22,9 @@ public class LoggedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_logged);
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle("Schrodingers Library");
+        myToolbar.setTitleTextColor(0XFFFFFFFF);
+
         userList = new AccessUserInfo();
         user = userList.getUser();
         updateGreeting();
