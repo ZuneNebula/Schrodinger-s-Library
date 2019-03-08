@@ -41,17 +41,31 @@
                 android:id="@+id/bookImage"
                 android:layout_width="@dimen/view_book_image_width"
                 android:layout_height="@dimen/view_book_image_height"
-                android:layout_marginLeft="@dimen/view_book_left_margin"
                 android:contentDescription="@string/book_image" />
 
-            <Button
-                android:id="@+id/purchaseButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:text="Purchase Book"
-                android:textColor="@android:color/white" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/purchaseButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/view_book_button_margin"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/purchase_book_button"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/view_book_button_margin"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/shopping_cart_button"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
 
         </LinearLayout>
 
