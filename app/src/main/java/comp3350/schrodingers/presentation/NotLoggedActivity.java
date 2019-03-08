@@ -7,8 +7,6 @@ import android.widget.Button;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-
-import comp3350.schrodingers.persistence.stubs.UsersPersistenceStub;
 import comp3350.schrodingers.objects.User;
 
 import comp3350.schrodingers.R;
