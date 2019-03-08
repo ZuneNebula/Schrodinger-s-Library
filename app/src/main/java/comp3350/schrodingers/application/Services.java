@@ -18,8 +18,8 @@ public class Services {
 
     public static synchronized BooksPersistence getBooksPersistence() {
         if (booksPersistence == null) {
-            booksPersistence= new BooksPersistenceStub();
-            //booksPersistence = new BooksPersistenceHSQLDB(Main.getDBPathName());
+            //booksPersistence= new BooksPersistenceStub();
+            booksPersistence = new BooksPersistenceHSQLDB(Main.getDBPathName());
         }
         return booksPersistence;
     }
