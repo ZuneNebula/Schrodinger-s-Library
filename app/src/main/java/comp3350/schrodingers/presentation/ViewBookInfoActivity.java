@@ -93,17 +93,18 @@ public class ViewBookInfoActivity extends AppCompatActivity implements View.OnCl
         return bookInfo;
     }
 
-    // Create Button Listeners
+    // Create button listeners for purchase buttons
     public void createButtonListeners() {
 
          // Create button listeners
         Button button1 = findViewById(R.id.purchaseButton);
         button1.setOnClickListener(this);
-        Button button2 = findViewById(R.id.cartButton);
-        button2.setOnClickListener(this);
+//        Button button2 = findViewById(R.id.cartButton);
+//        button2.setOnClickListener(this);
 
     }
 
+    // On click actions for purchase buttons
     public void onClick(View v) {
 
         // Determine which button was pressed and change to appropriate activity
@@ -119,8 +120,8 @@ public class ViewBookInfoActivity extends AppCompatActivity implements View.OnCl
 
                 break;
 
-            case R.id.cartButton:
-                break;
+//            case R.id.cartButton:
+//                break;
         }
 
     }
