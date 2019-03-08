@@ -55,11 +55,20 @@
 
                 <Button
                     android:id="@+id/purchaseButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/view_book_button_margin"
                     android:background="@color/colorPrimary"
-                    android:text="Purchase Book"
+                    android:text="@string/purchase_book_button"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/view_book_button_margin"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/shopping_cart_button"
                     android:textColor="@android:color/white" />
 
             </LinearLayout>
