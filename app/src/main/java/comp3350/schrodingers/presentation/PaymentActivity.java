@@ -25,9 +25,10 @@ public class PaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment);
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle("Schrodingers Library");
+        myToolbar.setTitleTextColor(0XFFFFFFFF);
 
         //cardValidator
-
         accessCards = new AccessPaymentInfo();
         card = accessCards.getCard();
 

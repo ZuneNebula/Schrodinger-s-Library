@@ -24,6 +24,9 @@ public class LoggedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_logged);
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle("Schrodingers Library");
+        myToolbar.setTitleTextColor(0XFFFFFFFF);
+
         userList = new AccessUserInfo();
         user = userList.getUser();
         updateGreeting();
