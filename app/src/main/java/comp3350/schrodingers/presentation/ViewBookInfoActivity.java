@@ -6,9 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +19,7 @@ import java.util.List;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.objects.Book;
+import comp3350.schrodingers.objects.Ratings;
 
 public class ViewBookInfoActivity extends AppCompatActivity {
 
@@ -32,7 +36,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         int int_id = Integer.parseInt(str_id);
 
 
-        AccessBooks bookList = new AccessBooks();
+        final AccessBooks bookList = new AccessBooks();
         List<String> list = getBookDetails(bookList, int_id);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         ListView viewbookList = findViewById(R.id.bookDetail);
@@ -50,6 +54,20 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         bookImage.setImageResource(iconID);
 
         viewbookList.setAdapter(arrayAdapter);
+
+        final RatingBar ratingBar = findViewById(R.id.bookRatingBar);
+        Button rateButton = findViewById(R.id.submitRate);
+        ListView viewRateList = findViewById(R.id.ratings);
+        List<Ratings> ratings = bookList.findRatingsByBook(int_id);
+        ArrayAdapter<Ratings> rateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ratings);
+        viewRateList.setAdapter(rateAdapter);
+
+        rateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //bookList.addRating(ratingBar.getNumStars(), "zune");
+            }
+        });
     }
 
     @Override

@@ -34,6 +34,8 @@ public class BooksPersistenceHSQLDB implements BooksPersistence {
         return new Book(bookID, bookName, author, price, genre, stock, rating, iconId);
     }
 
+
+
     @Override
     public List<Book> getAllBooks() {
         List<Book> bookList = new ArrayList<>();
@@ -53,4 +55,8 @@ public class BooksPersistenceHSQLDB implements BooksPersistence {
         }
 
     }
+
+
+
+
 }

@@ -4,22 +4,49 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import comp3350.schrodingers.objects.Ratings;
 import comp3350.schrodingers.persistence.BooksPersistence;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.persistence.RatingPersistence;
 
 public class AccessBooks {
 
     private BooksPersistence booksPersistence;
-
+    private RatingPersistence ratingPersistence;
     //constructor
     public AccessBooks() {
         booksPersistence = Services.getBooksPersistence();
+        ratingPersistence = Services.getRatePersistence();
     }
 
     public List<Book> getAllBooks() {
         List<Book> allBooks = booksPersistence.getAllBooks();
         return allBooks;
+    }
+
+    public List<Ratings> getAllRatings(){
+        List<Ratings> allRatings = ratingPersistence.getBookRatings();
+        return allRatings;
+    }
+
+    public void addRating(int rate, String user){
+
+        ratingPersistence.addBookRatings(rate, user);
+    }
+
+    public List <Ratings> findRatingsByBook(int bookID){
+        List<Ratings> ratings = ratingPersistence.getBookRatings();
+        List<Ratings> bookRatings = new ArrayList<>();
+        Iterator<Ratings> rateIterator = ratings.iterator();
+        while (rateIterator.hasNext()) {
+            Ratings nextRate = rateIterator.next();  //holds the next rating found in the list
+            if (nextRate.getBookID() == bookID ) {
+                bookRatings.add(nextRate);
+            }
+
+        }//returns a books by the author.
+        return bookRatings;
     }
 
     public Book searchBookById(int id) {
