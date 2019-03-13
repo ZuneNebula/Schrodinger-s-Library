@@ -5,17 +5,24 @@ import org.junit.Test;
 
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.objects.User;
+import comp3350.schrodingers.persistence.UsersPersistence;
 import comp3350.schrodingers.tests.persistence.UsersPersistenceStub;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 public class AccessUserInfoTest {
     private AccessUserInfo accessUserInfo;
+    private UsersPersistence usersPersistence;
 
     @Before
     public void setUp(){
-        accessUserInfo = new AccessUserInfo(new UsersPersistenceStub());
+        usersPersistence = mock(UsersPersistence.class);
+        accessUserInfo = new AccessUserInfo(usersPersistence);
     }
 
     @Test

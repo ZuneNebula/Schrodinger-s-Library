@@ -4,25 +4,35 @@ import org.junit.Test;
 
 import comp3350.schrodingers.business.AccessPaymentInfo;
 import comp3350.schrodingers.objects.User.Billing;
+import comp3350.schrodingers.persistence.PaymentPersistence;
 import comp3350.schrodingers.tests.persistence.PaymentPersistenceStub;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 public class AccessPaymentInfoTest {
     private AccessPaymentInfo accessPayInfo;
+    private PaymentPersistence paymentPersistence;
 
     @Before
     public void setUp(){
-        accessPayInfo = new AccessPaymentInfo(new PaymentPersistenceStub());
+        paymentPersistence = mock(PaymentPersistence.class);
+        accessPayInfo = new AccessPaymentInfo(paymentPersistence);
     }
 
     @Test
     public void testGetUser(){
-        final Billing card;
+        final Billing card = new Billing();
         System.out.println("\nStarting test AccessPaymentInfo");
-        card = accessPayInfo.getCard();
-        assertTrue("\tno cards in DB, should be null", card.isEmpty());
+        when(paymentPersistence.getCard()).thenReturn(card);
+
+        final Billing c = accessPayInfo.getCard();
+        assertTrue("\tno cards in DB, should be empty", c.isEmpty());
+        verify(paymentPersistence).getCard();
         System.out.println("\nFinished test AccessPaymentInfo");
     }
 }
