@@ -3,6 +3,8 @@ package comp3350.schrodingers.presentation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import comp3350.schrodingers.business.AccessPaymentInfo;
@@ -75,7 +77,9 @@ public class CLI  // command-line interface
             processGetUser();
         } else if (inputTokens[1].equalsIgnoreCase("Payment")) {
             processGetPayment();
-        } else {
+        } else if (inputTokens[1].equalsIgnoreCase("Book")){
+            processGetBook();
+        } else{
             System.out.println("Invalid data type");
         }
     }
@@ -98,6 +102,11 @@ public class CLI  // command-line interface
                 System.out.println(accessPayInfo.getCard());
             }
         }
+    }
+    public static void processGetBook(){
+        AccessBooks accessBooks= new AccessBooks();
+        List<Book> array = accessBooks.getAllBooks();
+        System.out.println(array.get(0));
     }
 
 
