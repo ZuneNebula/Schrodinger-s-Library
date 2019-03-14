@@ -11,19 +11,23 @@ import java.util.List;
 import comp3350.schrodingers.objects.Ratings;
 import comp3350.schrodingers.persistence.RatingPersistence;
 
+// Class - implements HSQLDB interactions related to book ratings
 public class RatingPersistenceHSQLDB implements RatingPersistence {
 
+    // Store the DB path name
     private final String dbPath;
 
-
+    // Constructor - initialize DB access
     public RatingPersistenceHSQLDB(String dbPath) {
         this.dbPath = dbPath;
     }
 
+    // Method - creates connection to the DB
     private Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
+    // Method - read results of a DB query
     private Ratings fromResultSet(final ResultSet rs) throws SQLException {
         final int rateID = rs.getInt("rateID");
         final int bookID = rs.getInt("bookID");
@@ -33,7 +37,7 @@ public class RatingPersistenceHSQLDB implements RatingPersistence {
         return new Ratings(rateID,bookID,email,rate);
     }
 
-
+    // Method - get all ratings
     @Override
     public List<Ratings> getBookRatings(){
         List<Ratings> rateList = new ArrayList<>();
@@ -53,6 +57,7 @@ public class RatingPersistenceHSQLDB implements RatingPersistence {
         }
     }
 
+    // Method - add book rating to DB
     @Override
     public void addBookRatings(int rate, String user){
         List<Ratings> rateList = new ArrayList<>();

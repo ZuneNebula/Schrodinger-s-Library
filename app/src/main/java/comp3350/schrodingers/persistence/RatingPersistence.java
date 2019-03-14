@@ -4,6 +4,7 @@ import java.util.List;
 
 import comp3350.schrodingers.objects.Ratings;
 
+// Interface - provides skeleton for ratings persistence
 public interface RatingPersistence {
     List<Ratings> getBookRatings();
     void addBookRatings(int rate, String user);
