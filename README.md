@@ -1,5 +1,4 @@
-
-# Schrodingers 9 Library
+# Schrodingers-9 Library
 
 ## Purpose
 

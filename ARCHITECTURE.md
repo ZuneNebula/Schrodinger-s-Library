@@ -1,15 +1,17 @@
-# Architecture
+# Schrodingers-9 Library
+
+## Architecture
 
 
-## Packages and Files
+### Packages and Files
 
-### **Java**
+#### **Java**
 
-#### application
+##### application
     - Services.java
     - Main.java
 
-#### business 
+##### business 
     - AccessBooks.java
     - AccessPaymentInfo.java
     - AccesUserInfo.java
@@ -21,30 +23,30 @@
     - UserValidator.java
     
 
-#### objects 
+##### objects 
     - Book.java
     - User.java
     
-#### persistance
-##### hsqldb
+##### persistance
+###### hsqldb
     - BooksPersistenceHSQLDB.java
     - PaymentPersistenceHSQLDB.java
     - PersistenceException.java
     - UsersPersistenceHSQLDB.java
     - RatingPersistenceHSQLDB.java
     
-##### Stubs
+###### Stubs
     - BooksPersistenceStub.java
     - UsersPersistenceStub.java
     - PaymentPersistenceStub.java
     
-##### Interfaces
+###### Interfaces
     - BooksPersistence.java
     - PaymentPersistence.java
     - UsersPersistence.java
     - RatingPersistence.java
 
-#### presentation 
+##### presentation 
     - BookAdapter.java
     - CLI.java
     - CreateAccountActivity.java
@@ -59,9 +61,9 @@
     - ViewBookInfoActivity.java
 
 
-### **XML**
+#### **XML**
 
-#### drawable
+##### drawable
     - ic_launcher_background.xml
     - ic_launcher_foregrdound.xml
     - ic_menu_manage.xml
@@ -89,7 +91,7 @@
     - twilightfortress.png
     - whereiscecilia.png
     - whirlwind.png
-#### layout
+##### layout
     - activity_create_account.xml
     - activity_home.xml
     - activity_logged.xml
@@ -106,21 +108,21 @@
     - item.xml
     - nav_header_main_menu.xml
     
-#### menu
+##### menu
     - activity_main_menu_drawer.xml
     - main_menu.xml
     
-#### values
+##### values
     - colors.xml
     - dimens.xml
     - strings.xml
     
-#### styles
+##### styles
     - styles.xml
     
-### **assets**
-#### db
+#### **assets**
+##### db
     - SC.script
 
-### Architecture Diagram
+#### Architecture Diagram
 *Supplied in the ARCHITECTURE.png*
