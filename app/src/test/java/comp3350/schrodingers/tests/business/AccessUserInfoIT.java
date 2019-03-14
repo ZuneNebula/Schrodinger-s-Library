@@ -71,7 +71,7 @@ public class AccessUserInfoIT {
     }
 
     @Test
-    public void tesUpdateUser(){
+    public void testUpdateUser(){
         System.out.println("\nStarting AccessUserInfoIT: updateUser");
         User user = accessUser.getUser();
         User newUser = new User(user.getEmail(),user.getUserName(),"comp3350");
@@ -80,7 +80,7 @@ public class AccessUserInfoIT {
         assertNotEquals("\tpassword must not be equal", newUser.getPassword(),user.getPassword());
         System.out.println("Finished AccessUserInfoIT: updateUser");
     }
-    
+
     @After
     public void tearDown() {
         // reset DB
