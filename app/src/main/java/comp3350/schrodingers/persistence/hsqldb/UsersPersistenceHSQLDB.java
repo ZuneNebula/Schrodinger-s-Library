@@ -95,7 +95,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
                 st.setLong(3, newUser.getBilling().getCardNumber());
                 String address = newUser.getAddress().getAddress();
 
-                if(address.compareTo("") == 0 || address.compareTo("NOADDRESS") == 0)
+                if(address.compareTo("") == 0 || address.compareTo("NOADDRESS!") == 0)
                     st.setString(4, "NOADDRESS!");
                 else if(logged.getAddress().getAddress().compareTo(address) == 0 && !findAddress(address).isEmpty())
                     st.setString(4, address);

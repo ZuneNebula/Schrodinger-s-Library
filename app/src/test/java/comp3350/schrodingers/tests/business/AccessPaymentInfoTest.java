@@ -25,7 +25,7 @@ public class AccessPaymentInfoTest {
     }
 
     @Test
-    public void testGetUser(){
+    public void testGetCard(){
         final Billing card = new Billing();
         System.out.println("\nStarting test AccessPaymentInfo");
         when(paymentPersistence.getCard()).thenReturn(card);

@@ -20,10 +20,17 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
     private User user;
     private Billing card;
     private UsersPersistence userPersistence;
+    private boolean forTest = false;
 
     public PaymentPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
         card = new Billing();
+    }
+    public PaymentPersistenceHSQLDB(final String dbPath, UsersPersistence u) {
+        this.dbPath = dbPath;
+        card = new Billing();
+        userPersistence = u;
+        forTest = true;
     }
 
     private Connection connection() throws SQLException {
@@ -48,7 +55,8 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
             st.setInt(4, creditCard.getCvv());
 
             st.executeUpdate();
-            userPersistence = Services.getUsersPersistence();
+            if(!forTest)
+                userPersistence = Services.getUsersPersistence();
             user = userPersistence.getUser();
             userPersistence.editUser(new User(user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), creditCard));
             card = creditCard;
@@ -82,7 +90,8 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
                 st.executeUpdate();
                 card = creditCard;
             } else {
-                userPersistence = Services.getUsersPersistence();
+                if(!forTest)
+                    userPersistence = Services.getUsersPersistence();
                 user = userPersistence.getUser();
                 userPersistence.editUser(new User(user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), new User.Billing()));
                 deleteCard(card.getCardNumber());
