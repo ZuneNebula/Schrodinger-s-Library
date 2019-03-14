@@ -5,32 +5,35 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.PaymentPersistence;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
+// Class - implements HSQLDB interactions related to users
 public class UsersPersistenceHSQLDB implements UsersPersistence {
 
+    // Holds the DB path name
     private final String dbPath;
 
-    private User logged;
+    // Store a reference to user persistence and the current logged user
     private PaymentPersistence payPersistence;
+    private User logged;
 
+    // Constructor - initialize DB access and current user
     public UsersPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
         logged = findLoggedUser();
     }
 
+    // Method - creates connection to the DB
     private Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
+    // Method - read results of a DB query
     private User fromResultSet(final ResultSet rs) throws SQLException {
         final String email = rs.getString("email");
         final String username = rs.getString("name");
@@ -48,6 +51,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         }
     }
 
+    // Method - insert user into DB
     public User insertUser(final User newUser) {
         try (final Connection c = connection()) {
             final Statement up = c.createStatement();
@@ -72,6 +76,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         }
     }
 
+    // Method - delete user from DB
     public void deleteUser(final String email) {
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("DELETE FROM user WHERE email = ?");
@@ -82,10 +87,12 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         }
     }
 
+    // Method - return the currently logged in user
     public User getUser() {
         return logged;
     }
 
+    // Method - updates currently logged user information
     public User editUser(User newUser) {
         if (newUser.getEmail().compareTo(logged.getEmail()) == 0) {
             try (final Connection c = connection()) {
@@ -120,6 +127,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         return logged;
     }
 
+    // Method - finds and returns the currently logged user
     public User findLoggedUser() {
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("SELECT * FROM user WHERE logged = TRUE");
@@ -141,6 +149,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         }
     }
 
+    // Method - find user by email
     public User findUser(final String email) {
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("SELECT * FROM user WHERE email = ?");
@@ -163,6 +172,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         }
     }
 
+    // Method - insert address information into user profile
     private User.Address insertAddress(final User.Address address) {
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("INSERT INTO address VALUES(?, ?, ?, ?, ?)");
@@ -180,6 +190,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         }
     }
 
+    // Method - insert address information into user profile
     private User.Address findAddress(final String house) {
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("SELECT * FROM address WHERE numAndStreet = ?");
@@ -189,7 +200,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
 
             final User.Address address;
             if (rs.next())
-                address = fromResultAdress(rs);
+                address = fromResultAddress(rs);
             else
                 address = new User.Address();
 
@@ -202,7 +213,8 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         }
     }
 
-    private User.Address fromResultAdress(final ResultSet rs) throws SQLException {
+    // Method - read address results of a DB query
+    private User.Address fromResultAddress(final ResultSet rs) throws SQLException {
         final String house = rs.getString("numAndStreet");
         final String zip = rs.getString("PC");
         final String city = rs.getString("city");
@@ -212,12 +224,13 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         return new User.Address(house, zip, city, state, country);
     }
 
-
+    // Method - login user based on the email provided
     public User getUserAndLogin(String email) {
         logged = findUser(email);
         return logged;
     }
 
+    // Method - logout current user
     public boolean logout() {
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("UPDATE user SET LOGGED = FALSE WHERE email=?");

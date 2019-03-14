@@ -6,19 +6,25 @@ import java.util.regex.Pattern;
 
 import comp3350.schrodingers.objects.User.Billing;
 
+// Class - used to validate payment info
 public class PaymentProcessor {
 
+    // Method - validate correct credit card syntax
     public boolean validateCard(Billing card) throws CardException {
+
+        // Holds information present on credit card
         String number = "" + card.getCardNumber();
         String date = card.getExpiry();
         String cvv = "" + card.getCvv();
         String name = card.getFullName();
 
+        // Check for correct credit card length
         if (number.length() == 0)
             throw new CardException("Credit Card Number Required");
         else if (number.length() < 16)
             throw new CardException("Credit Card Number needs 16 digits");
 
+        // Check for correct date format
         if (date.length() == 0)
             throw new CardException("Date required");
         else {
@@ -39,11 +45,13 @@ public class PaymentProcessor {
             }
         }
 
+        // Check for correct CVV length
         if (cvv.length() == 0)
             throw new CardException("CVV required");
         else if (cvv.length() < 3)
             throw new CardException("CVV needs 3 digits");
 
+        // Check that name for credit card has been entered
         if (name.length() == 0)
             throw new CardException("Name in credit card required");
         return true;

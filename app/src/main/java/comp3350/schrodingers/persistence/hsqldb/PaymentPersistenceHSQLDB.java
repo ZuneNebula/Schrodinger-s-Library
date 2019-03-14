@@ -5,9 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.objects.User;
@@ -15,17 +12,28 @@ import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.persistence.PaymentPersistence;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
+
+// Class - implements HSQLDB interactions related to payment information
 public class PaymentPersistenceHSQLDB implements PaymentPersistence {
+
+    // Stores DB path name
     private final String dbPath;
+
+    // Store a reference user persistence
+    private UsersPersistence userPersistence;
     private User user;
     private Billing card;
-    private UsersPersistence userPersistence;
+
+    // Boolean used for testing purposes
     private boolean forTest = false;
 
+    // Constructor - initialize DB access and current credit card
     public PaymentPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
         card = new Billing();
     }
+
+    // Constructor - inject DB access
     public PaymentPersistenceHSQLDB(final String dbPath, UsersPersistence u) {
         this.dbPath = dbPath;
         card = new Billing();
@@ -33,10 +41,12 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
         forTest = true;
     }
 
+    // Method - creates connection to the DB
     private Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
+    // Method - read results of a DB query
     private Billing fromResultSet(final ResultSet rs) throws SQLException {
         final long cardNum = rs.getLong("cardNum");
         final String cardName = rs.getString("cardName");
@@ -45,6 +55,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
         return new Billing(cardNum, cardName, expiryDate, cvv);
     }
 
+    // Method - add credit card to DB
     @Override
     public Billing addCreditCard(Billing creditCard) {
         try (final Connection c = connection()) {
@@ -55,18 +66,20 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
             st.setInt(4, creditCard.getCvv());
 
             st.executeUpdate();
+
             if(!forTest)
                 userPersistence = Services.getUsersPersistence();
-            user = userPersistence.getUser();
-            userPersistence.editUser(new User(user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), creditCard));
-            card = creditCard;
+                user = userPersistence.getUser();
+                userPersistence.editUser(new User(user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), creditCard));
+                card = creditCard;
 
-            return creditCard;
+                return creditCard;
         } catch (final SQLException e) {
             throw new PersistenceException(e);
         }
     }
 
+    // Method - delete credit card from DB
     private void deleteCard(final long number) {
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("DELETE FROM creditCard WHERE cardNum = ?");
@@ -77,6 +90,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
         }
     }
 
+    // Method - update credit card stored in DB
     @Override
     public Billing updateCreditCard(Billing creditCard) {
         try (final Connection c = connection()) {
@@ -104,11 +118,13 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
         }
     }
 
+    // Method - return all billing information associated with current user
     @Override
     public Billing getCard() {
         return card;
     }
 
+    // Method - return all billing information from DB with associated with credit card number
     @Override
     public Billing findCard(final long number) {
         try (final Connection c = connection()) {
