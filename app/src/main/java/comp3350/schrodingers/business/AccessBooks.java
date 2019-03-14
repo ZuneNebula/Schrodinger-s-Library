@@ -10,98 +10,79 @@ import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.persistence.RatingPersistence;
 
+// Class - facilitates accessing books and their relevant details from DB
 public class AccessBooks {
 
+    // Store reference to book and ratings DB access
     private BooksPersistence booksPersistence;
     private RatingPersistence ratingPersistence;
-    //constructor
+
+    // Constructor - initialize DB access
     public AccessBooks() {
         booksPersistence = Services.getBooksPersistence();
         ratingPersistence = Services.getRatePersistence();
     }
 
+    /************ Book Access ***************/
+
+    // Method - get all books from DB
     public List<Book> getAllBooks() {
         List<Book> allBooks = booksPersistence.getAllBooks();
         return allBooks;
     }
 
-    public List<Ratings> getAllRatings(){
-        List<Ratings> allRatings = ratingPersistence.getBookRatings();
-        return allRatings;
-    }
-
-    public void addRating(int rate, String user){
-
-        ratingPersistence.addBookRatings(rate, user);
-    }
-
-    public List <Ratings> findRatingsByBook(int bookID){
-        List<Ratings> ratings = ratingPersistence.getBookRatings();
-        List<Ratings> bookRatings = new ArrayList<>();
-        Iterator<Ratings> rateIterator = ratings.iterator();
-        while (rateIterator.hasNext()) {
-            Ratings nextRate = rateIterator.next();  //holds the next rating found in the list
-            if (nextRate.getBookID() == bookID ) {
-                bookRatings.add(nextRate);
-            }
-
-        }//returns a books by the author.
-        return bookRatings;
-    }
-
+    // Method - search for book by bookID
     public Book searchBookById(int id) {
         List<Book> books = booksPersistence.getAllBooks();
         Iterator<Book> bookIterator = books.iterator();
         while (bookIterator.hasNext()) {
-            Book nextBook = bookIterator.next();  //holds the element to be compared to find the author
-            if (nextBook.getBookID() == id) {
-                return nextBook;
-            }
-
-        }//returns a books by the author.
+            Book nextBook = bookIterator.next();
+            if (nextBook.getBookID() == id)
+                return nextBook; // Returns a books with given ID
+        }
         return null;
     }
 
+    // Method - search for books by author
     public List<Book> searchBookByAuthor(String author) {
         List<Book> authorBook = new ArrayList<>();
         List<Book> books = booksPersistence.getAllBooks();
         Iterator<Book> bookIterator = books.iterator();
         while (bookIterator.hasNext()) {
-            Book nextBook = bookIterator.next();  //holds the element to be compared to find the author
-            if ((nextBook.getAuthor().toLowerCase()).contains(author)) {
+            Book nextBook = bookIterator.next();
+            if ((nextBook.getAuthor().toLowerCase()).contains(author))
                 authorBook.add(nextBook);
-            }
 
         }
-        return authorBook; //returns a list of books by the author.
+        return authorBook; // Returns a list of books by the author
     }
 
+    // Method - search for books by title
     public List<Book> searchBookByTitle(String title) {
         List<Book> titleBook = new ArrayList<>();
         List<Book> books = booksPersistence.getAllBooks();
         Iterator<Book> bookIterator = books.iterator();
         while (bookIterator.hasNext()) {
-            Book nextBook = bookIterator.next();  //holds the element to be compared to find the title
-            if ((nextBook.getBookName().toLowerCase()).contains(title)) {
+            Book nextBook = bookIterator.next();
+            if ((nextBook.getBookName().toLowerCase()).contains(title))
                 titleBook.add(nextBook);
-            }
-
         }
-        return titleBook; //returns a list of books by the title.
+        return titleBook; // Returns a list of books by the title
     }
 
-    public List<String> getBookDetails(int id) {
+    /************ Ratings Access ***************/
 
-        Book book = searchBookById(id);
-        List<String> bookInfo = new ArrayList<>();
-        bookInfo.add("Book ID : " + book.getBookID());
-        bookInfo.add("Book Title : " + book.getBookName());
-        bookInfo.add("Book Author : " + book.getAuthor());
-        bookInfo.add("Book Price : " + book.getPrice());
-        bookInfo.add("Book Genre : " + book.getGenre());
-        bookInfo.add("Book Left In Stock : " + book.getBookStock());
-        bookInfo.add("Book Rating : " + book.getRating());
-        return bookInfo;
+    // Method - find other user ratings associated with a given book
+    public List <Ratings> findRatingsByBook(int bookID){
+        List<Ratings> ratings = ratingPersistence.getBookRatings();
+        List<Ratings> bookRatings = new ArrayList<>();
+        Iterator<Ratings> rateIterator = ratings.iterator();
+        while (rateIterator.hasNext()) {
+            Ratings nextRate = rateIterator.next();
+            if (nextRate.getBookID() == bookID )
+                bookRatings.add(nextRate);
+        }
+        return bookRatings;
     }
 
 }

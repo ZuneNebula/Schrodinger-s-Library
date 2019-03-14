@@ -99,7 +99,7 @@
                 android:id="@+id/submitRate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/rateButton" />
+                android:text="@string/rate_button" />
 
             <TextView
                 android:id="@+id/rateHeader"

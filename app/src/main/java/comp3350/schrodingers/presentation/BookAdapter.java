@@ -13,8 +13,10 @@ import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
+// Class -
 public class BookAdapter extends BaseAdapter {
 
     private Context context;
