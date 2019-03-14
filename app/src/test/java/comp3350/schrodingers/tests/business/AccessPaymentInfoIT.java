@@ -1,7 +1,5 @@
 package comp3350.schrodingers.tests.business;
 
-import junit.framework.TestCase;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,7 +46,7 @@ public class AccessPaymentInfoIT {
         Billing card = new Billing(1234123412341234L,"chris","01/25",123);
         try {
             accessPay.insertCard(card);
-            assertEquals(accessPay.getCard(), card);
+            assertEquals("\tcard must be equal", accessPay.getCard(), card);
             System.out.println("Finished AccessPaymentInfoIT: insertCard");
         }catch(CardException c) {
             System.out.println("\t" + c);
@@ -64,8 +62,8 @@ public class AccessPaymentInfoIT {
             accessPay.insertCard(card);
             Billing editedCard = new Billing(card.getCardNumber(),"zune",card.getExpiry(),card.getCvv());
             accessPay.insertCard(editedCard);
-            assertEquals(accessPay.getCard(), editedCard);
-            assertNotEquals(accessPay.getCard().getFullName(), card.getFullName());
+            assertEquals("\tcard must be equal", accessPay.getCard(), editedCard);
+            assertNotEquals("\tcard name must not be equal", accessPay.getCard().getFullName(), card.getFullName());
             System.out.println("Finished AccessPaymentInfoIT: updateCard");
         }catch(CardException c) {
             System.out.println("\t" + c);
