@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/view_book_padding"
-                android:numStars="@dimen/rating_num_stars" />
+                android:numStars="5" />
 
             <Button
                 android:id="@+id/submitRate"

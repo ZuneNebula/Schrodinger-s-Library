@@ -30,8 +30,7 @@ public class LoggedActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        // Set up menu bar title
-        getSupportActionBar().setTitle("Schrodingers Library");
+        // Set up menu bar title color
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
         // Initialize DB access and get current user
