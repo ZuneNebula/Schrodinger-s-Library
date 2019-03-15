@@ -30,7 +30,6 @@
     <string name="country">Canada</string>
     <string name="book_image_button">Book Image Button</string>
     <string name="ratings">Ratings</string>
-    <string name="rate_here">Please rate this book</string>
     <string name="please_rate_this_book">Please Rate This Book</string>
     <string name="rate_button">Submit</string>
     <string name="purchase_book_button">Purchase Book</string>

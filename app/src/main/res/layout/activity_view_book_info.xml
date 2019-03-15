@@ -80,40 +80,42 @@
                 android:id="@+id/bookDetail"
                 style="@style/Widget.AppCompat.Light.ListView.DropDown"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="@dimen/view_book_detail_height"
                 android:layout_marginTop="@dimen/view_book_padding" />
 
             <TextView
                 android:id="@+id/rateTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/view_book_padding"
                 android:text="@string/please_rate_this_book"
                 android:textColor="@android:color/black"
-                android:textSize="20sp" />
+                android:textSize="@dimen/rating_title_text_size" />
 
             <RatingBar
                 android:id="@+id/bookRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:numStars="5" />
+                android:layout_marginTop="@dimen/view_book_padding"
+                android:numStars="@dimen/rating_num_stars" />
 
             <Button
                 android:id="@+id/submitRate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/rating_margin"
+                android:layout_marginRight="@dimen/rating_margin"
                 android:text="@string/rate_button" />
 
             <TextView
                 android:id="@+id/rateHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="@dimen/rating_margin"
+                android:layout_marginTop="@dimen/view_book_padding"
                 android:text="@string/ratings"
                 android:textColor="@android:color/black"
-                android:textSize="20sp" />
+                android:textSize="@dimen/rating_title_text_size" />
 
             <ListView
                 android:id="@+id/ratings"
