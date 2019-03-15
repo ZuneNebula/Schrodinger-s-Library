@@ -1,6 +1,5 @@
 package comp3350.schrodingers.presentation;
 
-import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,22 +14,34 @@ import comp3350.schrodingers.objects.User.Address;
 
 import comp3350.schrodingers.R;
 
+// Class - page which handles the editing of personal info
 public class PersonInfo extends AppCompatActivity {
+
+    // Store user DB access and current user
     private AccessUserInfo userList;
     private User user;
 
+    // Method - instantiates views when activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Associate layout
         setContentView(R.layout.activity_person_info);
+
+        // Setup toolbar
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        // Set up menu bar title
         getSupportActionBar().setTitle("Schrodingers Library");
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
+        // Instantiate access to DB and acquire currently logged user
         userList = new AccessUserInfo();
         user = userList.getUser();
 
+        // Set presented information as stored user info (if user has already entered it)
         if (user != null) {
             EditText userName = findViewById(R.id.username);
             userName.setText(user.getUserName());
@@ -52,6 +63,7 @@ public class PersonInfo extends AppCompatActivity {
         }
     }
 
+    // Method - insert personal into DB upon button press
     public void buttonInfoUpdate(View v) {
         EditText editName = findViewById(R.id.username);
         EditText editEmail = findViewById(R.id.email);

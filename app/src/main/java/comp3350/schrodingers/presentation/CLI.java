@@ -3,21 +3,19 @@ package comp3350.schrodingers.presentation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import comp3350.schrodingers.business.AccessPaymentInfo;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Billing;
-import comp3350.schrodingers.objects.User.Address;
 import comp3350.schrodingers.objects.Book;
 
-
-public class CLI  // command-line interface
+// Class - a simple command line interface for debugging
+public class CLI
 {
+    // Stores console info
     public static BufferedReader console;
     public static String inputLine;
     public static String[] inputTokens;
@@ -31,6 +29,7 @@ public class CLI  // command-line interface
 
     public static String indent = "  ";
 
+    // Method - runs the CLI
     public static void run() {
         try {
             console = new BufferedReader(new InputStreamReader(System.in));
@@ -42,6 +41,7 @@ public class CLI  // command-line interface
         }
     }
 
+    // Method - processes user command
     public static void process() {
         readLine();
         while ((inputLine != null) && (!inputLine.equalsIgnoreCase("exit"))
@@ -54,6 +54,7 @@ public class CLI  // command-line interface
         }
     }
 
+    // Method - reads line/input from user
     public static void readLine() {
         try {
             System.out.print(">");
@@ -64,6 +65,7 @@ public class CLI  // command-line interface
         }
     }
 
+    // Method - parses user input
     public static void parse() {
         if (inputTokens[0].equalsIgnoreCase("get")) {
             processGet();
@@ -72,6 +74,7 @@ public class CLI  // command-line interface
         }
     }
 
+    // Method - acquires resource for inspection
     public static void processGet() {
         if (inputTokens[1].equalsIgnoreCase("User")) {
             processGetUser();
@@ -84,6 +87,7 @@ public class CLI  // command-line interface
         }
     }
 
+    // Method - acquire reference to user
     public static void processGetUser() {
         AccessUserInfo accessUserInfo;
         accessUserInfo = new AccessUserInfo();
@@ -94,6 +98,7 @@ public class CLI  // command-line interface
         }
     }
 
+    // Method - acquire reference to payment info
     public static void processGetPayment() {
         AccessPaymentInfo accessPayInfo;
         accessPayInfo = new AccessPaymentInfo();
@@ -103,6 +108,8 @@ public class CLI  // command-line interface
             }
         }
     }
+
+    // Method - acquire reference to books
     public static void processGetBook(){
         AccessBooks accessBooks= new AccessBooks();
         List<Book> array = accessBooks.getAllBooks();
