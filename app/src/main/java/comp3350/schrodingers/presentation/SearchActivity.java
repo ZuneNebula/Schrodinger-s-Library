@@ -13,6 +13,7 @@ import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.objects.Book;
 
+// Class - manages the
 public class SearchActivity extends AppCompatActivity {
 
     @Override

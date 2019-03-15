@@ -7,31 +7,39 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
-import java.util.List;
-
 import comp3350.schrodingers.business.CardException;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessPaymentInfo;
 
+// Class - handles the page for updating payment info
 public class PaymentActivity extends AppCompatActivity {
 
+    // Store access to DB and current credit card of logged user
     private AccessPaymentInfo accessCards;
     private Billing card;
 
+    // Method - instantiates views when activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Associate layout
         setContentView(R.layout.activity_payment);
+
+        // Setup toolbar
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        // Set up menu bar title
         getSupportActionBar().setTitle("Schrodingers Library");
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
-        //cardValidator
+        // Instantiate access to DB and get current credit card
         accessCards = new AccessPaymentInfo();
         card = accessCards.getCard();
 
+        // Set presented information as stored user info (if user has already entered it)
         if (!card.isEmpty()) {
             Billing singleCard = card;
             EditText userBilling = findViewById(R.id.billing);
@@ -45,6 +53,7 @@ public class PaymentActivity extends AppCompatActivity {
         }
     }
 
+    // Method - insert card into DB upon button press
     public void buttonChangePayment(View v) {
         EditText editCardNum = findViewById(R.id.billing);
         EditText editExpDate = findViewById(R.id.expDate);

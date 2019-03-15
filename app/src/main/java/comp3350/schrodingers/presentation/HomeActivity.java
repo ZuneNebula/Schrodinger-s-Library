@@ -24,7 +24,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.application.Main;
@@ -32,36 +31,49 @@ import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.objects.User;
 
+// Class - hosts all activity and views located on the home/browse page
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    // Holds DB access for books
     AccessBooks bookList;
-    ListView searchLayout;
-    ScrollView browseLayout;
-    BookAdapter arrayAdapter;
-    List<String> name;
+
+    // Holds DB access for user info
     private AccessUserInfo userList;
     private User user;
 
+    // Layouts and adapters
+    ListView searchLayout;
+    ScrollView browseLayout;
+    BookAdapter arrayAdapter;
+
+    // Method - instantiates views when activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Instantiate home layout
         setContentView(R.layout.activity_home);
+
+        // Setup toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        copyDatabaseToDevice();
 
-        userList = new AccessUserInfo();
-        user = userList.getUser();
-
+        // Instantiate navigation menu
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        // Instantiate DB within device
+        copyDatabaseToDevice();
+
+        // Instantiate user DB access and current user
+        userList = new AccessUserInfo();
+        user = userList.getUser();
 
         // Create book list and adapter
         bookList = new AccessBooks();
@@ -72,21 +84,31 @@ public class HomeActivity extends AppCompatActivity
 
     }
 
+    // Method - sets email and username within main menu
     private void updateDisplayUser() {
+
+        // Acquire user currently logged in
         user = userList.getUser();
+
+        // Acquire views on menu
         TextView userName = findViewById(R.id.username);
         TextView userEmail = findViewById(R.id.email);
+
+        // Update views
         if (user != null) {
             userName.setText(user.getUserName());
             userEmail.setText(user.getEmail());
         }
     }
 
+    // Method - creates top menu options
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
 
+        // Sets current user details within menu
         updateDisplayUser();
 
         // Show search list (and hide browse list) when the search icon is selected
@@ -102,7 +124,7 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-        // Perform search and update search list
+        // Perform book search and update search list
         SearchView searchView = (SearchView) searchIcon.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -124,22 +146,23 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    // Method - action bar options
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
+    // Method - handles selection of menu options (
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -160,14 +183,14 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
+    // Method - ensure currently logged user is kept logged in upon resuming application
     @Override
     public void onResume() {
         super.onResume();
         user = userList.getUser();
-        //updateDisplayUser();
     }
 
-    // Book Catalog button listeners
+    // Method - create book Catalog button listeners
     public void createBookCatalogListeners() {
 
         // Create image button listeners
@@ -297,6 +320,7 @@ public class HomeActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    // Method - Initialize DB in the device
     private void copyDatabaseToDevice() {
         final String DB_PATH = "db";
 
@@ -321,6 +345,7 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
+    // Copy SC.script to DB
     public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
         AssetManager assetManager = getAssets();
 

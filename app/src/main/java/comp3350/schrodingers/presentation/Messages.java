@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 
 import comp3350.schrodingers.R;
 
+// Class - used for display/presenting messages to the user
 public class Messages {
 
     public static void fatalError(final Activity owner, String message) {

@@ -22,28 +22,39 @@ import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.Ratings;
 
+// Class - handles the page which displays book information upon a user selection
 public class ViewBookInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
+    // Method - instantiates views when activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Associate layout
         setContentView(R.layout.activity_view_book_info);
+
+        // Setup toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Set up menu title
         getSupportActionBar().setTitle("Schrodingers Library");
 
+        // Retrieve id argument passed by calling activity
         Intent intent = getIntent();
         String str_id = intent.getStringExtra("id");
         int int_id = Integer.parseInt(str_id);
 
+        // Access books from DB
         AccessBooks bookList = new AccessBooks();
+
+        // Adapt book info to layout
         List<String> list = getBookDetails(bookList, int_id);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         ListView viewbookList = findViewById(R.id.bookDetail);
         ImageView bookImage = findViewById(R.id.bookImage);
         String imageName = bookList.searchBookById(int_id).getIconId();
 
-        // Acquire icon/picture and set as relevant picture
         int iconID = -1;
         try {
             iconID = R.drawable.class.getField(imageName).getInt(null);
@@ -73,6 +84,7 @@ public class ViewBookInfoActivity extends AppCompatActivity implements View.OnCl
         });
     }
 
+    // Method - inflate menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -80,21 +92,23 @@ public class ViewBookInfoActivity extends AppCompatActivity implements View.OnCl
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    // Method - action bar options
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
+    // Method - acquire information about selected book
     public List<String> getBookDetails(AccessBooks accessBooks, int id) {
 
         Book book = accessBooks.searchBookById(id);
@@ -109,7 +123,7 @@ public class ViewBookInfoActivity extends AppCompatActivity implements View.OnCl
         return bookInfo;
     }
 
-    // Create button listeners for purchase buttons
+    // Method - create button listeners for purchase and add to shopping cart buttons
     public void createButtonListeners() {
 
          // Create button listeners
@@ -120,7 +134,7 @@ public class ViewBookInfoActivity extends AppCompatActivity implements View.OnCl
 
     }
 
-    // On click actions for purchase buttons
+    // Method - on click actions for purchase and add to shopping cart buttons
     public void onClick(View v) {
 
         // Determine which button was pressed and change to appropriate activity
@@ -128,7 +142,7 @@ public class ViewBookInfoActivity extends AppCompatActivity implements View.OnCl
             case R.id.purchaseButton:
 
                 Context homeContext = ViewBookInfoActivity.this;
-                Class purchaseBookClass = PurchaseBookActivity.class;
+                Class purchaseBookClass = ReviewPurchaseActivity.class;
 
                 Intent intent = new Intent(homeContext, purchaseBookClass);
                 //intent.putExtra("id", Integer.toString(bookID));

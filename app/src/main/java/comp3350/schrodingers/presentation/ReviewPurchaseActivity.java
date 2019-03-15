@@ -3,13 +3,13 @@ package comp3350.schrodingers.presentation;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
 
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.objects.User;
 
-public class PurchaseBookActivity extends AppCompatActivity {
+// Class - handles page for reviewing purchase
+public class ReviewPurchaseActivity extends AppCompatActivity {
 
     // Access user info
     AccessUserInfo userAccess = new AccessUserInfo();
@@ -36,7 +36,7 @@ public class PurchaseBookActivity extends AppCompatActivity {
     long creditCard = userBilling.getCardNumber();
     String cardName = userBilling.getFullName();
 
-    // On activity create
+    // Method - instantiates views when activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +54,7 @@ public class PurchaseBookActivity extends AppCompatActivity {
         displayInfo();
     }
 
+    // Method - display selected books info
     private void displayInfo(){
 
 //        TextView review_heading = findViewById(R.id.review_heading);
@@ -85,9 +86,6 @@ public class PurchaseBookActivity extends AppCompatActivity {
 //
 //        TextView review_cardName = findViewById(R.id.review_cardName);
 //        review_cardName.setText(cardName);
-
-
-
 
     }
 }
