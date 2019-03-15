@@ -2,7 +2,10 @@ package comp3350.schrodingers.presentation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -153,6 +156,12 @@ public class ViewBookInfoActivity extends AppCompatActivity implements View.OnCl
 
             // Add to shopping cart
             case R.id.shopping_cart_button:
+
+                // Show snackbar/tool tip confirming selection has been added
+                Snackbar addedToCart = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.added_to_cart, Snackbar.LENGTH_LONG);
+                addedToCart.getView().setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                addedToCart.show();
+
                 break;
         }
 

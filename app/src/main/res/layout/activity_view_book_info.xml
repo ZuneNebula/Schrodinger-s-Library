@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/viewBookLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:isScrollContainer="true"
@@ -52,8 +53,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingEnd="@dimen/view_book_padding"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingEnd="@dimen/view_book_padding">
 
                     <Button
                         android:id="@+id/purchase_book_button"

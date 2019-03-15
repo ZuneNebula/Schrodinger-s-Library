@@ -34,4 +34,5 @@
     <string name="rate_button">Submit</string>
     <string name="purchase_book_button">Purchase Book</string>
     <string name="shopping_cart_button">Add to Shopping Cart</string>
+    <string name="added_to_cart">Added to Shopping Cart</string>
 </resources>
