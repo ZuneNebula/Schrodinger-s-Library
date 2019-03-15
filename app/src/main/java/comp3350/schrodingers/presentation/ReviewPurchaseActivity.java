@@ -42,7 +42,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Set layout
-        setContentView(R.layout.activity_review_purchase);
+        setContentView(R.layout.activity_purchase_books);
 
         // Set toolbar
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
