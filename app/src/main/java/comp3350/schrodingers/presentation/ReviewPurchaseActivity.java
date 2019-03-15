@@ -83,38 +83,56 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         review_heading.setText("Review Your Order");
         review_heading.setTextColor(Color.parseColor("#000000"));
 
+        TextView billing_heading = findViewById(R.id.review_billing_heading);
+        billing_heading.setText("Billing Information");
+        billing_heading.setTextColor(Color.parseColor("#000000"));
+
         TextView review_userName = findViewById(R.id.review_userName);
         review_userName.setText(userName);
+        review_userName.setTextColor(Color.parseColor("#000000"));
 
         TextView review_email = findViewById(R.id.review_email);
         review_email.setText(email);
+        review_email.setTextColor(Color.parseColor("#000000"));
 
         TextView review_address = findViewById(R.id.review_address);
         review_address.setText(address);
+        review_address.setTextColor(Color.parseColor("#000000"));
 
         TextView review_postalCode = findViewById(R.id.review_postalCode);
         review_postalCode.setText(postalCode);
+        review_postalCode.setTextColor(Color.parseColor("#000000"));
 
         TextView review_country = findViewById(R.id.review_country);
         review_country.setText(country);
+        review_country.setTextColor(Color.parseColor("#000000"));
 
         TextView review_state = findViewById(R.id.review_state);
         review_state.setText(state);
+        review_state.setTextColor(Color.parseColor("#000000"));
 
         TextView review_city = findViewById(R.id.review_city);
         review_city.setText(city);
+        review_city.setTextColor(Color.parseColor("#000000"));
 
         TextView review_cardNo = findViewById(R.id.review_creditCard);
         review_cardNo.setText(Long.toString(creditCard));
+        review_cardNo.setTextColor(Color.parseColor("#000000"));
 
         TextView review_cardName = findViewById(R.id.review_cardName);
         review_cardName.setText(cardName);
+        review_cardName.setTextColor(Color.parseColor("#000000"));
 
         TextView review_cvv = findViewById(R.id.review_cvv);
         review_cvv.setText(Long.toString(creditCard));
+        review_cvv.setTextColor(Color.parseColor("#000000"));
 
         TextView review_expiry = findViewById(R.id.review_expiry);
-        review_expiry.setText(cardName);
+        review_expiry.setText(expiry);
+        review_expiry.setTextColor(Color.parseColor("#000000"));
 
+        TextView review_books_heading = findViewById(R.id.review_books_heading);
+        review_books_heading.setText("Selected Books");
+        review_books_heading.setTextColor(Color.parseColor("#000000"));
     }
 }
