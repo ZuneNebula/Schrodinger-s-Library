@@ -127,10 +127,10 @@ public class ViewBookInfoActivity extends AppCompatActivity implements View.OnCl
     public void createButtonListeners() {
 
          // Create button listeners
-        Button button1 = findViewById(R.id.purchaseButton);
+        Button button1 = findViewById(R.id.purchase_book_button);
         button1.setOnClickListener(this);
-//        Button button2 = findViewById(R.id.cartButton);
-//        button2.setOnClickListener(this);
+        Button button2 = findViewById(R.id.shopping_cart_button);
+        button2.setOnClickListener(this);
 
     }
 
@@ -139,19 +139,21 @@ public class ViewBookInfoActivity extends AppCompatActivity implements View.OnCl
 
         // Determine which button was pressed and change to appropriate activity
         switch (v.getId()) {
-            case R.id.purchaseButton:
+
+            // Purchase book
+            case R.id.purchase_book_button:
 
                 Context homeContext = ViewBookInfoActivity.this;
                 Class purchaseBookClass = ReviewPurchaseActivity.class;
 
                 Intent intent = new Intent(homeContext, purchaseBookClass);
-                //intent.putExtra("id", Integer.toString(bookID));
                 startActivity(intent);
 
                 break;
 
-//            case R.id.cartButton:
-//                break;
+            // Add to shopping cart
+            case R.id.shopping_cart_button:
+                break;
         }
 
     }

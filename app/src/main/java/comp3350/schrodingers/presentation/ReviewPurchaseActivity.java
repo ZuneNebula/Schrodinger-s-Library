@@ -42,11 +42,13 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Set layout
-        setContentView(R.layout.activity_purchase_books);
+        setContentView(R.layout.activity_review_purchase);
 
         // Set toolbar
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        // Set menu title
         getSupportActionBar().setTitle("Schrodingers Library");
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
