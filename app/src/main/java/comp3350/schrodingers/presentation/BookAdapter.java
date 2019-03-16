@@ -38,6 +38,18 @@ public class BookAdapter extends BaseAdapter {
 
     }
 
+    public BookAdapter(Context context, List<Book> list) {
+
+        this.context = context;
+        this.bookList = list;
+
+        inflater = LayoutInflater.from(this.context);
+        arrayList = new ArrayList<>();
+        this.arrayList.addAll(bookList);
+
+    }
+
+
     public class ViewHolder {
         TextView title, author;
         ImageView icon;

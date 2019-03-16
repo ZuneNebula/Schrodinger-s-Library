@@ -39,8 +39,10 @@ public class PurchasedBooksHSQLDB implements PurchasedBooks {
     private List<Integer> getBookIDs(String email){
         List<Integer> bookList = new ArrayList<>();
         try (final Connection c = connection()) {
-            final Statement st = c.createStatement();
-            final ResultSet rs = st.executeQuery("SELECT bookId FROM purchased where email = "+email);
+            final PreparedStatement st = c.prepareStatement("SELECT bookId FROM purchased WHERE email = ?");
+            st.setString(1, email);
+
+            final ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 int book = rs.getInt("bookId");
                 bookList.add(book);
@@ -61,7 +63,7 @@ public class PurchasedBooksHSQLDB implements PurchasedBooks {
         try (final Connection c = connection()) {
             for(int i =0; i<bookIds.size(); i++) {
                 final Statement st = c.createStatement();
-                final ResultSet rs = st.executeQuery("SELECT * FROM books where bookId = "+i);
+                final ResultSet rs = st.executeQuery("SELECT * FROM books where bookId = "+bookIds.get(i));
                 while (rs.next()) {
                     Book book = fromResultSet(rs);
                     bookList.add(book);
