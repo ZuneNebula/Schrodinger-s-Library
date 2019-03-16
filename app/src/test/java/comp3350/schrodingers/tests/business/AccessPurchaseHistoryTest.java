@@ -35,6 +35,7 @@ public class AccessPurchaseHistoryTest {
         book = accessPurchased.getBooks().get(0);
         assertNotNull("\tbook for default user should not be null", book);
         assertEquals(book.getBookID(), 21);
+        verify(booksPersistence).getBooks("zunenebula@gmail.com");
         System.out.println("\nFinished test AccessPurchasedBooks");
     }
 

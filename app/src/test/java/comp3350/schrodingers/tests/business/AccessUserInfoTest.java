@@ -27,31 +27,14 @@ public class AccessUserInfoTest {
 
     @Test
     public void testGetUser(){
-        final User user;
         System.out.println("\nStarting test AccessUserInfo");
-        user = accessUserInfo.getUser();
-        assertNotNull("\tfirst logged user should not be null", user);
-        assertTrue("Zune".equals(user.getUserName()));
+        final User user = new User("zunenebula@gmail.com","Zune","shlied-hero");
+        when(usersPersistence.getUser()).thenReturn(user);
+        final User getUser = accessUserInfo.getUser();
+        assertNotNull("\tfirst logged user should not be null", getUser);
+        assertTrue("Zune".equals(getUser.getUserName()));
+        verify(usersPersistence).getUser();
         System.out.println("\nFinished test AccessUserInfo");
-    }
-    @Test
-    public void testLogout(){
-        final User user;
-        System.out.println("\nStarting test Logout");
-        accessUserInfo.logout();
-        user = accessUserInfo.getUser();
-        assertNull("\tuser should be null", user);
-        System.out.println("\nFinished test Logout");
-    }
-
-    @Test
-    public void testLogin(){
-        final User user;
-        System.out.println("\nStarting test Login");
-        user = accessUserInfo.login("zunenebula@gmail.com");
-        assertNotNull("\tuser should not be null", user);
-        assertTrue("Zune".equals(user.getUserName()));
-        System.out.println("\nFinished test Login");
     }
 
 }
