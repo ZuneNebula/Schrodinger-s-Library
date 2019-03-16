@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.schrodingers.business.AccessPurchasedBooks;
 import comp3350.schrodingers.objects.Book;
@@ -33,6 +35,24 @@ public class AccessPurchaseHistoryIT {
         this.accessPurchased = new AccessPurchasedBooks(purchasedBooks, userPers);
     }
 
+    @Test
+    public void testGet(){
+        System.out.println("\nStarting test AccessPurchasedBooks: getBooks");
+        List<Book> books = accessPurchased.getBooks();
+        assertNotNull("\tfirst book of default user should not be null", books.get(0));
+        System.out.println("\nFinished test AccessPurchasedBooks: getBooks");
+    }
+
+    @Test
+    public void testInsert(){
+        System.out.println("\nStarting AccessPurchasedBooks: insertBook");
+        Book book = new Book(1, "Annabelle Fights Life", "Jenny Springs", "$200", "Drama", "10", "4", "annabellefightslife");
+        accessPurchased.insertBook(book);
+        Book getBook = accessPurchased.getBooks().get(0);
+        assertNotNull("\tbook must not be null", getBook);
+        assertEquals(getBook.getBookID(), book.getBookID());
+        System.out.println("Finished AccessPurchasedBooks: insertBook");
+    }
     @After
     public void tearDown() {
         // reset DB
