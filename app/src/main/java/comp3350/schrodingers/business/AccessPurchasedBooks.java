@@ -6,6 +6,7 @@ import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.PurchasedBooks;
+import comp3350.schrodingers.persistence.UsersPersistence;
 
 public class AccessPurchasedBooks {
     private PurchasedBooks purchasedBooks;
@@ -14,6 +15,11 @@ public class AccessPurchasedBooks {
     public AccessPurchasedBooks(){
         purchasedBooks = Services.getPurchasedPersistence();
         accessUserInfo = new AccessUserInfo();
+    }
+
+    public AccessPurchasedBooks(final PurchasedBooks purBooks, UsersPersistence u){
+        this.purchasedBooks = purBooks;
+        accessUserInfo = new AccessUserInfo(u);
     }
 
     public List<Book> getBooks(){
