@@ -54,6 +54,12 @@
                 android:layout_height="400dp"
                 android:layout_marginTop="@dimen/view_book_padding" />
 
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wishButton" />
+
             <TextView
                 android:id="@+id/rateTitle"
                 android:layout_width="match_parent"

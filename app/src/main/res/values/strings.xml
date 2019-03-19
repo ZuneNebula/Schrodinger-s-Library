@@ -35,5 +35,6 @@
     <string name="rateheaer">Please rate this book</string>
     <string name="please_rate_this_book">Please Rate This Book</string>
     <string name="rateButton">Submit</string>
+    <string name="wishButton">Add To Wishlist</string>
 
 </resources>
