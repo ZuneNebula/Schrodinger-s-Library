@@ -161,6 +161,14 @@ public class HomeActivity extends AppCompatActivity
                 Intent notLoggedIntent = new Intent(HomeActivity.this, NotLoggedActivity.class);
                 HomeActivity.this.startActivity(notLoggedIntent);
             }
+        }else if(id == R.id.my_wishlist){
+            if (user != null) {
+                Intent loggedIntent = new Intent(HomeActivity.this, WishlistActivity.class);
+                HomeActivity.this.startActivity(loggedIntent);
+            } else {
+                Intent notLoggedIntent = new Intent(HomeActivity.this, NotLoggedActivity.class);
+                HomeActivity.this.startActivity(notLoggedIntent);
+            }
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

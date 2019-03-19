@@ -11,6 +11,9 @@
         <item
             android:id="@+id/purchase_history"
             android:title="Purchase History" />
+        <item
+            android:id="@+id/my_wishlist"
+            android:title="My Wishlist" />
     </group>
 
     <!--<item android:title="Communicate">-->
