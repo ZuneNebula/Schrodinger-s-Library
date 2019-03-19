@@ -53,12 +53,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:layout_marginTop="@dimen/view_book_padding" />
-
+            <TextView
+                android:id="@+id/wishAdded"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
             <Button
                 android:id="@+id/addButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/wishButton" />
+
+            <Button
+                android:id="@+id/viewButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/viewList" />
 
             <TextView
                 android:id="@+id/rateTitle"

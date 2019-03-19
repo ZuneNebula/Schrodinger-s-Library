@@ -12,16 +12,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
+import comp3350.schrodingers.business.AccessWishlist;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.Ratings;
+import comp3350.schrodingers.objects.User;
 
 public class ViewBookInfoActivity extends AppCompatActivity {
+    private Button addWishlist;
+    private Button viewWishlist;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +39,9 @@ public class ViewBookInfoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String str_id = intent.getStringExtra("id");
-        int int_id = Integer.parseInt(str_id);
-
+        final int int_id = Integer.parseInt(str_id);
+        addWishlist = (Button) findViewById(R.id.addButton);
+        viewWishlist = (Button) findViewById(R.id.viewButton);
 
         final AccessBooks bookList = new AccessBooks();
         List<String> list = getBookDetails(bookList, int_id);
@@ -68,6 +75,28 @@ public class ViewBookInfoActivity extends AppCompatActivity {
                 //bookList.addRating(ratingBar.getNumStars(), "zune");
             }
         });
+
+        viewWishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewWishlist();
+
+            }
+        });
+
+        addWishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               if(insertWishlist(bookList.searchBookById(int_id))) {
+                   textView = (TextView) findViewById(R.id.wishAdded);
+                   textView.setText("Added to Wishlist");
+               }
+               else{
+                   textView = (TextView) findViewById(R.id.wishAdded);
+                   textView.setText("Book Has Already Been Added");
+               }
+            }
+        });
     }
 
     @Override
@@ -92,6 +121,8 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
     public List<String> getBookDetails(AccessBooks accessBooks, int id) {
 
         Book book = accessBooks.searchBookById(id);
@@ -104,6 +135,18 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         bookInfo.add("Book Left In Stock : " + book.getBookStock());
         bookInfo.add("Book Rating : " + book.getRating());
         return bookInfo;
+    }
+
+    private void viewWishlist() {
+
+            Intent intent = new Intent(ViewBookInfoActivity.this, WishlistActivity.class);
+            startActivity(intent);
+
+    }
+
+    private boolean insertWishlist(Book book){
+        AccessWishlist wishlist = new AccessWishlist();
+        return wishlist.insertBook(book);
     }
 
 }
