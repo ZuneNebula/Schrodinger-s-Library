@@ -9,7 +9,8 @@ import comp3350.schrodingers.persistence.hsqldb.PurchasedBooksHSQLDB;
 import comp3350.schrodingers.persistence.hsqldb.UsersPersistenceHSQLDB;
 import comp3350.schrodingers.persistence.PaymentPersistence;
 import comp3350.schrodingers.persistence.hsqldb.PaymentPersistenceHSQLDB;
-
+import comp3350.schrodingers.persistence.hsqldb.WishlistPersistenceHSQLDB;
+import comp3350.schrodingers.persistence.WishlistPersistence;
 import comp3350.schrodingers.persistence.hsqldb.RatingPersistenceHSQLDB;
 
 public class Services {
@@ -19,6 +20,7 @@ public class Services {
     private static PaymentPersistence paymentPersistence = null;
     private static RatingPersistence ratingPersistence = null;
     private static PurchasedBooks purchasedPersistence = null;
+    private static WishlistPersistence wishlistPersistence = null;
 
     public static synchronized BooksPersistence getBooksPersistence() {
         if (booksPersistence == null) {
@@ -53,6 +55,14 @@ public class Services {
             purchasedPersistence = new PurchasedBooksHSQLDB(Main.getDBPathName());
         }
         return purchasedPersistence;
+    }
+
+
+    public static synchronized WishlistPersistence getWishlistPersistence() {
+        if (wishlistPersistence == null) {
+            wishlistPersistence = new WishlistPersistenceHSQLDB(Main.getDBPathName());
+        }
+        return wishlistPersistence;
     }
 
 }
