@@ -89,6 +89,14 @@
                 android:numStars="5"
                 android:stepSize="1" />
 
+            <EditText
+                android:id="@+id/review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Write a review"
+                android:inputType="textMultiLine" />
+
             <Button
                 android:id="@+id/submitRate"
                 android:layout_width="match_parent"
