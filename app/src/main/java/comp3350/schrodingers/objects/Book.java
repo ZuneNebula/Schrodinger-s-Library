@@ -8,18 +8,16 @@ public class Book {
     private final String price;
     private final String genre;
     private final String bookStock;
-    private final String rating;
     private final String iconId;
 
 
-    public Book(int bookID, String bookName, String author, String price, String genre, String bookStock, String rating, String iconId) {
+    public Book(int bookID, String bookName, String author, String price, String genre, String bookStock, String iconId) {
         this.bookID = bookID;
         this.bookName = bookName;
         this.author = author;
         this.price = price;
         this.genre = genre;
         this.bookStock = bookStock;
-        this.rating = rating;
         this.iconId = iconId;
     }
 
@@ -48,10 +46,6 @@ public class Book {
         return bookStock;
     }
 
-    public String getRating() {
-        return rating;
-    }
-
     public String getIconId() {
         return iconId;
     }
@@ -66,7 +60,6 @@ public class Book {
                 ", price='" + price + '\'' +
                 ", genre='" + genre + '\'' +
                 ", bookStock='" + bookStock + '\'' +
-                ", rating='" + rating + '\'' +
                 ", iconId='" + iconId + '\'' +
                 '}';
     }

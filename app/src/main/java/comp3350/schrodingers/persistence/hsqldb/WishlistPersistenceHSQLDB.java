@@ -31,9 +31,8 @@ public class WishlistPersistenceHSQLDB implements WishlistPersistence {
         final String price = rs.getString("price");
         final String genre = rs.getString("genre");
         final String stock = rs.getString("stock");
-        final String rating = rs.getString("rating");
         final String iconId = rs.getString("iconId");
-        return new Book(bookID, bookName, author, price, genre, stock, rating, iconId);
+        return new Book(bookID, bookName, author, price, genre, stock, iconId);
     }
 
     private List<Integer> getBookIDs(String email){
