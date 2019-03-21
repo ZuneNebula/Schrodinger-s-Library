@@ -33,9 +33,9 @@ public class AccessBooks {
         return allRatings;
     }
 
-    public void addRating(int bookid, int rate){
+    public void addRating(int bookid, int rate, String review){
         User user = accessUserInfo.getUser();
-        ratingPersistence.addBookRatings(bookid, rate, user.getEmail());
+        ratingPersistence.addBookRatings(bookid, rate, user.getEmail(),review);
     }
 
     public List <Ratings> findRatingsByBook(int bookID){

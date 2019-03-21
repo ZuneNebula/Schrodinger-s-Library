@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -33,7 +34,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
     private ListView viewRateList;
     private ArrayAdapter<Ratings> rateAdapter;
     private List<Ratings> ratings;
-
+    private EditText review;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,11 +74,12 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         ratings = bookList.findRatingsByBook(int_id);
         rateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ratings);
         viewRateList.setAdapter(rateAdapter);
+        review = findViewById(R.id.review);
 
         rateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bookList.addRating(int_id, (int)ratingBar.getRating());
+                bookList.addRating(int_id, (int)ratingBar.getRating(),review.getText().toString());
                 ratings = bookList.findRatingsByBook(int_id);
                 rateAdapter.add(ratings.get(ratings.size()-1));
             }

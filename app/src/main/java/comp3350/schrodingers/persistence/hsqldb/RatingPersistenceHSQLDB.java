@@ -29,8 +29,9 @@ public class RatingPersistenceHSQLDB implements RatingPersistence {
         final int bookID = rs.getInt("bookID");
         final String email = rs.getString("email");
         final int rate = rs.getInt("rate");
+        final String review = rs.getString("review");
 
-        return new Ratings(bookID,email,rate);
+        return new Ratings(bookID,email,rate,review);
     }
 
 
@@ -54,10 +55,10 @@ public class RatingPersistenceHSQLDB implements RatingPersistence {
     }
 
     @Override
-    public void addBookRatings(int bookid ,int rate, String user){
+    public void addBookRatings(int bookid ,int rate, String user, String review){
         List<Ratings> rateList = new ArrayList<>();
         try (final Connection c = connection()) {
-            final PreparedStatement st = c.prepareStatement("INSERT INTO ratings VALUES(?,?, ?)");
+            final PreparedStatement st = c.prepareStatement("INSERT INTO ratings VALUES(?,?,?,?)");
             //final Statement st2 = c.createStatement();
 
 
@@ -67,6 +68,7 @@ public class RatingPersistenceHSQLDB implements RatingPersistence {
             st.setInt(1,bookid);
             st.setString(2, user);
             st.setInt(3, rate);
+            st.setString(4,review);
 
             st.executeUpdate();
 
