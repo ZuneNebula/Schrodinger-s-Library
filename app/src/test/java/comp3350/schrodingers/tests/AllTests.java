@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import comp3350.schrodingers.tests.business.AccessPaymentInfoTest;
+import comp3350.schrodingers.tests.business.AccessPurchaseHistoryTest;
 import comp3350.schrodingers.tests.business.AccessUserInfoTest;
 import comp3350.schrodingers.tests.business.CreateAccountTest;
 import comp3350.schrodingers.tests.business.PaymentProcessorTest;
@@ -23,7 +24,8 @@ import comp3350.schrodingers.tests.objects.UserTest;
         AccessUserInfoTest.class,
         AccessPaymentInfoTest.class,
         UserLoginTest.class,
-        CreateAccountTest.class
+        CreateAccountTest.class,
+        AccessPurchaseHistoryTest.class
 
 })
 public class AllTests

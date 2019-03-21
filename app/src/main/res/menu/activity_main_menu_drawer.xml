@@ -6,7 +6,24 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/my_account"
+            android:icon="@drawable/ic_menu_manage"
             android:title="My Account" />
+        <item
+            android:id="@+id/purchase_history"
+            android:title="Purchase History" />
+        <item
+            android:id="@+id/my_wishlist"
+            android:title="My Wishlist" />
     </group>
+
+    <!--<item android:title="Communicate">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Share" />-->
+
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>

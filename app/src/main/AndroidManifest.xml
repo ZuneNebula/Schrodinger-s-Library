@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".presentation.PurchaseHistoryActivity"></activity>
         <activity
             android:name=".presentation.SearchActivity"
             android:label="@string/title_activity_search"
@@ -45,16 +46,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".presentation.LoggedActivity" />
+        <activity android:name=".presentation.LoggedActivity" />
         <activity android:name=".presentation.PersonInfo" />
-        <activity android:name=".presentation.PaymentActivity"></activity>
-
+        <activity android:name=".presentation.PaymentActivity" />
         <activity android:name=".presentation.CreateAccountActivity" />
         <activity android:name=".presentation.LoginActivity" />
         <activity android:name=".presentation.NotLoggedActivity" />
-        <activity android:name=".presentation.ReviewPurchaseActivity" />
-
+        <activity android:name=".presentation.WishlistActivity"/>
     </application>
 
 </manifest>
