@@ -21,6 +21,7 @@ import java.util.List;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessWishlist;
+import comp3350.schrodingers.business.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.Ratings;
 import comp3350.schrodingers.objects.User;
@@ -79,9 +80,13 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         rateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bookList.addRating(int_id, (int)ratingBar.getRating(),review.getText().toString());
-                ratings = bookList.findRatingsByBook(int_id);
-                rateAdapter.add(ratings.get(ratings.size()-1));
+                try {
+                    bookList.addRating(int_id, (int) ratingBar.getRating(), review.getText().toString());
+                    ratings = bookList.findRatingsByBook(int_id);
+                    rateAdapter.add(ratings.get(ratings.size()-1));
+                }catch(UserException e){
+                    showMessage(e.toString());
+                }
             }
         });
 
@@ -107,6 +112,9 @@ public class ViewBookInfoActivity extends AppCompatActivity {
                }
             }
         });
+    }
+    private void showMessage(String e){
+        Messages.warning(this, e);
     }
 
     @Override

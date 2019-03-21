@@ -33,9 +33,12 @@ public class AccessBooks {
         return allRatings;
     }
 
-    public void addRating(int bookid, int rate, String review){
+    public void addRating(int bookid, int rate, String review) throws UserException{
         User user = accessUserInfo.getUser();
-        ratingPersistence.addBookRatings(bookid, rate, user.getEmail(),review);
+        if(user != null)
+            ratingPersistence.addBookRatings(bookid, rate, user.getEmail(),review);
+        else
+            throw new UserException("Not logged in!");
     }
 
     public List <Ratings> findRatingsByBook(int bookID){
