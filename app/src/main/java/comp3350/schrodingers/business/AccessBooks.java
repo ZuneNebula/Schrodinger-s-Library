@@ -1,5 +1,6 @@
 package comp3350.schrodingers.business;
 
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,13 +10,15 @@ import comp3350.schrodingers.persistence.BooksPersistence;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.persistence.RatingPersistence;
+import comp3350.schrodingers.objects.User;
 
 public class AccessBooks {
-
+    private AccessUserInfo accessUserInfo;
     private BooksPersistence booksPersistence;
     private RatingPersistence ratingPersistence;
     //constructor
     public AccessBooks() {
+        accessUserInfo = new AccessUserInfo();
         booksPersistence = Services.getBooksPersistence();
         ratingPersistence = Services.getRatePersistence();
     }
@@ -30,9 +33,9 @@ public class AccessBooks {
         return allRatings;
     }
 
-    public void addRating(int rate, String user){
-
-        ratingPersistence.addBookRatings(rate, user);
+    public void addRating(int bookid, int rate){
+        User user = accessUserInfo.getUser();
+        ratingPersistence.addBookRatings(bookid, rate, user.getEmail());
     }
 
     public List <Ratings> findRatingsByBook(int bookID){
@@ -100,7 +103,6 @@ public class AccessBooks {
         bookInfo.add("Book Price : " + book.getPrice());
         bookInfo.add("Book Genre : " + book.getGenre());
         bookInfo.add("Book Left In Stock : " + book.getBookStock());
-        bookInfo.add("Book Rating : " + book.getRating());
         return bookInfo;
     }
 

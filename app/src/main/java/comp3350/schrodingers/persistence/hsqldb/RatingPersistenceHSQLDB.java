@@ -2,6 +2,7 @@ package comp3350.schrodingers.persistence.hsqldb;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,12 +26,11 @@ public class RatingPersistenceHSQLDB implements RatingPersistence {
     }
 
     private Ratings fromResultSet(final ResultSet rs) throws SQLException {
-        final int rateID = rs.getInt("rateID");
         final int bookID = rs.getInt("bookID");
         final String email = rs.getString("email");
         final int rate = rs.getInt("rate");
 
-        return new Ratings(rateID,bookID,email,rate);
+        return new Ratings(bookID,email,rate);
     }
 
 
@@ -54,30 +54,22 @@ public class RatingPersistenceHSQLDB implements RatingPersistence {
     }
 
     @Override
-    public void addBookRatings(int rate, String user){
+    public void addBookRatings(int bookid ,int rate, String user){
         List<Ratings> rateList = new ArrayList<>();
         try (final Connection c = connection()) {
-            final Statement st = c.createStatement();
-
-            /*
-            final ResultSet resultBook = st.executeQuery("SELECT rating FROM books where bookId = "+1);
-            int result = Integer.parseInt(resultBook.getString("rating"));
-
-            result += rate;
-            final ResultSet rs = st.executeQuery("UPDATE books SET rate = "+result+" where bookId = "+1);
-
-            //update book set rate = ? where bookId = ?
-            //insert into ratings ...
-            resultBook.close();
-            rs.close();
-            */
-            int lastID = st.executeQuery("SELECT MAX(RATEID) FROM ratings").getInt(1);
-            int newID = lastID + 1;
-            final ResultSet rrs = st.executeQuery("INSERT INTO ratings VALUES(" + newID + "," + user +"," + rate + ")"  );
+            final PreparedStatement st = c.prepareStatement("INSERT INTO ratings VALUES(?,?, ?)");
+            //final Statement st2 = c.createStatement();
 
 
-            rrs.close();
-            st.close();
+           // int lastID = st2.executeQuery("SELECT MAX(RATEID) FROM ratings").getInt(1);
+           // int newID = lastID + 1;
+            //st.setInt(1, newID);
+            st.setInt(1,bookid);
+            st.setString(2, user);
+            st.setInt(3, rate);
+
+            st.executeUpdate();
+
 
 
         } catch (final SQLException e) {

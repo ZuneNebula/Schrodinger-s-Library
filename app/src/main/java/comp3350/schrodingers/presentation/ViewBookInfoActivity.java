@@ -28,6 +28,11 @@ public class ViewBookInfoActivity extends AppCompatActivity {
     private Button addWishlist;
     private Button viewWishlist;
     private TextView textView;
+    private Button rateButton;
+    private RatingBar ratingBar;
+    private ListView viewRateList;
+    private ArrayAdapter<Ratings> rateAdapter;
+    private List<Ratings> ratings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,19 +67,22 @@ public class ViewBookInfoActivity extends AppCompatActivity {
 
         viewbookList.setAdapter(arrayAdapter);
 
-        final RatingBar ratingBar = findViewById(R.id.bookRatingBar);
-        Button rateButton = findViewById(R.id.submitRate);
-        ListView viewRateList = findViewById(R.id.ratings);
-        List<Ratings> ratings = bookList.findRatingsByBook(int_id);
-        ArrayAdapter<Ratings> rateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ratings);
+        ratingBar = findViewById(R.id.bookRatingBar);
+        rateButton = (Button)findViewById(R.id.submitRate);
+        viewRateList = findViewById(R.id.ratings);
+        ratings = bookList.findRatingsByBook(int_id);
+        rateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ratings);
         viewRateList.setAdapter(rateAdapter);
 
         rateButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                //bookList.addRating(ratingBar.getNumStars(), "zune");
+            public void onClick(View view) {
+                bookList.addRating(int_id, (int)ratingBar.getRating());
+                ratings = bookList.findRatingsByBook(int_id);
+                rateAdapter.add(ratings.get(ratings.size()-1));
             }
         });
+
 
         viewWishlist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +120,6 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -133,7 +140,6 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         bookInfo.add("Book Price : " + book.getPrice());
         bookInfo.add("Book Genre : " + book.getGenre());
         bookInfo.add("Book Left In Stock : " + book.getBookStock());
-        bookInfo.add("Book Rating : " + book.getRating());
         return bookInfo;
     }
 
@@ -148,5 +154,6 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         AccessWishlist wishlist = new AccessWishlist();
         return wishlist.insertBook(book);
     }
+
 
 }

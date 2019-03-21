@@ -7,20 +7,14 @@ public class Ratings {
     private String email;
     private int rate;
 
-    public Ratings(int rateID, int bookID, String email, int rate) {
-        this.rateID = rateID;
+    public Ratings( int bookID, String email, int rate) {
+
         this.bookID = bookID;
         this.email = email;
         this.rate = rate;
     }
 
-    public int getRateID() {
-        return rateID;
-    }
 
-    public void setRateID(int rateID) {
-        this.rateID = rateID;
-    }
 
     public int getBookID() {
         return bookID;
