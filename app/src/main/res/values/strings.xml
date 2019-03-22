@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">schrodingers</string>
+    <string name="app_name">Schrodingers Library</string>
     <string name="action_search">action_search</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main_menu">Schrodingers Library</string>
@@ -30,13 +30,13 @@
     <string name="zip">R3T 2N2</string>
     <string name="country">Canada</string>
     <string name="book_image_button">Book Image Button</string>
-    <string name="ratesTitleR">Ratings</string>
     <string name="ratings">Ratings</string>
-    <string name="rateheaer">Please rate this book</string>
     <string name="please_rate_this_book">Please Rate This Book</string>
     <string name="rateButton">Submit</string>
     <string name="wishButton">Add To Wishlist</string>
     <string name="viewList">View Wishlist</string>
     <string name="myWishlist">My Wishlist</string>
-    <string name="reviewBook">reviewBook</string>
+    <string name="purchaseButton">Purchase Book</string>
+    <string name="cartButton">Add to Shopping Cart</string>
+    <string name="addedToCart">Added to Shopping Cart</string>
 </resources>

@@ -12,10 +12,11 @@
     <dimen name="catalog_row_bottom_margin">10dp</dimen>
     <dimen name="view_book_image_width">300dp</dimen>
     <dimen name="view_book_image_height">425dp</dimen>
-    <dimen name="view_book_padding">20dp</dimen>
+    <dimen name="view_book_info_padding">20dp</dimen>
+    <dimen name="view_book_text_padding">10dp</dimen>
     <dimen name="view_book_top_margin">55dp</dimen>
     <dimen name="view_book_left_margin">20dp</dimen>
-    <dimen name="view_book_button_margin">107dp</dimen>
+    <dimen name="view_book_button_margin">45dp</dimen>
     <dimen name="view_book_detail_height">375dp</dimen>
     <dimen name="rating_margin">10dp</dimen>
     <dimen name="rating_title_text_size">20sp</dimen>

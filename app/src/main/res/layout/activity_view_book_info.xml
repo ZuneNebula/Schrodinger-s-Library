@@ -29,54 +29,75 @@
         android:fillViewport="true">
 
         <LinearLayout
+            android:id="@+id/viewBookLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="80dp"
             android:gravity="center"
             android:isScrollContainer="true"
             android:nestedScrollingEnabled="true"
-            android:orientation="vertical"
-            android:paddingStart="20dp"
-            android:paddingTop="@dimen/view_book_padding"
-            android:paddingEnd="@dimen/view_book_padding"
-            android:paddingBottom="@dimen/view_book_padding">
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/bookImage"
-                android:layout_width="175dp"
-                android:layout_height="304dp"
-                android:contentDescription="@string/book_image" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/bookImage"
+                    android:layout_width="@dimen/view_book_image_width"
+                    android:layout_height="@dimen/view_book_image_height"
+                    android:contentDescription="@string/book_image" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingRight="@dimen/view_book_info_padding">
+
+                    <Button
+                        android:id="@+id/purchaseButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/view_book_button_margin"
+                        android:text="@string/purchaseButton" />
+
+                    <Button
+                        android:id="@+id/cartButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/view_book_button_margin"
+                        android:text="@string/cartButton" />
+
+                    <Button
+                        android:id="@+id/addButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/view_book_button_margin"
+                        android:text="@string/wishButton" />
+
+                    <Button
+                        android:id="@+id/viewButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/view_book_button_margin"
+                        android:text="@string/viewList" />
+                </LinearLayout>
+            </LinearLayout>
 
             <ListView
                 android:id="@+id/bookDetail"
                 style="@style/Widget.AppCompat.Light.ListView.DropDown"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_marginTop="@dimen/view_book_padding" />
-            <TextView
-                android:id="@+id/wishAdded"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-            <Button
-                android:id="@+id/addButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/wishButton" />
-
-            <Button
-                android:id="@+id/viewButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/viewList" />
+                android:layout_height="300dp"
+                android:layout_marginTop="@dimen/view_book_info_padding" />
 
             <TextView
                 android:id="@+id/rateTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="@dimen/view_book_text_padding"
                 android:text="@string/please_rate_this_book"
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
@@ -108,6 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:paddingLeft="@dimen/view_book_text_padding"
                 android:text="@string/ratings"
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />

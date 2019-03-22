@@ -21,8 +21,6 @@ public class AccessUserInfo {
         this.userPersistence = userPers;
     }
 
-    /************ User Access ***************/
-
     // Method - return the user already logged (returns null if not logged in)
     public User getUser() {
         logged = userPersistence.getUser();

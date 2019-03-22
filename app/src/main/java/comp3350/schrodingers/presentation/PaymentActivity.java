@@ -31,7 +31,7 @@ public class PaymentActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        // Set up menu bar title color
+        // Set up toolbar title color
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
         // Instantiate access to DB and get current credit card
