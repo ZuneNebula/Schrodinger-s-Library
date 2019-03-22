@@ -34,9 +34,12 @@
     <string name="please_rate_this_book">Please Rate This Book</string>
     <string name="rateButton">Submit</string>
     <string name="wishButton">Add To Wishlist</string>
+    <string name="wishAdded">Added To Wishlist</string>
+    <string name="wishAlreadyAdded">Book Has Already Been Added to Wishlist</string>
     <string name="viewList">View Wishlist</string>
     <string name="myWishlist">My Wishlist</string>
     <string name="purchaseButton">Purchase Book</string>
     <string name="cartButton">Add to Shopping Cart</string>
     <string name="addedToCart">Added to Shopping Cart</string>
+    <string name="alreadyAddedToCart">Book Has Already Been Added to Shopping Cart</string>
 </resources>

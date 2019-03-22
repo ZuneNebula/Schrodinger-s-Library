@@ -53,6 +53,7 @@
         <activity android:name=".presentation.LoginActivity" />
         <activity android:name=".presentation.NotLoggedActivity" />
         <activity android:name=".presentation.WishlistActivity"/>
+        <activity android:name=".presentation.ReviewPurchaseActivity"/>
     </application>
 
 </manifest>

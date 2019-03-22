@@ -155,6 +155,18 @@ public class ViewBookInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                if(insertWishlist(bookList.searchBookById(int_id))) {
 
+                   // Show snackbar/tool tip confirming selection has been added
+                   Snackbar addedToCart = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.wishAdded, Snackbar.LENGTH_LONG);
+                   addedToCart.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                   addedToCart.show();
+
+               } else {
+
+                   // Show snackbar/tool tip confirming selection already exits (cannot be added)
+                   Snackbar addedToCart = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.wishAlreadyAdded, Snackbar.LENGTH_LONG);
+                   addedToCart.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                   addedToCart.show();
+
                }
             }
         });
