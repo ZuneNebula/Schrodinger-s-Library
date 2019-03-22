@@ -64,20 +64,13 @@ public class RatingPersistenceHSQLDB implements RatingPersistence {
         List<Ratings> rateList = new ArrayList<>();
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("INSERT INTO ratings VALUES(?,?,?,?)");
-            //final Statement st2 = c.createStatement();
 
-
-           // int lastID = st2.executeQuery("SELECT MAX(RATEID) FROM ratings").getInt(1);
-           // int newID = lastID + 1;
-            //st.setInt(1, newID);
             st.setInt(1,bookid);
             st.setString(2, user);
             st.setInt(3, rate);
             st.setString(4,review);
 
             st.executeUpdate();
-
-
 
         } catch (final SQLException e) {
             throw new PersistenceException(e);

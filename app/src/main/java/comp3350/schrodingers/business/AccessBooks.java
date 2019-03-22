@@ -1,6 +1,5 @@
 package comp3350.schrodingers.business;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,7 +15,8 @@ public class AccessBooks {
     private AccessUserInfo accessUserInfo;
     private BooksPersistence booksPersistence;
     private RatingPersistence ratingPersistence;
-    //constructor
+
+    // Constructor - initialize DB access
     public AccessBooks() {
         accessUserInfo = new AccessUserInfo();
         booksPersistence = Services.getBooksPersistence();
@@ -28,33 +28,6 @@ public class AccessBooks {
         return allBooks;
     }
 
-    public List<Ratings> getAllRatings(){
-        List<Ratings> allRatings = ratingPersistence.getBookRatings();
-        return allRatings;
-    }
-
-    public void addRating(int bookid, int rate, String review) throws UserException{
-        User user = accessUserInfo.getUser();
-        if(user != null)
-            ratingPersistence.addBookRatings(bookid, rate, user.getEmail(),review);
-        else
-            throw new UserException("Not logged in!");
-    }
-
-    public List <Ratings> findRatingsByBook(int bookID){
-        List<Ratings> ratings = ratingPersistence.getBookRatings();
-        List<Ratings> bookRatings = new ArrayList<>();
-        Iterator<Ratings> rateIterator = ratings.iterator();
-        while (rateIterator.hasNext()) {
-            Ratings nextRate = rateIterator.next();  //holds the next rating found in the list
-            if (nextRate.getBookID() == bookID ) {
-                bookRatings.add(nextRate);
-            }
-
-        }//returns a books by the author.
-        return bookRatings;
-    }
-
     public Book searchBookById(int id) {
         List<Book> books = booksPersistence.getAllBooks();
         Iterator<Book> bookIterator = books.iterator();
@@ -64,7 +37,7 @@ public class AccessBooks {
                 return nextBook;
             }
 
-        }//returns a books by the author.
+        }//returns a books by the ID.
         return null;
     }
 
@@ -94,6 +67,33 @@ public class AccessBooks {
 
         }
         return titleBook; //returns a list of books by the title.
+    }
+
+//    public List<Ratings> getAllRatings(){
+//        List<Ratings> allRatings = ratingPersistence.getBookRatings();
+//        return allRatings;
+//    }
+
+    public List <Ratings> findRatingsByBook(int bookID){
+        List<Ratings> ratings = ratingPersistence.getBookRatings();
+        List<Ratings> bookRatings = new ArrayList<>();
+        Iterator<Ratings> rateIterator = ratings.iterator();
+        while (rateIterator.hasNext()) {
+            Ratings nextRate = rateIterator.next();  //holds the next rating found in the list
+            if (nextRate.getBookID() == bookID ) {
+                bookRatings.add(nextRate);
+            }
+
+        }//returns a books by the author.
+        return bookRatings;
+    }
+
+    public void addRating(int bookid, int rate, String review) throws UserException{
+        User user = accessUserInfo.getUser();
+        if(user != null)
+            ratingPersistence.addBookRatings(bookid, rate, user.getEmail(),review);
+        else
+            throw new UserException("Not logged in!");
     }
 
     public List<String> getBookDetails(int id) {

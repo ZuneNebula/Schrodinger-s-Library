@@ -21,8 +21,6 @@ public class AccessPaymentInfo {
         this.payPersistence = payPers;
     }
 
-    /************ Payment Access ***************/
-
     // Method - return relevant/current credit card from DB
     public Billing getCard() {
         card = payPersistence.getCard();

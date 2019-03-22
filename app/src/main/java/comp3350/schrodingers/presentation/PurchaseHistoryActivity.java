@@ -3,7 +3,6 @@ package comp3350.schrodingers.presentation;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.List;
@@ -12,15 +11,25 @@ import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessPurchasedBooks;
 import comp3350.schrodingers.objects.Book;
 
+// Class - presents purchase history info from DB
 public class PurchaseHistoryActivity extends AppCompatActivity {
+
+    // Holds access to purchase history in DB
     private AccessPurchasedBooks accessPurchased;
+
+    // Method - instantiates views when activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Associate layout
         setContentView(R.layout.activity_purchase_history);
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
+
+        // Setup toolbar
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle("Schrodingers Library");
+
+        // Set up toolbar title color
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
         accessPurchased = new AccessPurchasedBooks();

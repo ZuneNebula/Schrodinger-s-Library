@@ -39,7 +39,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         Password = findViewById(R.id.edtPassword);
         Account = findViewById(R.id.btnAccount);
 
-        // Create on click listener for buttons
+        // Create on click listener for 'Create Account' button
         Account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

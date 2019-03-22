@@ -15,22 +15,23 @@ import comp3350.schrodingers.business.AccessBooks;
 
 import java.util.*;
 
+// Class - handles changing book information into something viewable
 public class BookAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
     private List<Book> bookList;
     private ArrayList<Book> arrayList;
-    private AccessBooks book;
-    private List<Book> temp;
+    private AccessBooks bookAccess;
 
-    public BookAdapter(Context context, AccessBooks book) {
+    // Constructor - instantiates book DB access
+    public BookAdapter(Context context, AccessBooks access) {
 
         this.context = context;
-        this.book = book;
+        this.bookAccess = access;
 
 
-        this.bookList = book.getAllBooks();
+        this.bookList = access.getAllBooks();
 
         inflater = LayoutInflater.from(this.context);
         arrayList = new ArrayList<>();
@@ -38,6 +39,7 @@ public class BookAdapter extends BaseAdapter {
 
     }
 
+    // Constructor - passed in a list of books
     public BookAdapter(Context context, List<Book> list) {
 
         this.context = context;
@@ -49,27 +51,31 @@ public class BookAdapter extends BaseAdapter {
 
     }
 
-
+    // Method - holds
     public class ViewHolder {
         TextView title, author;
         ImageView icon;
     }
 
+    // Method - return the size of the booklist
     @Override
     public int getCount() {
         return bookList.size();
     }
 
+    // Method - return book based on selected position
     @Override
-    public Object getItem(int position) {
+    public Book getItem(int position) {
         return bookList.get(position);
     }
 
+    // Method - returns bookID of selected book
     @Override
     public long getItemId(int position) {
-        return position;
+        return bookList.get(position).getBookID();
     }
 
+    // Method - instantiate views using book information
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
@@ -77,7 +83,7 @@ public class BookAdapter extends BaseAdapter {
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.item, null);
 
-
+            //
             holder.title = convertView.findViewById(R.id.bookTitle);
             holder.author = convertView.findViewById(R.id.bookAuthor);
             holder.icon = convertView.findViewById(R.id.bookIcon);
@@ -96,13 +102,14 @@ public class BookAdapter extends BaseAdapter {
         // Acquire icon/picture and set as relevant picture
         int iconID = -1;
         try {
-            iconID = R.drawable.class.getField(bookList.get(position).getIconId()).getInt(null);
+            iconID = R.drawable.class.getField(getItem(position).getIconId()).getInt(null);
         } catch (Exception e) {
             System.out.println("Cannot find drawable");
         }
 
         holder.icon.setImageResource(iconID);
 
+        // onClick listener for ViewBookInfoActivity
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,10 +119,10 @@ public class BookAdapter extends BaseAdapter {
             }
         });
 
-
         return convertView;
     } // end of getView
 
+    // Method - Filters search list when user enters search criteria
     public void filter(String query) {
 
         List<Book> compareList = new <Book>ArrayList();
@@ -126,9 +133,9 @@ public class BookAdapter extends BaseAdapter {
             bookList.addAll(arrayList);
         } else {
 
-            List<Book> listbyTitle = book.searchBookByTitle(query);
+            List<Book> listbyTitle = bookAccess.searchBookByTitle(query);
             compareList.addAll(listbyTitle);
-            List<Book> listbyAuthor = book.searchBookByAuthor(query);
+            List<Book> listbyAuthor = bookAccess.searchBookByAuthor(query);
             compareList.addAll(listbyAuthor);
 
             for (Book item : compareList) {
