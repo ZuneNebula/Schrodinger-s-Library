@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import comp3350.schrodingers.objects.Book;
+import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.PurchasedBooks;
 
 public class PurchasedBooksHSQLDB implements PurchasedBooks {
@@ -35,11 +36,11 @@ public class PurchasedBooksHSQLDB implements PurchasedBooks {
     }
 
 
-    private List<Integer> getBookIDs(String email){
+    private List<Integer> getBookIDs(int userId){
         List<Integer> bookList = new ArrayList<>();
         try (final Connection c = connection()) {
-            final PreparedStatement st = c.prepareStatement("SELECT bookId FROM purchased WHERE email = ?");
-            st.setString(1, email);
+            final PreparedStatement st = c.prepareStatement("SELECT * FROM purchased WHERE userId = ?");
+            st.setInt(1, userId);
 
             final ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -56,8 +57,8 @@ public class PurchasedBooksHSQLDB implements PurchasedBooks {
     }
 
     @Override
-    public List<Book> getBooks(String email){
-        List<Integer> bookIds = getBookIDs(email);
+    public List<Book> getBooks(int userId){
+        List<Integer> bookIds = getBookIDs(userId);
         List<Book> bookList = new ArrayList<>();
         try (final Connection c = connection()) {
             for(int i =0; i<bookIds.size(); i++) {
@@ -78,10 +79,10 @@ public class PurchasedBooksHSQLDB implements PurchasedBooks {
     }
 
     @Override
-    public void insertBook(Book book, String userEmail){
+    public void insertBook(Book book, int userId){
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("INSERT INTO purchased VALUES(?, ?)");
-            st.setString(1, userEmail);
+            st.setInt(1, userId);
             st.setInt(2, book.getBookID());
 
             st.executeUpdate();

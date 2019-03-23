@@ -102,21 +102,21 @@ public class User {
         }
     }
 
+    private int userId = 0;
     private String email;  // distinct key
     private final String username;
     private String password;
-    boolean isAddress = false; // to keep track if the user has added address/billing info or not
-    boolean isBilling = false;
-    boolean isLoggedIn = false;
+    private boolean isLoggedIn = false;
     private Address address;
     private Billing billing;
 
-    public User(String email, String username, String password) // constructor
+    public User(int id, String email, String username, String password) // constructor
     {//input field tests
         assert (email != null);
         assert (username != null);
         assert (password != null);
 
+        userId = id;
         this.email = email;
         this.username = username;
         this.password = password;
@@ -124,12 +124,13 @@ public class User {
         address = new Address();
     }
 
-    public User(String email, String username, String password, Address address, Billing billing) // constructor
+    public User(int id,String email, String username, String password, Address address, Billing billing) // constructor
     {//input field tests
         assert (email != null);
         assert (username != null);
         assert (password != null);
 
+        userId = id;
         this.email = email;
         this.username = username;
         this.password = password;
@@ -137,6 +138,9 @@ public class User {
         this.address = address;
     }
 
+    public int getUserId(){
+        return userId;
+    }
     public String getUserName() {
         return username;
     }

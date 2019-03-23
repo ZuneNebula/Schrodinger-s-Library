@@ -58,7 +58,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
             if(!forTest)
                 userPersistence = Services.getUsersPersistence();
             user = userPersistence.getUser();
-            userPersistence.editUser(new User(user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), creditCard));
+            userPersistence.editUser(new User(user.getUserId(), user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), creditCard));
             card = creditCard;
 
             return creditCard;
@@ -93,7 +93,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
                 if(!forTest)
                     userPersistence = Services.getUsersPersistence();
                 user = userPersistence.getUser();
-                userPersistence.editUser(new User(user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), new User.Billing()));
+                userPersistence.editUser(new User(user.getUserId(),user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), new User.Billing()));
                 deleteCard(card.getCardNumber());
                 card = addCreditCard(creditCard);
             }

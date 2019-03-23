@@ -12,7 +12,7 @@ public class PurchasedBooksStub implements PurchasedBooks {
     private User user;
     public PurchasedBooksStub(){
         books = new ArrayList<>();
-        books.add(new Book(21, "Whirlwind", "Natalie Hamilton", "$400", "Non-Fiction", "30", "1", "whirlwind"));
+        books.add(new Book(21, "Whirlwind", "Natalie Hamilton", "$400", "Non-Fiction", "30", "whirlwind"));
         user = new User("zunenebula@gmail.com", "Zune", "shield-hero");
     }
 

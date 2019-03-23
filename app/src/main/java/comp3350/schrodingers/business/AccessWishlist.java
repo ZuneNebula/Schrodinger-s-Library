@@ -27,7 +27,7 @@ public class AccessWishlist {
         List<Book> books = new ArrayList<>();
         User user = accessUserInfo.getUser();
         if(user != null)
-            books = wishlistPersistence.getBooks(user.getEmail());
+            books = wishlistPersistence.getBooks(user.getUserId());
         return books;
     }
 
@@ -42,7 +42,7 @@ public class AccessWishlist {
 
         User user = accessUserInfo.getUser();
         if((user != null) && (!flag) ) {
-           wishlistPersistence.insertBook(book, user.getEmail());
+           wishlistPersistence.insertBook(book, user.getUserId());
             return true;
         }
         return false;
