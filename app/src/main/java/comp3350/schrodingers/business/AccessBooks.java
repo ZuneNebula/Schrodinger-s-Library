@@ -7,7 +7,6 @@ import java.util.List;
 import comp3350.schrodingers.persistence.BooksPersistence;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.application.Services;
-import comp3350.schrodingers.persistence.RatingPersistence;
 
 public class AccessBooks {
     private BooksPersistence booksPersistence;
