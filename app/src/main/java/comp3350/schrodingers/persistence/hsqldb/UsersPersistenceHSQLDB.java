@@ -219,7 +219,14 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
 
     public User getUserAndLogin(String email) {
         logged = findUser(email);
-        return logged;
+        try (final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("UPDATE user SET LOGGED = TRUE WHERE email=?");
+            st.setString(1, logged.getEmail());
+            st.executeUpdate();
+            return logged;
+        } catch (final SQLException e) {
+            throw new PersistenceException(e);
+        }
     }
 
     public boolean logout() {
