@@ -13,17 +13,17 @@ public class PurchasedBooksStub implements PurchasedBooks {
     public PurchasedBooksStub(){
         books = new ArrayList<>();
         books.add(new Book(21, "Whirlwind", "Natalie Hamilton", "$400", "Non-Fiction", "30", "whirlwind"));
-        user = new User("zunenebula@gmail.com", "Zune", "shield-hero");
+        user = new User(1, "zunenebula@gmail.com", "Zune", "shield-hero");
     }
 
     @Override
-    public List<Book> getBooks(String email){
+    public List<Book> getBooks(int id){
         return books;
     }
 
     @Override
-    public void insertBook(Book book, String email){
-        if(user.getEmail().equals(email))
+    public void insertBook(Book book, int id){
+        if(user.getUserId() == id)
             books.add(book);
     }
 }
