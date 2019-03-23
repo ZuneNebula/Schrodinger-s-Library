@@ -9,16 +9,13 @@ import comp3350.schrodingers.persistence.BooksPersistence;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.persistence.RatingPersistence;
-import comp3350.schrodingers.objects.User;
 
 public class AccessBooks {
-    private AccessUserInfo accessUserInfo;
+
     private BooksPersistence booksPersistence;
     private RatingPersistence ratingPersistence;
-
-    // Constructor - initialize DB access
+    //constructor
     public AccessBooks() {
-        accessUserInfo = new AccessUserInfo();
         booksPersistence = Services.getBooksPersistence();
         ratingPersistence = Services.getRatePersistence();
     }
@@ -26,6 +23,30 @@ public class AccessBooks {
     public List<Book> getAllBooks() {
         List<Book> allBooks = booksPersistence.getAllBooks();
         return allBooks;
+    }
+
+    public List<Ratings> getAllRatings(){
+        List<Ratings> allRatings = ratingPersistence.getBookRatings();
+        return allRatings;
+    }
+
+    public void addRating(int rate, String user){
+
+        ratingPersistence.addBookRatings(rate, user);
+    }
+
+    public List <Ratings> findRatingsByBook(int bookID){
+        List<Ratings> ratings = ratingPersistence.getBookRatings();
+        List<Ratings> bookRatings = new ArrayList<>();
+        Iterator<Ratings> rateIterator = ratings.iterator();
+        while (rateIterator.hasNext()) {
+            Ratings nextRate = rateIterator.next();  //holds the next rating found in the list
+            if (nextRate.getBookID() == bookID ) {
+                bookRatings.add(nextRate);
+            }
+
+        }//returns a books by the author.
+        return bookRatings;
     }
 
     public Book searchBookById(int id) {
@@ -37,7 +58,7 @@ public class AccessBooks {
                 return nextBook;
             }
 
-        }//returns a books by the ID.
+        }//returns a books by the author.
         return null;
     }
 
@@ -69,31 +90,20 @@ public class AccessBooks {
         return titleBook; //returns a list of books by the title.
     }
 
-//    public List<Ratings> getAllRatings(){
-//        List<Ratings> allRatings = ratingPersistence.getBookRatings();
-//        return allRatings;
-//    }
-
-    public List <Ratings> findRatingsByBook(int bookID){
-        List<Ratings> ratings = ratingPersistence.getBookRatings();
-        List<Ratings> bookRatings = new ArrayList<>();
-        Iterator<Ratings> rateIterator = ratings.iterator();
-        while (rateIterator.hasNext()) {
-            Ratings nextRate = rateIterator.next();  //holds the next rating found in the list
-            if (nextRate.getBookID() == bookID ) {
-                bookRatings.add(nextRate);
+    public List<Book> searchBookByGenre(String genre, int count) {// only used for recommendations
+        List<Book> titleBook = new ArrayList<>();
+        List<Book> books = booksPersistence.getAllBooks();
+        Iterator<Book> bookIterator = books.iterator();
+        int k=count;
+        while (bookIterator.hasNext() && k>0) {
+            Book nextBook = bookIterator.next();  //holds the element to be compared to find the title
+            if (nextBook.getGenre().toLowerCase() == genre.toLowerCase()) {
+                titleBook.add(nextBook);
+                k--;
             }
 
-        }//returns a books by the author.
-        return bookRatings;
-    }
-
-    public void addRating(int bookid, int rate, String review) throws UserException{
-        User user = accessUserInfo.getUser();
-        if(user != null)
-            ratingPersistence.addBookRatings(bookid, rate, user.getEmail(),review);
-        else
-            throw new UserException("Not logged in!");
+        }
+        return titleBook; //returns a list of books by the title, max of upto count no of books.
     }
 
     public List<String> getBookDetails(int id) {
@@ -106,6 +116,7 @@ public class AccessBooks {
         bookInfo.add("Book Price : " + book.getPrice());
         bookInfo.add("Book Genre : " + book.getGenre());
         bookInfo.add("Book Left In Stock : " + book.getBookStock());
+        bookInfo.add("Book Rating : " + book.getRating());
         return bookInfo;
     }
 
