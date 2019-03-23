@@ -125,18 +125,21 @@
         <ListView
             android:id="@+id/ShoppingCartReview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <Button
-            android:id="@+id/Checkout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/review_purchase_button_margin"
-            android:layout_marginRight="@dimen/review_purchase_button_margin"
-            android:background="@color/colorPrimary"
-            android:text="@string/placeOrder"
-            android:textColor="#FFFFFF" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/Checkout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/placeOrder"
+        android:layout_marginLeft="@dimen/review_purchase_button_margin"
+        android:layout_marginRight="@dimen/review_purchase_button_margin"
+        android:layout_marginBottom="@dimen/review_purchase_button_margin"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
