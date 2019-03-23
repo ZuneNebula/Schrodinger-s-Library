@@ -24,7 +24,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Purchase History:"
+            android:text="@string/purchaseHistory"
+            android:textSize="50sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <ListView
