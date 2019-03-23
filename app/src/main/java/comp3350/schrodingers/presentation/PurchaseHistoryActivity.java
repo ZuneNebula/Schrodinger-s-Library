@@ -34,6 +34,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
         try {
+            accessPurchased = new AccessPurchasedBooks();
             List<Book> list = accessPurchased.getBooks();
             BookAdapter adapter = new BookAdapter(this, list);
             ListView bookListView = findViewById(R.id.list_purchased);
