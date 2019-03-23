@@ -22,7 +22,8 @@
             android:icon="@drawable/ic_shopping_cart"/>
         <item
             android:id="@+id/my_recommendations"
-            android:title="Book recommendations"/>
+            android:title="Book recommendations"
+            android:icon="@drawable/ic_recommendations"/>
     </group>
 
 </menu>

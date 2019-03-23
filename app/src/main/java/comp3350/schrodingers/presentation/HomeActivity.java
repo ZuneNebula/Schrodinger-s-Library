@@ -146,7 +146,7 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
-    // Method - handles selection of menu options (
+    // Method - handles selection of menu options
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -362,7 +362,7 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
-    // Copy SC.script to DB
+    // Method - Copy SC.script to DB
     public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
         AssetManager assetManager = getAssets();
 
