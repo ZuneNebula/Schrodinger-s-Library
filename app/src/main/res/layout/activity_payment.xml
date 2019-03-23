@@ -93,17 +93,14 @@
 
     <Button
         android:id="@+id/resetPayment"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="buttonChangePayment"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
-        android:text="@string/updateInfo"
         android:layout_marginLeft="@dimen/review_purchase_button_margin"
+        android:layout_marginTop="@dimen/review_purchase_button_margin"
         android:layout_marginRight="@dimen/review_purchase_button_margin"
-        android:layout_marginTop="@dimen/review_purchase_button_margin" />
-
-
-
+        android:background="@color/colorPrimary"
+        android:onClick="buttonChangePayment"
+        android:text="@string/updateInfo"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

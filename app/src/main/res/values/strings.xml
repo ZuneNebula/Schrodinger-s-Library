@@ -47,7 +47,8 @@
     <string name="reviewOrder">Review Your Order</string>
     <string name="checkout">Proceed to Checkout</string>
     <string name="placeOrder">Place Order</string>
-    <string name="billingInformation">Billing Information</string>
+    <string name="billingAddressInformation">Billing Address Information</string>
+    <string name="creditCardInformation">Credit Card Information</string>
     <string name="purchaseHistory">Purchase History</string>
     <string name="createAccount">Create Account</string>
     <string name="login">Login</string>
@@ -56,6 +57,8 @@
     <string name="personalInfo">Personal Info</string>
     <string name="paymentInfo">Payment Info</string>
     <string name="logout">Logout</string>
+    <string name="enterAddress">Please Enter Billing Address</string>
+    <string name="enterCredit">Please Enter Credit Card</string>
     <string name="myGenres">Spinner Example</string>
     <string-array name="genres">
         <item>Fiction</item>

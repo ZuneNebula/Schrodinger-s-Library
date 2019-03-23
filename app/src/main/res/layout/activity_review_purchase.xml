@@ -27,13 +27,25 @@
             android:textSize="50sp" />
 
         <TextView
-            android:id="@+id/review_billing_heading"
+            android:id="@+id/review_address_heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@string/billingInformation"
+            android:text="@string/billingAddressInformation"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/enterAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/review_purchase_button_margin"
+            android:layout_marginRight="@dimen/review_purchase_button_margin"
+            android:layout_marginBottom="@dimen/review_purchase_button_margin"
+            android:background="@color/colorPrimary"
+            android:text="@string/enterAddress"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/review_userName"
@@ -83,6 +95,27 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/review_creditcard_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/creditCardInformation"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/enterCredit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/review_purchase_button_margin"
+            android:layout_marginRight="@dimen/review_purchase_button_margin"
+            android:layout_marginBottom="@dimen/review_purchase_button_margin"
+            android:background="@color/colorPrimary"
+            android:text="@string/enterCredit"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/review_creditCard"

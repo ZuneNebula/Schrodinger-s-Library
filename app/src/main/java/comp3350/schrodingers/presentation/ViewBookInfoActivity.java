@@ -109,8 +109,6 @@ public class ViewBookInfoActivity extends AppCompatActivity {
                     startActivity(intent);
                 }else
                     showMessage("Not logged in!");
-
-
             }
 
         });
@@ -246,6 +244,4 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         }
 
     }
-
-
 }
