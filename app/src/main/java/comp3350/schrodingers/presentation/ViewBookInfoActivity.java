@@ -23,6 +23,7 @@ import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.AccessWishlist;
 import comp3350.schrodingers.business.AccessShoppingCart;
+import comp3350.schrodingers.business.AccessRatings;
 import comp3350.schrodingers.business.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.Ratings;
@@ -74,7 +75,10 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         List<String> list = getBookDetails(bookList, int_id);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
-        // Set book information and image
+        // Instantiate access to ratings
+        final AccessRatings accessRatings = new AccessRatings();
+
+        // Set book information an dimage
         ListView viewbookList = findViewById(R.id.bookDetail);
         viewbookList.setAdapter(arrayAdapter);
 
@@ -143,7 +147,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         // Ratings Bar
         ratingBar = findViewById(R.id.bookRatingBar);
         viewRateList = findViewById(R.id.ratings);
-        ratings = bookList.findRatingsByBook(int_id);
+        ratings = accessRatings.findRatingsByBook(int_id);
         rateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ratings);
         viewRateList.setAdapter(rateAdapter);
 
@@ -151,8 +155,8 @@ public class ViewBookInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    bookList.addRating(int_id, (int) ratingBar.getRating(), review.getText().toString());
-                    ratings = bookList.findRatingsByBook(int_id);
+                    accessRatings.addRating(int_id, (int) ratingBar.getRating(), review.getText().toString());
+                    ratings = accessRatings.findRatingsByBook(int_id);
                     rateAdapter.add(ratings.get(ratings.size()-1));
                 }catch(UserException e){
                     showMessage(e.toString());

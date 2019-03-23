@@ -144,6 +144,9 @@
                 android:layout_marginLeft="@dimen/review_purchase_button_margin"
                 android:layout_marginRight="@dimen/review_purchase_button_margin"
                 android:text="@string/rateButton" />
+                android:text="@string/rateButton"
+                android:background="@color/colorPrimary"
+                android:textColor="#FFFFFF"/>
 
             <TextView
                 android:id="@+id/rateHeader"
