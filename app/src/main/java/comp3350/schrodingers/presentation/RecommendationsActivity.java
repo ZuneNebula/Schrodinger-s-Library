@@ -21,7 +21,6 @@ import comp3350.schrodingers.R;
 public class RecommendationsActivity extends AppCompatActivity {
     private Spinner Choice;
 
-    private TextView Info;
 
     AccessBooks browser = new AccessBooks();
 
@@ -32,7 +31,6 @@ public class RecommendationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recommendations);
 
         Choice = (Spinner) findViewById(R.id.spinner_genre);
-        SearchView searchView = findViewById(R.id.action_search); // to be changed to match entry button
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.genres, android.R.layout.simple_spinner_item);
