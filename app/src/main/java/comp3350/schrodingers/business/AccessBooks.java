@@ -62,4 +62,22 @@ public class AccessBooks {
         }
         return titleBook; //returns a list of books by the title.
     }
+
+    public List<Book> searchBookByGenre(String genre, int count) {// only used for recommendations
+        List<Book> titleBook = new ArrayList<>();
+        List<Book> books = booksPersistence.getAllBooks();
+        Iterator<Book> bookIterator = books.iterator();
+        int k=count;
+        while (bookIterator.hasNext() && k>0) {
+            Book nextBook = bookIterator.next();  //holds the element to be compared to find the title
+            if (nextBook.getGenre().toLowerCase() == genre.toLowerCase()) {
+                titleBook.add(nextBook);
+                k--;
+            }
+
+        }
+        return titleBook; //returns a list of books by the title, max of upto count no of books.
+    }
+
+
 }

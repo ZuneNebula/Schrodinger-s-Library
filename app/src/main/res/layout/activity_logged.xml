@@ -55,17 +55,16 @@
         android:layout_marginRight="@dimen/review_purchase_button_margin"
         android:layout_marginTop="@dimen/logged_button_top_margin"/>
 
-
     <Button
         android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/review_purchase_button_margin"
+        android:layout_marginTop="@dimen/logout_button_top_margin"
+        android:layout_marginRight="@dimen/review_purchase_button_margin"
+        android:background="@color/colorPrimary"
         android:onClick="buttonLogoutOnClick"
         android:text="@string/logout"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
-        android:layout_marginLeft="@dimen/review_purchase_button_margin"
-        android:layout_marginRight="@dimen/review_purchase_button_margin"
-        android:layout_marginTop="@dimen/logged_button_top_margin"/>
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

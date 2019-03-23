@@ -21,7 +21,6 @@ import comp3350.schrodingers.R;
 public class RecommendationsActivity extends AppCompatActivity {
     private Spinner Choice;
 
-
     AccessBooks browser = new AccessBooks();
 
 
@@ -64,6 +63,5 @@ public class RecommendationsActivity extends AppCompatActivity {
 
 
     }
-
 
 }
