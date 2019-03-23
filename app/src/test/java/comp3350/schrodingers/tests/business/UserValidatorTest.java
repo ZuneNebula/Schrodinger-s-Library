@@ -28,21 +28,21 @@ public class UserValidatorTest extends TestCase {
     @Test(expected= UserException.class)
     public void testNoEmail(){
         System.out.println("\nStarting UserValidatorTest: no email");
-        user = new User("",name,password);
+        user = new User(1,"",name,password);
         handleUser(user);
         System.out.println("\nFinished UserValidatorTest: no email");
     }
     @Test(expected= UserException.class)
     public void testIncorrectEmail(){
         System.out.println("\nStarting UserValidatorTest: incorrect email");
-        user = new User("holagmail.com",name,password);
+        user = new User(1,"holagmail.com",name,password);
         handleUser(user);
         System.out.println("\nFinished UserValidatorTest: incorrect email");
     }
     @Test(expected= UserException.class)
     public void testNoName(){
         System.out.println("\nStarting UserValidatorTest: no name");
-        user = new User(correctEmail,"",password);
+        user = new User(1,correctEmail,"",password);
         handleUser(user);
         System.out.println("\nFinished UserValidatorTest: no name");
     }

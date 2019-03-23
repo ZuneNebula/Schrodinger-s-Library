@@ -11,7 +11,7 @@ import comp3350.schrodingers.objects.User;
 public class UserTest {
 
     private List<User> testUsers;
-    User testUser = new User("axa@gmail.com","michael","voo");
+    User testUser = new User(1,"axa@gmail.com","michael","voo");
 
     @Test
     public void constructorIsCorrect()

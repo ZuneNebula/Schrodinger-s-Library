@@ -35,11 +35,11 @@ public class WishlistPersistenceHSQLDB implements WishlistPersistence {
         return new Book(bookID, bookName, author, price, genre, stock, iconId);
     }
 
-    private List<Integer> getBookIDs(String email){
+    private List<Integer> getBookIDs(int userId){
         List<Integer> bookList = new ArrayList<>();
         try (final Connection c = connection()) {
-            final PreparedStatement st = c.prepareStatement("SELECT bookId FROM wishlist WHERE email = ?");
-            st.setString(1, email);
+            final PreparedStatement st = c.prepareStatement("SELECT bookId FROM wishlist WHERE userId = ?");
+            st.setInt(1, userId);
 
             final ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -56,8 +56,8 @@ public class WishlistPersistenceHSQLDB implements WishlistPersistence {
     }
 
     @Override
-    public List<Book> getBooks(String email){
-        List<Integer> bookIds = getBookIDs(email);
+    public List<Book> getBooks(int userId){
+        List<Integer> bookIds = getBookIDs(userId);
         List<Book> bookList = new ArrayList<>();
         try (final Connection c = connection()) {
             for(int i =0; i<bookIds.size(); i++) {
@@ -77,10 +77,10 @@ public class WishlistPersistenceHSQLDB implements WishlistPersistence {
         }
     }
     @Override
-    public void insertBook(Book book, String userEmail){
+    public void insertBook(Book book, int userId){
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("INSERT INTO wishlist VALUES(?, ?)");
-            st.setString(1, userEmail);
+            st.setInt(1, userId);
             st.setInt(2, book.getBookID());
 
             st.executeUpdate();

@@ -43,6 +43,6 @@ public class PaymentPersistenceStub implements PaymentPersistence {
     }
 
     private User newUser(Billing c) {
-        return userPersistence.editUser(new User(user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), c));
+        return userPersistence.editUser(new User(user.getUserId(), user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), c));
     }
 }

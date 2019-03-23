@@ -77,7 +77,7 @@ public class PersonInfo extends AppCompatActivity {
                 editZip.getText().toString(), editCity.getText().toString(),
                 editState.getText().toString(), editCountry.getText().toString());
 
-        User newUser = new User(editEmail.getText().toString(),
+        User newUser = new User(0, editEmail.getText().toString(),
                 editName.getText().toString(), user.getPassword(), address, user.getBilling());
 
         try {

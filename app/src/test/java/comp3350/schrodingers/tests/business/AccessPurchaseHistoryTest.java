@@ -30,12 +30,12 @@ public class AccessPurchaseHistoryTest {
         System.out.println("\nStarting test AccessPurchasedBooks");
         final Book book;
         final List<Book> books = new ArrayList<>();
-        books.add(new Book(21, "Whirlwind", "Natalie Hamilton", "$400", "Non-Fiction", "30", "1", "whirlwind"));
-        when(booksPersistence.getBooks("zunenebula@gmail.com")).thenReturn(books);
+        books.add(new Book(21, "Whirlwind", "Natalie Hamilton", "$400", "Non-Fiction", "30", "whirlwind"));
+        when(booksPersistence.getBooks(1)).thenReturn(books);
         book = accessPurchased.getBooks().get(0);
         assertNotNull("\tbook for default user should not be null", book);
         assertEquals(book.getBookID(), 21);
-        verify(booksPersistence).getBooks("zunenebula@gmail.com");
+        verify(booksPersistence).getBooks(1);
         System.out.println("\nFinished test AccessPurchasedBooks");
     }
 

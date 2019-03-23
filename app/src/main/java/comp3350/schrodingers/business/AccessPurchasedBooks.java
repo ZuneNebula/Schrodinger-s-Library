@@ -26,14 +26,14 @@ public class AccessPurchasedBooks {
         List<Book> books = new ArrayList<>();
         User user = accessUserInfo.getUser();
         if(user != null)
-            books = purchasedBooks.getBooks(user.getEmail());
+            books = purchasedBooks.getBooks(user.getUserId());
         return books;
     }
 
     public boolean insertBook(Book book){
         User user = accessUserInfo.getUser();
         if(user != null) {
-            purchasedBooks.insertBook(book, user.getEmail());
+            purchasedBooks.insertBook(book, user.getUserId());
             return true;
         }
         return false;

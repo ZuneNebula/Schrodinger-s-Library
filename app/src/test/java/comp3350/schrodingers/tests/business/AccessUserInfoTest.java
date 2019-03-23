@@ -28,7 +28,7 @@ public class AccessUserInfoTest {
     @Test
     public void testGetUser(){
         System.out.println("\nStarting test AccessUserInfo");
-        final User user = new User("zunenebula@gmail.com","Zune","shlied-hero");
+        final User user = new User(1, "zunenebula@gmail.com","Zune","shlied-hero");
         when(usersPersistence.getUser()).thenReturn(user);
         final User getUser = accessUserInfo.getUser();
         assertNotNull("\tfirst logged user should not be null", getUser);

@@ -14,7 +14,7 @@ public class UsersPersistenceStub implements UsersPersistence {
     public UsersPersistenceStub() //constructor
     {
         this.users = new ArrayList<>();
-        users.add(new User("zunenebula@gmail.com", "Zune", "shield-hero"));
+        users.add(new User(1, "zunenebula@gmail.com", "Zune", "shield-hero"));
         logged = users.get(0);
     }
 
@@ -47,7 +47,7 @@ public class UsersPersistenceStub implements UsersPersistence {
         //User will only to be able to edit its information when logged in
         if (logged != null) {
             int index = users.indexOf(logged);
-            logged = new User(newUser.getEmail(), newUser.getUserName(), newUser.getPassword(), newUser.getAddress(), newUser.getBilling());
+            logged = new User(1, newUser.getEmail(), newUser.getUserName(), newUser.getPassword(), newUser.getAddress(), newUser.getBilling());
             users.set(index, logged);
             return logged;
         }

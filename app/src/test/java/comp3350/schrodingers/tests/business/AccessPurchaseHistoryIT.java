@@ -46,7 +46,7 @@ public class AccessPurchaseHistoryIT {
     @Test
     public void testInsert(){
         System.out.println("\nStarting AccessPurchasedBooks: insertBook");
-        Book book = new Book(1, "Annabelle Fights Life", "Jenny Springs", "$200", "Drama", "10", "4", "annabellefightslife");
+        Book book = new Book(1, "Annabelle Fights Life", "Jenny Springs", "$200", "Drama", "10", "annabellefightslife");
         accessPurchased.insertBook(book);
         Book getBook = accessPurchased.getBooks().get(0);
         assertNotNull("\tbook must not be null", getBook);

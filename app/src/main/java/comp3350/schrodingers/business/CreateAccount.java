@@ -21,7 +21,7 @@ public class CreateAccount {
 
     // Method - insert user using only basic/necessary info
     public User insertUser(String email, String userName, String password) throws UserException{
-        User newUser = new User(email, userName, password);
+        User newUser = new User(0, email, userName, password);
         return accessUserInfo.insertUser(newUser);
     }
 
