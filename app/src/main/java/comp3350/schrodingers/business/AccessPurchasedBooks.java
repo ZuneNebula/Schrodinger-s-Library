@@ -23,20 +23,22 @@ public class AccessPurchasedBooks {
         accessUserInfo = new AccessUserInfo(u);
     }
 
-    public List<Book> getBooks(){
+    public List<Book> getBooks() throws UserException{
         List<Book> books = new ArrayList<>();
         User user = accessUserInfo.getUser();
         if(user != null)
             books = purchasedBooks.getBooks(user.getUserId());
+        else
+            throw new UserException("Not logged in");
         return books;
     }
 
-    public boolean insertBook(Book book){
+    public boolean insertBook(Book book) throws UserException{
         User user = accessUserInfo.getUser();
         if(user != null) {
             purchasedBooks.insertBook(book, user.getUserId());
             return true;
         }
-        return false;
+        throw new UserException("Not logged in");
     }
 }

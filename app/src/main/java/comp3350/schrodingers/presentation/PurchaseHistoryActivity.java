@@ -9,6 +9,7 @@ import java.util.List;
 
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessPurchasedBooks;
+import comp3350.schrodingers.business.UserException;
 import comp3350.schrodingers.objects.Book;
 
 // Class - presents purchase history info from DB
@@ -32,10 +33,14 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         // Set up toolbar title color
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
-        accessPurchased = new AccessPurchasedBooks();
-        List<Book> list = accessPurchased.getBooks();
-        BookAdapter adapter = new BookAdapter(this, list);
-        ListView bookListView = findViewById(R.id.list_purchased);
-        bookListView.setAdapter(adapter);
+        try {
+            List<Book> list = accessPurchased.getBooks();
+            BookAdapter adapter = new BookAdapter(this, list);
+            ListView bookListView = findViewById(R.id.list_purchased);
+            bookListView.setAdapter(adapter);
+        }catch (UserException e){
+            Messages.warning(this, e.toString());
+        }
+
     }
 }

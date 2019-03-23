@@ -20,6 +20,7 @@ import java.util.List;
 
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
+import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.AccessWishlist;
 import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.UserException;
@@ -88,19 +89,23 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         }
 
         bookImage.setImageResource(iconID);
-
+        final AccessUserInfo userInfo = new AccessUserInfo();
         // Purchase
         purchaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View view) {
 
-                Context homeContext = ViewBookInfoActivity.this;
-                Class purchaseBookClass = ReviewPurchaseActivity.class;
+                if(userInfo.getUser() != null) {
+                    Context homeContext = ViewBookInfoActivity.this;
+                    Class purchaseBookClass = ReviewPurchaseActivity.class;
 
-                Intent intent = new Intent(homeContext, purchaseBookClass);
-                String bookID = Integer.toString(int_id);
-                intent.putExtra("SELECTED_BOOK", bookID);
-                startActivity(intent);
+                    Intent intent = new Intent(homeContext, purchaseBookClass);
+                    String bookID = Integer.toString(int_id);
+                    intent.putExtra("SELECTED_BOOK", bookID);
+                    startActivity(intent);
+                }else
+                    showMessage("Not logged in!");
+
 
             }
 
@@ -213,7 +218,13 @@ public class ViewBookInfoActivity extends AppCompatActivity {
 
     private boolean insertWishlist(Book book){
         AccessWishlist wishlist = new AccessWishlist();
-        return wishlist.insertBook(book);
+        try {
+            return wishlist.insertBook(book);
+        }catch(UserException e){
+            showMessage(e.toString());
+            return false;
+        }
+
     }
 
     private void viewShoppingCart() {
@@ -223,7 +234,13 @@ public class ViewBookInfoActivity extends AppCompatActivity {
 
     private boolean insertShoppingCart(Book book){
         AccessShoppingCart shoppingCart = new AccessShoppingCart();
-        return shoppingCart.insertBook(book);
+        try {
+            return shoppingCart.insertBook(book);
+        }catch(UserException e){
+            showMessage(e.toString());
+            return false;
+        }
+
     }
 
 

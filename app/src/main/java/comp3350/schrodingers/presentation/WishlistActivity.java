@@ -8,6 +8,7 @@ import java.util.List;
 
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessWishlist;
+import comp3350.schrodingers.business.UserException;
 import comp3350.schrodingers.objects.Book;
 
 // Class - handles presenting user wishlist
@@ -28,10 +29,15 @@ public class WishlistActivity extends AppCompatActivity {
           accessWishlist = new AccessWishlist();
 
           // Display wish list
-          List <Book> list = accessWishlist.getBooks();
-          BookAdapter adapter = new BookAdapter(this, list);
-          ListView bookListView = findViewById(R.id.wishList);
-          bookListView.setAdapter(adapter);
+        try {
+            List<Book> list = accessWishlist.getBooks();
+            BookAdapter adapter = new BookAdapter(this, list);
+            ListView bookListView = findViewById(R.id.wishList);
+            bookListView.setAdapter(adapter);
+        }catch(UserException e){
+            Messages.warning(this, e.toString());
+        }
+
     }
 
 }

@@ -14,6 +14,7 @@ import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.AccessUserInfo;
+import comp3350.schrodingers.business.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.User;
 
@@ -152,10 +153,15 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             accessShoppingCart = new AccessShoppingCart();
 
             // Display either shopping shopping cart
-            List<Book> list = accessShoppingCart.getBooks();
-            BookAdapter adapter = new BookAdapter(this, list);
-            ListView bookListView = findViewById(R.id.ShoppingCartReview);
-            bookListView.setAdapter(adapter);
+            try {
+                List<Book> list = accessShoppingCart.getBooks();
+                BookAdapter adapter = new BookAdapter(this, list);
+                ListView bookListView = findViewById(R.id.ShoppingCartReview);
+                bookListView.setAdapter(adapter);
+            }catch(UserException e){
+                Messages.warning(this, e.toString());
+            }
+
         }
     }
 }

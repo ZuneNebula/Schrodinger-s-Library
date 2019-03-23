@@ -12,6 +12,7 @@ import java.util.List;
 
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessShoppingCart;
+import comp3350.schrodingers.business.UserException;
 import comp3350.schrodingers.objects.Book;
 
 // Class - handles presenting shopping cart
@@ -37,10 +38,15 @@ public class ShoppingCartActivity extends AppCompatActivity {
         accessShoppingCart = new AccessShoppingCart();
 
         // Display shopping cart
-        List <Book> list = accessShoppingCart.getBooks();
-        BookAdapter adapter = new BookAdapter(this, list);
-        ListView bookListView = findViewById(R.id.shoppingCart);
-        bookListView.setAdapter(adapter);
+        try {
+            List<Book> list = accessShoppingCart.getBooks();
+            BookAdapter adapter = new BookAdapter(this, list);
+            ListView bookListView = findViewById(R.id.shoppingCart);
+            bookListView.setAdapter(adapter);
+        }catch(UserException e){
+            Messages.warning(this, e.toString());
+        }
+
 
         // Checkout
         checkout = (Button) findViewById(R.id.ProceedCheckout);

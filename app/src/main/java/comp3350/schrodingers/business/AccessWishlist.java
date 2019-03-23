@@ -23,15 +23,17 @@ public class AccessWishlist {
         this.wishlistPersistence = wishlist;
     }
 
-    public List<Book> getBooks(){
+    public List<Book> getBooks() throws UserException{
         List<Book> books = new ArrayList<>();
         User user = accessUserInfo.getUser();
         if(user != null)
             books = wishlistPersistence.getBooks(user.getUserId());
+        else
+            throw new UserException("Not logged in!");
         return books;
     }
 
-    public boolean insertBook(Book book){
+    public boolean insertBook(Book book) throws UserException{
         List <Book> books = this.getBooks();
         boolean flag = false;
         for(Book booker :books){

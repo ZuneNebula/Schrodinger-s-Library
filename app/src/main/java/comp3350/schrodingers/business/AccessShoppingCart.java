@@ -25,7 +25,7 @@ public class AccessShoppingCart{
         this.ShoppingCartPersistence = cartPersistence;
     }
 
-    public List<Book> getBooks(){
+    public List<Book> getBooks() throws UserException{
         List<Book> books = new ArrayList<>();
         User user = accessUserInfo.getUser();
         if(user != null)
@@ -33,7 +33,7 @@ public class AccessShoppingCart{
         return books;
     }
 
-    public boolean insertBook(Book book){
+    public boolean insertBook(Book book) throws UserException{
         List <Book> books = this.getBooks();
         boolean flag = false;
         for(Book booker :books){
