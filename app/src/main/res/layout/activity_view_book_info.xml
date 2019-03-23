@@ -139,7 +139,9 @@
                 android:id="@+id/submitRate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/rateButton" />
+                android:text="@string/rateButton"
+                android:background="@color/colorPrimary"
+                android:textColor="#FFFFFF"/>
 
             <TextView
                 android:id="@+id/rateHeader"
