@@ -73,7 +73,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         List<String> list = getBookDetails(bookList, int_id);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
-        // Set book information an dimage
+        // Set book information and image
         ListView viewbookList = findViewById(R.id.bookDetail);
         viewbookList.setAdapter(arrayAdapter);
 
