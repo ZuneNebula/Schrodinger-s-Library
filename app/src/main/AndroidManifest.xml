@@ -45,6 +45,7 @@
         <activity android:name=".presentation.WishlistActivity"/>
         <activity android:name=".presentation.ReviewPurchaseActivity"/>
         <activity android:name=".presentation.ShoppingCartActivity"/>
+        <activity android:name=".presentation.RecommendationsActivity"/>
     </application>
 
 </manifest>

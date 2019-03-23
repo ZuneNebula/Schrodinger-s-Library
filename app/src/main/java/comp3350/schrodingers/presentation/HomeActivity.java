@@ -184,6 +184,14 @@ public class HomeActivity extends AppCompatActivity
                 Intent notLoggedIntent = new Intent(HomeActivity.this, NotLoggedActivity.class);
                 HomeActivity.this.startActivity(notLoggedIntent);
             }
+        }else if(id == R.id.my_recommendations){
+            if (user != null) {
+                Intent loggedIntent = new Intent(HomeActivity.this, RecommendationsActivity.class);
+                HomeActivity.this.startActivity(loggedIntent);
+            } else {
+                Intent notLoggedIntent = new Intent(HomeActivity.this, NotLoggedActivity.class);
+                HomeActivity.this.startActivity(notLoggedIntent);
+            }
         }
 
 
