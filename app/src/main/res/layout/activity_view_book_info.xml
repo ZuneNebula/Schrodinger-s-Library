@@ -60,27 +60,44 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/view_book_button_margin"
+                        android:background="@color/colorPrimary"
+                        android:textColor="#FFFFFF"
                         android:text="@string/purchaseButton" />
 
                     <Button
-                        android:id="@+id/cartButton"
+                        android:id="@+id/addCartButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/view_book_button_margin"
+                        android:background="@color/colorPrimary"
+                        android:textColor="#FFFFFF"
                         android:text="@string/cartButton" />
+
+                    <Button
+                        android:id="@+id/viewCartButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/view_book_text_padding"
+                        android:background="@color/colorPrimary"
+                        android:textColor="#FFFFFF"
+                        android:text="@string/viewCartButton" />
 
                     <Button
                         android:id="@+id/addButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/view_book_button_margin"
+                        android:background="@color/colorPrimary"
+                        android:textColor="#FFFFFF"
                         android:text="@string/wishButton" />
 
                     <Button
                         android:id="@+id/viewButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/view_book_button_margin"
+                        android:layout_marginTop="@dimen/view_book_text_padding"
+                        android:background="@color/colorPrimary"
+                        android:textColor="#FFFFFF"
                         android:text="@string/viewList" />
                 </LinearLayout>
             </LinearLayout>

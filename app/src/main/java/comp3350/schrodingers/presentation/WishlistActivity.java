@@ -18,11 +18,16 @@ public class WishlistActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_wishlist);
+
+          // Set up tool bar
           Toolbar myToolbar = findViewById(R.id.my_toolbar);
           setSupportActionBar(myToolbar);
           myToolbar.setTitleTextColor(0XFFFFFFFF);
 
+          // Access wishlist persistence
           accessWishlist = new AccessWishlist();
+
+          // Display wish list
           List <Book> list = accessWishlist.getBooks();
           BookAdapter adapter = new BookAdapter(this, list);
           ListView bookListView = findViewById(R.id.wishList);

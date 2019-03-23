@@ -19,17 +19,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="comp3350.schrodingers.presentation.HomeActivity" />
-
-            <intent-filter>
-                <action android:name="android.intent.action." />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".presentation.ViewBookInfoActivity"
-            android:label="@string/title_activity_view_book_info"
-            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action." />
 
@@ -46,6 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.ViewBookInfoActivity"/>
         <activity android:name=".presentation.LoggedActivity" />
         <activity android:name=".presentation.PersonInfo" />
         <activity android:name=".presentation.PaymentActivity" />
@@ -54,6 +44,7 @@
         <activity android:name=".presentation.NotLoggedActivity" />
         <activity android:name=".presentation.WishlistActivity"/>
         <activity android:name=".presentation.ReviewPurchaseActivity"/>
+        <activity android:name=".presentation.ShoppingCartActivity"/>
     </application>
 
 </manifest>

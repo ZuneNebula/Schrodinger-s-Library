@@ -1,17 +1,19 @@
 package comp3350.schrodingers.application;
 
 import comp3350.schrodingers.persistence.BooksPersistence;
-import comp3350.schrodingers.persistence.PurchasedBooks;
-import comp3350.schrodingers.persistence.RatingPersistence;
 import comp3350.schrodingers.persistence.hsqldb.BooksPersistenceHSQLDB;
-import comp3350.schrodingers.persistence.UsersPersistence;
+import comp3350.schrodingers.persistence.PurchasedBooks;
 import comp3350.schrodingers.persistence.hsqldb.PurchasedBooksHSQLDB;
+import comp3350.schrodingers.persistence.RatingPersistence;
+import comp3350.schrodingers.persistence.hsqldb.RatingPersistenceHSQLDB;
+import comp3350.schrodingers.persistence.ShoppingCartPersistence;
+import comp3350.schrodingers.persistence.hsqldb.ShoppingCartPersistenceHSQLDB;
+import comp3350.schrodingers.persistence.UsersPersistence;
 import comp3350.schrodingers.persistence.hsqldb.UsersPersistenceHSQLDB;
 import comp3350.schrodingers.persistence.PaymentPersistence;
 import comp3350.schrodingers.persistence.hsqldb.PaymentPersistenceHSQLDB;
-import comp3350.schrodingers.persistence.hsqldb.WishlistPersistenceHSQLDB;
 import comp3350.schrodingers.persistence.WishlistPersistence;
-import comp3350.schrodingers.persistence.hsqldb.RatingPersistenceHSQLDB;
+import comp3350.schrodingers.persistence.hsqldb.WishlistPersistenceHSQLDB;
 
 public class Services {
 
@@ -22,6 +24,7 @@ public class Services {
     private static RatingPersistence ratingPersistence = null;
     private static PurchasedBooks purchasedPersistence = null;
     private static WishlistPersistence wishlistPersistence = null;
+    private static ShoppingCartPersistence shoppingCartPersistence = null;
 
     // Return reference to DB for storage and access of book information
     public static synchronized BooksPersistence getBooksPersistence() {
@@ -68,6 +71,13 @@ public class Services {
             wishlistPersistence = new WishlistPersistenceHSQLDB(Main.getDBPathName());
         }
         return wishlistPersistence;
+    }
+
+    public static synchronized ShoppingCartPersistence getShoppingCartPersistence() {
+        if (wishlistPersistence == null) {
+            shoppingCartPersistence = new ShoppingCartPersistenceHSQLDB(Main.getDBPathName());
+        }
+        return shoppingCartPersistence;
     }
 
 }

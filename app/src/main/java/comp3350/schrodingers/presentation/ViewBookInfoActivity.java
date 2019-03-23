@@ -21,6 +21,7 @@ import java.util.List;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessWishlist;
+import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.Ratings;
@@ -34,7 +35,8 @@ public class ViewBookInfoActivity extends AppCompatActivity {
     private Button viewWishlist;
     private Button rateButton;
     private Button purchaseButton;
-    private Button cartButton;
+    private Button addToCart;
+    private Button viewCart;
     private RatingBar ratingBar;
     private ListView viewRateList;
     private ArrayAdapter<Ratings> rateAdapter;
@@ -52,7 +54,6 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         // Setup toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Schrodingers Library");
 
         // Acquire passed parameter (id bookID)
         Intent intent = getIntent();
@@ -64,9 +65,9 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         viewWishlist = (Button) findViewById(R.id.viewButton);
         rateButton = (Button)findViewById(R.id.submitRate);
         purchaseButton = (Button) findViewById(R.id.purchaseButton);
-        cartButton = (Button) findViewById(R.id.cartButton);
-
-
+        addToCart = (Button) findViewById(R.id.addCartButton);
+        viewCart = (Button) findViewById(R.id.viewCartButton);
+        
         // Instantiate access to book persistence
         final AccessBooks bookList = new AccessBooks();
         List<String> list = getBookDetails(bookList, int_id);
@@ -88,7 +89,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
 
         bookImage.setImageResource(iconID);
 
-        // Method - on click actions for purchase and add to shopping cart buttons
+        // Purchase
         purchaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View view) {
@@ -97,28 +98,43 @@ public class ViewBookInfoActivity extends AppCompatActivity {
                 Class purchaseBookClass = ReviewPurchaseActivity.class;
 
                 Intent intent = new Intent(homeContext, purchaseBookClass);
+                String bookID = Integer.toString(int_id);
+                intent.putExtra("SELECTED_BOOK", bookID);
                 startActivity(intent);
 
             }
 
         });
 
-
-        // Method - on click actions for purchase and add to shopping cart buttons
-        cartButton.setOnClickListener(new View.OnClickListener() {
+        // Shopping Cart
+        viewCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                // Show snackbar/tool tip confirming selection has been added
-                Snackbar addedToCart = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.addedToCart, Snackbar.LENGTH_LONG);
-                addedToCart.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
-                addedToCart.show();
-
+                viewShoppingCart();
             }
-
         });
+        
+        addToCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(insertShoppingCart(bookList.searchBookById(int_id))) {
 
+                        // Show snackbar/tool tip confirming selection has been added
+                        Snackbar addedToCart = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.addedToCart, Snackbar.LENGTH_LONG);
+                        addedToCart.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                        addedToCart.show();
 
+                    } else {
+
+                        // Show snackbar/tool tip confirming selection already exits (cannot be added)
+                        Snackbar alreadyAdded = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.alreadyAddedToCart, Snackbar.LENGTH_LONG);
+                        alreadyAdded.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                        alreadyAdded.show();
+
+                    }
+                }
+            });
+        
         // Ratings Bar
         ratingBar = findViewById(R.id.bookRatingBar);
         viewRateList = findViewById(R.id.ratings);
@@ -156,16 +172,16 @@ public class ViewBookInfoActivity extends AppCompatActivity {
                if(insertWishlist(bookList.searchBookById(int_id))) {
 
                    // Show snackbar/tool tip confirming selection has been added
-                   Snackbar addedToCart = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.wishAdded, Snackbar.LENGTH_LONG);
-                   addedToCart.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
-                   addedToCart.show();
+                   Snackbar addedToWishlist = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.wishAdded, Snackbar.LENGTH_LONG);
+                   addedToWishlist.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                   addedToWishlist.show();
 
                } else {
 
                    // Show snackbar/tool tip confirming selection already exits (cannot be added)
-                   Snackbar addedToCart = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.wishAlreadyAdded, Snackbar.LENGTH_LONG);
-                   addedToCart.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
-                   addedToCart.show();
+                   Snackbar alreadyAdded = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.wishAlreadyAdded, Snackbar.LENGTH_LONG);
+                   alreadyAdded.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                   alreadyAdded.show();
 
                }
             }
@@ -175,27 +191,6 @@ public class ViewBookInfoActivity extends AppCompatActivity {
     private void showMessage(String e){
         Messages.warning(this, e);
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main_menu, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
     // Method - acquire details of selected book
     public List<String> getBookDetails(AccessBooks accessBooks, int id) {
@@ -212,15 +207,23 @@ public class ViewBookInfoActivity extends AppCompatActivity {
     }
 
     private void viewWishlist() {
-
             Intent intent = new Intent(ViewBookInfoActivity.this, WishlistActivity.class);
             startActivity(intent);
-
     }
 
     private boolean insertWishlist(Book book){
         AccessWishlist wishlist = new AccessWishlist();
         return wishlist.insertBook(book);
+    }
+
+    private void viewShoppingCart() {
+        Intent intent = new Intent(ViewBookInfoActivity.this, ShoppingCartActivity.class);
+        startActivity(intent);
+    }
+
+    private boolean insertShoppingCart(Book book){
+        AccessShoppingCart shoppingCart = new AccessShoppingCart();
+        return shoppingCart.insertBook(book);
     }
 
 

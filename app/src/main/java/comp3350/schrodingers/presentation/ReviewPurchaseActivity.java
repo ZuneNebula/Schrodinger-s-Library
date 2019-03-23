@@ -4,10 +4,17 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.business.AccessBooks;
+import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.AccessUserInfo;
+import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.User;
 
 // Class - handles page for reviewing purchase
@@ -35,6 +42,9 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
     String cardName;
     int cvv;
     String expiry;
+
+    // Shopping Cart
+    AccessShoppingCart accessShoppingCart;
 
     // Method - instantiates views when activity is created
     @Override
@@ -79,14 +89,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
     // Method - display selected books info
     private void displayInfo(){
 
-        TextView review_heading = findViewById(R.id.review_heading);
-        review_heading.setText("Review Your Order");
-        review_heading.setTextColor(Color.parseColor("#000000"));
-
-        TextView billing_heading = findViewById(R.id.review_billing_heading);
-        billing_heading.setText("Billing Information");
-        billing_heading.setTextColor(Color.parseColor("#000000"));
-
+        // Display Billing info
         TextView review_userName = findViewById(R.id.review_userName);
         review_userName.setText(userName);
         review_userName.setTextColor(Color.parseColor("#000000"));
@@ -131,8 +134,28 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         review_expiry.setText(expiry);
         review_expiry.setTextColor(Color.parseColor("#000000"));
 
-        TextView review_books_heading = findViewById(R.id.review_books_heading);
-        review_books_heading.setText("Selected Books");
-        review_books_heading.setTextColor(Color.parseColor("#000000"));
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            // Display selected book
+            int selectedBookID = Integer.parseInt(extras.getString("SELECTED_BOOK"));
+            AccessBooks access = new AccessBooks();
+            List<Book> selectedBook = new ArrayList<Book>();
+            selectedBook.add(access.searchBookById(selectedBookID));
+
+            BookAdapter adapter = new BookAdapter(this, selectedBook);
+            ListView bookListView = findViewById(R.id.ShoppingCartReview);
+            bookListView.setAdapter(adapter);
+
+        } else {
+
+            // Access shoppingcart persistence
+            accessShoppingCart = new AccessShoppingCart();
+
+            // Display either shopping shopping cart
+            List<Book> list = accessShoppingCart.getBooks();
+            BookAdapter adapter = new BookAdapter(this, list);
+            ListView bookListView = findViewById(R.id.ShoppingCartReview);
+            bookListView.setAdapter(adapter);
+        }
     }
 }

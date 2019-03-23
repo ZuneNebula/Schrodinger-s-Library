@@ -10,10 +10,16 @@
             android:title="My Account" />
         <item
             android:id="@+id/purchase_history"
-            android:title="Purchase History" />
+            android:title="Purchase History"
+            android:icon="@drawable/ic_receipt"/>
         <item
             android:id="@+id/my_wishlist"
-            android:title="My Wishlist" />
+            android:title="My Wishlist"
+            android:icon="@drawable/ic_list"/>
+        <item
+            android:id="@+id/my_shoppingCart"
+            android:title="ShoppingCart"
+            android:icon="@drawable/ic_shopping_cart"/>
     </group>
 
     <!--<item android:title="Communicate">-->

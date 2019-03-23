@@ -39,7 +39,13 @@
     <string name="viewList">View Wishlist</string>
     <string name="myWishlist">My Wishlist</string>
     <string name="purchaseButton">Purchase Book</string>
+    <string name="shoppingCart">Shopping Cart</string>
     <string name="cartButton">Add to Shopping Cart</string>
     <string name="addedToCart">Added to Shopping Cart</string>
+    <string name="viewCartButton">View Shopping Cart</string>
     <string name="alreadyAddedToCart">Book Has Already Been Added to Shopping Cart</string>
+    <string name="reviewOrder">Review Your Order</string>
+    <string name="checkout">Proceed to Checkout</string>
+    <string name="placeOrder">Place Order</string>
+    <string name="billingInformation">Billing Information</string>
 </resources>

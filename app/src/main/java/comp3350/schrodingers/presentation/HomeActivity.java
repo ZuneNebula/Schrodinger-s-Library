@@ -146,22 +146,6 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
-    // Method - action bar options
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
     // Method - handles selection of menu options (
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -192,7 +176,16 @@ public class HomeActivity extends AppCompatActivity
                 Intent notLoggedIntent = new Intent(HomeActivity.this, NotLoggedActivity.class);
                 HomeActivity.this.startActivity(notLoggedIntent);
             }
+        }else if(id == R.id.my_shoppingCart){
+            if (user != null) {
+                Intent loggedIntent = new Intent(HomeActivity.this, ShoppingCartActivity.class);
+                HomeActivity.this.startActivity(loggedIntent);
+            } else {
+                Intent notLoggedIntent = new Intent(HomeActivity.this, NotLoggedActivity.class);
+                HomeActivity.this.startActivity(notLoggedIntent);
+            }
         }
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
