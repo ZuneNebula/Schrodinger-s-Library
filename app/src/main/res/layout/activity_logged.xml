@@ -20,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hi,"
+        android:textSize="50sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
@@ -28,43 +29,43 @@
         android:layout_height="wrap_content"
         android:text="@string/username"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textSize="36sp" />
+        android:textSize="70sp" />
 
     <Button
         android:id="@+id/personalInfo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="buttonInformationOnClick"
-        android:text="Personal Information" />
+        android:text="@string/personalInfo"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="@dimen/review_purchase_button_margin"
+        android:layout_marginRight="@dimen/review_purchase_button_margin"
+        android:layout_marginTop="@dimen/logged_button_top_margin"/>
 
     <Button
         android:id="@+id/paymentInfo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="buttonPaymentOnClick"
-        android:text="Payment Information" />
+        android:text="@string/paymentInfo"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="@dimen/review_purchase_button_margin"
+        android:layout_marginRight="@dimen/review_purchase_button_margin"
+        android:layout_marginTop="@dimen/logged_button_top_margin"/>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="60dp" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="320dp"
-            android:layout_height="match_parent" />
-
-        <Button
-            android:id="@+id/logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="buttonLogoutOnClick"
-            android:text="Log out" />
-
-    </LinearLayout>
-
+        android:onClick="buttonLogoutOnClick"
+        android:text="@string/logout"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="@dimen/review_purchase_button_margin"
+        android:layout_marginRight="@dimen/review_purchase_button_margin"
+        android:layout_marginTop="@dimen/logged_button_top_margin"/>
 
 </LinearLayout>

@@ -49,4 +49,11 @@
     <string name="placeOrder">Place Order</string>
     <string name="billingInformation">Billing Information</string>
     <string name="purchaseHistory">Purchase History</string>
+    <string name="createAccount">Create Account</string>
+    <string name="login">Login</string>
+    <string name="haveAccount">Have an Account?</string>
+    <string name="updateInfo">Update Info</string>
+    <string name="personalInfo">Personal Info</string>
+    <string name="paymentInfo">Payment Info</string>
+    <string name="logout">Logout</string>
 </resources>

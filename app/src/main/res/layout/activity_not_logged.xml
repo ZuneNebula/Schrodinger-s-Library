@@ -25,26 +25,37 @@
             android:id="@+id/loginMessage"
             android:layout_width="415dp"
             android:layout_height="55dp"
-            android:textSize="36sp"
+            android:textSize="50sp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="143dp"
-            android:text="Have an Account?" />
+            android:text="@string/haveAccount"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
         <Button
             android:id="@+id/login_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:background="@color/colorPrimary"
+            android:text="@string/login"
+            android:textColor="#FFFFFF"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="209dp" />
+            tools:layout_editor_absoluteY="209dp"
+            android:layout_marginLeft="@dimen/review_purchase_button_margin"
+            android:layout_marginRight="@dimen/review_purchase_button_margin"
+            android:layout_marginTop="@dimen/logged_button_top_margin"/>
 
         <Button
             android:id="@+id/account_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create an Account"
+            android:background="@color/colorPrimary"
+            android:text="@string/createAccount"
+            android:textColor="#FFFFFF"
             tools:layout_editor_absoluteX="132dp"
-            tools:layout_editor_absoluteY="209dp" />
+            tools:layout_editor_absoluteY="209dp"
+            android:layout_marginLeft="@dimen/review_purchase_button_margin"
+            android:layout_marginRight="@dimen/review_purchase_button_margin"
+            android:layout_marginTop="@dimen/logged_button_top_margin"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

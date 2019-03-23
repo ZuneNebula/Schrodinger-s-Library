@@ -17,13 +17,11 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Card number:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
+        android:textAppearance="?android:attr/textAppearanceLarge"  />
 
     <EditText
         android:id="@+id/billing"
@@ -47,13 +45,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Expiry Date:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CVV:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
             android:id="@+id/expDate"
@@ -80,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name in Card:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
 
     <EditText
@@ -98,7 +96,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="buttonChangePayment"
-        android:text="Change" />
+        android:background="@color/colorPrimary"
+        android:textColor="#FFFFFF"
+        android:text="@string/updateInfo"
+        android:layout_marginLeft="@dimen/review_purchase_button_margin"
+        android:layout_marginRight="@dimen/review_purchase_button_margin"
+        android:layout_marginTop="@dimen/review_purchase_button_margin" />
 
 
 
