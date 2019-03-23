@@ -56,4 +56,14 @@
     <string name="personalInfo">Personal Info</string>
     <string name="paymentInfo">Payment Info</string>
     <string name="logout">Logout</string>
+    <string name="myGenres">Spinner Example</string>
+    <string-array name="genres">
+        <item>Fiction</item>
+        <item>Non-Fiction</item>
+        <item>Action</item>
+        <item>Drama</item>
+        <item>Fantasy</item>
+        <item>Thriller</item>
+        <item>Comedy</item>
+    </string-array>
 </resources>
