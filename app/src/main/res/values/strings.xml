@@ -59,6 +59,7 @@
     <string name="logout">Logout</string>
     <string name="enterAddress">Please Enter Billing Address</string>
     <string name="enterCredit">Please Enter Credit Card</string>
+    <string name="success">Success! You have ordered:</string>
     <string name="myGenres">Spinner Example</string>
     <string-array name="genres">
         <item>Fiction</item>
