@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.UserBuilder;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.persistence.PaymentPersistence;
@@ -20,6 +21,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
     private User user;
     private Billing card;
     private UsersPersistence userPersistence;
+    private UserBuilder userBuilder;
     private boolean forTest = false;
 
     public PaymentPersistenceHSQLDB(final String dbPath) {
@@ -58,7 +60,9 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
             if(!forTest)
                 userPersistence = Services.getUsersPersistence();
             user = userPersistence.getUser();
-            userPersistence.editUser(new User(user.getUserId(), user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), creditCard));
+            userBuilder = new UserBuilder(user);
+            user = userBuilder.setBilling(creditCard);
+            userPersistence.editUser(user);
             card = creditCard;
 
             return creditCard;
@@ -93,7 +97,9 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
                 if(!forTest)
                     userPersistence = Services.getUsersPersistence();
                 user = userPersistence.getUser();
-                userPersistence.editUser(new User(user.getUserId(),user.getEmail(), user.getUserName(), user.getPassword(), user.getAddress(), new User.Billing()));
+                userBuilder = new UserBuilder(user);
+                user = userBuilder.setBilling(new Billing());
+                userPersistence.editUser(user);
                 deleteCard(card.getCardNumber());
                 card = addCreditCard(creditCard);
             }
