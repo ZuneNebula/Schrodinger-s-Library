@@ -33,6 +33,8 @@ public class Ratings {
         this.email = email;
     }
 
+
+
     public int getRate() {
         return rate;
     }
@@ -51,6 +53,6 @@ public class Ratings {
 
     @Override
     public String toString() {
-        return " Rated " + this.rate + " By " + this.email + "\n"+ this.review;
+        return "Rated " + this.rate + " By " + this.email + "\n"+ this.review;
     }
 }

@@ -1,5 +1,7 @@
 package comp3350.schrodingers.business;
 
+import android.media.Rating;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -44,5 +46,22 @@ public class AccessRatings {
             ratingPersistence.addBookRatings(bookid, rate, user.getEmail(),review);
         else
             throw new UserException("Not logged in!");
+    }
+
+    public Ratings getRatingsByUser(int bookID, String email){
+
+        List<Ratings> bookRatings = findRatingsByBook(bookID);
+        Ratings userRating =  new Ratings(-1,null,-1, null);
+
+        Iterator<Ratings> ratingsIterator = bookRatings.iterator();
+
+        while (ratingsIterator.hasNext()){
+            Ratings nexRate  = ratingsIterator.next();
+            if(nexRate.getEmail().equalsIgnoreCase(email)){
+                userRating = nexRate;
+            }
+        }
+
+        return userRating;
     }
 }

@@ -153,9 +153,20 @@ public class ViewBookInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    accessRatings.addRating(int_id, (int) ratingBar.getRating(), review.getText().toString());
-                    ratings = accessRatings.findRatingsByBook(int_id);
-                    rateAdapter.add(ratings.get(ratings.size()-1));
+                    if(accessRatings.getRatingsByUser(int_id, userInfo.getUser().getEmail().toString()).getRate() == -1){
+                        accessRatings.addRating(int_id, (int) ratingBar.getRating(), review.getText().toString());
+                        ratings = accessRatings.findRatingsByBook(int_id);
+                        rateAdapter.add(ratings.get(ratings.size()-1));
+                        Snackbar addedRating =  Snackbar.make(findViewById(R.id.viewBookLayout), "Your Ratings and Review has been added",Snackbar.LENGTH_LONG);
+                        addedRating.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                        addedRating.show();
+                    }
+                    else{
+                        Snackbar notAddedRating =  Snackbar.make(findViewById(R.id.viewBookLayout), "You Already Rated and Reviewed This Book",Snackbar.LENGTH_LONG);
+                        notAddedRating.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                        notAddedRating.show();
+                    }
+
                 }catch(UserException e){
                     showMessage(e.toString());
                 }
