@@ -10,14 +10,17 @@ import comp3350.schrodingers.persistence.WishlistPersistence;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
 public class AccessWishlist {
+
     private AccessUserInfo accessUserInfo;
     private WishlistPersistence wishlistPersistence;
 
+    // Constructor - initialize DB access
     public AccessWishlist() {
       accessUserInfo = new AccessUserInfo();
       wishlistPersistence = Services.getWishlistPersistence();
     }
 
+    // Constructor - inject DB access
     public AccessWishlist(UsersPersistence usersPersistence, final WishlistPersistence wishlist) {
         accessUserInfo = new AccessUserInfo(usersPersistence);
         this.wishlistPersistence = wishlist;

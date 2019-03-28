@@ -10,14 +10,17 @@ import comp3350.schrodingers.persistence.PurchasedBooks;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
 public class AccessPurchasedBooks {
+
     private PurchasedBooks purchasedBooks;
     private AccessUserInfo accessUserInfo;
 
+    // Constructor - initialize DB access
     public AccessPurchasedBooks(){
         purchasedBooks = Services.getPurchasedPersistence();
         accessUserInfo = new AccessUserInfo();
     }
 
+    // Constructor - inject DB access
     public AccessPurchasedBooks(final PurchasedBooks purBooks, UsersPersistence u){
         this.purchasedBooks = purBooks;
         accessUserInfo = new AccessUserInfo(u);

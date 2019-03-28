@@ -9,6 +9,7 @@ import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.application.Services;
 
 public class AccessBooks {
+
     private BooksPersistence booksPersistence;
 
     // Constructor - initialize DB access
@@ -16,10 +17,17 @@ public class AccessBooks {
         booksPersistence = Services.getBooksPersistence();
     }
 
+    // Constructor - inject DB access
+    public AccessBooks(BooksPersistence bookStorage) {
+        booksPersistence = bookStorage;
+    }
+
+    // Method - get all books as list from DB
     public List<Book> getAllBooks() {
         List<Book> allBooks = booksPersistence.getAllBooks();
         return allBooks;
     }
+
 
     public Book searchBookById(int id) {
         List<Book> books = booksPersistence.getAllBooks();

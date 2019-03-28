@@ -14,9 +14,16 @@ public class AccessRatings {
     private AccessUserInfo accessUserInfo;
     private RatingPersistence ratingPersistence;
 
+    // Constructor - initialize DB access
     public AccessRatings(){
         accessUserInfo = new AccessUserInfo();
         ratingPersistence = Services.getRatePersistence();
+    }
+
+    // Constructor - inject DB access
+    public AccessRatings(AccessUserInfo userAccess, RatingPersistence ratingsAccess){
+        accessUserInfo = userAccess;
+        ratingPersistence = ratingsAccess;
     }
 
     public List<Ratings> findRatingsByBook(int bookID){

@@ -7,7 +7,6 @@ import comp3350.schrodingers.persistence.UsersPersistence;
 // Class - facilitates accessing user info from DB
 public class AccessUserInfo {
 
-    // Store payment access to DB and relevant/current user
     private UsersPersistence userPersistence;
     private User logged;
 

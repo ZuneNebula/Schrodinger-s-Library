@@ -12,14 +12,17 @@ import comp3350.schrodingers.persistence.UsersPersistence;
 // Class - dedicated to managing access to the shopping
 // cart table in the DB
 public class AccessShoppingCart{
+
     private AccessUserInfo accessUserInfo;
     private ShoppingCartPersistence ShoppingCartPersistence;
 
+    // Constructor - initialize DB access
     public AccessShoppingCart() {
         accessUserInfo = new AccessUserInfo();
         ShoppingCartPersistence = Services.getShoppingCartPersistence();
     }
 
+    // Constructor - inject DB access
     public AccessShoppingCart(UsersPersistence usersPersistence, final ShoppingCartPersistence cartPersistence) {
         accessUserInfo = new AccessUserInfo(usersPersistence);
         this.ShoppingCartPersistence = cartPersistence;

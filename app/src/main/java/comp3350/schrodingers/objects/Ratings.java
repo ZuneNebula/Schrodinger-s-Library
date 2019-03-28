@@ -15,8 +15,6 @@ public class Ratings {
         this.review = review;
     }
 
-
-
     public int getBookID() {
         return bookID;
     }

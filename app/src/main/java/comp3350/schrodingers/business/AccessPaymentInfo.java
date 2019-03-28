@@ -41,5 +41,4 @@ public class AccessPaymentInfo {
         return payPersistence.updateCreditCard(card);
     }
 
-
 }
