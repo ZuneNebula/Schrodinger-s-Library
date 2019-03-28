@@ -163,7 +163,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             List<Book> selectedBook = new ArrayList<Book>();
             selectedBook.add(access.searchBookById(selectedBookID));
 
-            BookAdapter adapter = new BookAdapter(this, selectedBook);
+            BookAdapter adapter = new BookAdapter(this, R.layout.item, selectedBook);
             ListView bookListView = findViewById(R.id.ShoppingCartReview);
             bookListView.setAdapter(adapter);
 
@@ -175,7 +175,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             // Display either shopping shopping cart
             try {
                 List<Book> list = accessShoppingCart.getBooks();
-                BookAdapter adapter = new BookAdapter(this, list);
+                BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
                 ListView bookListView = findViewById(R.id.ShoppingCartReview);
                 bookListView.setAdapter(adapter);
             }catch(UserException e){

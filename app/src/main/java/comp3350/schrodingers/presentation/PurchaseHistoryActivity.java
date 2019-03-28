@@ -36,7 +36,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         try {
             accessPurchased = new AccessPurchasedBooks();
             List<Book> list = accessPurchased.getBooks();
-            BookAdapter adapter = new BookAdapter(this, list);
+            BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
             ListView bookListView = findViewById(R.id.list_purchased);
             bookListView.setAdapter(adapter);
         }catch (UserException e){

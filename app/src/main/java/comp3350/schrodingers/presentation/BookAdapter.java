@@ -24,9 +24,10 @@ public class BookAdapter extends BaseAdapter {
     private List<Book> bookList;
     private ArrayList<Book> arrayList;
     private AccessBooks bookAccess;
+    private int layoutID;
 
     // Constructor - instantiates book DB access
-    public BookAdapter(Context context, AccessBooks access) {
+    public BookAdapter(Context context, int layId, AccessBooks access) {
 
         this.context = context;
         this.bookAccess = access;
@@ -36,11 +37,11 @@ public class BookAdapter extends BaseAdapter {
         inflater = LayoutInflater.from(this.context);
         arrayList = new ArrayList<>();
         this.arrayList.addAll(bookList);
-
+        layoutID = layId;
     }
 
     // Constructor - passed in a list of books
-    public BookAdapter(Context context, List<Book> list) {
+    public BookAdapter(Context context, int layId, List<Book> list) {
 
         this.context = context;
         this.bookList = list;
@@ -48,7 +49,7 @@ public class BookAdapter extends BaseAdapter {
         inflater = LayoutInflater.from(this.context);
         arrayList = new ArrayList<>();
         this.arrayList.addAll(bookList);
-
+        layoutID = layId;
     }
 
     // Method - holds
@@ -81,7 +82,7 @@ public class BookAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.item, null);
+            convertView = inflater.inflate(layoutID, null);
 
             //
             holder.title = convertView.findViewById(R.id.bookTitle);

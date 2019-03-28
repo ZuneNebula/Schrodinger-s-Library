@@ -40,7 +40,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         // Display shopping cart
         try {
             List<Book> list = accessShoppingCart.getBooks();
-            BookAdapter adapter = new BookAdapter(this, list);
+            BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
             ListView bookListView = findViewById(R.id.shoppingCart);
             bookListView.setAdapter(adapter);
         }catch(UserException e){

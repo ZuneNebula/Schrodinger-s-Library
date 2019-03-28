@@ -31,7 +31,7 @@ public class WishlistActivity extends AppCompatActivity {
           // Display wish list
         try {
             List<Book> list = accessWishlist.getBooks();
-            BookAdapter adapter = new BookAdapter(this, list);
+            BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
             ListView bookListView = findViewById(R.id.wishList);
             bookListView.setAdapter(adapter);
         }catch(UserException e){
