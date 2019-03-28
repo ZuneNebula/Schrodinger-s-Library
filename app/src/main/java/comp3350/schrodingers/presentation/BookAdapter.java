@@ -105,7 +105,7 @@ public class BookAdapter extends BaseAdapter {
             iconID = R.drawable.class.getField(getItem(position).getIconId()).getInt(null);
         } catch (Exception e) {
             // DON'T CARE/UNHANDLABLE - image resources must reside in drawable
-            Log.d("BookAdapter", "Failure to get drawable id.", e);
+            Log.d("BookAdapterException", "Failure to get drawable id.", e);
         }
 
         holder.icon.setImageResource(iconID);
