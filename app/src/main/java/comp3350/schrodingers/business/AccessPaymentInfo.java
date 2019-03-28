@@ -9,7 +9,6 @@ public class AccessPaymentInfo {
 
     // Store payment access to DB and relevant/current credit card number
     private PaymentPersistence payPersistence;
-    private Billing card;
 
     // Constructor - initialize DB access
     public AccessPaymentInfo() {
@@ -23,8 +22,7 @@ public class AccessPaymentInfo {
 
     // Method - return relevant/current credit card from DB
     public Billing getCard() {
-        card = payPersistence.getCard();
-        return card;
+        return payPersistence.getCard();
     }
 
     // Method - insert credit card into DB
