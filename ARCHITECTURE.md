@@ -125,4 +125,4 @@
     - SC.script
 
 #### Architecture Diagram
-*Supplied in the ARCHITECTURE.png*
+*Supplied in the [ARCHITECTURE.png](https://code.cs.umanitoba.ca/comp3350-winter2019/schrodingers-library/blob/master/ARCHITECTURE.png)*
