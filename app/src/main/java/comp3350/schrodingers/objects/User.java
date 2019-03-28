@@ -1,8 +1,5 @@
 package comp3350.schrodingers.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class User {
 
     public static class Address {  // class which stores the address
@@ -96,7 +93,6 @@ public class User {
             return cardNumber == 0L;
         }
 
-
         public String toString() {
             return "Visa ending in" + (cardNumber % 1000);
         }
@@ -106,7 +102,6 @@ public class User {
     private String email;  // distinct key
     private final String username;
     private String password;
-    private boolean isLoggedIn = false;
     private Address address;
     private Billing billing;
 
@@ -141,6 +136,7 @@ public class User {
     public int getUserId(){
         return userId;
     }
+
     public String getUserName() {
         return username;
     }
@@ -160,14 +156,5 @@ public class User {
     public Address getAddress() {
         return address;
     }
-
-    public boolean isLoggedIn() {
-        return isLoggedIn;
-    }
-
-    public boolean isEmpty() {
-        return email.compareTo("") == 0;
-    }
-
 
 }

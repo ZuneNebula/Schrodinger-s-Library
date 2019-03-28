@@ -21,34 +21,12 @@ public class Ratings {
         return bookID;
     }
 
-    public void setBookID(int bookID) {
-        this.bookID = bookID;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-
     public int getRate() {
         return rate;
-    }
-
-    public void setRate(int rate) {
-        this.rate = rate;
-    }
-
-    public String getReview() {
-        return review;
-    }
-
-    public void setReview(String review) {
-        this.review = review;
     }
 
     @Override

@@ -1,7 +1,5 @@
 package comp3350.schrodingers.business;
 
-import android.media.Rating;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,11 +18,6 @@ public class AccessRatings {
         accessUserInfo = new AccessUserInfo();
         ratingPersistence = Services.getRatePersistence();
     }
-
-//    public List<Ratings> getAllRatings(){
-//        List<Ratings> allRatings = ratingPersistence.getBookRatings();
-//        return allRatings;
-//    }
 
     public List<Ratings> findRatingsByBook(int bookID){
         List<Ratings> ratings = ratingPersistence.getBookRatings();
