@@ -43,14 +43,13 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         final long cardNum = rs.getLong("cardNum");
         final String address = rs.getString("numAndStreet");
 
+        userBuilder = new UserBuilder(id, email, username, password);
         if (cardNum == 0 && address.compareTo("") == 0)
-            return new User(id, email, username, password);
+            return userBuilder.getUser();
         else {
             payPersistence = Services.getPaymentPersistence();
             User.Billing card = payPersistence.findCard(cardNum);
             User.Address add = findAddress(address);
-            userBuilder = new UserBuilder(id, email, username, password);
-
             return userBuilder.setAddressAndBilling(add, card);
         }
     }
