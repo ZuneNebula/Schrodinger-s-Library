@@ -9,7 +9,6 @@ public class AccessUserInfo {
 
     // Store payment access to DB and relevant/current user
     private UsersPersistence userPersistence;
-    private User logged;
 
     // Constructor - initialize DB access
     public AccessUserInfo() {
@@ -23,14 +22,12 @@ public class AccessUserInfo {
 
     // Method - return the user already logged (returns null if not logged in)
     public User getUser() {
-        logged = userPersistence.getUser();
-        return logged;
+        return userPersistence.getUser();
     }
 
     // Method - login using previously stored user email (and return it - null if not found)
     public User login(String email){
-        logged = userPersistence.getUserAndLogin(email);
-        return logged;
+        return userPersistence.getUserAndLogin(email);
     }
 
     // Method - insert user into DB
@@ -38,6 +35,7 @@ public class AccessUserInfo {
         //add new user
         UserValidator u = new UserValidator();
         u.validateInfo(user);
+        User logged = getUser();
         if (logged == null)
             return userPersistence.insertUser(user);
         return updateUser(user);

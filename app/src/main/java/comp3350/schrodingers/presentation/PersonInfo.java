@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import comp3350.schrodingers.business.AccessUserInfo;
+import comp3350.schrodingers.business.UserBuilder;
 import comp3350.schrodingers.business.UserException;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Address;
@@ -20,6 +21,7 @@ public class PersonInfo extends AppCompatActivity {
     // Store user DB access and current user
     private AccessUserInfo userList;
     private User user;
+    private UserBuilder userBuilder;
 
     // Method - instantiates views when activity is created
     @Override
@@ -77,8 +79,9 @@ public class PersonInfo extends AppCompatActivity {
                 editZip.getText().toString(), editCity.getText().toString(),
                 editState.getText().toString(), editCountry.getText().toString());
 
-        User newUser = new User(0, editEmail.getText().toString(),
-                editName.getText().toString(), user.getPassword(), address, user.getBilling());
+        userBuilder = new UserBuilder(user);
+        User newUser = userBuilder.setEmailAndName(editEmail.getText().toString(), editName.getText().toString());
+        newUser = userBuilder.setAddress(address);
 
         try {
             user = userList.insertUser(newUser);
