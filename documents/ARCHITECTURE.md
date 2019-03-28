@@ -2,6 +2,10 @@
 
 ## Architecture
 
+We used a 3-tier architecture for our project
+
+#### Architecture Diagram
+*Supplied in the [ARCHITECTURE.png](https://code.cs.umanitoba.ca/comp3350-winter2019/schrodingers-library/blob/master/documents/ARCHITECTURE.png)*
 
 ### Packages and Files
 
@@ -124,6 +128,3 @@
 #### **assets**
 ##### db
     - SC.script
-
-#### Architecture Diagram
-*Supplied in the [ARCHITECTURE.png](https://code.cs.umanitoba.ca/comp3350-winter2019/schrodingers-library/blob/master/ARCHITECTURE.png)*
