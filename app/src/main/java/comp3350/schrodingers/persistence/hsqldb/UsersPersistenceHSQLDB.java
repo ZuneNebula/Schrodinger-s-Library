@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.UserBuilder;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.PaymentPersistence;
 import comp3350.schrodingers.persistence.UsersPersistence;
@@ -22,10 +23,12 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
     private User logged;
     private static int userId = 1;
     private PaymentPersistence payPersistence;
+    private UserBuilder userBuilder;
 
     public UsersPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
         logged = findLoggedUser();
+
     }
 
     private Connection connection() throws SQLException {
@@ -46,7 +49,9 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
             payPersistence = Services.getPaymentPersistence();
             User.Billing card = payPersistence.findCard(cardNum);
             User.Address add = findAddress(address);
-            return new User(id, email, username, password, add, card);
+            userBuilder = new UserBuilder(id, email, username, password);
+
+            return userBuilder.setAddressAndBilling(add, card);
         }
     }
 
@@ -90,38 +95,32 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
     }
 
     public User editUser(User newUser) {
-        //if (newUser.getEmail().compareTo(logged.getEmail()) == 0) {
-            try (final Connection c = connection()) {
-                final PreparedStatement st = c.prepareStatement("UPDATE user SET email = ?, name = ?, password = ?, logged = TRUE, cardNum = ?, numAndStreet = ? WHERE userId = ?");
-                st.setString(1, newUser.getEmail());
-                st.setString(2, newUser.getUserName());
-                st.setString(3, newUser.getPassword());
-                st.setLong(4, newUser.getBilling().getCardNumber());
-                String address = newUser.getAddress().getAddress();
+        try (final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("UPDATE user SET email = ?, name = ?, password = ?, logged = TRUE, cardNum = ?, numAndStreet = ? WHERE userId = ?");
+            st.setString(1, newUser.getEmail());
+            st.setString(2, newUser.getUserName());
+            st.setString(3, newUser.getPassword());
+            st.setLong(4, newUser.getBilling().getCardNumber());
+            String address = newUser.getAddress().getAddress();
 
-                if(address.compareTo("") == 0 || address.compareTo("NOADDRESS!") == 0)
-                    st.setString(5, "NOADDRESS!");
-                else if(logged.getAddress().getAddress().compareTo(address) == 0 && !findAddress(address).isEmpty())
-                    st.setString(5, address);
-                else{
-                    insertAddress(newUser.getAddress());
-                    st.setString(5, address);
-                }
-
-                st.setInt(6, logged.getUserId());
-
-                st.executeUpdate();
-
-                logged = newUser;
-                return logged;
-            } catch (final SQLException e) {
-                throw new PersistenceException(e);
+            if(address.compareTo("") == 0 || address.compareTo("NOADDRESS!") == 0)
+                st.setString(5, "NOADDRESS!");
+            else if(logged.getAddress().getAddress().compareTo(address) == 0 && !findAddress(address).isEmpty())
+                st.setString(5, address);
+            else{
+                insertAddress(newUser.getAddress());
+                st.setString(5, address);
             }
-//        } else {
-//            deleteUser(logged.getEmail());
-//            insertUser(newUser);
-//        }
-        //return logged;
+
+            st.setInt(6, logged.getUserId());
+
+            st.executeUpdate();
+
+            logged = newUser;
+            return logged;
+        } catch (final SQLException e) {
+            throw new PersistenceException(e);
+        }
     }
 
     public User findLoggedUser() {
