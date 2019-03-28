@@ -26,6 +26,7 @@
 ##### objects 
     - Book.java
     - User.java
+    - Ratings.java
     
 ##### persistance
 ###### hsqldb
