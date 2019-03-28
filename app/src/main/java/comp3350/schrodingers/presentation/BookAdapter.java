@@ -2,6 +2,7 @@ package comp3350.schrodingers.presentation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,6 @@ public class BookAdapter extends BaseAdapter {
 
         this.context = context;
         this.bookAccess = access;
-
 
         this.bookList = access.getAllBooks();
 
@@ -104,7 +104,8 @@ public class BookAdapter extends BaseAdapter {
         try {
             iconID = R.drawable.class.getField(getItem(position).getIconId()).getInt(null);
         } catch (Exception e) {
-            System.out.println("Cannot find drawable");
+            // DON'T CARE/UNHANDLABLE - image resources must reside in drawable
+            Log.d("BookAdapter", "Failure to get drawable id.", e);
         }
 
         holder.icon.setImageResource(iconID);

@@ -19,10 +19,9 @@ import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.R;
 
 public class RecommendationsActivity extends AppCompatActivity {
+
     private Spinner Choice;
-
     AccessBooks browser = new AccessBooks();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +58,6 @@ public class RecommendationsActivity extends AppCompatActivity {
 
         ListView bookListView = findViewById(R.id.recView);
         bookListView.setAdapter(arrayAdapter);
-
-
 
     }
 
