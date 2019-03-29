@@ -6,14 +6,14 @@
     android:layout_height="match_parent">
 
     <GridView
-        android:id="@+id/gridview"
+        android:id="@+id/browseView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:columnWidth="@dimen/book_catalog_button_width"
         android:numColumns="auto_fit"
         android:verticalSpacing="24dp"
-        android:horizontalSpacing="10dp"
+        android:horizontalSpacing="1dp"
         android:stretchMode="spacingWidthUniform"
         android:layout_marginTop="@dimen/scroll_view_margin_top" />
 

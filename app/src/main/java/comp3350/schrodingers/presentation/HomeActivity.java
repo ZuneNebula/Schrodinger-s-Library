@@ -35,7 +35,7 @@ import comp3350.schrodingers.objects.User;
 
 // Class - hosts all activity and views located on the home/browse page
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     // Holds DB access for books
     AccessBooks bookList;
@@ -82,7 +82,7 @@ public class HomeActivity extends AppCompatActivity
         changeAdapter(R.layout.book_present);
 
         // Image Button (book catalog) Listeners
-        browseLayout = (GridView)findViewById(R.id.gridview);
+        browseLayout = (GridView)findViewById(R.id.browseView);
         createBookCatalogListeners(browseLayout);
 
     }
@@ -104,10 +104,10 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
-
     public void changeAdapter(int id){
         arrayAdapter = new BookAdapter(this, id, bookList);
     }
+
     // Method - creates top menu options
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -202,7 +202,6 @@ public class HomeActivity extends AppCompatActivity
             }
         }
 
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -232,11 +231,6 @@ public class HomeActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
-    }
-
-    // Book Catalog button handler
-    public void onClick(View v) {
 
     }
 
