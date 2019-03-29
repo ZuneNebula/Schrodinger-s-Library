@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import comp3350.schrodingers.business.FilterSearch;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
@@ -127,26 +128,10 @@ public class BookAdapter extends BaseAdapter {
     // Method - Filters search list when user enters search criteria
     public void filter(String query) {
 
-        List<Book> compareList = new <Book>ArrayList();
-        query = query.toLowerCase().trim();
-        bookList.clear();
+        // Filter book list
+        FilterSearch.filter(query, bookList, arrayList, bookAccess);
 
-        if (query.length() == 0) {
-            bookList.addAll(arrayList);
-        } else {
-
-            List<Book> listbyTitle = bookAccess.searchBookByTitle(query);
-            compareList.addAll(listbyTitle);
-            List<Book> listbyAuthor = bookAccess.searchBookByAuthor(query);
-            compareList.addAll(listbyAuthor);
-
-            for (Book item : compareList) {
-
-                if (!bookList.contains(item)) {
-                    bookList.add(item);
-                }
-            }
-        }
+        // Update booklist with filter changes
         notifyDataSetChanged();
     }
 }

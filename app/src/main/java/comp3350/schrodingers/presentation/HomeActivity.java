@@ -235,7 +235,6 @@ public class HomeActivity extends AppCompatActivity
 
     }
 
-
     // Book Catalog button handler
     public void onClick(View v) {
 
