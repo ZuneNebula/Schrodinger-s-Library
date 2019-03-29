@@ -9,6 +9,7 @@ import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.application.Services;
 
 public class AccessBooks {
+
     private BooksPersistence booksPersistence;
 
     // Constructor - initialize DB access
@@ -78,5 +79,30 @@ public class AccessBooks {
         return titleBook; //returns a list of books by the title, max of upto count no of books.
     }
 
+    // Method - Filters search list when user enters search criteria
+    public List<Book> filter(String query, List<Book> bookList, ArrayList<Book> arrayList) {
+
+        List<Book> compareList = new <Book>ArrayList();
+        query = query.toLowerCase().trim();
+        bookList.clear();
+
+        if (query.length() == 0) {
+            bookList.addAll(arrayList);
+        } else {
+
+            List<Book> listbyTitle = searchBookByTitle(query);
+            compareList.addAll(listbyTitle);
+            List<Book> listbyAuthor = searchBookByAuthor(query);
+            compareList.addAll(listbyAuthor);
+
+            for (Book item : compareList) {
+
+                if (!bookList.contains(item)) {
+                    bookList.add(item);
+                }
+            }
+        }
+        return bookList;
+    }
 
 }

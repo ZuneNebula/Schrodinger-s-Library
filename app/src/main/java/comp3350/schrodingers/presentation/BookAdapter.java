@@ -10,7 +10,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import comp3350.schrodingers.business.FilterSearch;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
@@ -129,7 +128,7 @@ public class BookAdapter extends BaseAdapter {
     public void filter(String query) {
 
         // Filter book list
-        FilterSearch.filter(query, bookList, arrayList, bookAccess);
+        bookAccess.filter(query, bookList, arrayList);
 
         // Update booklist with filter changes
         notifyDataSetChanged();
