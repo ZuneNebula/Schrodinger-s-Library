@@ -1,5 +1,5 @@
 baseurl = "https://example.org"
-title = "Universal"
+title = "Schrodingers Library"
 theme = "hugo-universal-theme"
 themesDir = "../schrodingers-hugo/themes"
 languageCode = "en-us"
