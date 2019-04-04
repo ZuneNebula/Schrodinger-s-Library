@@ -10,13 +10,13 @@ public class BookTest {
         System.out.println("\nStarting testBook1");
         book = new Book(1,"book1","author1","$100","random","10","icon");
         assertNotNull("it is not null", book);
-        assertTrue(1 == book.getBookID());
-        assertTrue("book1".equals(book.getBookName()));
-        assertTrue("author1".equals(book.getAuthor()));
-        assertTrue("$100".equals(book.getPrice()));
-        assertTrue("random".equals(book.getGenre()));
-        assertTrue("10".equals(book.getBookStock()));
-        assertTrue("icon".equals(book.getIconId()));
+        assertEquals(1, book.getBookID());
+        assertEquals("book1", book.getBookName());
+        assertEquals("author1", book.getAuthor());
+        assertEquals("$100", book.getPrice());
+        assertEquals("random", book.getGenre());
+        assertEquals("10", book.getBookStock());
+        assertEquals("icon", book.getIconId());
 
         System.out.println("Finished testBook1");
     }

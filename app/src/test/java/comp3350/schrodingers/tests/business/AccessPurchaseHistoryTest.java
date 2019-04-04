@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.business.AccessPurchasedBooks;
+import comp3350.schrodingers.business.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.persistence.PurchasedBooks;
 import comp3350.schrodingers.tests.persistence.UsersPersistenceStub;
@@ -25,6 +26,7 @@ public class AccessPurchaseHistoryTest {
         booksPersistence = mock(PurchasedBooks.class);
         accessPurchased = new AccessPurchasedBooks(booksPersistence, new UsersPersistenceStub());
     }
+
     @Test
     public void testGet(){
         System.out.println("\nStarting test AccessPurchasedBooks");
@@ -32,11 +34,16 @@ public class AccessPurchaseHistoryTest {
         final List<Book> books = new ArrayList<>();
         books.add(new Book(21, "Whirlwind", "Natalie Hamilton", "$400", "Non-Fiction", "30", "whirlwind"));
         when(booksPersistence.getBooks(1)).thenReturn(books);
-        book = accessPurchased.getBooks().get(0);
-        assertNotNull("\tbook for default user should not be null", book);
-        assertEquals(book.getBookID(), 21);
-        verify(booksPersistence).getBooks(1);
-        System.out.println("\nFinished test AccessPurchasedBooks");
+        try {
+            book = accessPurchased.getBooks().get(0);
+            assertNotNull("\tbook for default user should not be null", book);
+            assertEquals(book.getBookID(), 21);
+            verify(booksPersistence).getBooks(1);
+            System.out.println("\nFinished test AccessPurchasedBooks");
+        }catch(UserException u){
+            System.out.println("\t"+u.toString());
+        }
+
     }
 
 }
