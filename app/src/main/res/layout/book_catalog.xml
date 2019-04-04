@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,12 +10,40 @@
         android:id="@+id/browseView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:columnWidth="@dimen/book_catalog_button_width"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="24dp"
+        android:gravity="center"
         android:horizontalSpacing="1dp"
+        android:numColumns="auto_fit"
+        android:paddingTop="150dp"
         android:stretchMode="spacingWidthUniform"
-        android:layout_marginTop="@dimen/scroll_view_margin_top" />
+        android:verticalSpacing="24dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="80dp">
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="@string/genre"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="@string/price"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

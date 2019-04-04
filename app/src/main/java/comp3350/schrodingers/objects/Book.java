@@ -12,6 +12,7 @@ public class Book {
 
 
     public Book(int bookID, String bookName, String author, String price, String genre, String bookStock, String iconId) {
+
         this.bookID = bookID;
         this.bookName = bookName;
         this.author = author;
@@ -19,6 +20,7 @@ public class Book {
         this.genre = genre;
         this.bookStock = bookStock;
         this.iconId = iconId;
+
     }
 
     public int getBookID() {
