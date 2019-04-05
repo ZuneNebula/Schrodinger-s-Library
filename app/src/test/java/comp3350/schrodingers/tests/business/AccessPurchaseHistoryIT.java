@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.business.AccessPurchasedBooks;
+import comp3350.schrodingers.business.BookBuilder;
 import comp3350.schrodingers.business.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.persistence.PurchasedBooks;
@@ -51,7 +52,9 @@ public class AccessPurchaseHistoryIT {
     @Test
     public void testInsert(){
         System.out.println("\nStarting AccessPurchasedBooks: insertBook");
-        Book book = new Book(1, "Annabelle Fights Life", "Jenny Springs", "$200", "Drama", "10", "annabellefightslife");
+        BookBuilder builder = new BookBuilder();
+        builder.id(1).name("Annabelle Fights Life").author("Jenny Springs").price("$200").genre("Drama").stock("10").icon("annabellefightslife");
+        Book book = builder.buildBook();
         try {
             accessPurchased.insertBook(book);
             Book getBook = accessPurchased.getBooks().get(0);

@@ -2,25 +2,48 @@ package comp3350.schrodingers.objects;
 
 public class Book {
 
-    private final int bookID;
-    private final String bookName;
-    private final String author;
-    private final String price;
-    private final String genre;
-    private final String bookStock;
-    private final String iconId;
+    private int bookID;
+    private String bookName;
+    private String author;
+    private String price;
+    private String genre;
+    private String bookStock;
+    private String iconId;
 
+    // constructor
+    public Book() {}
 
-    public Book(int bookID, String bookName, String author, String price, String genre, String bookStock, String iconId) {
+    // Setter methods
+    public void setBookID(int bookID) {
         this.bookID = bookID;
+    }
+
+    public void setBookName(String bookName) {
         this.bookName = bookName;
+    }
+
+    public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public void setPrice(String price) {
         this.price = price;
-        this.genre = genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;;
+    }
+
+    public void setBookStock(String bookStock) {
         this.bookStock = bookStock;
+    }
+
+    public void setIconId(String iconId) {
         this.iconId = iconId;
     }
 
+
+    // Getter methods
     public int getBookID() {
         return bookID;
     }
@@ -40,7 +63,6 @@ public class Book {
     public String getGenre() {
         return genre;
     }
-
 
     public String getBookStock() {
         return bookStock;

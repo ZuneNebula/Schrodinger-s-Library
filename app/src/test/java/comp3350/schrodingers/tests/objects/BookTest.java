@@ -1,6 +1,8 @@
 package comp3350.schrodingers.tests.objects;
 
 import org.junit.Test;
+
+import comp3350.schrodingers.business.BookBuilder;
 import comp3350.schrodingers.objects.Book;
 import static org.junit.Assert.*;
 public class BookTest {
@@ -8,7 +10,9 @@ public class BookTest {
     public void testBook1(){
         Book book;
         System.out.println("\nStarting testBook1");
-        book = new Book(1,"book1","author1","$100","random","10","icon");
+        BookBuilder builder = new BookBuilder();
+        builder.id(1).name("book1").author("author1").price("$100").genre("random").stock("10").icon("icon");
+        book = builder.buildBook();
         assertNotNull("it is not null", book);
         assertEquals(1, book.getBookID());
         assertEquals("book1", book.getBookName());
