@@ -30,7 +30,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shopping_cart);
 
         // Set up tool bar
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
@@ -41,7 +41,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         try {
             List<Book> list = accessShoppingCart.getBooks();
             BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
-            ListView bookListView = findViewById(R.id.shoppingCart);
+            ListView bookListView = (ListView)findViewById(R.id.shoppingCart);
             bookListView.setAdapter(adapter);
         }catch(UserException e){
             Messages.warning(this, e.toString());

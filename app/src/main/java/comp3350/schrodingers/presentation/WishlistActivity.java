@@ -21,7 +21,7 @@ public class WishlistActivity extends AppCompatActivity {
           setContentView(R.layout.activity_wishlist);
 
           // Set up tool bar
-          Toolbar myToolbar = findViewById(R.id.my_toolbar);
+          Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
           setSupportActionBar(myToolbar);
           myToolbar.setTitleTextColor(0XFFFFFFFF);
 
@@ -32,7 +32,7 @@ public class WishlistActivity extends AppCompatActivity {
         try {
             List<Book> list = accessWishlist.getBooks();
             BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
-            ListView bookListView = findViewById(R.id.wishList);
+            ListView bookListView = (ListView)findViewById(R.id.wishList);
             bookListView.setAdapter(adapter);
         }catch(UserException e){
             Messages.warning(this, e.toString());

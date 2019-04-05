@@ -58,13 +58,13 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
 
         // Setup toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // Instantiate navigation menu
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -94,8 +94,8 @@ public class HomeActivity extends AppCompatActivity
         user = userList.getUser();
 
         // Acquire views on menu
-        TextView userName = findViewById(R.id.username);
-        TextView userEmail = findViewById(R.id.email);
+        TextView userName = (TextView)findViewById(R.id.username);
+        TextView userEmail = (TextView)findViewById(R.id.email);
 
         // Update views
         if (user != null) {
@@ -125,7 +125,7 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 changeAdapter(R.layout.item);
-                searchLayout = findViewById(R.id.booklist);
+                searchLayout = (ListView)findViewById(R.id.booklist);
                 searchLayout.setAdapter(arrayAdapter);
                 browseLayout.setVisibility(ScrollView.INVISIBLE);
                 return true;
@@ -202,7 +202,7 @@ public class HomeActivity extends AppCompatActivity
             }
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

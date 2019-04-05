@@ -23,10 +23,10 @@ public class SearchActivity extends AppCompatActivity {
 
         // Associate layout
         setContentView(R.layout.activity_search);
-        SearchView searchView = findViewById(R.id.action_search);
+        SearchView searchView = (SearchView)findViewById(R.id.action_search);
 
         // Setup toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // Initialize access to book DB
@@ -37,7 +37,7 @@ public class SearchActivity extends AppCompatActivity {
             List<Book> list = bookList.searchBookByAuthor(searchView.getQuery().toString());
             ArrayAdapter<Book> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
-            ListView bookListView = findViewById(R.id.searchList);
+            ListView bookListView = (ListView)findViewById(R.id.searchList);
             bookListView.setAdapter(arrayAdapter);
         }
 

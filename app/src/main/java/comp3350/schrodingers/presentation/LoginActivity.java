@@ -16,10 +16,10 @@ import comp3350.schrodingers.R;
 public class LoginActivity extends AppCompatActivity {
 
     // Various views used by the page
-    private Button Login;
-    private EditText Email;
-    private EditText Password;
-    private TextView Info;
+    private Button login;
+    private EditText email;
+    private EditText password;
+    private TextView info;
 
     // Store user DB access
     UserLogin currLogin = new UserLogin();
@@ -33,16 +33,16 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_login);
 
         // Instantiate views
-        Email = findViewById(R.id.edtEmail);
-        Password = findViewById(R.id.edtPassword);
-        Login = findViewById(R.id.btnLogin);
-        Info = findViewById(R.id.edtView);
+        email = (EditText)findViewById(R.id.edtEmail);
+        password = (EditText)findViewById(R.id.edtPassword);
+        login = (Button)findViewById(R.id.btnLogin);
+        info = (TextView)findViewById(R.id.edtView);
 
         // Set onclick listener to the login button
-        Login.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validate(Email.getText().toString(), Password.getText().toString());
+                validate(email.getText().toString(), password.getText().toString());
 
             }
         });
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, LoggedActivity.class);
             startActivity(intent);
         } else {
-            Info.setText("Incorrect email or password, try again");
+            info.setText("Incorrect email or password, try again");
         }
 
     }

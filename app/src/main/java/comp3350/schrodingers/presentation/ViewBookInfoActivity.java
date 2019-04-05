@@ -54,7 +54,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_book_info);
 
         // Setup toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // Acquire passed parameter (id bookID)
@@ -79,10 +79,10 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         final AccessRatings accessRatings = new AccessRatings();
 
         // Set book information an dimage
-        ListView viewbookList = findViewById(R.id.bookDetail);
+        ListView viewbookList = (ListView)findViewById(R.id.bookDetail);
         viewbookList.setAdapter(arrayAdapter);
 
-        ImageView bookImage = findViewById(R.id.bookImage);
+        ImageView bookImage = (ImageView)findViewById(R.id.bookImage);
         String imageName = bookList.searchBookById(int_id).getIconId();
 
         int iconID = -1;
@@ -143,8 +143,8 @@ public class ViewBookInfoActivity extends AppCompatActivity {
             });
         
         // Ratings Bar
-        ratingBar = findViewById(R.id.bookRatingBar);
-        viewRateList = findViewById(R.id.ratings);
+        ratingBar = (RatingBar)findViewById(R.id.bookRatingBar);
+        viewRateList = (ListView)findViewById(R.id.ratings);
         ratings = accessRatings.findRatingsByBook(int_id);
         rateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ratings);
         viewRateList.setAdapter(rateAdapter);
@@ -174,7 +174,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         });
 
         // Review
-        review = findViewById(R.id.review);
+        review = (EditText)findViewById(R.id.review);
 
         // Wishlist
         viewWishlist.setOnClickListener(new View.OnClickListener() {

@@ -8,3 +8,5 @@
 /build
 /captures
 app/SC.*
+*/_site
+*/.sass-cache

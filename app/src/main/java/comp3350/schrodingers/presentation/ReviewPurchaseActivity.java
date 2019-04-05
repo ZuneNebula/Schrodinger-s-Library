@@ -1,6 +1,5 @@
 package comp3350.schrodingers.presentation;
 
-import android.app.Person;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -60,7 +59,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review_purchase);
 
         // Set toolbar
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         // Set menu title color
@@ -96,34 +95,34 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         enterCredit.setVisibility(View.INVISIBLE);
 
         // Display user info
-        TextView review_userName = findViewById(R.id.review_userName);
+        TextView review_userName = (TextView)findViewById(R.id.review_userName);
         review_userName.setText(userName);
         review_userName.setTextColor(Color.parseColor("#000000"));
 
-        TextView review_email = findViewById(R.id.review_email);
+        TextView review_email = (TextView)findViewById(R.id.review_email);
         review_email.setText(email);
         review_email.setTextColor(Color.parseColor("#000000"));
 
         // Display address info
         if(!userAddress.isEmpty()) {
 
-            TextView review_address = findViewById(R.id.review_address);
+            TextView review_address = (TextView)findViewById(R.id.review_address);
             review_address.setText(address);
             review_address.setTextColor(Color.parseColor("#000000"));
 
-            TextView review_postalCode = findViewById(R.id.review_postalCode);
+            TextView review_postalCode = (TextView)findViewById(R.id.review_postalCode);
             review_postalCode.setText(postalCode);
             review_postalCode.setTextColor(Color.parseColor("#000000"));
 
-            TextView review_country = findViewById(R.id.review_country);
+            TextView review_country = (TextView)findViewById(R.id.review_country);
             review_country.setText(country);
             review_country.setTextColor(Color.parseColor("#000000"));
 
-            TextView review_state = findViewById(R.id.review_state);
+            TextView review_state = (TextView)findViewById(R.id.review_state);
             review_state.setText(state);
             review_state.setTextColor(Color.parseColor("#000000"));
 
-            TextView review_city = findViewById(R.id.review_city);
+            TextView review_city = (TextView)findViewById(R.id.review_city);
             review_city.setText(city);
             review_city.setTextColor(Color.parseColor("#000000"));
 
@@ -134,19 +133,19 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
 
         // Display Billing info
         if(!userAddress.isEmpty()) {
-            TextView review_cardNo = findViewById(R.id.review_creditCard);
+            TextView review_cardNo = (TextView)findViewById(R.id.review_creditCard);
             review_cardNo.setText(Long.toString(creditCard));
             review_cardNo.setTextColor(Color.parseColor("#000000"));
 
-            TextView review_cardName = findViewById(R.id.review_cardName);
+            TextView review_cardName = (TextView)findViewById(R.id.review_cardName);
             review_cardName.setText(cardName);
             review_cardName.setTextColor(Color.parseColor("#000000"));
 
-            TextView review_cvv = findViewById(R.id.review_cvv);
+            TextView review_cvv = (TextView)findViewById(R.id.review_cvv);
             review_cvv.setText(Long.toString(creditCard));
             review_cvv.setTextColor(Color.parseColor("#000000"));
 
-            TextView review_expiry = findViewById(R.id.review_expiry);
+            TextView review_expiry = (TextView)findViewById(R.id.review_expiry);
             review_expiry.setText(expiry);
             review_expiry.setTextColor(Color.parseColor("#000000"));
 
@@ -164,7 +163,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             selectedBook.add(access.searchBookById(selectedBookID));
 
             BookAdapter adapter = new BookAdapter(this, R.layout.item, selectedBook);
-            ListView bookListView = findViewById(R.id.ShoppingCartReview);
+            ListView bookListView = (ListView)findViewById(R.id.ShoppingCartReview);
             bookListView.setAdapter(adapter);
 
         } else {
@@ -176,7 +175,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             try {
                 List<Book> list = accessShoppingCart.getBooks();
                 BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
-                ListView bookListView = findViewById(R.id.ShoppingCartReview);
+                ListView bookListView = (ListView)findViewById(R.id.ShoppingCartReview);
                 bookListView.setAdapter(adapter);
             }catch(UserException e){
                 Messages.warning(this, e.toString());

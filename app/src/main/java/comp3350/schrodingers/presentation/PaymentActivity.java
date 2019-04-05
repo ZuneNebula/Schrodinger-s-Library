@@ -28,7 +28,7 @@ public class PaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment);
 
         // Setup toolbar
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         // Set up toolbar title color
@@ -41,10 +41,10 @@ public class PaymentActivity extends AppCompatActivity {
         // Set presented information as stored user info (if user has already entered it)
         if (!card.isEmpty()) {
             Billing singleCard = card;
-            EditText userBilling = findViewById(R.id.billing);
-            EditText expDate = findViewById(R.id.expDate);
-            EditText cvv = findViewById(R.id.cvv);
-            EditText cardName = findViewById(R.id.cardName);
+            EditText userBilling = (EditText)findViewById(R.id.billing);
+            EditText expDate = (EditText)findViewById(R.id.expDate);
+            EditText cvv = (EditText)findViewById(R.id.cvv);
+            EditText cardName = (EditText)findViewById(R.id.cardName);
             userBilling.setText("" + singleCard.getCardNumber());
             expDate.setText(singleCard.getExpiry());
             cvv.setText("" + singleCard.getCvv());
@@ -54,10 +54,10 @@ public class PaymentActivity extends AppCompatActivity {
 
     // Method - insert card into DB upon button press
     public void buttonChangePayment(View v) {
-        EditText editCardNum = findViewById(R.id.billing);
-        EditText editExpDate = findViewById(R.id.expDate);
-        EditText editCvv = findViewById(R.id.cvv);
-        EditText editCardName = findViewById(R.id.cardName);
+        EditText editCardNum = (EditText)findViewById(R.id.billing);
+        EditText editExpDate = (EditText)findViewById(R.id.expDate);
+        EditText editCvv = (EditText)findViewById(R.id.cvv);
+        EditText editCardName = (EditText)findViewById(R.id.cardName);
 
         long cn = 0L;
         if (editCardNum.getText().toString().length() != 0)

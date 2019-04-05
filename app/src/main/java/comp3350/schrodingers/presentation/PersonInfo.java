@@ -32,7 +32,7 @@ public class PersonInfo extends AppCompatActivity {
         setContentView(R.layout.activity_person_info);
 
         // Setup toolbar
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         // Set up toolbar title color
@@ -44,21 +44,21 @@ public class PersonInfo extends AppCompatActivity {
 
         // Set presented information as stored user info (if user has already entered it)
         if (user != null) {
-            EditText userName = findViewById(R.id.username);
+            EditText userName = (EditText)findViewById(R.id.username);
             userName.setText(user.getUserName());
-            EditText userEmail = findViewById(R.id.email);
+            EditText userEmail = (EditText)findViewById(R.id.email);
             userEmail.setText(user.getEmail());
 
             if (!user.getAddress().isEmpty()) {
-                EditText userAddress = findViewById(R.id.address);
+                EditText userAddress = (EditText)findViewById(R.id.address);
                 userAddress.setText(user.getAddress().getAddress());
-                EditText userCity = findViewById(R.id.city);
+                EditText userCity = (EditText)findViewById(R.id.city);
                 userCity.setText(user.getAddress().getCity());
-                EditText userState = findViewById(R.id.province);
+                EditText userState = (EditText)findViewById(R.id.province);
                 userState.setText(user.getAddress().getState());
-                EditText userZip = findViewById(R.id.zip);
+                EditText userZip = (EditText)findViewById(R.id.zip);
                 userZip.setText(user.getAddress().getPostalCode());
-                EditText userCountry = findViewById(R.id.country);
+                EditText userCountry = (EditText)findViewById(R.id.country);
                 userCountry.setText(user.getAddress().getCountry());
             }
         }
@@ -66,13 +66,13 @@ public class PersonInfo extends AppCompatActivity {
 
     // Method - insert personal into DB upon button press
     public void buttonInfoUpdate(View v) {
-        EditText editName = findViewById(R.id.username);
-        EditText editEmail = findViewById(R.id.email);
-        EditText editAddress = findViewById(R.id.address);
-        EditText editCity = findViewById(R.id.city);
-        EditText editState = findViewById(R.id.province);
-        EditText editZip = findViewById(R.id.zip);
-        EditText editCountry = findViewById(R.id.country);
+        EditText editName = (EditText)findViewById(R.id.username);
+        EditText editEmail = (EditText)findViewById(R.id.email);
+        EditText editAddress = (EditText)findViewById(R.id.address);
+        EditText editCity = (EditText)findViewById(R.id.city);
+        EditText editState = (EditText)findViewById(R.id.province);
+        EditText editZip = (EditText)findViewById(R.id.zip);
+        EditText editCountry = (EditText)findViewById(R.id.country);
 
 
         Address address = new Address(editAddress.getText().toString(),

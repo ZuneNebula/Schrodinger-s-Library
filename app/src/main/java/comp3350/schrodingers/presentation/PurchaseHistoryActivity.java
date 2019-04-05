@@ -25,7 +25,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
 
         // Associate layout
         setContentView(R.layout.activity_purchase_history);
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
 
         // Setup toolbar
         setSupportActionBar(myToolbar);
@@ -37,7 +37,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
             accessPurchased = new AccessPurchasedBooks();
             List<Book> list = accessPurchased.getBooks();
             BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
-            ListView bookListView = findViewById(R.id.list_purchased);
+            ListView bookListView = (ListView)findViewById(R.id.list_purchased);
             bookListView.setAdapter(adapter);
         }catch (UserException e){
             Messages.warning(this, e.toString());

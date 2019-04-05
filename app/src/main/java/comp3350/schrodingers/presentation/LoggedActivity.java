@@ -27,7 +27,7 @@ public class LoggedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_logged);
 
         // Setup toolbar
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         // Set up toolbar title color
@@ -44,7 +44,7 @@ public class LoggedActivity extends AppCompatActivity {
 
     // Method - update menu greeting
     private void updateGreeting() {
-        TextView userName = findViewById(R.id.greeting);
+        TextView userName = (TextView)findViewById(R.id.greeting);
         userName.setText(user.getUserName());
     }
 

@@ -56,7 +56,7 @@ public class RecommendationsActivity extends AppCompatActivity {
 
         ArrayAdapter<Book> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, recs);
 
-        ListView bookListView = findViewById(R.id.recView);
+        ListView bookListView = (ListView)findViewById(R.id.recView);
         bookListView.setAdapter(arrayAdapter);
 
     }

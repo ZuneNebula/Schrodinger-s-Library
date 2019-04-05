@@ -85,9 +85,9 @@ public class BookAdapter extends BaseAdapter {
             convertView = inflater.inflate(layoutID, null);
 
             //
-            holder.title = convertView.findViewById(R.id.bookTitle);
-            holder.author = convertView.findViewById(R.id.bookAuthor);
-            holder.icon = convertView.findViewById(R.id.bookIcon);
+            holder.title = (TextView)convertView.findViewById(R.id.bookTitle);
+            holder.author = (TextView)convertView.findViewById(R.id.bookAuthor);
+            holder.icon = (ImageView)convertView.findViewById(R.id.bookIcon);
 
             convertView.setTag(holder);
 
