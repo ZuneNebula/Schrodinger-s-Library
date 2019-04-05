@@ -9,8 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import comp3350.schrodingers.business.BookBuilder;
 import comp3350.schrodingers.objects.Book;
-import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.PurchasedBooks;
 
 public class PurchasedBooksHSQLDB implements PurchasedBooks {
@@ -32,7 +32,9 @@ public class PurchasedBooksHSQLDB implements PurchasedBooks {
         final String genre = rs.getString("genre");
         final String stock = rs.getString("stock");
         final String iconId = rs.getString("iconId");
-        return new Book(bookID, bookName, author, price, genre, stock, iconId);
+        BookBuilder builder = new BookBuilder();
+        builder.id(bookID).name(bookName).author(author).price(price).genre(genre).stock(stock).icon(iconId);
+        return builder.buildBook();
     }
 
 

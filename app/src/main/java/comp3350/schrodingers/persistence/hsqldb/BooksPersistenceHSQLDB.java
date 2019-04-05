@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import comp3350.schrodingers.business.BookBuilder;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.persistence.BooksPersistence;
 
@@ -36,7 +37,9 @@ public class BooksPersistenceHSQLDB implements BooksPersistence {
         final String genre = rs.getString("genre");
         final String stock = rs.getString("stock");
         final String iconId = rs.getString("iconId");
-        return new Book(bookID, bookName, author, price, genre, stock, iconId);
+        BookBuilder builder = new BookBuilder();
+        builder.id(bookID).name(bookName).author(author).price(price).genre(genre).stock(stock).icon(iconId);
+        return builder.buildBook();
     }
 
     // Method - acquires all currently stored books in the DB
