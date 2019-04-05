@@ -9,7 +9,7 @@ import java.util.List;
 
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessPurchasedBooks;
-import comp3350.schrodingers.business.UserException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
 
 // Class - presents purchase history info from DB

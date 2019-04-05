@@ -17,7 +17,7 @@ import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.AccessUserInfo;
-import comp3350.schrodingers.business.UserException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.User;
 

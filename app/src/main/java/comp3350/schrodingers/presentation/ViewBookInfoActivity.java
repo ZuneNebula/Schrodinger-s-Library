@@ -24,7 +24,7 @@ import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.AccessWishlist;
 import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.AccessRatings;
-import comp3350.schrodingers.business.UserException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.Ratings;
 

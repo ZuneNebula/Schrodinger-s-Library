@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 import comp3350.schrodingers.business.AccessPaymentInfo;
-import comp3350.schrodingers.business.CardException;
+import comp3350.schrodingers.business.cardExceptions.CardException;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.persistence.PaymentPersistence;
 import comp3350.schrodingers.persistence.UsersPersistence;

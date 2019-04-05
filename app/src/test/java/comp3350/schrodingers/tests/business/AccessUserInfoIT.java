@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 import comp3350.schrodingers.business.AccessUserInfo;
-import comp3350.schrodingers.business.UserException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.UsersPersistence;
 import comp3350.schrodingers.persistence.hsqldb.UsersPersistenceHSQLDB;

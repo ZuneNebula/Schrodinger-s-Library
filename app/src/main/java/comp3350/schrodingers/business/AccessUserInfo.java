@@ -1,5 +1,6 @@
 package comp3350.schrodingers.business;
 
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.persistence.UsersPersistence;

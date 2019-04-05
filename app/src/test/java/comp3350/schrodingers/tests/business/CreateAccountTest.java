@@ -1,15 +1,11 @@
 package comp3350.schrodingers.tests.business;
 
-import junit.framework.TestCase;
-
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
-
 import comp3350.schrodingers.business.CreateAccount;
-import comp3350.schrodingers.business.UserException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.tests.persistence.UsersPersistenceStub;
 

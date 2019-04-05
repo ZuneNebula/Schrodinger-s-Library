@@ -6,12 +6,11 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.business.AccessPurchasedBooks;
 import comp3350.schrodingers.business.BookBuilder;
-import comp3350.schrodingers.business.UserException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.persistence.PurchasedBooks;
 import comp3350.schrodingers.persistence.UsersPersistence;

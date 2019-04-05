@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
-import comp3350.schrodingers.business.CardException;
+import comp3350.schrodingers.business.cardExceptions.CardException;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessPaymentInfo;

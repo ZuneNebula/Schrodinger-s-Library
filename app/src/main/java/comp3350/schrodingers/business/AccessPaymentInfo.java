@@ -1,5 +1,6 @@
 package comp3350.schrodingers.business;
 
+import comp3350.schrodingers.business.cardExceptions.CardException;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.persistence.PaymentPersistence;

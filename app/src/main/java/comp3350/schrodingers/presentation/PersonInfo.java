@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.UserBuilder;
-import comp3350.schrodingers.business.UserException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Address;
 

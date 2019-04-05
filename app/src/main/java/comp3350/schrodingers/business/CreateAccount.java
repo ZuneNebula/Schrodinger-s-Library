@@ -1,5 +1,6 @@
 package comp3350.schrodingers.business;
 
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.persistence.UsersPersistence;
 import comp3350.schrodingers.objects.User;
 
@@ -20,7 +21,7 @@ public class CreateAccount {
     }
 
     // Method - insert user using only basic/necessary info
-    public User insertUser(String email, String userName, String password) throws UserException{
+    public User insertUser(String email, String userName, String password) throws UserException {
         User newUser = new User(0, email, userName, password);
         return accessUserInfo.insertUser(newUser);
     }

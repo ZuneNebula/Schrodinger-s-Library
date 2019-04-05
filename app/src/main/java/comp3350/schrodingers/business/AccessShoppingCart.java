@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.ShoppingCartPersistence;
@@ -25,7 +26,7 @@ public class AccessShoppingCart{
         this.ShoppingCartPersistence = cartPersistence;
     }
 
-    public List<Book> getBooks() throws UserException{
+    public List<Book> getBooks() throws UserException {
         List<Book> books = new ArrayList<>();
         User user = accessUserInfo.getUser();
         if(user != null)

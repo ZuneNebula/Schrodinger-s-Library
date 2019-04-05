@@ -1,4 +1,4 @@
-package comp3350.schrodingers.business;
+package comp3350.schrodingers.business.cardExceptions;
 
 // Class - dedicated exception for errors involving credit cards
 public class CardException extends Exception {
@@ -7,13 +7,16 @@ public class CardException extends Exception {
     private String message;
 
     // Constructor - initializes exception message
-    public CardException(String m) {
-        message = m;
+    public CardException() {
+        message = "Card Exception";
     }
 
     // Method - return the message as a string
     public String toString() {
         return message;
+    }
+    public void setMessage(String m){
+        message = m;
     }
 
 }
