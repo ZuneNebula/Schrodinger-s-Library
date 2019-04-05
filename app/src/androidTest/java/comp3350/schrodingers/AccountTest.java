@@ -18,6 +18,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
@@ -76,9 +77,13 @@ public class AccountTest {
 
         onView(withId(R.id.paymentInfo)).perform(click());
         //add payment info
+        onView(withId(R.id.billing)).perform(clearText());
         onView(withId(R.id.billing)).perform(typeText(cardNum));
+        onView(withId(R.id.expDate)).perform(clearText());
         onView(withId(R.id.expDate)).perform(typeText(expiry));
+        onView(withId(R.id.cvv)).perform(clearText());
         onView(withId(R.id.cvv)).perform(typeText(cvv));
+        onView(withId(R.id.cardName)).perform(clearText());
         onView(withId(R.id.cardName)).perform(typeText(name));
         onView(withId(R.id.resetPayment)).perform(click());
 
