@@ -17,7 +17,7 @@ public class AccessRatings {
     private RatingPersistence ratingPersistence;
 
     public AccessRatings(){
-        accessUserInfo = new AccessUserInfo();
+        accessUserInfo = Services.getUserInfoAccess();
         ratingPersistence = Services.getRatePersistence();
     }
 

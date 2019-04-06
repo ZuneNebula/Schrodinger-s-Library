@@ -12,17 +12,18 @@ import comp3350.schrodingers.persistence.PurchasedBooks;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
 public class AccessPurchasedBooks {
+
     private PurchasedBooks purchasedBooks;
     private AccessUserInfo accessUserInfo;
 
     public AccessPurchasedBooks(){
         purchasedBooks = Services.getPurchasedPersistence();
-        accessUserInfo = new AccessUserInfo();
+        accessUserInfo = Services.getUserInfoAccess();
     }
 
     public AccessPurchasedBooks(final PurchasedBooks purBooks, UsersPersistence u){
         this.purchasedBooks = purBooks;
-        accessUserInfo = new AccessUserInfo(u);
+        accessUserInfo = Services.getUserInfoAccess();
     }
 
     public List<Book> getBooks() throws UserException {

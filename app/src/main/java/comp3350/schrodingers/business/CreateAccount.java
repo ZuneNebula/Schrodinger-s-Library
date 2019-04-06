@@ -1,5 +1,6 @@
 package comp3350.schrodingers.business;
 
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.persistence.UsersPersistence;
 import comp3350.schrodingers.objects.User;
@@ -12,12 +13,12 @@ public class CreateAccount {
 
     // Constructor - initialize DB access
     public CreateAccount() {
-        accessUserInfo = new AccessUserInfo();
+        accessUserInfo = Services.getUserInfoAccess();
     }
 
     // Constructor - inject DB access
     public CreateAccount(UsersPersistence u){
-        accessUserInfo = new AccessUserInfo(u);
+        accessUserInfo = Services.getUserInfoAccess();
     }
 
     // Method - insert user using only basic/necessary info

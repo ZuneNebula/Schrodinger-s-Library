@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.AccessUserInfo;
@@ -66,7 +67,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
         // Acquire information about user
-        userAccess = new AccessUserInfo();
+        userAccess = Services.getUserInfoAccess();
 
         currUser = userAccess.getUser();
         userAddress = currUser.getAddress();
@@ -158,7 +159,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         if(extras != null){
             // Display selected book
             int selectedBookID = Integer.parseInt(extras.getString("SELECTED_BOOK"));
-            AccessBooks access = new AccessBooks();
+            AccessBooks access = Services.getBookAccess();
             List<Book> selectedBook = new ArrayList<Book>();
             selectedBook.add(access.searchBookById(selectedBookID));
 

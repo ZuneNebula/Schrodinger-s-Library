@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.cardExceptions.CardException;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.R;
@@ -35,7 +36,7 @@ public class PaymentActivity extends AppCompatActivity {
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
         // Instantiate access to DB and get current credit card
-        accessCards = new AccessPaymentInfo();
+        accessCards = Services.getPaymentInfoAccess();
         card = accessCards.getCard();
 
         // Set presented information as stored user info (if user has already entered it)

@@ -19,7 +19,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.ImageButton;
 import android.widget.ScrollView;
 
 import java.io.File;
@@ -29,6 +28,7 @@ import java.io.InputStreamReader;
 
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.application.Main;
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.objects.User;
@@ -74,11 +74,11 @@ public class HomeActivity extends AppCompatActivity
         copyDatabaseToDevice();
 
         // Instantiate user DB access and current user
-        userList = new AccessUserInfo();
+        userList = Services.getUserInfoAccess();
         user = userList.getUser();
 
         // Create book list and adapter
-        bookList = new AccessBooks();
+        bookList = Services.getBookAccess();
         changeAdapter(R.layout.book_present);
 
         // Image Button (book catalog) Listeners

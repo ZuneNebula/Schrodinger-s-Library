@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.AccessWishlist;
@@ -74,7 +75,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         viewCart = (Button) findViewById(R.id.viewCartButton);
         
         // Instantiate access to book persistence
-        final AccessBooks bookList = new AccessBooks();
+        final AccessBooks bookList = Services.getBookAccess();
         List<String> list = getBookDetails(bookList, int_id);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
@@ -96,7 +97,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         }
 
         bookImage.setImageResource(iconID);
-        final AccessUserInfo userInfo = new AccessUserInfo();
+        final AccessUserInfo userInfo = Services.getUserInfoAccess();
         user = userInfo.getUser();
         // Purchase
         purchaseButton.setOnClickListener(new View.OnClickListener() {

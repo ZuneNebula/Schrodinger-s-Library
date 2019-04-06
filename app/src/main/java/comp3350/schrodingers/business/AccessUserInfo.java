@@ -11,11 +11,6 @@ public class AccessUserInfo {
     // Store payment access to DB and relevant/current user
     private UsersPersistence userPersistence;
 
-    // Constructor - initialize DB access
-    public AccessUserInfo() {
-        userPersistence = Services.getUsersPersistence();
-    }
-
     // Constructor - inject DB access
     public AccessUserInfo(final UsersPersistence userPers) {
         this.userPersistence = userPers;

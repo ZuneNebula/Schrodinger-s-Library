@@ -2,7 +2,6 @@ package comp3350.schrodingers.business;
 
 import comp3350.schrodingers.business.cardExceptions.CardException;
 import comp3350.schrodingers.objects.User.Billing;
-import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.persistence.PaymentPersistence;
 
 // Class - facilitates accessing payment info from DB
@@ -11,14 +10,9 @@ public class AccessPaymentInfo {
     // Store payment access to DB and relevant/current credit card number
     private PaymentPersistence payPersistence;
 
-    // Constructor - initialize DB access
-    public AccessPaymentInfo() {
-        payPersistence = Services.getPaymentPersistence();
-    }
-
     // Constructor - inject DB access
-    public AccessPaymentInfo(final PaymentPersistence payPers) {
-        this.payPersistence = payPers;
+    public AccessPaymentInfo(PaymentPersistence persistence) {
+        this.payPersistence = persistence;
     }
 
     // Method - return relevant/current credit card from DB

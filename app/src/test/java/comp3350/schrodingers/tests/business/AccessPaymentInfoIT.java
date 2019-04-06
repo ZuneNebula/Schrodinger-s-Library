@@ -19,7 +19,9 @@ import comp3350.schrodingers.tests.utils.TestUtils;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+
 public class AccessPaymentInfoIT {
+
     private AccessPaymentInfo accessPay;
     private File tempDB;
 

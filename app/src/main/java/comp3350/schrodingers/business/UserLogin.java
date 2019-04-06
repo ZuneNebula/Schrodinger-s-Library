@@ -1,5 +1,6 @@
 package comp3350.schrodingers.business;
 
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
@@ -11,12 +12,12 @@ public class UserLogin {
 
     // Constructor - initialize DB access
     public UserLogin() {
-        accessUserInfo = new AccessUserInfo();
+        accessUserInfo = Services.getUserInfoAccess();
     }
 
     // Constructor - inject DB access
     public UserLogin(final UsersPersistence u){
-        accessUserInfo = new AccessUserInfo(u);
+        accessUserInfo = Services.getUserInfoAccess();
     }
 
     // Method - check email and password in order to login

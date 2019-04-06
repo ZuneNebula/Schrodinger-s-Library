@@ -17,12 +17,12 @@ public class AccessShoppingCart{
     private ShoppingCartPersistence ShoppingCartPersistence;
 
     public AccessShoppingCart() {
-        accessUserInfo = new AccessUserInfo();
+        accessUserInfo = Services.getUserInfoAccess();
         ShoppingCartPersistence = Services.getShoppingCartPersistence();
     }
 
     public AccessShoppingCart(UsersPersistence usersPersistence, final ShoppingCartPersistence cartPersistence) {
-        accessUserInfo = new AccessUserInfo(usersPersistence);
+        accessUserInfo = Services.getUserInfoAccess();
         this.ShoppingCartPersistence = cartPersistence;
     }
 

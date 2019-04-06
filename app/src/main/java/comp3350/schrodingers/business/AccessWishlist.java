@@ -12,16 +12,17 @@ import comp3350.schrodingers.persistence.WishlistPersistence;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
 public class AccessWishlist {
+
     private AccessUserInfo accessUserInfo;
     private WishlistPersistence wishlistPersistence;
 
     public AccessWishlist() {
-      accessUserInfo = new AccessUserInfo();
+      accessUserInfo = Services.getUserInfoAccess();
       wishlistPersistence = Services.getWishlistPersistence();
     }
 
     public AccessWishlist(UsersPersistence usersPersistence, final WishlistPersistence wishlist) {
-        accessUserInfo = new AccessUserInfo(usersPersistence);
+        accessUserInfo = Services.getUserInfoAccess();
         this.wishlistPersistence = wishlist;
     }
 
