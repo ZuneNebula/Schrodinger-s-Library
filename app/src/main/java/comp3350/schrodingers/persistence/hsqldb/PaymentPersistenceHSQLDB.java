@@ -6,30 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import comp3350.schrodingers.application.Services;
-import comp3350.schrodingers.business.UserBuilder;
-import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.persistence.PaymentPersistence;
-import comp3350.schrodingers.persistence.UsersPersistence;
 
 public class PaymentPersistenceHSQLDB implements PaymentPersistence {
     private final String dbPath;
-    private User user;
     private Billing card;
-    private UsersPersistence userPersistence;
-    private UserBuilder userBuilder;
-    private boolean forTest = false;
 
     public PaymentPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
         card = new Billing();
-    }
-    public PaymentPersistenceHSQLDB(final String dbPath, UsersPersistence u) {
-        this.dbPath = dbPath;
-        card = new Billing();
-        userPersistence = u;
-        forTest = true;
     }
 
     private Connection connection() throws SQLException {
@@ -45,7 +31,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
     }
 
     @Override
-    public Billing addCreditCard(Billing creditCard) {
+    public void addCreditCard(Billing creditCard) {
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("INSERT INTO creditCard VALUES(?, ?, ?, ?)");
             st.setLong(1, creditCard.getCardNumber());
@@ -54,15 +40,8 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
             st.setInt(4, creditCard.getCvv());
 
             st.executeUpdate();
-            if(!forTest)
-                userPersistence = Services.getUsersPersistence(); // TODO
-            user = userPersistence.getUser();
-            userBuilder = new UserBuilder(user);
-            user = userBuilder.setBilling(creditCard);
-            userPersistence.editUser(user);
             card = creditCard;
 
-            return creditCard;
         } catch (final SQLException e) {
             throw new PersistenceException(e);
         }
@@ -79,7 +58,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
     }
 
     @Override
-    public Billing updateCreditCard(Billing creditCard) {
+    public void updateCreditCard(Billing creditCard) {
         try (final Connection c = connection()) {
             if (card.getCardNumber() == creditCard.getCardNumber()) {
                 final PreparedStatement st = c.prepareStatement("UPDATE creditCard SET cardName = ?, expiryDate = ?, cvv = ? WHERE cardNum = ?");
@@ -89,19 +68,13 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
                 st.setLong(4, creditCard.getCardNumber());
 
                 st.executeUpdate();
-                card = creditCard;
             } else {
-                if(!forTest)
-                    userPersistence = Services.getUsersPersistence(); // TODO
-                user = userPersistence.getUser();
-                userBuilder = new UserBuilder(user);
-                user = userBuilder.setBilling(new Billing());
-                userPersistence.editUser(user);
                 deleteCard(card.getCardNumber());
-                card = addCreditCard(creditCard);
+                addCreditCard(creditCard);
             }
 
-            return creditCard;
+            card = creditCard;
+
         } catch (final SQLException e) {
             throw new PersistenceException(e);
         }

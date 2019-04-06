@@ -21,17 +21,14 @@ public class AccessPaymentInfo {
     }
 
     // Method - insert credit card into DB
-    public Billing insertCard(Billing card) throws CardException {
+    public void insertCard(Billing card) throws CardException {
         PaymentProcessor p = new PaymentProcessor();
         p.validateCard(card);
-        if (getCard().isEmpty())
-            return payPersistence.addCreditCard(card);
-        else return updateCard(card);
     }
 
     // Method - update credit card stored in DB
-    public Billing updateCard(Billing card) {
-        return payPersistence.updateCreditCard(card);
+    public void updateCard(Billing card) {
+        payPersistence.updateCreditCard(card);
     }
 
 
