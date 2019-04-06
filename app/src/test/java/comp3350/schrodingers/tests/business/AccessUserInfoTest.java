@@ -6,8 +6,8 @@ import org.junit.Test;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.UsersPersistence;
-import comp3350.schrodingers.tests.persistence.UsersPersistenceStub;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -32,7 +32,7 @@ public class AccessUserInfoTest {
         when(usersPersistence.getUser()).thenReturn(user);
         final User getUser = accessUserInfo.getUser();
         assertNotNull("\tfirst logged user should not be null", getUser);
-        assertTrue("Zune".equals(getUser.getUserName()));
+        assertEquals("Zune", getUser.getUserName());
         verify(usersPersistence).getUser();
         System.out.println("\nFinished test AccessUserInfo");
     }
