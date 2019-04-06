@@ -4,13 +4,13 @@ import java.util.Comparator;
 
 public class Book {
 
-    private int bookID;
-    private String bookName;
-    private String author;
-    private String price;
-    private String genre;
-    private String bookStock;
-    private String iconId;
+    private int bookID = -1;
+    private String bookName = null;
+    private String author= null;
+    private String price= null;
+    private String genre= null;
+    private String bookStock= null;
+    private String iconId= null;
 
     // constructor
     public Book() {}

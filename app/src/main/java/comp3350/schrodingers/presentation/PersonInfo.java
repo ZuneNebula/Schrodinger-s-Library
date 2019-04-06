@@ -22,7 +22,6 @@ public class PersonInfo extends AppCompatActivity {
     // Store user DB access and current user
     private AccessUserInfo userList;
     private User user;
-    private UserBuilder userBuilder;
 
     // Method - instantiates views when activity is created
     @Override
@@ -50,7 +49,7 @@ public class PersonInfo extends AppCompatActivity {
             EditText userEmail = (EditText)findViewById(R.id.email);
             userEmail.setText(user.getEmail());
 
-            if (!user.getAddress().isEmpty()) {
+            if (user.addrExist()) {
                 EditText userAddress = (EditText)findViewById(R.id.address);
                 userAddress.setText(user.getAddress().getAddress());
                 EditText userCity = (EditText)findViewById(R.id.city);
@@ -67,6 +66,8 @@ public class PersonInfo extends AppCompatActivity {
 
     // Method - insert personal into DB upon button press
     public void buttonInfoUpdate(View v) {
+
+        // Acquire layout views
         EditText editName = (EditText)findViewById(R.id.username);
         EditText editEmail = (EditText)findViewById(R.id.email);
         EditText editAddress = (EditText)findViewById(R.id.address);
@@ -75,16 +76,17 @@ public class PersonInfo extends AppCompatActivity {
         EditText editZip = (EditText)findViewById(R.id.zip);
         EditText editCountry = (EditText)findViewById(R.id.country);
 
-
-        Address address = new Address(editAddress.getText().toString(),
-                editZip.getText().toString(), editCity.getText().toString(),
-                editState.getText().toString(), editCountry.getText().toString());
-
-        userBuilder = new UserBuilder(user);
-        User newUser = userBuilder.setEmailAndName(editEmail.getText().toString(), editName.getText().toString());
-        newUser = userBuilder.setAddress(address);
-
         try {
+
+            Address address = new Address(editAddress.getText().toString(),
+                    editZip.getText().toString(), editCity.getText().toString(),
+                    editState.getText().toString(), editCountry.getText().toString());
+
+            User newUser = user;
+            newUser.setUserName(editName.getText().toString());
+            newUser.setEmail(editEmail.getText().toString());
+            newUser.setAddress(address);
+
             user = userList.insertUser(newUser);
             Snackbar.make(findViewById(R.id.person_info), R.string.changes_applied,
                     Snackbar.LENGTH_SHORT).show();

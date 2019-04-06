@@ -38,7 +38,8 @@ public class AccessUserInfo {
 
     // Method - insert user using only basic/necessary info
     public User insertUser(String email, String userName, String password) throws UserException {
-        User newUser = new User(0, email, userName, password);
+        UserBuilder builder = new UserBuilder();
+        User newUser = builder.id(0).email(email).name(userName).password(password).buildUser();
         return insertUser(newUser);
     }
 

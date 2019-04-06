@@ -41,12 +41,10 @@ public class AccessPaymentInfoIT {
         this.accessPay =  new AccessPaymentInfo(persistence);
         this.accessUser = new AccessUserInfo(userPers);
 
-        user = accessUser.getUser();
-        UserBuilder userBuilder = new UserBuilder(user);
-        user = userBuilder.setBilling(card);
-        accessUser.updateUser(user);
         card = new Billing(1234123412341234L,"chris","01/25",123);
-
+        user = accessUser.getUser();
+        user.setBilling(card);
+        accessUser.updateUser(user);
     }
 
     @Test
