@@ -30,6 +30,7 @@ public class AccessPaymentInfoIT {
     private AccessUserInfo accessUser;
     private Billing card;
     private File tempDB;
+    private User user;
 
     @Before
     public void setup() throws IOException{
@@ -40,7 +41,7 @@ public class AccessPaymentInfoIT {
         this.accessPay =  new AccessPaymentInfo(persistence);
         this.accessUser = new AccessUserInfo(userPers);
 
-        User user = accessUser.getUser();
+        user = accessUser.getUser();
         UserBuilder userBuilder = new UserBuilder(user);
         user = userBuilder.setBilling(card);
         accessUser.updateUser(user);
@@ -60,7 +61,7 @@ public class AccessPaymentInfoIT {
     public void testInsertCard(){
         System.out.println("\nStarting AccessPaymentInfoIT: insertCard");
         try {
-            accessPay.insertCard(card);
+            accessPay.insertCard(card, user.getEmail());
             assertEquals("\tcard must be equal", accessPay.getCard(), card);
             System.out.println("Finished AccessPaymentInfoIT: insertCard");
         }catch(CardException c) {
@@ -73,9 +74,9 @@ public class AccessPaymentInfoIT {
     public void testUpdateCard(){
         System.out.println("\nStarting AccessPaymentInfoIT: updateCard");
         try {
-            accessPay.insertCard(card);
+            accessPay.insertCard(card, user.getEmail());
             Billing editedCard = new Billing(card.getCardNumber(),"zune",card.getExpiry(),card.getCvv());
-            accessPay.insertCard(editedCard);
+            accessPay.insertCard(editedCard, user.getEmail());
             assertEquals("\tcard must be equal", accessPay.getCard(), editedCard);
             assertNotEquals("\tcard name must not be equal", accessPay.getCard().getFullName(), card.getFullName());
             System.out.println("Finished AccessPaymentInfoIT: updateCard");
