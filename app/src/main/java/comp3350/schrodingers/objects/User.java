@@ -2,6 +2,76 @@ package comp3350.schrodingers.objects;
 
 public class User {
 
+    private int userId = -1;
+    private String email = null;  // distinct key
+    private String username = null;
+    private String password = null;
+    private Address address = null;
+    private Billing billing = null;
+
+    // Constructor
+    public User() {}
+
+    // Setters
+    public void setUserId(int id){
+        userId = id;
+    }
+
+    public void setUserName(String name) {
+        username = name;
+    }
+
+    public void setEmail(String mail) {
+        email = mail;
+    }
+
+    public void setPassword(String pass) {
+        password = pass;
+    }
+
+    public void setBilling(Billing bill) {
+        billing = bill;
+    }
+
+    public void setAddress(Address addr) {
+        address = addr;
+    }
+
+    // Getters
+    public int getUserId(){
+        return userId;
+    }
+
+    public String getUserName() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Billing getBilling() {
+        return billing;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    // Conditional
+    public boolean addrExist(){
+        return address != null;
+    }
+
+    // Conditional
+    public boolean billingExist(){
+        return billing != null;
+    }
+
     public static class Address {  // class which stores the address
         private String streetAndNumber;
         private String postalCode;
@@ -97,64 +167,4 @@ public class User {
             return "Visa ending in" + (cardNumber % 1000);
         }
     }
-
-    private int userId = 0;
-    private String email;  // distinct key
-    private final String username;
-    private String password;
-    private Address address;
-    private Billing billing;
-
-    public User(int id, String email, String username, String password) // constructor
-    {//input field tests
-        assert (email != null);
-        assert (username != null);
-        assert (password != null);
-
-        userId = id;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        billing = new Billing();
-        address = new Address();
-    }
-
-    public User(int id,String email, String username, String password, Address address, Billing billing) // constructor
-    {//input field tests
-        assert (email != null);
-        assert (username != null);
-        assert (password != null);
-
-        userId = id;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.billing = billing;
-        this.address = address;
-    }
-
-    public int getUserId(){
-        return userId;
-    }
-
-    public String getUserName() {
-        return username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public Billing getBilling() {
-        return billing;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
 }

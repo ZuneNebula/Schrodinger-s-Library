@@ -3,6 +3,7 @@ package comp3350.schrodingers.presentation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -16,6 +17,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,12 +28,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.application.Main;
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.objects.User;
+import comp3350.schrodingers.objects.Book;
 
 // Class - hosts all activity and views located on the home/browse page
 public class HomeActivity extends AppCompatActivity
@@ -39,6 +45,7 @@ public class HomeActivity extends AppCompatActivity
 
     // Holds DB access for books
     AccessBooks bookList;
+    List <Book> allBooks;
 
     // Holds DB access for user info
     private AccessUserInfo userList;
@@ -48,6 +55,15 @@ public class HomeActivity extends AppCompatActivity
     ListView searchLayout;
     GridView browseLayout;
     BookAdapter arrayAdapter;
+
+    //Button
+    private Button sortByPriceAsc;
+    private Button sortByPriceDsc;
+    private Button sortByNameAsc;
+    private Button sortByNameDsc;
+
+    private int greenColor;
+    private int whiteColor;
 
     // Method - instantiates views when activity is created
     @Override
@@ -78,13 +94,87 @@ public class HomeActivity extends AppCompatActivity
         user = userList.getUser();
 
         // Create book list and adapter
+
         bookList = Services.getBookAccess();
+
+        allBooks = bookList.getAllBooks();
         changeAdapter(R.layout.book_present);
 
         // Image Button (book catalog) Listeners
         browseLayout = (GridView)findViewById(R.id.browseView);
         createBookCatalogListeners(browseLayout);
 
+        //sorting by price button
+        sortByPriceAsc = (Button)findViewById(R.id.sortByPriceAsc);
+        sortByPriceDsc = (Button)findViewById(R.id.sortByPriceDsc);
+        sortByNameAsc = (Button)findViewById(R.id.sortByNameAsc);
+        sortByNameDsc = (Button)findViewById(R.id.sortByNameDsc);
+
+        greenColor = getResources().getColor(R.color.colorPrimary);
+        whiteColor = Color.WHITE;
+        sortByPriceAsc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                allBooks = bookList.sortByPrice(1);
+                changeAdapter(R.layout.book_present);
+                createBookCatalogListeners(browseLayout);
+                resetButtonColor();
+                sortByPriceAsc.setBackgroundColor(whiteColor);
+                sortByPriceAsc.setTextColor(greenColor);
+
+            }
+        });
+
+        sortByPriceDsc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                allBooks = bookList.sortByPrice(2);
+                changeAdapter(R.layout.book_present);
+                createBookCatalogListeners(browseLayout);
+                resetButtonColor();
+                sortByPriceDsc.setBackgroundColor(whiteColor);
+                sortByPriceDsc.setTextColor(greenColor);
+
+            }
+        });
+
+        sortByNameAsc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                allBooks = bookList.sortByName(1);
+                changeAdapter(R.layout.book_present);
+                createBookCatalogListeners(browseLayout);
+                resetButtonColor();
+                sortByNameAsc.setBackgroundColor(whiteColor);
+                sortByNameAsc.setTextColor(greenColor);
+
+            }
+        });
+
+        sortByNameDsc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                allBooks = bookList.sortByName(2);
+                changeAdapter(R.layout.book_present);
+                createBookCatalogListeners(browseLayout);
+                resetButtonColor();
+                sortByNameDsc.setBackgroundColor(whiteColor);
+                sortByNameDsc.setTextColor(greenColor);
+            }
+        });
+
+    }
+
+    private void resetButtonColor(){
+
+        sortByPriceAsc.setBackgroundColor(greenColor);
+        sortByPriceAsc.setTextColor(whiteColor);
+        sortByPriceDsc.setBackgroundColor(greenColor);
+        sortByPriceDsc.setTextColor(whiteColor);
+        sortByNameAsc.setBackgroundColor(greenColor);
+        sortByNameAsc.setTextColor(whiteColor);
+        sortByNameDsc.setBackgroundColor(greenColor);
+        sortByNameDsc.setTextColor(whiteColor);
     }
 
     // Method - sets email and username within main menu
@@ -105,7 +195,7 @@ public class HomeActivity extends AppCompatActivity
     }
 
     public void changeAdapter(int id){
-        arrayAdapter = new BookAdapter(this, id, bookList);
+        arrayAdapter = new BookAdapter(this, id, allBooks);
     }
 
     // Method - creates top menu options

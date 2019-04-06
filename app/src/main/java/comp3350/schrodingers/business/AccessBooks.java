@@ -1,6 +1,7 @@
 package comp3350.schrodingers.business;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -102,6 +103,34 @@ public class AccessBooks {
             }
         }
         return bookList;
+    }
+
+    public List<Book> sortByPrice(int direction){
+
+        List <Book> unSortedList =  getAllBooks();
+
+        if(direction == 1)
+            Collections.sort(unSortedList,Book.bookPriceComparatorAsc);
+        else
+            Collections.sort(unSortedList,Book.bookPriceComparatorDsc);
+
+
+        return unSortedList;
+
+    }
+
+    public List<Book> sortByName(int direction){
+
+        List <Book> unSortedList =  getAllBooks();
+
+        if(direction == 1)
+            Collections.sort(unSortedList,Book.bookNameComparatorAsc);
+        else
+            Collections.sort(unSortedList,Book.bookNameComparatorDsc);
+
+
+        return unSortedList;
+
     }
 
 }

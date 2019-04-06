@@ -1,17 +1,20 @@
 package comp3350.schrodingers.objects;
+import java.util.Comparator;
+
 
 public class Book {
 
-    private int bookID;
-    private String bookName;
-    private String author;
-    private String price;
-    private String genre;
-    private String bookStock;
-    private String iconId;
+    private int bookID = -1;
+    private String bookName = null;
+    private String author= null;
+    private String price= null;
+    private String genre= null;
+    private String bookStock= null;
+    private String iconId= null;
 
     // constructor
     public Book() {}
+
 
     // Setter methods
     public void setBookID(int bookID) {
@@ -40,6 +43,7 @@ public class Book {
 
     public void setIconId(String iconId) {
         this.iconId = iconId;
+
     }
 
 
@@ -71,6 +75,61 @@ public class Book {
     public String getIconId() {
         return iconId;
     }
+
+
+
+    public static Comparator<Book> bookPriceComparatorAsc = new Comparator<Book>() {
+
+        public int compare(Book b1, Book b2) {
+            String book1Price = b1.getPrice();
+            String book2Price = b2.getPrice();
+
+            int price1 = Integer.parseInt(book1Price.substring(1));
+            int price2 = Integer.parseInt(book2Price.substring(1));
+
+            if (price1 > price2)
+                return 1;
+            else
+                return -1;
+        }
+    };
+
+    public static Comparator<Book> bookPriceComparatorDsc = new Comparator<Book>() {
+
+        public int compare(Book b1, Book b2) {
+            String book1Price = b1.getPrice();
+            String book2Price = b2.getPrice();
+
+            int price1 = Integer.parseInt(book1Price.substring(1));
+            int price2 = Integer.parseInt(book2Price.substring(1));
+
+            if (price1 < price2)
+                return 1;
+            else
+                return -1;
+        }
+    };
+    public static Comparator<Book> bookNameComparatorAsc = new Comparator<Book>() {
+
+        public int compare(Book b1, Book b2) {
+            String book1name = b1.getBookName();
+            String book2name = b2.getBookName();
+
+
+            return book1name.compareToIgnoreCase(book2name);
+        }
+    };
+
+    public static Comparator<Book> bookNameComparatorDsc = new Comparator<Book>() {
+
+        public int compare(Book b1, Book b2) {
+            String book1name = b1.getBookName();
+            String book2name = b2.getBookName();
+
+
+            return book2name.compareToIgnoreCase(book1name);
+        }
+    };
 
     @Override
     public String toString() {
