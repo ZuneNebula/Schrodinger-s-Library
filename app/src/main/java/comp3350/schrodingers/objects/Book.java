@@ -1,4 +1,6 @@
 package comp3350.schrodingers.objects;
+import java.util.Comparator;
+
 
 public class Book {
 
@@ -73,6 +75,61 @@ public class Book {
     public String getIconId() {
         return iconId;
     }
+
+
+
+    public static Comparator<Book> bookPriceComparatorAsc = new Comparator<Book>() {
+
+        public int compare(Book b1, Book b2) {
+            String book1Price = b1.getPrice();
+            String book2Price = b2.getPrice();
+
+            int price1 = Integer.parseInt(book1Price.substring(1));
+            int price2 = Integer.parseInt(book2Price.substring(1));
+
+            if (price1 > price2)
+                return 1;
+            else
+                return -1;
+        }
+    };
+
+    public static Comparator<Book> bookPriceComparatorDsc = new Comparator<Book>() {
+
+        public int compare(Book b1, Book b2) {
+            String book1Price = b1.getPrice();
+            String book2Price = b2.getPrice();
+
+            int price1 = Integer.parseInt(book1Price.substring(1));
+            int price2 = Integer.parseInt(book2Price.substring(1));
+
+            if (price1 < price2)
+                return 1;
+            else
+                return -1;
+        }
+    };
+    public static Comparator<Book> bookNameComparatorAsc = new Comparator<Book>() {
+
+        public int compare(Book b1, Book b2) {
+            String book1name = b1.getBookName();
+            String book2name = b2.getBookName();
+
+
+            return book1name.compareToIgnoreCase(book2name);
+        }
+    };
+
+    public static Comparator<Book> bookNameComparatorDsc = new Comparator<Book>() {
+
+        public int compare(Book b1, Book b2) {
+            String book1name = b1.getBookName();
+            String book2name = b2.getBookName();
+
+
+            return book2name.compareToIgnoreCase(book1name);
+        }
+    };
 
     @Override
     public String toString() {

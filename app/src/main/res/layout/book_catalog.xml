@@ -14,7 +14,7 @@
         android:gravity="center"
         android:horizontalSpacing="1dp"
         android:numColumns="auto_fit"
-        android:paddingTop="150dp"
+        android:paddingTop="200dp"
         android:stretchMode="spacingWidthUniform"
         android:verticalSpacing="24dp"
         tools:layout_editor_absoluteX="0dp"
@@ -27,23 +27,51 @@
         android:paddingTop="80dp">
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/sortByNameAsc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:text="@string/genre"
+            android:text="Sort By Name (A - Z)"
             android:textColor="@android:color/white" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/sortByPriceAsc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:text="@string/price"
+            android:text= "Sort By Price (ASC)"
             android:textColor="@android:color/white" />
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="125dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <Button
+            android:id="@+id/sortByNameDsc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text= "Sort By Name (Z - A)"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/sortByPriceDsc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="Sort By Price (DSC)"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
