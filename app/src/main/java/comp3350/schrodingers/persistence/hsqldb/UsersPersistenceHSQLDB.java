@@ -12,7 +12,6 @@ import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessPaymentInfo;
 import comp3350.schrodingers.business.UserBuilder;
 import comp3350.schrodingers.objects.User;
-import comp3350.schrodingers.persistence.PaymentPersistence;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
 public class UsersPersistenceHSQLDB implements UsersPersistence {
@@ -20,8 +19,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
     private final String dbPath;
 
     private User logged;
-    private static int userId = 1;
-    private UserBuilder userBuilder;
+    private int userId = 1;
 
     public UsersPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
@@ -41,14 +39,14 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         final long cardNum = rs.getLong("cardNum");
         final String address = rs.getString("numAndStreet");
 
-        userBuilder = new UserBuilder(id, email, username, password);
+        UserBuilder builder = new UserBuilder();
         if (cardNum == 0 && address.compareTo("") == 0)
-            return userBuilder.getUser();
+            return builder.id(id).name(username).email(email).password(password).buildUser();
         else {
             AccessPaymentInfo payInfo = Services.getPaymentInfoAccess();
             User.Billing card = payInfo.getUserCard(email);
             User.Address add = findAddress(address);
-            return userBuilder.setAddressAndBilling(add, card);
+            return builder.id(id).name(username).email(email).password(password).billing(card).address(add).buildUser();
         }
     }
 
@@ -97,7 +95,13 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
             st.setString(1, newUser.getEmail());
             st.setString(2, newUser.getUserName());
             st.setString(3, newUser.getPassword());
-            st.setLong(4, newUser.getBilling().getCardNumber());
+
+            if (newUser.billingExist()) {
+                st.setLong(4, newUser.getBilling().getCardNumber());
+            } else {
+                st.setLong(4, 0L);
+            }
+
             String address = newUser.getAddress().getAddress();
 
             if(address.compareTo("") == 0 || address.compareTo("NOADDRESS!") == 0)
