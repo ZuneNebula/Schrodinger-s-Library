@@ -11,6 +11,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
@@ -35,7 +36,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
         // Access shoppingcart persistence
-        accessShoppingCart = new AccessShoppingCart();
+        accessShoppingCart = Services.getShoppingCartAccess();
 
         // Display shopping cart
         try {

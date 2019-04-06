@@ -10,7 +10,7 @@ import comp3350.schrodingers.business.AccessPurchasedBooks;
 import comp3350.schrodingers.business.BookBuilder;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
-import comp3350.schrodingers.persistence.PurchasedBooks;
+import comp3350.schrodingers.persistence.PurchasedBooksPersistence;
 import comp3350.schrodingers.tests.persistence.UsersPersistenceStub;
 
 import static org.mockito.Mockito.mock;
@@ -20,11 +20,13 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
 public class AccessPurchaseHistoryTest {
+
     private AccessPurchasedBooks accessPurchased;
-    private PurchasedBooks booksPersistence;
+    private PurchasedBooksPersistence booksPersistence;
+
     @Before
     public void setup(){
-        booksPersistence = mock(PurchasedBooks.class);
+        booksPersistence = mock(PurchasedBooksPersistence.class);
         accessPurchased = new AccessPurchasedBooks(booksPersistence, new UsersPersistenceStub());
     }
 

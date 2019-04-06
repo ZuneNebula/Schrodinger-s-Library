@@ -8,6 +8,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessPurchasedBooks;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
@@ -34,7 +35,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
         try {
-            accessPurchased = new AccessPurchasedBooks();
+            accessPurchased = Services.getPurchasedBooksAccess();
             List<Book> list = accessPurchased.getBooks();
             BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
             ListView bookListView = (ListView)findViewById(R.id.list_purchased);

@@ -80,7 +80,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
         // Instantiate access to ratings
-        final AccessRatings accessRatings = new AccessRatings();
+        final AccessRatings accessRatings = Services.getRatingsAccess();
 
         // Set book information and image
         ListView viewbookList = (ListView)findViewById(R.id.bookDetail);
@@ -246,7 +246,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
     }
 
     private boolean insertWishlist(Book book){
-        AccessWishlist wishlist = new AccessWishlist();
+        AccessWishlist wishlist = Services.getWishlistAccess();
         try {
             return wishlist.insertBook(book);
         }catch(UserException e){
@@ -266,7 +266,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
     }
 
     private boolean insertShoppingCart(Book book){
-        AccessShoppingCart shoppingCart = new AccessShoppingCart();
+        AccessShoppingCart shoppingCart = Services.getShoppingCartAccess();
         try {
             return shoppingCart.insertBook(book);
         }catch(UserException e){

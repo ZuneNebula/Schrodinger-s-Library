@@ -16,14 +16,16 @@ public class AccessWishlist {
     private AccessUserInfo accessUserInfo;
     private WishlistPersistence wishlistPersistence;
 
-    public AccessWishlist() {
-      accessUserInfo = Services.getUserInfoAccess();
-      wishlistPersistence = Services.getWishlistPersistence();
+    // Constructor - inject wishlist persistence and acquire user access
+    public AccessWishlist(WishlistPersistence wishPersistence) {
+        wishlistPersistence = wishPersistence;
+        accessUserInfo = Services.getUserInfoAccess();
     }
 
-    public AccessWishlist(UsersPersistence usersPersistence, final WishlistPersistence wishlist) {
-        accessUserInfo = Services.getUserInfoAccess();
-        this.wishlistPersistence = wishlist;
+    // Constructor - inject both user and wishlist persistence (for testing purposes)
+    public AccessWishlist(UsersPersistence usersPersistence, final WishlistPersistence wishPersistence) {
+        wishlistPersistence = wishPersistence;
+        accessUserInfo = new AccessUserInfo(usersPersistence);
     }
 
     public List<Book> getBooks() throws UserException {

@@ -9,8 +9,8 @@ import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.AccessWishlist;
 import comp3350.schrodingers.persistence.BooksPersistence;
 import comp3350.schrodingers.persistence.hsqldb.BooksPersistenceHSQLDB;
-import comp3350.schrodingers.persistence.PurchasedBooks;
-import comp3350.schrodingers.persistence.hsqldb.PurchasedBooksHSQLDB;
+import comp3350.schrodingers.persistence.PurchasedBooksPersistence;
+import comp3350.schrodingers.persistence.hsqldb.PurchasedBooksPersistenceHSQLDB;
 import comp3350.schrodingers.persistence.RatingPersistence;
 import comp3350.schrodingers.persistence.hsqldb.RatingPersistenceHSQLDB;
 import comp3350.schrodingers.persistence.ShoppingCartPersistence;
@@ -29,15 +29,18 @@ public class Services {
     private static AccessPaymentInfo paymentInfoAccess = null;
     private static AccessUserInfo userInfoAccess = null;
     private static AccessPurchasedBooks purchasedBooksAccess = null;
+    private static AccessRatings ratingsAccess = null;
+    private static AccessShoppingCart shoppingCartAccess = null;
+    private static AccessWishlist wishlistAccess = null;
 
     // Stores the various types of access to the DB.
     private static BooksPersistence booksPersistence = null;
     private static PaymentPersistence paymentPersistence = null;
     private static UsersPersistence usersPersistence = null;
-    private static PurchasedBooks purchasedPersistence = null;
+    private static PurchasedBooksPersistence purchasedPersistence = null;
     private static RatingPersistence ratingPersistence = null;
-    private static WishlistPersistence wishlistPersistence = null;
     private static ShoppingCartPersistence shoppingCartPersistence = null;
+    private static WishlistPersistence wishlistPersistence = null;
 
     // Singleton logic classes (inject DB access).
 
@@ -65,25 +68,38 @@ public class Services {
         return userInfoAccess;
     }
 
-//    public static synchronized AccessPurchasedBooks getPurchasedBooksAccess(){
-//        purchasedPersistence = getPurchasedPersistence();
-//        if(purchasedBooksAccess == null){
-//            purchasedBooksAccess = new AccessPurchasedBooks(purchasedPersistence);
-//        }
-//        return purchasedBooksAccess;
-//    }
+    public static synchronized AccessPurchasedBooks getPurchasedBooksAccess(){
+        purchasedPersistence = getPurchasedPersistence();
+        if(purchasedBooksAccess == null){
+            purchasedBooksAccess = new AccessPurchasedBooks(purchasedPersistence);
+        }
+        return purchasedBooksAccess;
+    }
 
     public static synchronized AccessRatings getRatingsAccess(){
-        return null;
+        ratingPersistence = getRatePersistence();
+        if(ratingsAccess == null){
+            ratingsAccess = new AccessRatings(ratingPersistence);
+        }
+        return ratingsAccess;
     }
 
     public static synchronized AccessShoppingCart getShoppingCartAccess(){
-        return null;
+        shoppingCartPersistence = getShoppingCartPersistence();
+        if(shoppingCartAccess == null){
+            shoppingCartAccess = new AccessShoppingCart(shoppingCartPersistence);
+        }
+        return shoppingCartAccess;
     }
 
     public static synchronized AccessWishlist getWishlistAccess(){
-        return null;
+        wishlistPersistence = getWishlistPersistence();
+        if(wishlistAccess == null){
+            wishlistAccess = new AccessWishlist(wishlistPersistence);
+        }
+        return wishlistAccess;
     }
+
 
     // Singleton persistence layer (initialize db access).
 
@@ -104,7 +120,7 @@ public class Services {
     }
 
     // Return reference to DB for storage and access of rating information.
-    public static synchronized RatingPersistence getRatePersistence() {
+    private static synchronized RatingPersistence getRatePersistence() {
         if (ratingPersistence == null) {
             ratingPersistence = new RatingPersistenceHSQLDB(Main.getDBPathName());
         }
@@ -119,22 +135,22 @@ public class Services {
         return paymentPersistence;
     }
 
-    public static synchronized PurchasedBooks getPurchasedPersistence() {
+    private static synchronized PurchasedBooksPersistence getPurchasedPersistence() {
         if (purchasedPersistence == null) {
-            purchasedPersistence = new PurchasedBooksHSQLDB(Main.getDBPathName());
+            purchasedPersistence = new PurchasedBooksPersistenceHSQLDB(Main.getDBPathName());
         }
         return purchasedPersistence;
     }
 
 
-    public static synchronized WishlistPersistence getWishlistPersistence() {
+    private static synchronized WishlistPersistence getWishlistPersistence() {
         if (wishlistPersistence == null) {
             wishlistPersistence = new WishlistPersistenceHSQLDB(Main.getDBPathName());
         }
         return wishlistPersistence;
     }
 
-    public static synchronized ShoppingCartPersistence getShoppingCartPersistence() {
+    private static synchronized ShoppingCartPersistence getShoppingCartPersistence() {
         if (wishlistPersistence == null) {
             shoppingCartPersistence = new ShoppingCartPersistenceHSQLDB(Main.getDBPathName());
         }

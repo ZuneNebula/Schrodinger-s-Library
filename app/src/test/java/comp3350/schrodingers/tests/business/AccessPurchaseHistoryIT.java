@@ -12,25 +12,24 @@ import comp3350.schrodingers.business.AccessPurchasedBooks;
 import comp3350.schrodingers.business.BookBuilder;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
-import comp3350.schrodingers.persistence.PurchasedBooks;
+import comp3350.schrodingers.persistence.PurchasedBooksPersistence;
 import comp3350.schrodingers.persistence.UsersPersistence;
-import comp3350.schrodingers.persistence.hsqldb.PurchasedBooksHSQLDB;
+import comp3350.schrodingers.persistence.hsqldb.PurchasedBooksPersistenceHSQLDB;
 import comp3350.schrodingers.persistence.hsqldb.UsersPersistenceHSQLDB;
 import comp3350.schrodingers.tests.utils.TestUtils;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 
 public class AccessPurchaseHistoryIT {
+
     private AccessPurchasedBooks accessPurchased;
     private File tempDB;
 
     @Before
     public void setup() throws IOException{
         this.tempDB = TestUtils.copyDB();
-        final PurchasedBooks purchasedBooks = new PurchasedBooksHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
+        final PurchasedBooksPersistence purchasedBooks = new PurchasedBooksPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
         final UsersPersistence userPers = new UsersPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
 
         this.accessPurchased = new AccessPurchasedBooks(purchasedBooks, userPers);

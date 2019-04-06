@@ -170,7 +170,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         } else {
 
             // Access shoppingcart persistence
-            accessShoppingCart = new AccessShoppingCart();
+            accessShoppingCart = Services.getShoppingCartAccess();
 
             // Display either shopping shopping cart
             try {

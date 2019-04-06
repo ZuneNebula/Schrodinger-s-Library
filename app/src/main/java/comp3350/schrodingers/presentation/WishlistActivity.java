@@ -7,6 +7,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessWishlist;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
@@ -26,7 +27,7 @@ public class WishlistActivity extends AppCompatActivity {
           myToolbar.setTitleTextColor(0XFFFFFFFF);
 
           // Access wishlist persistence
-          accessWishlist = new AccessWishlist();
+          accessWishlist = Services.getWishlistAccess();
 
           // Display wish list
         try {

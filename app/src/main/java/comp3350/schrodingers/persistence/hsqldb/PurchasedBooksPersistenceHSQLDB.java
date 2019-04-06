@@ -11,12 +11,12 @@ import java.sql.SQLException;
 
 import comp3350.schrodingers.business.BookBuilder;
 import comp3350.schrodingers.objects.Book;
-import comp3350.schrodingers.persistence.PurchasedBooks;
+import comp3350.schrodingers.persistence.PurchasedBooksPersistence;
 
-public class PurchasedBooksHSQLDB implements PurchasedBooks {
+public class PurchasedBooksPersistenceHSQLDB implements PurchasedBooksPersistence {
     private final String dbPath;
 
-    public PurchasedBooksHSQLDB(final String dbPath) {
+    public PurchasedBooksPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
     }
 

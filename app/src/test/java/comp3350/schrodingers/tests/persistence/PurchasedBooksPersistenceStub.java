@@ -6,14 +6,14 @@ import java.util.List;
 import comp3350.schrodingers.business.BookBuilder;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.User;
-import comp3350.schrodingers.persistence.PurchasedBooks;
+import comp3350.schrodingers.persistence.PurchasedBooksPersistence;
 
-public class PurchasedBooksStub implements PurchasedBooks {
+public class PurchasedBooksPersistenceStub implements PurchasedBooksPersistence {
 
     private List<Book> books;
     private User user;
 
-    public PurchasedBooksStub(){
+    public PurchasedBooksPersistenceStub(){
         books = new ArrayList<>();
         BookBuilder builder = new BookBuilder();
         builder.id(21).name("Whirlwind").author("Natalie Hamilton").price("$400").genre("Non-Fiction").stock("30").icon("whirlwind");

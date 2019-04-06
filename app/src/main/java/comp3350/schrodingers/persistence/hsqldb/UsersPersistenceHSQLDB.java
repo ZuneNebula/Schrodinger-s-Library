@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.UserBuilder;
@@ -47,7 +45,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         if (cardNum == 0 && address.compareTo("") == 0)
             return userBuilder.getUser();
         else {
-            payPersistence = Services.getPaymentPersistence();
+            payPersistence = Services.getPaymentPersistence(); // TODO
             User.Billing card = payPersistence.findCard(cardNum);
             User.Address add = findAddress(address);
             return userBuilder.setAddressAndBilling(add, card);

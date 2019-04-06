@@ -8,22 +8,24 @@ import comp3350.schrodingers.business.userExceptions.NotLoggedException;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.User;
-import comp3350.schrodingers.persistence.PurchasedBooks;
+import comp3350.schrodingers.persistence.PurchasedBooksPersistence;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
 public class AccessPurchasedBooks {
 
-    private PurchasedBooks purchasedBooks;
+    private PurchasedBooksPersistence purchasedBooks;
     private AccessUserInfo accessUserInfo;
 
-    public AccessPurchasedBooks(){
-        purchasedBooks = Services.getPurchasedPersistence();
+    // Inject purchased book DB and acquire user access
+    public AccessPurchasedBooks(final PurchasedBooksPersistence purBooks){
+        this.purchasedBooks = purBooks;
         accessUserInfo = Services.getUserInfoAccess();
     }
 
-    public AccessPurchasedBooks(final PurchasedBooks purBooks, UsersPersistence u){
+    // Inject both purchased book and user DB (testing purposes)
+    public AccessPurchasedBooks(final PurchasedBooksPersistence purBooks, final UsersPersistence usersPersistence){
         this.purchasedBooks = purBooks;
-        accessUserInfo = Services.getUserInfoAccess();
+        accessUserInfo = new AccessUserInfo(usersPersistence);
     }
 
     public List<Book> getBooks() throws UserException {
