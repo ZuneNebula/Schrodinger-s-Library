@@ -1,5 +1,7 @@
 package comp3350.schrodingers.presentation;
 
+import android.app.Activity;
+
 import comp3350.schrodingers.business.userExceptions.EmailNotValidException;
 import comp3350.schrodingers.business.userExceptions.EmailRequiredException;
 import comp3350.schrodingers.business.userExceptions.NameRequiredException;
@@ -10,6 +12,7 @@ public class HandleUserExceptions {
     private UserException userExcep;
     public HandleUserExceptions(UserException u){
         userExcep = u;
+        decideOutput();
     }
     private void decideOutput(){
         if(userExcep instanceof EmailNotValidException)
@@ -22,4 +25,9 @@ public class HandleUserExceptions {
             userExcep.setMessage("You are not logged in!");
     }
     public String toString(){return userExcep.toString();}
+
+    public void showMessage(Activity act){
+        Messages.warning(act, userExcep.toString());
+    }
+
 }

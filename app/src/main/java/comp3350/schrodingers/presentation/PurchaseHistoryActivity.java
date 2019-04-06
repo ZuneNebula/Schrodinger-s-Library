@@ -40,7 +40,8 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
             ListView bookListView = (ListView)findViewById(R.id.list_purchased);
             bookListView.setAdapter(adapter);
         }catch (UserException e){
-            Messages.warning(this, e.toString());
+            HandleUserExceptions handleUser = new HandleUserExceptions(e);
+            handleUser.showMessage(this);
         }
 
     }

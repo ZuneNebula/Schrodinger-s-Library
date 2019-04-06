@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.userExceptions.NotLoggedException;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Ratings;
 import comp3350.schrodingers.objects.User;
@@ -39,7 +40,7 @@ public class AccessRatings {
         if(user != null)
             ratingPersistence.addBookRatings(bookid, rate, user.getEmail(),review);
         else
-            throw new UserException("Not logged in!");
+            throw new NotLoggedException();
     }
 
     public Ratings getRatingsByUser(int bookID, String email){

@@ -75,7 +75,8 @@ public class PaymentActivity extends AppCompatActivity {
                     Snackbar.LENGTH_SHORT).show();
             finish();
         } catch (CardException c) {
-            Messages.warning(this, c.toString());
+            HandleCardExceptions handleCard = new HandleCardExceptions(c);
+            handleCard.showMessage(this);
         }
     }
 }

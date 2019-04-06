@@ -44,7 +44,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
             ListView bookListView = (ListView)findViewById(R.id.shoppingCart);
             bookListView.setAdapter(adapter);
         }catch(UserException e){
-            Messages.warning(this, e.toString());
+            HandleUserExceptions handleUser = new HandleUserExceptions(e);
+            handleUser.showMessage(this);
         }
 
 

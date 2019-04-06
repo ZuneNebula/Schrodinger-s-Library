@@ -1,6 +1,8 @@
 package comp3350.schrodingers.presentation;
 
 
+import android.app.Activity;
+
 import comp3350.schrodingers.business.cardExceptions.CardCvvRequired;
 import comp3350.schrodingers.business.cardExceptions.CardDateRequiredException;
 import comp3350.schrodingers.business.cardExceptions.CardException;
@@ -13,6 +15,7 @@ import comp3350.schrodingers.business.cardExceptions.CardNumberRequiredException
 public class HandleCardExceptions {
     private CardException cardExcep;
     public HandleCardExceptions(CardException u){
+        cardExcep = u;
         decideOutput();
     }
     private void decideOutput(){
@@ -32,6 +35,10 @@ public class HandleCardExceptions {
             cardExcep.setMessage("Name in Card required");
     }
     public String toString(){return cardExcep.toString();}
+
+    public void showMessage(Activity act){
+        Messages.warning(act, cardExcep.toString());
+    }
 
 
 }

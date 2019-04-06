@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.userExceptions.NotLoggedException;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.User;
@@ -30,7 +31,7 @@ public class AccessPurchasedBooks {
         if(user != null)
             books = purchasedBooks.getBooks(user.getUserId());
         else
-            throw new UserException("Not logged in");
+            throw new NotLoggedException();
         return books;
     }
 
@@ -40,6 +41,6 @@ public class AccessPurchasedBooks {
             purchasedBooks.insertBook(book, user.getUserId());
             return true;
         }
-        throw new UserException("Not logged in");
+        throw new NotLoggedException();
     }
 }

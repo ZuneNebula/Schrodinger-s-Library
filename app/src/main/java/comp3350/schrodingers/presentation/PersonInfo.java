@@ -89,7 +89,8 @@ public class PersonInfo extends AppCompatActivity {
                     Snackbar.LENGTH_SHORT).show();
             finish();
         } catch (UserException e) {
-            Messages.warning(this, e.toString());
+            HandleUserExceptions handleUser = new HandleUserExceptions(e);
+            handleUser.showMessage(this);
         }
     }
 
