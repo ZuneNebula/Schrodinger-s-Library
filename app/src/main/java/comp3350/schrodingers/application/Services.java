@@ -112,7 +112,7 @@ public class Services {
     }
 
     // Return reference to DB for storage and access of rating information.
-    public static synchronized UsersPersistence getUsersPersistence() {
+    private static synchronized UsersPersistence getUsersPersistence() {
         if (usersPersistence == null) {
             usersPersistence = new UsersPersistenceHSQLDB(Main.getDBPathName());
         }

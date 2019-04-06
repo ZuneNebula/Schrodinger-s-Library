@@ -7,8 +7,12 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessPaymentInfo;
+import comp3350.schrodingers.business.AccessUserInfo;
+import comp3350.schrodingers.business.UserBuilder;
 import comp3350.schrodingers.business.cardExceptions.CardException;
+import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.persistence.PaymentPersistence;
 import comp3350.schrodingers.persistence.UsersPersistence;
@@ -23,6 +27,8 @@ import static org.junit.Assert.assertTrue;
 public class AccessPaymentInfoIT {
 
     private AccessPaymentInfo accessPay;
+    private AccessUserInfo accessUser;
+    private Billing card;
     private File tempDB;
 
     @Before
@@ -30,8 +36,16 @@ public class AccessPaymentInfoIT {
         this.tempDB = TestUtils.copyDB();
 
         final UsersPersistence userPers = new UsersPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
-        final PaymentPersistence persistence = new PaymentPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""), userPers);
+        final PaymentPersistence persistence = new PaymentPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
         this.accessPay =  new AccessPaymentInfo(persistence);
+        this.accessUser = new AccessUserInfo(userPers);
+
+        User user = accessUser.getUser();
+        UserBuilder userBuilder = new UserBuilder(user);
+        user = userBuilder.setBilling(card);
+        accessUser.updateUser(user);
+        card = new Billing(1234123412341234L,"chris","01/25",123);
+
     }
 
     @Test
@@ -45,7 +59,6 @@ public class AccessPaymentInfoIT {
     @Test
     public void testInsertCard(){
         System.out.println("\nStarting AccessPaymentInfoIT: insertCard");
-        Billing card = new Billing(1234123412341234L,"chris","01/25",123);
         try {
             accessPay.insertCard(card);
             assertEquals("\tcard must be equal", accessPay.getCard(), card);
@@ -59,7 +72,6 @@ public class AccessPaymentInfoIT {
     @Test
     public void testUpdateCard(){
         System.out.println("\nStarting AccessPaymentInfoIT: updateCard");
-        Billing card = new Billing(1234123412341234L,"chris","01/25",123);
         try {
             accessPay.insertCard(card);
             Billing editedCard = new Billing(card.getCardNumber(),"zune",card.getExpiry(),card.getCvv());
