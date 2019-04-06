@@ -91,7 +91,7 @@ paginate = 10
     # Enable the contact form by entering your Formspree.io email
     email = "your@email.com"
 
-    about_us = "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>"
+    about_us = "<p>Schrodingers Library is originally a project for COMP 3350 (Software Engineering 1) at University of Manitoba. We wanted to built a very simple and effective online book ordering system.</p>"
     copyright = "Copyright (c) 2015 - 2016, Schrodingers 9; all rights reserved."
 
     # Format dates with Go's time formatting
@@ -153,8 +153,8 @@ paginate = 10
     icon = "fa fa-file-code-o"
     title = "Do you want to see more?"
     subtitle = "Try our app, you won't be dissapointed."
-    link_url = "https://code.cs.umanitoba.ca/comp3350-winter2019/schrodingers-library"
-    link_text = "Download the app today!"
+    link_url = "https://www.youtube.com/"
+    link_text = "Watch a demo"
 
 [params.clients]
     enable = false
