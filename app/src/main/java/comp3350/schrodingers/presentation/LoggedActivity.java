@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.R;
@@ -27,14 +28,14 @@ public class LoggedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_logged);
 
         // Setup toolbar
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         // Set up toolbar title color
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
         // Initialize DB access and get current user
-        userList = new AccessUserInfo();
+        userList = Services.getUserInfoAccess();
         user = userList.getUser();
 
         // Update menu greeting
@@ -44,7 +45,7 @@ public class LoggedActivity extends AppCompatActivity {
 
     // Method - update menu greeting
     private void updateGreeting() {
-        TextView userName = findViewById(R.id.greeting);
+        TextView userName = (TextView)findViewById(R.id.greeting);
         userName.setText(user.getUserName());
     }
 

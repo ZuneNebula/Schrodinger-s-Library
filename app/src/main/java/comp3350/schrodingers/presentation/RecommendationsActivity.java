@@ -3,16 +3,13 @@ package comp3350.schrodingers.presentation;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.ListView;
-import android.widget.SearchView;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.business.AccessBooks;
 
@@ -21,7 +18,7 @@ import comp3350.schrodingers.R;
 public class RecommendationsActivity extends AppCompatActivity {
 
     private Spinner Choice;
-    AccessBooks browser = new AccessBooks();
+    private AccessBooks browser = Services.getBookAccess();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +53,7 @@ public class RecommendationsActivity extends AppCompatActivity {
 
         ArrayAdapter<Book> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, recs);
 
-        ListView bookListView = findViewById(R.id.recView);
+        ListView bookListView = (ListView)findViewById(R.id.recView);
         bookListView.setAdapter(arrayAdapter);
 
     }

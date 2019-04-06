@@ -7,9 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.business.AccessPurchasedBooks;
+import comp3350.schrodingers.business.BookBuilder;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
-import comp3350.schrodingers.persistence.PurchasedBooks;
-import comp3350.schrodingers.tests.persistence.UsersPersistenceStub;
+import comp3350.schrodingers.objects.User;
+import comp3350.schrodingers.persistence.PurchasedBooksPersistence;
+import comp3350.schrodingers.persistence.UsersPersistence;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -18,25 +21,39 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
 public class AccessPurchaseHistoryTest {
+
     private AccessPurchasedBooks accessPurchased;
-    private PurchasedBooks booksPersistence;
+    private PurchasedBooksPersistence booksPersistence;
+    private UsersPersistence usersPersistence;
+
     @Before
     public void setup(){
-        booksPersistence = mock(PurchasedBooks.class);
-        accessPurchased = new AccessPurchasedBooks(booksPersistence, new UsersPersistenceStub());
+        booksPersistence = mock(PurchasedBooksPersistence.class);
+        usersPersistence = mock(UsersPersistence.class);
+        accessPurchased = new AccessPurchasedBooks(booksPersistence, usersPersistence);
     }
+
     @Test
     public void testGet(){
         System.out.println("\nStarting test AccessPurchasedBooks");
+        User user = new User(1,"chris@gmail.com","chris","comp3350");
+        when(usersPersistence.getUser()).thenReturn(user);
         final Book book;
         final List<Book> books = new ArrayList<>();
-        books.add(new Book(21, "Whirlwind", "Natalie Hamilton", "$400", "Non-Fiction", "30", "whirlwind"));
+        BookBuilder builder = new BookBuilder();
+        builder.id(21).name("Whirlwind").author("Natalie Hamilton").price("$400").genre("Non-Fiction").stock("30").icon("whirlwind");
+        books.add(builder.buildBook());
         when(booksPersistence.getBooks(1)).thenReturn(books);
-        book = accessPurchased.getBooks().get(0);
-        assertNotNull("\tbook for default user should not be null", book);
-        assertEquals(book.getBookID(), 21);
-        verify(booksPersistence).getBooks(1);
-        System.out.println("\nFinished test AccessPurchasedBooks");
+        try {
+            book = accessPurchased.getBooks().get(0);
+            assertNotNull("\tbook for default user should not be null", book);
+            assertEquals(book.getBookID(), 21);
+            verify(booksPersistence).getBooks(1);
+            System.out.println("\nFinished test AccessPurchasedBooks");
+        }catch(UserException u){
+            System.out.println("\t"+u.toString());
+        }
+
     }
 
 }

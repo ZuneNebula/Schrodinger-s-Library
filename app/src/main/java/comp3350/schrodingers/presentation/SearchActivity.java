@@ -10,6 +10,7 @@ import android.widget.SearchView;
 import java.util.List;
 
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.objects.Book;
 
@@ -23,21 +24,21 @@ public class SearchActivity extends AppCompatActivity {
 
         // Associate layout
         setContentView(R.layout.activity_search);
-        SearchView searchView = findViewById(R.id.action_search);
+        SearchView searchView = (SearchView)findViewById(R.id.action_search);
 
         // Setup toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // Initialize access to book DB
-        AccessBooks bookList = new AccessBooks();
+        AccessBooks bookList = Services.getBookAccess();
 
         if (searchView != null) {
 
             List<Book> list = bookList.searchBookByAuthor(searchView.getQuery().toString());
             ArrayAdapter<Book> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
-            ListView bookListView = findViewById(R.id.searchList);
+            ListView bookListView = (ListView)findViewById(R.id.searchList);
             bookListView.setAdapter(arrayAdapter);
         }
 

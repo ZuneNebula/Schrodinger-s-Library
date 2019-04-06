@@ -4,32 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.userExceptions.NotLoggedException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.WishlistPersistence;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
 public class AccessWishlist {
+
     private AccessUserInfo accessUserInfo;
     private WishlistPersistence wishlistPersistence;
 
-    public AccessWishlist() {
-      accessUserInfo = new AccessUserInfo();
-      wishlistPersistence = Services.getWishlistPersistence();
+    // Constructor - inject wishlist persistence and acquire user access
+    public AccessWishlist(WishlistPersistence wishPersistence) {
+        wishlistPersistence = wishPersistence;
+        accessUserInfo = Services.getUserInfoAccess();
     }
 
-    public AccessWishlist(UsersPersistence usersPersistence, final WishlistPersistence wishlist) {
+    // Constructor - inject both user and wishlist persistence (for testing purposes)
+    public AccessWishlist(UsersPersistence usersPersistence, final WishlistPersistence wishPersistence) {
+        wishlistPersistence = wishPersistence;
         accessUserInfo = new AccessUserInfo(usersPersistence);
-        this.wishlistPersistence = wishlist;
     }
 
-    public List<Book> getBooks() throws UserException{
+    public List<Book> getBooks() throws UserException {
         List<Book> books = new ArrayList<>();
         User user = accessUserInfo.getUser();
         if(user != null)
             books = wishlistPersistence.getBooks(user.getUserId());
         else
-            throw new UserException("Not logged in!");
+            throw new NotLoggedException();
         return books;
     }
 

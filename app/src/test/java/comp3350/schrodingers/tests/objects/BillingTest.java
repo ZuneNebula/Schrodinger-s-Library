@@ -11,10 +11,10 @@ public class BillingTest {
 
         bill = new Billing(1234123412341234L,"JOHN SMITH","10/20",321);
         assertNotNull(bill);
-        assertTrue(1234123412341234L == bill.getCardNumber());
-        assertTrue("JOHN SMITH".equals(bill.getFullName()));
-        assertTrue("10/20".equals(bill.getExpiry()));
-        assertTrue(321 == bill.getCvv());
+        assertEquals(1234123412341234L, bill.getCardNumber());
+        assertEquals("JOHN SMITH", bill.getFullName());
+        assertEquals("10/20", bill.getExpiry());
+        assertEquals(321, bill.getCvv());
 
         System.out.println("Finished testBilling");
 

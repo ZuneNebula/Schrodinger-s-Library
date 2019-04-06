@@ -3,8 +3,11 @@ package comp3350.schrodingers.business;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Address;
 import comp3350.schrodingers.objects.User.Billing;
+
 public class UserBuilder {
+
     private User user;
+
     public UserBuilder(String email, String username, String password){
         user = new User(0, email, username, password);
     }

@@ -7,23 +7,23 @@ import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
 
-import comp3350.schrodingers.business.UserException;
+import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.AccessUserInfo;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.User;
-import comp3350.schrodingers.business.CreateAccount;
-
 import comp3350.schrodingers.R;
 
 // Class - presents the layout used for account creation
 public class CreateAccountActivity extends AppCompatActivity {
 
     // Various views used in the layout
-    private EditText Username;
-    private EditText Email;
-    private EditText Password;
-    private Button Account;
+    private EditText username;
+    private EditText email;
+    private EditText password;
+    private Button account;
 
     // Store reference to DB
-    CreateAccount newAcc = new CreateAccount();
+    AccessUserInfo userInfoAccess;
 
     // Method - instantiates views when activity is created
     @Override
@@ -33,18 +33,21 @@ public class CreateAccountActivity extends AppCompatActivity {
         // Associate layout
         setContentView(R.layout.activity_create_account);
 
+        // Acquire DB access
+        userInfoAccess = Services.getUserInfoAccess();
+
         // Instantiate views
-        Username = findViewById(R.id.edtName);
-        Email = findViewById(R.id.edtEmail);
-        Password = findViewById(R.id.edtPassword);
-        Account = findViewById(R.id.btnAccount);
+        username = (EditText)findViewById(R.id.edtName);
+        email = (EditText)findViewById(R.id.edtEmail);
+        password = (EditText)findViewById(R.id.edtPassword);
+        account = (Button)findViewById(R.id.btnAccount);
 
         // Create on click listener for 'Create Account' button
-        Account.setOnClickListener(new View.OnClickListener() {
+        account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Username != null && Password != null && Email != null) // add more test cases later
-                    validate(Email.getText().toString(), Username.getText().toString(), Password.getText().toString());
+                if (username != null && password != null && email != null) // add more test cases later
+                    validate(email.getText().toString(), username.getText().toString(), password.getText().toString());
 
             }
         });
@@ -54,11 +57,12 @@ public class CreateAccountActivity extends AppCompatActivity {
     // Method - validate user and login
     private void validate(String Username, String Email, String Password) {
         try {
-            User newUser = newAcc.insertUser(Username, Email, Password);
+            User newUser = userInfoAccess.insertUser(Username, Email, Password);
             Intent intent = new Intent(CreateAccountActivity.this, LoggedActivity.class);
             startActivity(intent);
         }catch(UserException e){
-            Messages.warning(this, e.toString());
+            HandleUserExceptions handleUser = new HandleUserExceptions(e);
+            handleUser.showMessage(this);
         }
 
     }

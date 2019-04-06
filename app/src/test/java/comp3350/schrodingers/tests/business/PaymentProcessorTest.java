@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
-import comp3350.schrodingers.business.CardException;
+import comp3350.schrodingers.business.cardExceptions.CardException;
 import comp3350.schrodingers.business.PaymentProcessor;
 import comp3350.schrodingers.objects.User.Billing;
 

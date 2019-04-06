@@ -6,9 +6,7 @@ import org.junit.runners.Suite;
 import comp3350.schrodingers.tests.business.AccessPaymentInfoTest;
 import comp3350.schrodingers.tests.business.AccessPurchaseHistoryTest;
 import comp3350.schrodingers.tests.business.AccessUserInfoTest;
-import comp3350.schrodingers.tests.business.CreateAccountTest;
 import comp3350.schrodingers.tests.business.PaymentProcessorTest;
-import comp3350.schrodingers.tests.business.UserLoginTest;
 import comp3350.schrodingers.tests.business.UserValidatorTest;
 import comp3350.schrodingers.tests.objects.BillingTest;
 import comp3350.schrodingers.tests.objects.BookTest;
@@ -23,8 +21,6 @@ import comp3350.schrodingers.tests.objects.UserTest;
         UserValidatorTest.class,
         AccessUserInfoTest.class,
         AccessPaymentInfoTest.class,
-        UserLoginTest.class,
-        CreateAccountTest.class,
         AccessPurchaseHistoryTest.class
 
 })

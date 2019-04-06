@@ -3,7 +3,7 @@ package comp3350.schrodingers.tests.business;
 import junit.framework.TestCase;
 
 import org.junit.Test;
-import comp3350.schrodingers.business.UserException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.business.UserValidator;
 import comp3350.schrodingers.objects.User;
 public class UserValidatorTest extends TestCase {

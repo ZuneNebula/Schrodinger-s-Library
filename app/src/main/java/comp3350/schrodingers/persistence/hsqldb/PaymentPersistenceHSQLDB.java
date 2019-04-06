@@ -5,34 +5,17 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-import comp3350.schrodingers.application.Services;
-import comp3350.schrodingers.business.UserBuilder;
-import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.persistence.PaymentPersistence;
-import comp3350.schrodingers.persistence.UsersPersistence;
 
 public class PaymentPersistenceHSQLDB implements PaymentPersistence {
     private final String dbPath;
-    private User user;
     private Billing card;
-    private UsersPersistence userPersistence;
-    private UserBuilder userBuilder;
-    private boolean forTest = false;
 
     public PaymentPersistenceHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
         card = new Billing();
-    }
-    public PaymentPersistenceHSQLDB(final String dbPath, UsersPersistence u) {
-        this.dbPath = dbPath;
-        card = new Billing();
-        userPersistence = u;
-        forTest = true;
     }
 
     private Connection connection() throws SQLException {
@@ -48,7 +31,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
     }
 
     @Override
-    public Billing addCreditCard(Billing creditCard) {
+    public void addCreditCard(Billing creditCard, String email) {
         try (final Connection c = connection()) {
             final PreparedStatement st = c.prepareStatement("INSERT INTO creditCard VALUES(?, ?, ?, ?)");
             st.setLong(1, creditCard.getCardNumber());
@@ -57,15 +40,13 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
             st.setInt(4, creditCard.getCvv());
 
             st.executeUpdate();
-            if(!forTest)
-                userPersistence = Services.getUsersPersistence();
-            user = userPersistence.getUser();
-            userBuilder = new UserBuilder(user);
-            user = userBuilder.setBilling(creditCard);
-            userPersistence.editUser(user);
             card = creditCard;
 
-            return creditCard;
+            final PreparedStatement st1 = c.prepareStatement("UPDATE user SET cardNUM = ? WHERE email = ?");
+            st1.setLong(1, creditCard.getCardNumber());
+            st1.setString(2, email);
+            st1.executeUpdate();
+
         } catch (final SQLException e) {
             throw new PersistenceException(e);
         }
@@ -73,6 +54,10 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
 
     private void deleteCard(final long number) {
         try (final Connection c = connection()) {
+            final PreparedStatement st1 = c.prepareStatement("UPDATE user SET cardNUM = ? WHERE cardNum = ?");
+            st1.setLong(1, 0L);
+            st1.setLong(2, number);
+            st1.executeUpdate();
             final PreparedStatement st = c.prepareStatement("DELETE FROM creditCard WHERE cardNum = ?");
             st.setLong(1, number);
             st.executeUpdate();
@@ -82,7 +67,7 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
     }
 
     @Override
-    public Billing updateCreditCard(Billing creditCard) {
+    public void updateCreditCard(Billing creditCard, String email) {
         try (final Connection c = connection()) {
             if (card.getCardNumber() == creditCard.getCardNumber()) {
                 final PreparedStatement st = c.prepareStatement("UPDATE creditCard SET cardName = ?, expiryDate = ?, cvv = ? WHERE cardNum = ?");
@@ -92,29 +77,45 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
                 st.setLong(4, creditCard.getCardNumber());
 
                 st.executeUpdate();
-                card = creditCard;
             } else {
-                if(!forTest)
-                    userPersistence = Services.getUsersPersistence();
-                user = userPersistence.getUser();
-                userBuilder = new UserBuilder(user);
-                user = userBuilder.setBilling(new Billing());
-                userPersistence.editUser(user);
                 deleteCard(card.getCardNumber());
-                card = addCreditCard(creditCard);
+                addCreditCard(creditCard, email);
             }
 
-            return creditCard;
+            card = creditCard;
+
         } catch (final SQLException e) {
             throw new PersistenceException(e);
         }
     }
 
     @Override
-    public Billing getCard() {
-        return card;
+    public Billing getUserCard(String email) {
+        try (final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("SELECT cardNum FROM user WHERE email = ?");
+            st.setString(1, email);
+
+            final ResultSet rs = st.executeQuery();
+            final Billing b;
+            long cardNum = 0L;
+            if (rs.next())
+                cardNum = rs.getLong("cardNum");
+            rs.close();
+            st.close();
+
+            b = findCard(cardNum);
+            card = b;
+
+            return card;
+        } catch (final SQLException e) {
+            throw new PersistenceException(e);
+        }
     }
 
+    @Override
+    public Billing getCard(){
+        return card;
+    }
     @Override
     public Billing findCard(final long number) {
         try (final Connection c = connection()) {
@@ -130,8 +131,6 @@ public class PaymentPersistenceHSQLDB implements PaymentPersistence {
 
             rs.close();
             st.close();
-
-            card = b;
 
             return b;
         } catch (final SQLException e) {

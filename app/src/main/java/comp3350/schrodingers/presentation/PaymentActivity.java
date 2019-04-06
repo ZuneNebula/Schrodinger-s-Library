@@ -7,7 +7,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
-import comp3350.schrodingers.business.CardException;
+import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.AccessUserInfo;
+import comp3350.schrodingers.business.cardExceptions.CardException;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessPaymentInfo;
@@ -28,23 +30,23 @@ public class PaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment);
 
         // Setup toolbar
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         // Set up toolbar title color
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
         // Instantiate access to DB and get current credit card
-        accessCards = new AccessPaymentInfo();
+        accessCards = Services.getPaymentInfoAccess();
         card = accessCards.getCard();
 
         // Set presented information as stored user info (if user has already entered it)
         if (!card.isEmpty()) {
             Billing singleCard = card;
-            EditText userBilling = findViewById(R.id.billing);
-            EditText expDate = findViewById(R.id.expDate);
-            EditText cvv = findViewById(R.id.cvv);
-            EditText cardName = findViewById(R.id.cardName);
+            EditText userBilling = (EditText)findViewById(R.id.billing);
+            EditText expDate = (EditText)findViewById(R.id.expDate);
+            EditText cvv = (EditText)findViewById(R.id.cvv);
+            EditText cardName = (EditText)findViewById(R.id.cardName);
             userBilling.setText("" + singleCard.getCardNumber());
             expDate.setText(singleCard.getExpiry());
             cvv.setText("" + singleCard.getCvv());
@@ -54,10 +56,10 @@ public class PaymentActivity extends AppCompatActivity {
 
     // Method - insert card into DB upon button press
     public void buttonChangePayment(View v) {
-        EditText editCardNum = findViewById(R.id.billing);
-        EditText editExpDate = findViewById(R.id.expDate);
-        EditText editCvv = findViewById(R.id.cvv);
-        EditText editCardName = findViewById(R.id.cardName);
+        EditText editCardNum = (EditText)findViewById(R.id.billing);
+        EditText editExpDate = (EditText)findViewById(R.id.expDate);
+        EditText editCvv = (EditText)findViewById(R.id.cvv);
+        EditText editCardName = (EditText)findViewById(R.id.cardName);
 
         long cn = 0L;
         if (editCardNum.getText().toString().length() != 0)
@@ -70,12 +72,14 @@ public class PaymentActivity extends AppCompatActivity {
         Billing newCard = new Billing(cn, name, exp, cv);
 
         try {
-            accessCards.insertCard(newCard);
+            AccessUserInfo accessUser = Services.getUserInfoAccess();
+            accessCards.insertCard(newCard, accessUser.getUser().getEmail());
             Snackbar.make(findViewById(R.id.payment_info), R.string.changes_applied,
                     Snackbar.LENGTH_SHORT).show();
             finish();
         } catch (CardException c) {
-            Messages.warning(this, c.toString());
+            HandleCardExceptions handleCard = new HandleCardExceptions(c);
+            handleCard.showMessage(this);
         }
     }
 }

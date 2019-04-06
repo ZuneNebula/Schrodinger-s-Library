@@ -19,14 +19,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.AccessWishlist;
 import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.AccessRatings;
-import comp3350.schrodingers.business.UserException;
+import comp3350.schrodingers.business.userExceptions.NotLoggedException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.Ratings;
+import comp3350.schrodingers.objects.User;
 
 // Class - shows all book information and facilitates options like
 // rating, purchasing, or reviewing
@@ -44,6 +47,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
     private ArrayAdapter<Ratings> rateAdapter;
     private List<Ratings> ratings;
     private EditText review;
+    private User user;
 
     // Method - instantiates views when activity is created
     @Override
@@ -54,7 +58,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_book_info);
 
         // Setup toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // Acquire passed parameter (id bookID)
@@ -71,18 +75,18 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         viewCart = (Button) findViewById(R.id.viewCartButton);
         
         // Instantiate access to book persistence
-        final AccessBooks bookList = new AccessBooks();
+        final AccessBooks bookList = Services.getBookAccess();
         List<String> list = getBookDetails(bookList, int_id);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
         // Instantiate access to ratings
-        final AccessRatings accessRatings = new AccessRatings();
+        final AccessRatings accessRatings = Services.getRatingsAccess();
 
-        // Set book information an dimage
-        ListView viewbookList = findViewById(R.id.bookDetail);
+        // Set book information and image
+        ListView viewbookList = (ListView)findViewById(R.id.bookDetail);
         viewbookList.setAdapter(arrayAdapter);
 
-        ImageView bookImage = findViewById(R.id.bookImage);
+        ImageView bookImage = (ImageView)findViewById(R.id.bookImage);
         String imageName = bookList.searchBookById(int_id).getIconId();
 
         int iconID = -1;
@@ -93,13 +97,14 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         }
 
         bookImage.setImageResource(iconID);
-        final AccessUserInfo userInfo = new AccessUserInfo();
+        final AccessUserInfo userInfo = Services.getUserInfoAccess();
+        user = userInfo.getUser();
         // Purchase
         purchaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View view) {
 
-                if(userInfo.getUser() != null) {
+                if(user != null) {
                     Context homeContext = ViewBookInfoActivity.this;
                     Class purchaseBookClass = ReviewPurchaseActivity.class;
 
@@ -108,7 +113,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
                     intent.putExtra("SELECTED_BOOK", bookID);
                     startActivity(intent);
                 }else
-                    showMessage("Not logged in!");
+                    showMessage(new NotLoggedException());
             }
 
         });
@@ -124,27 +129,30 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         addToCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(insertShoppingCart(bookList.searchBookById(int_id))) {
+                    if(user != null) {
+                        if (insertShoppingCart(bookList.searchBookById(int_id))) {
 
-                        // Show snackbar/tool tip confirming selection has been added
-                        Snackbar addedToCart = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.addedToCart, Snackbar.LENGTH_LONG);
-                        addedToCart.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
-                        addedToCart.show();
+                            // Show snackbar/tool tip confirming selection has been added
+                            Snackbar addedToCart = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.addedToCart, Snackbar.LENGTH_LONG);
+                            addedToCart.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                            addedToCart.show();
 
-                    } else {
+                        } else {
 
-                        // Show snackbar/tool tip confirming selection already exits (cannot be added)
-                        Snackbar alreadyAdded = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.alreadyAddedToCart, Snackbar.LENGTH_LONG);
-                        alreadyAdded.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
-                        alreadyAdded.show();
+                            // Show snackbar/tool tip confirming selection already exits (cannot be added)
+                            Snackbar alreadyAdded = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.alreadyAddedToCart, Snackbar.LENGTH_LONG);
+                            alreadyAdded.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                            alreadyAdded.show();
 
-                    }
+                        }
+                    }else
+                        showMessage(new NotLoggedException());
                 }
             });
         
         // Ratings Bar
-        ratingBar = findViewById(R.id.bookRatingBar);
-        viewRateList = findViewById(R.id.ratings);
+        ratingBar = (RatingBar)findViewById(R.id.bookRatingBar);
+        viewRateList = (ListView)findViewById(R.id.ratings);
         ratings = accessRatings.findRatingsByBook(int_id);
         rateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ratings);
         viewRateList.setAdapter(rateAdapter);
@@ -153,28 +161,29 @@ public class ViewBookInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    if(accessRatings.getRatingsByUser(int_id, userInfo.getUser().getEmail().toString()).getRate() == -1){
-                        accessRatings.addRating(int_id, (int) ratingBar.getRating(), review.getText().toString());
-                        ratings = accessRatings.findRatingsByBook(int_id);
-                        rateAdapter.add(ratings.get(ratings.size()-1));
-                        Snackbar addedRating =  Snackbar.make(findViewById(R.id.viewBookLayout), "Your Ratings and Review has been added",Snackbar.LENGTH_LONG);
-                        addedRating.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
-                        addedRating.show();
-                    }
-                    else{
-                        Snackbar notAddedRating =  Snackbar.make(findViewById(R.id.viewBookLayout), "You Already Rated and Reviewed This Book",Snackbar.LENGTH_LONG);
-                        notAddedRating.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
-                        notAddedRating.show();
-                    }
-
+                    if(user != null) {
+                        if (accessRatings.getRatingsByUser(int_id, user.getEmail()).getRate() == -1) {
+                            accessRatings.addRating(int_id, (int) ratingBar.getRating(), review.getText().toString());
+                            ratings = accessRatings.findRatingsByBook(int_id);
+                            rateAdapter.add(ratings.get(ratings.size() - 1));
+                            Snackbar addedRating = Snackbar.make(findViewById(R.id.viewBookLayout), "Your Ratings and Review has been added", Snackbar.LENGTH_LONG);
+                            addedRating.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                            addedRating.show();
+                        } else {
+                            Snackbar notAddedRating = Snackbar.make(findViewById(R.id.viewBookLayout), "You Already Rated and Reviewed This Book", Snackbar.LENGTH_LONG);
+                            notAddedRating.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                            notAddedRating.show();
+                        }
+                    }else
+                        showMessage(new NotLoggedException());
                 }catch(UserException e){
-                    showMessage(e.toString());
+                    showMessage(e);
                 }
             }
         });
 
         // Review
-        review = findViewById(R.id.review);
+        review = (EditText)findViewById(R.id.review);
 
         // Wishlist
         viewWishlist.setOnClickListener(new View.OnClickListener() {
@@ -187,27 +196,31 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         addWishlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               if(insertWishlist(bookList.searchBookById(int_id))) {
+                if(user != null) {
+                    if (insertWishlist(bookList.searchBookById(int_id))) {
 
-                   // Show snackbar/tool tip confirming selection has been added
-                   Snackbar addedToWishlist = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.wishAdded, Snackbar.LENGTH_LONG);
-                   addedToWishlist.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
-                   addedToWishlist.show();
+                        // Show snackbar/tool tip confirming selection has been added
+                        Snackbar addedToWishlist = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.wishAdded, Snackbar.LENGTH_LONG);
+                        addedToWishlist.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                        addedToWishlist.show();
 
-               } else {
+                    } else {
 
-                   // Show snackbar/tool tip confirming selection already exits (cannot be added)
-                   Snackbar alreadyAdded = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.wishAlreadyAdded, Snackbar.LENGTH_LONG);
-                   alreadyAdded.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
-                   alreadyAdded.show();
+                        // Show snackbar/tool tip confirming selection already exits (cannot be added)
+                        Snackbar alreadyAdded = Snackbar.make(findViewById(R.id.viewBookLayout), R.string.wishAlreadyAdded, Snackbar.LENGTH_LONG);
+                        alreadyAdded.getView().setBackgroundColor(ContextCompat.getColor(ViewBookInfoActivity.this, R.color.colorPrimary));
+                        alreadyAdded.show();
 
-               }
+                    }
+                }else
+                    showMessage(new NotLoggedException());
             }
         });
     }
 
-    private void showMessage(String e){
-        Messages.warning(this, e);
+    private void showMessage(UserException e){
+        HandleUserExceptions handleUser = new HandleUserExceptions(e);
+        handleUser.showMessage(this);
     }
 
     // Method - acquire details of selected book
@@ -225,32 +238,39 @@ public class ViewBookInfoActivity extends AppCompatActivity {
     }
 
     private void viewWishlist() {
+        if(user != null) {
             Intent intent = new Intent(ViewBookInfoActivity.this, WishlistActivity.class);
             startActivity(intent);
+        }else
+            showMessage(new NotLoggedException());
     }
 
     private boolean insertWishlist(Book book){
-        AccessWishlist wishlist = new AccessWishlist();
+        AccessWishlist wishlist = Services.getWishlistAccess();
         try {
             return wishlist.insertBook(book);
         }catch(UserException e){
-            showMessage(e.toString());
+            showMessage(e);
             return false;
         }
 
     }
 
     private void viewShoppingCart() {
-        Intent intent = new Intent(ViewBookInfoActivity.this, ShoppingCartActivity.class);
-        startActivity(intent);
+        if(user != null) {
+            Intent intent = new Intent(ViewBookInfoActivity.this, ShoppingCartActivity.class);
+            startActivity(intent);
+        }else{
+            showMessage(new NotLoggedException());
+        }
     }
 
     private boolean insertShoppingCart(Book book){
-        AccessShoppingCart shoppingCart = new AccessShoppingCart();
+        AccessShoppingCart shoppingCart = Services.getShoppingCartAccess();
         try {
             return shoppingCart.insertBook(book);
         }catch(UserException e){
-            showMessage(e.toString());
+            showMessage(e);
             return false;
         }
 
