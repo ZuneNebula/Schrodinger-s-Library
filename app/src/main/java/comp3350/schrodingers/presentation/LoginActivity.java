@@ -8,8 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.objects.User;
-import comp3350.schrodingers.business.UserLogin;
 import comp3350.schrodingers.R;
 
 // Class - handles the login page
@@ -22,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView info;
 
     // Store user DB access
-    UserLogin currLogin = new UserLogin();
+    AccessUserInfo userInfoAccess = Services.getUserInfoAccess();
 
     // Method - instantiates views when activity is created
     @Override
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     // Method - validate user info and change to preferences page
     private void validate(String Email, String Password) {
 
-        User logUser = currLogin.checkLogin(Email, Password);
+        User logUser = userInfoAccess.checkLogin(Email, Password);
         if (logUser != null) {
             Intent intent = new Intent(LoginActivity.this, LoggedActivity.class);
             startActivity(intent);

@@ -96,19 +96,19 @@ public class Services {
     }
 
     // Return reference to DB for storage and access of rating information.
-    public static synchronized RatingPersistence getRatePersistence() {
-        if (ratingPersistence == null) {
-            ratingPersistence = new RatingPersistenceHSQLDB(Main.getDBPathName());
-        }
-        return ratingPersistence;
-    }
-
-    // Return reference to DB for storage and access of rating information.
     public static synchronized UsersPersistence getUsersPersistence() {
         if (usersPersistence == null) {
             usersPersistence = new UsersPersistenceHSQLDB(Main.getDBPathName());
         }
         return usersPersistence;
+    }
+
+    // Return reference to DB for storage and access of rating information.
+    public static synchronized RatingPersistence getRatePersistence() {
+        if (ratingPersistence == null) {
+            ratingPersistence = new RatingPersistenceHSQLDB(Main.getDBPathName());
+        }
+        return ratingPersistence;
     }
 
     // Return reference to DB for storage and access of rating information.

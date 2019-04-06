@@ -2,7 +2,6 @@ package comp3350.schrodingers.business;
 
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.User;
-import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
 // Class - facilitates accessing user info from DB
@@ -37,6 +36,12 @@ public class AccessUserInfo {
         return updateUser(user);
     }
 
+    // Method - insert user using only basic/necessary info
+    public User insertUser(String email, String userName, String password) throws UserException {
+        User newUser = new User(0, email, userName, password);
+        return insertUser(newUser);
+    }
+
     // Method - update user in DB
     public User updateUser(User user) {
         //edit user
@@ -46,5 +51,16 @@ public class AccessUserInfo {
     // Method - logout current user
     public boolean logout() {
         return userPersistence.logout();
+    }
+
+    // Method - check email and password in order to login
+    public User checkLogin(String email, String password) {
+        User curr = login(email);
+        if (curr != null && curr.getPassword().equals(password)) {
+            return curr;
+        } else {
+            return null;
+        }
+
     }
 }

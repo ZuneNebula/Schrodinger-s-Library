@@ -7,10 +7,10 @@ import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
 
+import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.User;
-import comp3350.schrodingers.business.CreateAccount;
-
 import comp3350.schrodingers.R;
 
 // Class - presents the layout used for account creation
@@ -23,7 +23,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private Button account;
 
     // Store reference to DB
-    CreateAccount newAcc = new CreateAccount();
+    AccessUserInfo userInfoAccess;
 
     // Method - instantiates views when activity is created
     @Override
@@ -32,6 +32,9 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         // Associate layout
         setContentView(R.layout.activity_create_account);
+
+        // Acquire DB access
+        userInfoAccess = Services.getUserInfoAccess();
 
         // Instantiate views
         username = (EditText)findViewById(R.id.edtName);
@@ -54,7 +57,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     // Method - validate user and login
     private void validate(String Username, String Email, String Password) {
         try {
-            User newUser = newAcc.insertUser(Username, Email, Password);
+            User newUser = userInfoAccess.insertUser(Username, Email, Password);
             Intent intent = new Intent(CreateAccountActivity.this, LoggedActivity.class);
             startActivity(intent);
         }catch(UserException e){

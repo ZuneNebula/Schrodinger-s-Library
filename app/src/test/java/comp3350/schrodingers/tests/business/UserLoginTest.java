@@ -1,15 +1,9 @@
 package comp3350.schrodingers.tests.business;
 
-import junit.framework.TestCase;
-
 import org.junit.Test;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
-
 import comp3350.schrodingers.business.AccessUserInfo;
-import comp3350.schrodingers.business.UserLogin;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.tests.persistence.UsersPersistenceStub;
 
@@ -17,11 +11,11 @@ import comp3350.schrodingers.tests.persistence.UsersPersistenceStub;
 public class UserLoginTest {
 
     private UsersPersistenceStub stub = new UsersPersistenceStub();
-    private UserLogin testLogin = new UserLogin(stub);
+    private AccessUserInfo testUserAccess = new AccessUserInfo(stub);
     String email = "zunenebula@gmail.com";
     String password = "shield-hero";
 
-    User testUser = testLogin.checkLogin(email,password);
+    User testUser = testUserAccess.checkLogin(email,password);
 
     @Test
     public void LoginCheck1() {
@@ -33,7 +27,7 @@ public class UserLoginTest {
 
     }
 
-    User testUser2 = testLogin.checkLogin(email,"wrong");
+    User testUser2 = testUserAccess.checkLogin(email,"wrong");
 
     @Test
     public void LoginCheck2() {

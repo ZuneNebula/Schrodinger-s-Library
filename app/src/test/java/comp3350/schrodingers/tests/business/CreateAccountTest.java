@@ -2,9 +2,7 @@ package comp3350.schrodingers.tests.business;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
-import comp3350.schrodingers.business.CreateAccount;
+import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.tests.persistence.UsersPersistenceStub;
@@ -14,20 +12,17 @@ public class CreateAccountTest {
 
     private UsersPersistenceStub stub = new UsersPersistenceStub();
 
-    private CreateAccount testAccount = new CreateAccount(stub);
+    private AccessUserInfo testUserAccess = new AccessUserInfo(stub);
     String email = "test123@gmail.com";
     String password = "pokemon";
     String username = "maya";
-
-
-
 
     @Test
     public void CreateAccountCheck1() {
         System.out.println("\nStarting create account test\n");
         try
         {
-            User testUser = testAccount.insertUser(email, username, password);
+            User testUser = testUserAccess.insertUser(email, username, password);
         }
 
         catch(UserException e)
