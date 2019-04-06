@@ -10,8 +10,9 @@ import comp3350.schrodingers.business.AccessPurchasedBooks;
 import comp3350.schrodingers.business.BookBuilder;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
+import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.PurchasedBooksPersistence;
-import comp3350.schrodingers.tests.persistence.UsersPersistenceStub;
+import comp3350.schrodingers.persistence.UsersPersistence;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -23,16 +24,20 @@ public class AccessPurchaseHistoryTest {
 
     private AccessPurchasedBooks accessPurchased;
     private PurchasedBooksPersistence booksPersistence;
+    private UsersPersistence usersPersistence;
 
     @Before
     public void setup(){
         booksPersistence = mock(PurchasedBooksPersistence.class);
-        accessPurchased = new AccessPurchasedBooks(booksPersistence, new UsersPersistenceStub());
+        usersPersistence = mock(UsersPersistence.class);
+        accessPurchased = new AccessPurchasedBooks(booksPersistence, usersPersistence);
     }
 
     @Test
     public void testGet(){
         System.out.println("\nStarting test AccessPurchasedBooks");
+        User user = new User(1,"chris@gmail.com","chris","comp3350");
+        when(usersPersistence.getUser()).thenReturn(user);
         final Book book;
         final List<Book> books = new ArrayList<>();
         BookBuilder builder = new BookBuilder();
