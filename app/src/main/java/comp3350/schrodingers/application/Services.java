@@ -45,56 +45,56 @@ public class Services {
     // Singleton logic classes (inject DB access).
 
     public static synchronized AccessBooks getBookAccess(){
-        booksPersistence = getBooksPersistence();
         if(bookAccess == null){
+            booksPersistence = getBooksPersistence();
             bookAccess = new AccessBooks(booksPersistence);
         }
         return bookAccess;
     }
 
     public static synchronized AccessPaymentInfo getPaymentInfoAccess(){
-        paymentPersistence = getPaymentPersistence();
         if(paymentInfoAccess == null){
+            paymentPersistence = getPaymentPersistence();
             paymentInfoAccess = new AccessPaymentInfo(paymentPersistence);
         }
         return paymentInfoAccess;
     }
 
     public static synchronized AccessUserInfo getUserInfoAccess(){
-        usersPersistence = getUsersPersistence();
         if(userInfoAccess == null){
+            usersPersistence = getUsersPersistence();
             userInfoAccess = new AccessUserInfo(usersPersistence);
         }
         return userInfoAccess;
     }
 
     public static synchronized AccessPurchasedBooks getPurchasedBooksAccess(){
-        purchasedPersistence = getPurchasedPersistence();
         if(purchasedBooksAccess == null){
+            purchasedPersistence = getPurchasedPersistence();
             purchasedBooksAccess = new AccessPurchasedBooks(purchasedPersistence);
         }
         return purchasedBooksAccess;
     }
 
     public static synchronized AccessRatings getRatingsAccess(){
-        ratingPersistence = getRatePersistence();
         if(ratingsAccess == null){
+            ratingPersistence = getRatePersistence();
             ratingsAccess = new AccessRatings(ratingPersistence);
         }
         return ratingsAccess;
     }
 
     public static synchronized AccessShoppingCart getShoppingCartAccess(){
-        shoppingCartPersistence = getShoppingCartPersistence();
         if(shoppingCartAccess == null){
+            shoppingCartPersistence = getShoppingCartPersistence();
             shoppingCartAccess = new AccessShoppingCart(shoppingCartPersistence);
         }
         return shoppingCartAccess;
     }
 
     public static synchronized AccessWishlist getWishlistAccess(){
-        wishlistPersistence = getWishlistPersistence();
         if(wishlistAccess == null){
+            wishlistPersistence = getWishlistPersistence();
             wishlistAccess = new AccessWishlist(wishlistPersistence);
         }
         return wishlistAccess;
