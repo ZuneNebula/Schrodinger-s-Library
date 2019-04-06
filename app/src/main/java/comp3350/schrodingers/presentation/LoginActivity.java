@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     // Method - validate user info and change to preferences page
     private void validate(String Email, String Password) {
 
-        User logUser = userInfoAccess.checkLogin(Email, Password);
+        User logUser = userInfoAccess.login(Email, Password);
         if (logUser != null) {
             Intent intent = new Intent(LoginActivity.this, LoggedActivity.class);
             startActivity(intent);

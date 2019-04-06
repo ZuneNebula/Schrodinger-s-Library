@@ -21,11 +21,6 @@ public class AccessUserInfo {
         return userPersistence.getUser();
     }
 
-    // Method - login using previously stored user email (and return it - null if not found)
-    public User login(String email){
-        return userPersistence.getUserAndLogin(email);
-    }
-
     // Method - insert user into DB
     public User insertUser(User user) throws UserException {
         //add new user
@@ -58,8 +53,8 @@ public class AccessUserInfo {
     }
 
     // Method - check email and password in order to login
-    public User checkLogin(String email, String password) {
-        User curr = login(email);
+    public User login(String email, String password) {
+        User curr = userPersistence.getUserAndLogin(email);
         if (curr != null && curr.getPassword().equals(password)) {
             return curr;
         } else {

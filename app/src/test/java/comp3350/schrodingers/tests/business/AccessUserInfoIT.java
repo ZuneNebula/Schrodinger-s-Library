@@ -41,7 +41,7 @@ public class AccessUserInfoIT {
     public void testLogin(){
         System.out.println("\nStarting AccessUserInfoIT: login");
         accessUser.logout();
-        accessUser.login("zunenebula@gmail.com");
+        accessUser.login("zunenebula@gmail.com", "shield-hero");
         User user = accessUser.getUser();
         assertNotNull("\tuser must not be null", user);
         System.out.println("Finished AccessUserInfoIT: login");
@@ -80,6 +80,7 @@ public class AccessUserInfoIT {
         assertNotEquals("\tpassword must not be equal", newUser.getPassword(),user.getPassword());
         System.out.println("Finished AccessUserInfoIT: updateUser");
     }
+
 
     @After
     public void tearDown() {
