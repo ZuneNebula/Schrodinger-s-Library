@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.userExceptions.NotLoggedException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Ratings;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.RatingPersistence;
@@ -14,9 +16,10 @@ public class AccessRatings {
     private AccessUserInfo accessUserInfo;
     private RatingPersistence ratingPersistence;
 
-    public AccessRatings(){
-        accessUserInfo = new AccessUserInfo();
-        ratingPersistence = Services.getRatePersistence();
+    // Constructor - inject DB access
+    public AccessRatings(RatingPersistence ratePersistence){
+        accessUserInfo = Services.getUserInfoAccess();
+        ratingPersistence = ratePersistence;
     }
 
     public List<Ratings> findRatingsByBook(int bookID){
@@ -33,12 +36,12 @@ public class AccessRatings {
         return bookRatings;
     }
 
-    public void addRating(int bookid, int rate, String review) throws UserException{
+    public void addRating(int bookid, int rate, String review) throws UserException {
         User user = accessUserInfo.getUser();
         if(user != null)
             ratingPersistence.addBookRatings(bookid, rate, user.getEmail(),review);
         else
-            throw new UserException("Not logged in!");
+            throw new NotLoggedException();
     }
 
     public Ratings getRatingsByUser(int bookID, String email){

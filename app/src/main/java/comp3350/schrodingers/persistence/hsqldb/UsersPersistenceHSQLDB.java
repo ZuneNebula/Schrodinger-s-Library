@@ -7,10 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.AccessPaymentInfo;
 import comp3350.schrodingers.business.UserBuilder;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.PaymentPersistence;
@@ -22,7 +21,6 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
 
     private User logged;
     private static int userId = 1;
-    private PaymentPersistence payPersistence;
     private UserBuilder userBuilder;
 
     public UsersPersistenceHSQLDB(final String dbPath) {
@@ -47,8 +45,8 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         if (cardNum == 0 && address.compareTo("") == 0)
             return userBuilder.getUser();
         else {
-            payPersistence = Services.getPaymentPersistence();
-            User.Billing card = payPersistence.findCard(cardNum);
+            AccessPaymentInfo payInfo = Services.getPaymentInfoAccess();
+            User.Billing card = payInfo.getUserCard(email);
             User.Address add = findAddress(address);
             return userBuilder.setAddressAndBilling(add, card);
         }

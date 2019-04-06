@@ -11,8 +11,9 @@ import android.widget.ListView;
 import java.util.List;
 
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessShoppingCart;
-import comp3350.schrodingers.business.UserException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
 
 // Class - handles presenting shopping cart
@@ -30,21 +31,22 @@ public class ShoppingCartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shopping_cart);
 
         // Set up tool bar
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
         // Access shoppingcart persistence
-        accessShoppingCart = new AccessShoppingCart();
+        accessShoppingCart = Services.getShoppingCartAccess();
 
         // Display shopping cart
         try {
             List<Book> list = accessShoppingCart.getBooks();
             BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
-            ListView bookListView = findViewById(R.id.shoppingCart);
+            ListView bookListView = (ListView)findViewById(R.id.shoppingCart);
             bookListView.setAdapter(adapter);
         }catch(UserException e){
-            Messages.warning(this, e.toString());
+            HandleUserExceptions handleUser = new HandleUserExceptions(e);
+            handleUser.showMessage(this);
         }
 
 

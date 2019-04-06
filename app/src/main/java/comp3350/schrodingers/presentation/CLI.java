@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessPaymentInfo;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessUserInfo;
@@ -90,7 +91,7 @@ public class CLI
     // Method - acquire reference to user
     public static void processGetUser() {
         AccessUserInfo accessUserInfo;
-        accessUserInfo = new AccessUserInfo();
+        accessUserInfo = Services.getUserInfoAccess();
         if(inputTokens.length>2){
             if(inputTokens[2].equalsIgnoreCase("orphan")){
                 System.out.println(accessUserInfo.getUser().getUserName());
@@ -101,7 +102,7 @@ public class CLI
     // Method - acquire reference to payment info
     public static void processGetPayment() {
         AccessPaymentInfo accessPayInfo;
-        accessPayInfo = new AccessPaymentInfo();
+        accessPayInfo = Services.getPaymentInfoAccess();
         if(inputTokens.length>2){
             if(inputTokens[2].equalsIgnoreCase("orphan")){
                 System.out.println(accessPayInfo.getCard());
@@ -111,7 +112,7 @@ public class CLI
 
     // Method - acquire reference to books
     public static void processGetBook(){
-        AccessBooks accessBooks= new AccessBooks();
+        AccessBooks accessBooks = Services.getBookAccess();
         List<Book> array = accessBooks.getAllBooks();
         System.out.println(array.get(0));
     }

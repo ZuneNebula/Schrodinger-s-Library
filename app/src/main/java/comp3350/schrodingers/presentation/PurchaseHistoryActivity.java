@@ -8,8 +8,9 @@ import android.widget.ListView;
 import java.util.List;
 
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessPurchasedBooks;
-import comp3350.schrodingers.business.UserException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
 
 // Class - presents purchase history info from DB
@@ -25,7 +26,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
 
         // Associate layout
         setContentView(R.layout.activity_purchase_history);
-        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
 
         // Setup toolbar
         setSupportActionBar(myToolbar);
@@ -34,13 +35,14 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         myToolbar.setTitleTextColor(0XFFFFFFFF);
 
         try {
-            accessPurchased = new AccessPurchasedBooks();
+            accessPurchased = Services.getPurchasedBooksAccess();
             List<Book> list = accessPurchased.getBooks();
             BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
-            ListView bookListView = findViewById(R.id.list_purchased);
+            ListView bookListView = (ListView)findViewById(R.id.list_purchased);
             bookListView.setAdapter(adapter);
         }catch (UserException e){
-            Messages.warning(this, e.toString());
+            HandleUserExceptions handleUser = new HandleUserExceptions(e);
+            handleUser.showMessage(this);
         }
 
     }

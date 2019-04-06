@@ -6,15 +6,14 @@ import java.util.List;
 
 import comp3350.schrodingers.persistence.BooksPersistence;
 import comp3350.schrodingers.objects.Book;
-import comp3350.schrodingers.application.Services;
 
 public class AccessBooks {
 
     private BooksPersistence booksPersistence;
 
-    // Constructor - initialize DB access
-    public AccessBooks() {
-        booksPersistence = Services.getBooksPersistence();
+    // Constructor - inject DB access
+    public AccessBooks(BooksPersistence persistence) {
+        booksPersistence = persistence;
     }
 
     public List<Book> getAllBooks() {

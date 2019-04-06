@@ -5,10 +5,7 @@ import org.junit.Test;
 import comp3350.schrodingers.business.AccessPaymentInfo;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.persistence.PaymentPersistence;
-import comp3350.schrodingers.tests.persistence.PaymentPersistenceStub;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

@@ -7,8 +7,9 @@ import android.widget.ListView;
 import java.util.List;
 
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessWishlist;
-import comp3350.schrodingers.business.UserException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
 
 // Class - handles presenting user wishlist
@@ -21,21 +22,22 @@ public class WishlistActivity extends AppCompatActivity {
           setContentView(R.layout.activity_wishlist);
 
           // Set up tool bar
-          Toolbar myToolbar = findViewById(R.id.my_toolbar);
+          Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
           setSupportActionBar(myToolbar);
           myToolbar.setTitleTextColor(0XFFFFFFFF);
 
           // Access wishlist persistence
-          accessWishlist = new AccessWishlist();
+          accessWishlist = Services.getWishlistAccess();
 
           // Display wish list
         try {
             List<Book> list = accessWishlist.getBooks();
             BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
-            ListView bookListView = findViewById(R.id.wishList);
+            ListView bookListView = (ListView)findViewById(R.id.wishList);
             bookListView.setAdapter(adapter);
         }catch(UserException e){
-            Messages.warning(this, e.toString());
+            HandleUserExceptions handleUser = new HandleUserExceptions(e);
+            handleUser.showMessage(this);
         }
 
     }

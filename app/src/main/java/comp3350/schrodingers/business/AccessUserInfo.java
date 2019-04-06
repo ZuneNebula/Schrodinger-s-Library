@@ -1,7 +1,8 @@
 package comp3350.schrodingers.business;
 
+import comp3350.schrodingers.business.userExceptions.UserAlreadyExistsException;
+import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.User;
-import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
 // Class - facilitates accessing user info from DB
@@ -9,11 +10,6 @@ public class AccessUserInfo {
 
     // Store payment access to DB and relevant/current user
     private UsersPersistence userPersistence;
-
-    // Constructor - initialize DB access
-    public AccessUserInfo() {
-        userPersistence = Services.getUsersPersistence();
-    }
 
     // Constructor - inject DB access
     public AccessUserInfo(final UsersPersistence userPers) {
@@ -25,20 +21,25 @@ public class AccessUserInfo {
         return userPersistence.getUser();
     }
 
-    // Method - login using previously stored user email (and return it - null if not found)
-    public User login(String email){
-        return userPersistence.getUserAndLogin(email);
-    }
-
     // Method - insert user into DB
     public User insertUser(User user) throws UserException {
         //add new user
         UserValidator u = new UserValidator();
         u.validateInfo(user);
         User logged = getUser();
-        if (logged == null)
+        User checkAlreadyAdded = userPersistence.findUser(user.getEmail());
+        if(logged == null) {
+            if (checkAlreadyAdded != null)
+                throw new UserAlreadyExistsException();
             return userPersistence.insertUser(user);
+        }
         return updateUser(user);
+    }
+
+    // Method - insert user using only basic/necessary info
+    public User insertUser(String email, String userName, String password) throws UserException {
+        User newUser = new User(0, email, userName, password);
+        return insertUser(newUser);
     }
 
     // Method - update user in DB
@@ -50,5 +51,16 @@ public class AccessUserInfo {
     // Method - logout current user
     public boolean logout() {
         return userPersistence.logout();
+    }
+
+    // Method - check email and password in order to login
+    public User login(String email, String password) {
+        User curr = userPersistence.getUserAndLogin(email);
+        if (curr != null && curr.getPassword().equals(password)) {
+            return curr;
+        } else {
+            return null;
+        }
+
     }
 }

@@ -14,7 +14,8 @@ import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 // Class - handles changing book information into something viewable
 public class BookAdapter extends BaseAdapter {
@@ -85,9 +86,9 @@ public class BookAdapter extends BaseAdapter {
             convertView = inflater.inflate(layoutID, null);
 
             //
-            holder.title = convertView.findViewById(R.id.bookTitle);
-            holder.author = convertView.findViewById(R.id.bookAuthor);
-            holder.icon = convertView.findViewById(R.id.bookIcon);
+            holder.title = (TextView)convertView.findViewById(R.id.bookTitle);
+            holder.author = (TextView)convertView.findViewById(R.id.bookAuthor);
+            holder.icon = (ImageView)convertView.findViewById(R.id.bookIcon);
 
             convertView.setTag(holder);
 
