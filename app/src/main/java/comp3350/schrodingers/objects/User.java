@@ -2,7 +2,7 @@ package comp3350.schrodingers.objects;
 
 public class User {
 
-    private int userId = 0;
+    private int userId = -1;
     private String email = null;  // distinct key
     private String username = null;
     private String password = null;
