@@ -1,5 +1,6 @@
 package comp3350.schrodingers.business;
 
+import comp3350.schrodingers.business.userExceptions.UserAlreadyExistsException;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.UsersPersistence;
@@ -31,7 +32,10 @@ public class AccessUserInfo {
         UserValidator u = new UserValidator();
         u.validateInfo(user);
         User logged = getUser();
-        if (logged == null)
+        User checkAlreadyAdded = userPersistence.findUser(user.getEmail());
+        if(checkAlreadyAdded != null)
+            throw new UserAlreadyExistsException();
+        else if (logged == null)
             return userPersistence.insertUser(user);
         return updateUser(user);
     }

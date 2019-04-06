@@ -6,6 +6,7 @@ import comp3350.schrodingers.business.userExceptions.EmailNotValidException;
 import comp3350.schrodingers.business.userExceptions.EmailRequiredException;
 import comp3350.schrodingers.business.userExceptions.NameRequiredException;
 import comp3350.schrodingers.business.userExceptions.NotLoggedException;
+import comp3350.schrodingers.business.userExceptions.UserAlreadyExistsException;
 import comp3350.schrodingers.business.userExceptions.UserException;
 
 public class HandleUserExceptions {
@@ -23,6 +24,8 @@ public class HandleUserExceptions {
             userExcep.setMessage("Username required");
         else if(userExcep instanceof NotLoggedException)
             userExcep.setMessage("You are not logged in!");
+        else if(userExcep instanceof UserAlreadyExistsException)
+            userExcep.setMessage("You already have an account!");
     }
     public String toString(){return userExcep.toString();}
 
