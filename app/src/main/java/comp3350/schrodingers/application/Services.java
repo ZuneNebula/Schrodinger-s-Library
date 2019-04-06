@@ -128,7 +128,7 @@ public class Services {
     }
 
     // Return reference to DB for storage and access of rating information.
-    public static synchronized PaymentPersistence getPaymentPersistence() {
+    private static synchronized PaymentPersistence getPaymentPersistence() {
         if (paymentPersistence == null) {
             paymentPersistence = new PaymentPersistenceHSQLDB(Main.getDBPathName());
         }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.cardExceptions.CardException;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.R;
@@ -71,7 +72,8 @@ public class PaymentActivity extends AppCompatActivity {
         Billing newCard = new Billing(cn, name, exp, cv);
 
         try {
-            accessCards.insertCard(newCard);
+            AccessUserInfo accessUser = Services.getUserInfoAccess();
+            accessCards.insertCard(newCard, accessUser.getUser().getEmail());
             Snackbar.make(findViewById(R.id.payment_info), R.string.changes_applied,
                     Snackbar.LENGTH_SHORT).show();
             finish();

@@ -28,10 +28,11 @@ public class AccessUserInfo {
         u.validateInfo(user);
         User logged = getUser();
         User checkAlreadyAdded = userPersistence.findUser(user.getEmail());
-        if(checkAlreadyAdded != null)
-            throw new UserAlreadyExistsException();
-        else if (logged == null)
+        if(logged == null) {
+            if (checkAlreadyAdded != null)
+                throw new UserAlreadyExistsException();
             return userPersistence.insertUser(user);
+        }
         return updateUser(user);
     }
 
