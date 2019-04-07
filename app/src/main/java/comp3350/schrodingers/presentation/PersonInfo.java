@@ -48,17 +48,18 @@ public class PersonInfo extends AppCompatActivity {
             userName.setText(user.getUserName());
             EditText userEmail = (EditText)findViewById(R.id.email);
             userEmail.setText(user.getEmail());
-
-            EditText userAddress = (EditText)findViewById(R.id.address);
-            userAddress.setText(user.getAddress().getAddress());
-            EditText userCity = (EditText)findViewById(R.id.city);
-            userCity.setText(user.getAddress().getCity());
-            EditText userState = (EditText)findViewById(R.id.province);
-            userState.setText(user.getAddress().getState());
-            EditText userZip = (EditText)findViewById(R.id.zip);
-            userZip.setText(user.getAddress().getPostalCode());
-            EditText userCountry = (EditText)findViewById(R.id.country);
-            userCountry.setText(user.getAddress().getCountry());
+            if (!user.getAddress().noAddr()) {
+                EditText userAddress = (EditText) findViewById(R.id.address);
+                userAddress.setText(user.getAddress().getAddress());
+                EditText userCity = (EditText) findViewById(R.id.city);
+                userCity.setText(user.getAddress().getCity());
+                EditText userState = (EditText) findViewById(R.id.province);
+                userState.setText(user.getAddress().getState());
+                EditText userZip = (EditText) findViewById(R.id.zip);
+                userZip.setText(user.getAddress().getPostalCode());
+                EditText userCountry = (EditText) findViewById(R.id.country);
+                userCountry.setText(user.getAddress().getCountry());
+            }
         }
     }
 
