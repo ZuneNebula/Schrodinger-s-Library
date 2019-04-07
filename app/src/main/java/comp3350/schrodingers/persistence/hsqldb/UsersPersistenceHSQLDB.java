@@ -60,17 +60,11 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
             st.setString(4, newUser.getPassword());
             st.setBoolean(5, true);
 
-            if (newUser.billingExist()){
-                st.setLong(6, newUser.getBilling().getCardNumber());
-            } else {
-                st.setLong(6, 0L);
-            }
+            st.setLong(6, newUser.getBilling().getCardNumber());
+            st.setLong(6, 0L);
 
-            if (newUser.addrExist()) {
-                st.setString(7, newUser.getAddress().getAddress());
-            } else {
-                st.setString(7, "");
-            }
+            st.setString(7, newUser.getAddress().getAddress());
+            st.setString(7, "");
 
             st.executeUpdate();
 
@@ -103,18 +97,14 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
             st.setString(2, newUser.getUserName());
             st.setString(3, newUser.getPassword());
 
-            if (newUser.billingExist()) {
-                st.setLong(4, newUser.getBilling().getCardNumber());
-            } else {
-                st.setLong(4, 0L);
-            }
+            st.setLong(4, newUser.getBilling().getCardNumber());
 
             String loggedAddr = logged.getAddress().getAddress();
             String newUserAddr = newUser.getAddress().getAddress();
 
-            if (newUser.addrExist() && !findAddress(newUserAddr).noAddr()) {
+            if (!findAddress(newUserAddr).noAddr()) {
                 st.setString(5, newUserAddr);
-            } else if (newUser.addrExist() && findAddress(newUserAddr).noAddr()) {
+            } else if (findAddress(newUserAddr).noAddr()) {
                 insertAddress(newUser.getAddress());
                 st.setString(5, newUserAddr);
             } else{

@@ -71,14 +71,6 @@ public class User {
         return password.equals("");
     }
 
-    public boolean addrExist(){
-        return address != null;
-    }
-
-    public boolean billingExist(){
-        return billing != null;
-    }
-
     public static class Address {  // class which stores the address
         private String streetAndNumber;
         private String postalCode;
