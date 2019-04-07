@@ -17,6 +17,7 @@ public class AccessPaymentInfo {
         this.payPersistence = persistence;
     }
 
+    //Injectable for tests
     public AccessPaymentInfo(PaymentPersistence persistence, AccessUserInfo u) {
         this.payPersistence = persistence;
         userInfo = u;
