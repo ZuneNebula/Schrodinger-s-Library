@@ -89,7 +89,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         // Display user name
         TextView review_userName = (TextView)findViewById(R.id.review_userName);
         if (currUser.noUserName()){
-            review_userName.setText("Please Enter Username.");
+            review_userName.setText("***Please Enter Username.***");
             missingUsername = true;
         } else {
             userName = currUser.getUserName();
@@ -100,7 +100,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         // Display email
         TextView review_email = (TextView)findViewById(R.id.review_email);
         if (currUser.noEmail()){
-            review_userName.setText("Please Enter Username.");
+            review_email.setText("***Please Enter Username.***");
             missingEmail = true;
         } else {
             email = currUser.getEmail();
@@ -108,16 +108,105 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         }
         review_email.setTextColor(Color.parseColor("#000000"));
 
-        address = userAddress.getAddress();
-        postalCode = userAddress.getPostalCode();
-        country = userAddress.getCountry();
-        state = userAddress.getState();
-        city = userAddress.getCity();
+        // Display address
+        TextView review_address = (TextView)findViewById(R.id.review_address);
+        if (userAddress.noAddr()){
+            review_address.setText("***Please Enter Address.***");
+            missingAddress = true;
+        } else {
+            address = userAddress.getAddress();
+            review_address.setText(address);
+        }
+        review_address.setTextColor(Color.parseColor("#000000"));
 
-        creditCard = userBilling.getCardNumber();
-        cardName = userBilling.getFullName();
-        cvv = userBilling.getCvv();
-        expiry = userBilling.getExpiry();
+        // Display postal code
+        TextView review_postalCode = (TextView)findViewById(R.id.review_postalCode);
+        if (userAddress.noPostal()){
+            review_postalCode.setText("***Please Enter Postal Code.***");
+            missingPostal = true;
+        } else {
+            postalCode = userAddress.getPostalCode();
+            review_postalCode.setText(postalCode);
+        }
+        review_postalCode.setTextColor(Color.parseColor("#000000"));
+
+        // Display country
+        TextView review_country = (TextView)findViewById(R.id.review_country);
+        if (userAddress.noCountry()){
+            review_country.setText("***Please Enter Country.***");
+            missingCountry = true;
+        } else {
+            country = userAddress.getCountry();
+            review_country.setText(country);
+        }
+        review_country.setTextColor(Color.parseColor("#000000"));
+
+        // Display state
+        TextView review_state = (TextView)findViewById(R.id.review_state);
+        if (userAddress.noState()){
+            review_state.setText("***Please Enter State.***");
+            missingState = true;
+        } else {
+            state = userAddress.getState();
+            review_state.setText(state);
+        }
+        review_state.setTextColor(Color.parseColor("#000000"));
+
+        // Display city
+        TextView review_city = (TextView)findViewById(R.id.review_city);
+        if (userAddress.noCity()){
+            review_city.setText("***Please Enter City.***");
+            missingCity = true;
+        } else {
+            city = userAddress.getCity();
+            review_city.setText(city);
+        }
+        review_city.setTextColor(Color.parseColor("#000000"));
+
+        // Display credit card number
+        TextView review_cardNo = (TextView)findViewById(R.id.review_creditCard);
+        if (userBilling.noCardNo()){
+            review_cardNo.setText("***Please Enter Credit Card.***");
+            missingCardNo = true;
+        } else {
+            creditCard = userBilling.getCardNumber();
+            review_cardNo.setText(Long.toString(creditCard));
+        }
+        review_cardNo.setTextColor(Color.parseColor("#000000"));
+
+        // Display credit card name
+        TextView review_cardName = (TextView)findViewById(R.id.review_cardName);
+        if (userBilling.noCardName()){
+            review_cardName.setText("***Please Enter Credit Card.***");
+            missingCardName = true;
+        } else {
+            cardName = userBilling.getFullName();
+            review_cardName.setText(cardName);
+        }
+        review_cardName.setTextColor(Color.parseColor("#000000"));
+
+        // Display credit card cvv
+        TextView review_cvv = (TextView)findViewById(R.id.review_cvv);
+        if (userBilling.noCvv()){
+            review_cvv.setText("***Please Enter CVV.***");
+            missingCvv = true;
+        } else {
+            cvv = userBilling.getCvv();
+            review_cvv.setText(Long.toString(cvv));
+        }
+        review_cvv.setTextColor(Color.parseColor("#000000"));
+
+
+        // Display credit card expiry
+        TextView review_expiry = (TextView)findViewById(R.id.review_expiry);
+        if (userBilling.noExpiry()){
+            review_expiry.setText("***Please Enter Expiry.***");
+            missingExpiry = true;
+        } else {
+            expiry = userBilling.getExpiry();
+            review_expiry.setText(expiry);
+        }
+        review_expiry.setTextColor(Color.parseColor("#000000"));
 
         // Acquire buttons
         Button enterAddress = (Button) findViewById(R.id.enterAddress);
@@ -128,54 +217,13 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         enterAddress.setVisibility(View.INVISIBLE);
         enterCredit.setVisibility(View.INVISIBLE);
 
-        // Display address info
-        if(!userAddress.noAddr()) {
-
-            TextView review_address = (TextView)findViewById(R.id.review_address);
-            review_address.setText(address);
-            review_address.setTextColor(Color.parseColor("#000000"));
-
-            TextView review_postalCode = (TextView)findViewById(R.id.review_postalCode);
-            review_postalCode.setText(postalCode);
-            review_postalCode.setTextColor(Color.parseColor("#000000"));
-
-            TextView review_country = (TextView)findViewById(R.id.review_country);
-            review_country.setText(country);
-            review_country.setTextColor(Color.parseColor("#000000"));
-
-            TextView review_state = (TextView)findViewById(R.id.review_state);
-            review_state.setText(state);
-            review_state.setTextColor(Color.parseColor("#000000"));
-
-            TextView review_city = (TextView)findViewById(R.id.review_city);
-            review_city.setText(city);
-            review_city.setTextColor(Color.parseColor("#000000"));
-
-        // Show button
-        } else {
+        // Display button if missing info
+        if(missingUsername || missingEmail || missingAddress || missingPostal || missingCountry || missingState || missingCity) {
             enterAddress.setVisibility(View.VISIBLE);
         }
 
-        // Display Billing info
-        if(!userBilling.noCardNo()) {
-            TextView review_cardNo = (TextView)findViewById(R.id.review_creditCard);
-            review_cardNo.setText(Long.toString(creditCard));
-            review_cardNo.setTextColor(Color.parseColor("#000000"));
-
-            TextView review_cardName = (TextView)findViewById(R.id.review_cardName);
-            review_cardName.setText(cardName);
-            review_cardName.setTextColor(Color.parseColor("#000000"));
-
-            TextView review_cvv = (TextView)findViewById(R.id.review_cvv);
-            review_cvv.setText(Long.toString(creditCard));
-            review_cvv.setTextColor(Color.parseColor("#000000"));
-
-            TextView review_expiry = (TextView)findViewById(R.id.review_expiry);
-            review_expiry.setText(expiry);
-            review_expiry.setTextColor(Color.parseColor("#000000"));
-
-        // Show button
-        } else {
+        // Display button if missing info
+        if(missingCardNo || missingCardName || missingCvv || missingExpiry) {
             enterCredit.setVisibility(View.VISIBLE);
         }
 
