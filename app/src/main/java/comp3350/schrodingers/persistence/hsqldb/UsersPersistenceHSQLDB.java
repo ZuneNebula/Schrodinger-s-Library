@@ -104,12 +104,13 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
             String loggedAddr = logged.getAddress().getAddress();
             String newUserAddr = newUser.getAddress().getAddress();
 
-            if(newUserAddr.compareTo("") == 0 || !newUser.getAddress().noAddr())
+            if(newUserAddr.compareTo("") == 0 || newUser.getAddress().noAddr())
                 st.setString(5, "NOADDRESS!");
             else if (loggedAddr.compareTo(newUserAddr) == 0 && !findAddress(newUserAddr).noAddr()) {
                 st.setString(5, newUserAddr);
             } else{
-                st.setString(5, "NOADDRESS!");
+                insertAddress(newUser.getAddress());
+                st.setString(5, newUserAddr);
             }
 
             st.setInt(6, logged.getUserId());
