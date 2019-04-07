@@ -217,7 +217,13 @@ public class HomeActivity extends AppCompatActivity
                 changeAdapter(R.layout.item);
                 searchLayout = (ListView)findViewById(R.id.booklist);
                 searchLayout.setAdapter(arrayAdapter);
+
+                // Hide browse stuff while searching
                 browseLayout.setVisibility(ScrollView.INVISIBLE);
+                sortByPriceAsc.setVisibility(ScrollView.INVISIBLE);
+                sortByPriceDsc.setVisibility(ScrollView.INVISIBLE);
+                sortByNameAsc.setVisibility(ScrollView.INVISIBLE);
+                sortByNameDsc.setVisibility(ScrollView.INVISIBLE);
                 return true;
             }
         });
