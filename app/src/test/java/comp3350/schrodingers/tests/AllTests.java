@@ -11,7 +11,8 @@ import comp3350.schrodingers.tests.business.UserValidatorTest;
 import comp3350.schrodingers.tests.objects.BillingTest;
 import comp3350.schrodingers.tests.objects.BookTest;
 import comp3350.schrodingers.tests.objects.UserTest;
-
+import comp3350.schrodingers.tests.business.AccessWishlistTest;
+import comp3350.schrodingers.tests.business.AccessBooksTest;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         BillingTest.class,
@@ -21,7 +22,10 @@ import comp3350.schrodingers.tests.objects.UserTest;
         UserValidatorTest.class,
         AccessUserInfoTest.class,
         AccessPaymentInfoTest.class,
-        AccessPurchaseHistoryTest.class
+        AccessPurchaseHistoryTest.class,
+        AccessWishlistTest.class,
+        AccessBooksTest.class
+
 
 })
 public class AllTests
