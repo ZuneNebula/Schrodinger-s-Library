@@ -10,10 +10,16 @@ public class AccessPaymentInfo {
 
     // Store payment access to DB and relevant/current credit card number
     private PaymentPersistence payPersistence;
+    private AccessUserInfo userInfo = null;
 
     // Constructor - inject DB access
     public AccessPaymentInfo(PaymentPersistence persistence) {
         this.payPersistence = persistence;
+    }
+
+    public AccessPaymentInfo(PaymentPersistence persistence, AccessUserInfo u) {
+        this.payPersistence = persistence;
+        userInfo = u;
     }
 
     // Method - return relevant/current credit card from DB
@@ -22,7 +28,8 @@ public class AccessPaymentInfo {
     }
 
     public Billing getCard(){
-        AccessUserInfo userInfo = Services.getUserInfoAccess();
+        if(userInfo == null)
+            userInfo = Services.getUserInfoAccess();
         return payPersistence.getUserCard(userInfo.getUser().getEmail());
     }
 
