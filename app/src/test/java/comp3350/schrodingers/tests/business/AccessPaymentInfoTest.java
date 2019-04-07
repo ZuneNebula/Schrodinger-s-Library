@@ -28,7 +28,7 @@ public class AccessPaymentInfoTest {
         when(paymentPersistence.getCard()).thenReturn(card);
 
         final Billing c = accessPayInfo.getCard();
-        assertTrue("\tno cards in DB, should be empty", c.isEmpty());
+        assertTrue("\tno cards in DB, should be empty", c.noCardNo());
         verify(paymentPersistence).getCard();
         System.out.println("\nFinished test AccessPaymentInfo");
     }

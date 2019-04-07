@@ -63,11 +63,18 @@ public class User {
     }
 
     // Conditional
+    public boolean noUserName() {
+        return username.equals("");
+    }
+
+    public boolean noPassword() {
+        return password.equals("");
+    }
+
     public boolean addrExist(){
         return address != null;
     }
 
-    // Conditional
     public boolean billingExist(){
         return billing != null;
     }
@@ -80,7 +87,7 @@ public class User {
         private String country;
 
         public Address() {
-            streetAndNumber = "NOADDRESS!";
+            streetAndNumber = "";
             postalCode = "";
             state = "";
             country = "";
@@ -95,11 +102,7 @@ public class User {
             this.city = city;
         }
 
-        // Conditional
-        //public boolean noAddress() {return streetAndNumber}
-
-
-
+        // Getters
         public String getAddress() {
             return streetAndNumber;
         }
@@ -120,8 +123,25 @@ public class User {
             return city;
         }
 
-        public boolean isEmpty() {
-            return streetAndNumber.compareTo("NOADDRESS!") == 0;
+        // Conditional
+        public boolean noAddr() {
+            return streetAndNumber.equals("");
+        }
+
+        public boolean noPostal() {
+            return postalCode.equals("");
+        }
+
+        public boolean noState() {
+            return state.equals("");
+        }
+
+        public boolean noCountry() {
+            return country.equals("");
+        }
+
+        public boolean noCity() {
+            return city.equals("");
         }
 
         public String toString(){
@@ -148,6 +168,7 @@ public class User {
             this.cvv = cvv;
         }
 
+        // Getters
         public long getCardNumber() {
             return cardNumber;
         }
@@ -164,8 +185,21 @@ public class User {
             return cvv;
         }
 
-        public boolean isEmpty() {
+        // Conditional
+        public boolean noCardNo() {
             return cardNumber == 0L;
+        }
+
+        public boolean noCardName() {
+            return fullName.equals("");
+        }
+
+        public boolean noExpiry() {
+            return expiry.equals("");
+        }
+
+        public boolean noCvv() {
+            return cvv == 0;
         }
 
         public String toString() {

@@ -41,7 +41,7 @@ public class PaymentActivity extends AppCompatActivity {
         card = accessCards.getCard();
 
         // Set presented information as stored user info (if user has already entered it)
-        if (!card.isEmpty()) {
+        if (!card.noCardNo()) {
             Billing singleCard = card;
             EditText userBilling = (EditText)findViewById(R.id.billing);
             EditText expDate = (EditText)findViewById(R.id.expDate);

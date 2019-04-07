@@ -51,7 +51,7 @@ public class AccessPaymentInfoIT {
     public void testGetCard(){
         System.out.println("\nStarting AccessPaymentInfoIT: getCard");
         Billing card = accessPay.getCard();
-        assertTrue("\tno cards in DB, should be empty", card.isEmpty());
+        assertTrue("\tno cards in DB, should be empty", card.noCardNo());
         System.out.println("Finished AccessPaymentInfoIT: getCard");
     }
 

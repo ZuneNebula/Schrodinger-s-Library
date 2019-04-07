@@ -106,7 +106,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         review_email.setTextColor(Color.parseColor("#000000"));
 
         // Display address info
-        if(!userAddress.isEmpty()) {
+        if(!userAddress.noAddr()) {
 
             TextView review_address = (TextView)findViewById(R.id.review_address);
             review_address.setText(address);
@@ -134,7 +134,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         }
 
         // Display Billing info
-        if(!userAddress.isEmpty()) {
+        if(!userBilling.noCardNo()) {
             TextView review_cardNo = (TextView)findViewById(R.id.review_creditCard);
             review_cardNo.setText(Long.toString(creditCard));
             review_cardNo.setTextColor(Color.parseColor("#000000"));

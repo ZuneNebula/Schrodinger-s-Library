@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 import comp3350.schrodingers.business.AccessUserInfo;
+import comp3350.schrodingers.business.UserBuilder;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.UsersPersistence;
@@ -59,7 +60,8 @@ public class AccessUserInfoIT {
     @Test
     public void testInsertUser(){
         System.out.println("\nStarting AccessUserInfoIT: insertUser");
-        User newUser = new User(2,"chris@gmail.com","chris","comp3350");
+        UserBuilder builder = new UserBuilder();
+        User newUser = builder.id(2).email("chris@gmail.com").name("chris").password("comp3350").buildUser();
         try {
             accessUser.insertUser(newUser);
             User user = accessUser.getUser();
@@ -74,7 +76,8 @@ public class AccessUserInfoIT {
     public void testUpdateUser(){
         System.out.println("\nStarting AccessUserInfoIT: updateUser");
         User user = accessUser.getUser();
-        User newUser = new User(user.getUserId(),user.getEmail(),user.getUserName(),"comp3350");
+        UserBuilder builder = new UserBuilder();
+        User newUser = builder.id(user.getUserId()).email(user.getEmail()).name(user.getUserName()).password("comp3350").buildUser();
         accessUser.updateUser(newUser);
         assertEquals("\tuser must be equal", newUser, accessUser.getUser());
         assertNotEquals("\tpassword must not be equal", newUser.getPassword(),user.getPassword());

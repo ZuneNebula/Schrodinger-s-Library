@@ -30,7 +30,7 @@ public class AccessPaymentInfo {
     public void insertCard(Billing card, String email) throws CardException {
         PaymentProcessor p = new PaymentProcessor();
         p.validateCard(card);
-        if (payPersistence.getCard().isEmpty())
+        if (payPersistence.getCard().noCardNo())
             payPersistence.addCreditCard(card, email);
         else updateCard(card, email);
     }
