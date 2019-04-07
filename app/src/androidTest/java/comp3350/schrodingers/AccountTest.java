@@ -17,6 +17,7 @@ import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -109,30 +110,38 @@ public class AccountTest {
         String province = "manitoba";
         String country = "canada";
         String zip = "r2r2r";
-        String name = "Zune";
+        String name = "ZuneEdited";
+        String email = "zuneedited@gmail.com";
 
         // open options from main menu
         openMenu();
 
-        /*
-        onView(withId(R.id.paymentInfo)).perform(click());
+
+        onView(withId(R.id.personalInfo)).perform(click());
         //add payment info
-        onView(withId(R.id.billing)).perform(clearText());
-        onView(withId(R.id.billing)).perform(typeText(cardNum));
-        onView(withId(R.id.expDate)).perform(clearText());
-        onView(withId(R.id.expDate)).perform(typeText(expiry));
-        onView(withId(R.id.cvv)).perform(clearText());
-        onView(withId(R.id.cvv)).perform(typeText(cvv));
-        onView(withId(R.id.cardName)).perform(clearText());
-        onView(withId(R.id.cardName)).perform(typeText(name));
-        onView(withId(R.id.resetPayment)).perform(click());
+        onView(withId(R.id.username)).perform(clearText());
+        onView(withId(R.id.username)).perform(typeText(name));
+        onView(withId(R.id.email)).perform(clearText());
+        onView(withId(R.id.email)).perform(typeText(email));
+        onView(withId(R.id.address)).perform(clearText());
+        onView(withId(R.id.address)).perform(typeText(street));
+        onView(withId(R.id.city)).perform(clearText());
+        onView(withId(R.id.city)).perform(typeText(city));
+        onView(withId(R.id.province)).perform(clearText());
+        onView(withId(R.id.province)).perform(typeText(province));
+        onView(withId(R.id.zip)).perform(clearText());
+        onView(withId(R.id.zip)).perform(typeText(zip));
+        onView(withId(R.id.country)).perform(clearText());
+        onView(withId(R.id.country)).perform(typeText(country));
+        onView(withId(R.id.resetInfo)).perform(scrollTo());
+        onView(withId(R.id.resetInfo)).perform(click());
 
         //verify that all information was added
-        onView(withId(R.id.paymentInfo)).perform(click());
-        onView(withId(R.id.billing)).check(matches(withText(cardNum)));
-        onView(withId(R.id.expDate)).check(matches(withText(expiry)));
-        onView(withId(R.id.cvv)).check(matches(withText(cvv)));
-        onView(withId(R.id.cardName)).check(matches(withText(name)));
-        */
+        onView(withId(R.id.personalInfo)).perform(click());
+        onView(withId(R.id.username)).check(matches(withText(name)));
+        onView(withId(R.id.address)).check(matches(withText(street)));
+        onView(withId(R.id.city)).check(matches(withText(city)));
+        onView(withId(R.id.province)).check(matches(withText(province)));
+
     }
 }
