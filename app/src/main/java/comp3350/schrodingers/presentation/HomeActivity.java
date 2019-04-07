@@ -220,10 +220,10 @@ public class HomeActivity extends AppCompatActivity
 
                 // Hide browse stuff while searching
                 browseLayout.setVisibility(ScrollView.INVISIBLE);
-                sortByPriceAsc.setVisibility(ScrollView.INVISIBLE);
-                sortByPriceDsc.setVisibility(ScrollView.INVISIBLE);
-                sortByNameAsc.setVisibility(ScrollView.INVISIBLE);
-                sortByNameDsc.setVisibility(ScrollView.INVISIBLE);
+                sortByPriceAsc.setVisibility(Button.INVISIBLE);
+                sortByPriceDsc.setVisibility(Button.INVISIBLE);
+                sortByNameAsc.setVisibility(Button.INVISIBLE);
+                sortByNameDsc.setVisibility(Button.INVISIBLE);
                 return true;
             }
         });
