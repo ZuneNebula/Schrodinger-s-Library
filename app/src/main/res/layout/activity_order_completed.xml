@@ -37,7 +37,19 @@
         <ListView
             android:id="@+id/Purchased_Books"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="400dp" />
+
+        <Button
+            android:id="@+id/returnHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/review_purchase_button_margin"
+            android:layout_marginTop="@dimen/review_purchase_button_margin"
+            android:layout_marginRight="@dimen/review_purchase_button_margin"
+            android:background="@color/colorPrimary"
+            android:text="@string/returnHome"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </LinearLayout>
 

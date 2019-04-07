@@ -18,6 +18,7 @@ import java.util.List;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessBooks;
+import comp3350.schrodingers.business.AccessPurchasedBooks;
 import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.userExceptions.UserException;
@@ -53,6 +54,12 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
     // Shopping Cart
     private AccessShoppingCart accessShoppingCart;
 
+    // Books
+    private AccessBooks accessBooks;
+
+    // Purchase History
+    private AccessPurchasedBooks accessPurchasedBooks;
+
     // Boolean
     private boolean missingUsername = false;
     private boolean missingEmail = false;
@@ -66,10 +73,10 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
     private boolean missingCvv = false;
     private boolean missingExpiry = false;
     private boolean allInfoEntered = false;
-    private boolean enoughMoney = false;
 
     // Misc
     private int totalCost;
+    private List<Book> purchases;
 
     // Method - instantiates views when activity is created
     @Override
@@ -108,15 +115,16 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
 
             // Display selected book for purchase
             int selectedBookID = Integer.parseInt(extras.getString("SELECTED_BOOK"));
-            AccessBooks access = Services.getBookAccess();
-            List<Book> selectedBook = new ArrayList<Book>();
-            selectedBook.add(access.searchBookById(selectedBookID));
+            accessBooks = Services.getBookAccess();
+            purchases = new ArrayList<Book>();
+            purchases.add(accessBooks.searchBookById(selectedBookID));
 
-            BookAdapter adapter = new BookAdapter(this, R.layout.item, selectedBook);
+            BookAdapter adapter = new BookAdapter(this, R.layout.item, purchases);
             ListView bookListView = (ListView)findViewById(R.id.ShoppingCartReview);
             bookListView.setAdapter(adapter);
 
-            totalCost = Integer.parseInt(selectedBook.get(0).getPrice().substring(1));
+            // Acquire cost
+            totalCost = Integer.parseInt(purchases.get(0).getPrice().substring(1));
 
         } else {
 
@@ -125,10 +133,15 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
 
             // Display shopping shopping cart
             try {
-                List<Book> list = accessShoppingCart.getBooks();
-                BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
+                purchases = accessShoppingCart.getBooks();
+                BookAdapter adapter = new BookAdapter(this, R.layout.item, purchases);
                 ListView bookListView = (ListView)findViewById(R.id.ShoppingCartReview);
                 bookListView.setAdapter(adapter);
+
+                // Acquire cost
+                for(Book book : purchases){
+                    totalCost += Integer.parseInt(book.getPrice().substring(1));
+                }
             }catch(UserException e){
                 Messages.warning(this, e.toString());
             }
@@ -315,6 +328,10 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
 
         // Check that all info is entered
         if(allInfoEntered){
+
+            // Update purchase history
+
+
             Intent intent = new Intent(ReviewPurchaseActivity.this, OrderCompletedActivity.class);
             startActivity(intent);
         } else {
@@ -325,11 +342,4 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         }
     }
 
-    private int calculateCost(){
-
-
-
-    return 1;
-
-    }
 }
