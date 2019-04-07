@@ -64,6 +64,7 @@
     <string name="checkoutComplete">Success! You have ordered:</string>
     <string name="genre">Sort By Genre</string>
     <string name="price">Sort By Price</string>
+    <string name="failedCheckout">Please Complete Unfilled Information</string>
     <string-array name="genres">
         <item>Fiction</item>
         <item>Non-Fiction</item>

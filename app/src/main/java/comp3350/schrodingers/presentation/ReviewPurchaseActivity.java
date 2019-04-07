@@ -3,6 +3,8 @@ package comp3350.schrodingers.presentation;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -26,43 +28,44 @@ import comp3350.schrodingers.objects.User;
 public class ReviewPurchaseActivity extends AppCompatActivity {
 
     // Access user info
-    AccessUserInfo userAccess;
-    User currUser;
-    User.Address userAddress;
-    User.Billing userBilling;
+    private AccessUserInfo userAccess;
+    private User currUser;
+    private User.Address userAddress;
+    private User.Billing userBilling;
 
     // Personal info
-    String userName;
-    String email;
+    private String userName;
+    private String email;
 
     // Address info
-    String address;
-    String postalCode;
-    String country;
-    String state;
-    String city;
+    private String address;
+    private String postalCode;
+    private String country;
+    private String state;
+    private String city;
 
     // Billing info
-    long creditCard;
-    String cardName;
-    int cvv;
-    String expiry;
+    private long creditCard;
+    private String cardName;
+    private int cvv;
+    private String expiry;
 
     // Shopping Cart
-    AccessShoppingCart accessShoppingCart;
+    private AccessShoppingCart accessShoppingCart;
 
     // Boolean
-    boolean missingUsername = false;
-    boolean missingEmail = false;
-    boolean missingAddress = false;
-    boolean missingPostal = false;
-    boolean missingCountry = false;
-    boolean missingState = false;
-    boolean missingCity = false;
-    boolean missingCardNo = false;
-    boolean missingCardName = false;
-    boolean missingCvv = false;
-    boolean missingExpiry = false;
+    private boolean missingUsername = false;
+    private boolean missingEmail = false;
+    private boolean missingAddress = false;
+    private boolean missingPostal = false;
+    private boolean missingCountry = false;
+    private boolean missingState = false;
+    private boolean missingCity = false;
+    private boolean missingCardNo = false;
+    private boolean missingCardName = false;
+    private boolean missingCvv = false;
+    private boolean missingExpiry = false;
+    private boolean allInfoEntered = false;
 
     // Method - instantiates views when activity is created
     @Override
@@ -165,8 +168,6 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
 
                 validateCheckout();
 
-                Intent intent = new Intent(ReviewPurchaseActivity.this, OrderCompletedActivity.class);
-                startActivity(intent);
             }
         });
     }
@@ -297,10 +298,18 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
 
     public void validateCheckout(){
 
+        allInfoEntered = !missingUsername && !missingEmail && !missingAddress && !missingPostal
+                && !missingCountry && !missingState && !missingCity && !missingCardNo && !missingCardName
+                && !missingCvv && !missingExpiry;
 
-
-
-
-
+        if(allInfoEntered){
+            Intent intent = new Intent(ReviewPurchaseActivity.this, OrderCompletedActivity.class);
+            startActivity(intent);
+        } else {
+            // Show snackbar/tool tip stating the user needs more info
+            Snackbar cannotCheckout = Snackbar.make(findViewById(R.id.review_purchase), R.string.failedCheckout, Snackbar.LENGTH_LONG);
+            cannotCheckout.getView().setBackgroundColor(ContextCompat.getColor(ReviewPurchaseActivity.this, R.color.colorPrimary));
+            cannotCheckout.show();
+        }
     }
 }
