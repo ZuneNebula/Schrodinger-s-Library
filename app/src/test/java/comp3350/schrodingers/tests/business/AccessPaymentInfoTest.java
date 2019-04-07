@@ -21,7 +21,7 @@ public class AccessPaymentInfoTest {
     public void setUp(){
         paymentPersistence = mock(PaymentPersistence.class);
         AccessUserInfo user = new AccessUserInfo(mock(UsersPersistence.class));
-        accessPayInfo = new AccessPaymentInfo(paymentPersistence, user);
+        accessPayInfo = new AccessPaymentInfo(paymentPersistence);
     }
 
     @Test

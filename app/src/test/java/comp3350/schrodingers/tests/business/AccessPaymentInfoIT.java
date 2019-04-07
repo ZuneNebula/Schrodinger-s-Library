@@ -39,12 +39,10 @@ public class AccessPaymentInfoIT {
         final UsersPersistence userPers = new UsersPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
         final PaymentPersistence persistence = new PaymentPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
         this.accessUser = new AccessUserInfo(userPers);
-        this.accessPay =  new AccessPaymentInfo(persistence, accessUser);
+        this.accessPay =  new AccessPaymentInfo(persistence);
 
         newCard = new Billing(1234123412341234L,"chris","01/25",123);
         user = accessUser.getUser();
-//        user.setBilling(card);
-//        accessUser.updateUser(user);
     }
 
     @Test
@@ -60,7 +58,7 @@ public class AccessPaymentInfoIT {
         System.out.println("\nStarting AccessPaymentInfoIT: insertCard");
         try {
             accessPay.insertCard(newCard, user.getEmail());
-            assertEquals("\tcard must be equal", accessPay.getCard(), newCard);
+            assertEquals("\tcard must be equal", accessPay.getCard().getCardNumber(), newCard.getCardNumber());
             System.out.println("Finished AccessPaymentInfoIT: insertCard");
         }catch(CardException c) {
             System.out.println("\t" + c);
@@ -75,7 +73,7 @@ public class AccessPaymentInfoIT {
             accessPay.insertCard(newCard, user.getEmail());
             Billing editedCard = new Billing(newCard.getCardNumber(),"zune",newCard.getExpiry(),newCard.getCvv());
             accessPay.insertCard(editedCard, user.getEmail());
-            assertEquals("\tcard must be equal", accessPay.getCard(), editedCard);
+            assertEquals("\tcard must be equal", accessPay.getCard().getCardNumber(), editedCard.getCardNumber());
             assertNotEquals("\tcard name must not be equal", accessPay.getCard().getFullName(), newCard.getFullName());
             System.out.println("Finished AccessPaymentInfoIT: updateCard");
         }catch(CardException c) {
