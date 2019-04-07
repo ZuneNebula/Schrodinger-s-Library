@@ -6,7 +6,9 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         ApplicationTest.class,
-        AccountTest.class
+        AccountTest.class,
+        ShoppingCartTest.class,
+        WishlistTest.class
 })
 public class AllAcceptanceTests {
 }
