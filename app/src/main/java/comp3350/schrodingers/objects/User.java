@@ -71,6 +71,10 @@ public class User {
         return password.equals("");
     }
 
+    public boolean noEmail() {
+        return email.equals("");
+    }
+
     public static class Address {  // class which stores the address
         private String streetAndNumber;
         private String postalCode;

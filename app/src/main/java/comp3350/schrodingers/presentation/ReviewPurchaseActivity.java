@@ -51,6 +51,19 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
     // Shopping Cart
     AccessShoppingCart accessShoppingCart;
 
+    // Boolean
+    boolean missingUsername = false;
+    boolean missingEmail = false;
+    boolean missingAddress = false;
+    boolean missingPostal = false;
+    boolean missingCountry = false;
+    boolean missingState = false;
+    boolean missingCity = false;
+    boolean missingCardNo = false;
+    boolean missingCardName = false;
+    boolean missingCvv = false;
+    boolean missingExpiry = false;
+
     // Method - instantiates views when activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +81,32 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
 
         // Acquire information about user
         userAccess = Services.getUserInfoAccess();
-
         currUser = userAccess.getUser();
+
         userAddress = currUser.getAddress();
         userBilling = currUser.getBilling();
 
-        userName = currUser.getUserName();
-        email = currUser.getEmail();
+        // Display user name
+        TextView review_userName = (TextView)findViewById(R.id.review_userName);
+        if (currUser.noUserName()){
+            review_userName.setText("Please Enter Username.");
+            missingUsername = true;
+        } else {
+            userName = currUser.getUserName();
+            review_userName.setText(userName);
+        }
+        review_userName.setTextColor(Color.parseColor("#000000"));
+
+        // Display email
+        TextView review_email = (TextView)findViewById(R.id.review_email);
+        if (currUser.noEmail()){
+            review_userName.setText("Please Enter Username.");
+            missingEmail = true;
+        } else {
+            email = currUser.getEmail();
+            review_email.setText(email);
+        }
+        review_email.setTextColor(Color.parseColor("#000000"));
 
         address = userAddress.getAddress();
         postalCode = userAddress.getPostalCode();
@@ -95,15 +127,6 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         // AT FIRST - hide buttons
         enterAddress.setVisibility(View.INVISIBLE);
         enterCredit.setVisibility(View.INVISIBLE);
-
-        // Display user info
-        TextView review_userName = (TextView)findViewById(R.id.review_userName);
-        review_userName.setText(userName);
-        review_userName.setTextColor(Color.parseColor("#000000"));
-
-        TextView review_email = (TextView)findViewById(R.id.review_email);
-        review_email.setText(email);
-        review_email.setTextColor(Color.parseColor("#000000"));
 
         // Display address info
         if(!userAddress.noAddr()) {
