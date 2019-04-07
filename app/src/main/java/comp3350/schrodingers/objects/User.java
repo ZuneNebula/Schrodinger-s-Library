@@ -83,7 +83,7 @@ public class User {
         private String country;
 
         public Address() {
-            streetAndNumber = "";
+            streetAndNumber = "NOADDRESS!";
             postalCode = "";
             state = "";
             country = "";
@@ -121,7 +121,7 @@ public class User {
 
         // Conditional
         public boolean noAddr() {
-            return streetAndNumber.equals("");
+            return streetAndNumber.equals("NOADDRESS!");
         }
 
         public boolean noPostal() {

@@ -40,12 +40,14 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         final String address = rs.getString("numAndStreet");
 
         UserBuilder builder = new UserBuilder();
-        AccessPaymentInfo payInfo = Services.getPaymentInfoAccess();
-
-        User.Billing card = payInfo.getUserCard(email);
-        User.Address add = findAddress(address);
-
-        return builder.id(id).name(username).email(email).password(password).billing(card).address(add).buildUser();
+        if (cardNum == 0 && address.compareTo("") == 0)
+            return builder.id(id).name(username).email(email).password(password).buildUser();
+        else {
+            AccessPaymentInfo payInfo = Services.getPaymentInfoAccess();
+            User.Billing card = payInfo.getUserCard(email);
+            User.Address add = findAddress(address);
+            return builder.id(id).name(username).email(email).password(password).billing(card).address(add).buildUser();
+        }
     }
 
     public User insertUser(final User newUser) {
@@ -59,10 +61,12 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
             st.setString(3, newUser.getUserName());
             st.setString(4, newUser.getPassword());
             st.setBoolean(5, true);
-
             st.setLong(6, newUser.getBilling().getCardNumber());
 
-            st.setString(7, newUser.getAddress().getAddress());
+            if (newUser.getAddress().getAddress().compareTo("") != 0)
+                st.setString(7, newUser.getAddress().getAddress());
+            else
+                st.setString(7, "NOADDRESS!");
 
             st.executeUpdate();
 
@@ -100,13 +104,13 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
             String loggedAddr = logged.getAddress().getAddress();
             String newUserAddr = newUser.getAddress().getAddress();
 
-            if (!findAddress(newUserAddr).noAddr()) {
-                st.setString(5, newUserAddr);
-            } else if (findAddress(newUserAddr).noAddr()) {
-                insertAddress(newUser.getAddress());
+            if(newUserAddr.compareTo("") == 0 || newUser.getAddress().noAddr())
+                st.setString(5, "NOADDRESS!");
+            else if (loggedAddr.compareTo(newUserAddr) == 0 && !findAddress(newUserAddr).noAddr()) {
                 st.setString(5, newUserAddr);
             } else{
-                st.setString(5, "");
+                insertAddress(newUser.getAddress());
+                st.setString(5, newUserAddr);
             }
 
             st.setInt(6, logged.getUserId());
