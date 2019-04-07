@@ -97,8 +97,8 @@ paginate = 10
     # Format dates with Go's time formatting
     date_format = "January 2, 2006"
 
-    logo = "img/logo.png"
-    logo_small = "img/logo-small.png"
+    logo = "img/schrodingers.jpg"
+    logo_small = "img/schrodingers_small.jpg"
     address = """<p><strong>Schrodingers 9</strong>
         <br>University of Manitoba
         <br>Winnipeg, Manitoba

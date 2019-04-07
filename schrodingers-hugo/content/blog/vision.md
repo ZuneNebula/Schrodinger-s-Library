@@ -3,7 +3,7 @@ title = "More about our vision statement"
 date = "2019-04-06T16:00:46+02:00"
 tags = ["vision","schrodingers"]
 categories = ["vision"]
-banner = "img/banners/banner-3.jpg"
+banner = "img/cat_logo.png"
 +++
 
 Schrodinger's Library is a book ordering system which allows ordinary people to browse for books they are interested in, as well as purchase and order them. It will provide a catalogue with a large variety of books to choose from, offering an experience similar to shopping at a bookstore.
