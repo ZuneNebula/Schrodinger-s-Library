@@ -19,12 +19,17 @@ We used a 3-tier architecture for our project
     - AccessBooks.java
     - AccessPaymentInfo.java
     - AccesUserInfo.java
+    - AccessPurchasedBooks.java
     - CardException.java
-    - CreateAccount.java
-    - PaymentProcessor
+    - PaymentProcessor.java
     - UserException.java
-    - UserLogin.java
     - UserValidator.java
+    - AccessRatings.java
+    - AccessShoppingCart.java
+    - AccessWishlist.java
+    - UserBuilder.java
+    - BookBuilder.java
+    
     
 
 ##### objects 
@@ -32,38 +37,51 @@ We used a 3-tier architecture for our project
     - User.java
     - Ratings.java
     
-##### persistance
+##### persistence
 ###### hsqldb
     - BooksPersistenceHSQLDB.java
     - PaymentPersistenceHSQLDB.java
     - PersistenceException.java
-    - UsersPersistenceHSQLDB.java
+    - PurchasedBooksPersistenceHSQLDB.java
     - RatingPersistenceHSQLDB.java
+    - ShoppingCartPersistenceHSQLDB.java
+    - UsersPersistenceHSQLDB.java
+    - WishlistPersistenceHSQLDB.java
     
-###### Stubs
-    - BooksPersistenceStub.java
-    - UsersPersistenceStub.java
-    - PaymentPersistenceStub.java
     
 ###### Interfaces
     - BooksPersistence.java
     - PaymentPersistence.java
+    - PurchasedBooksPersistence.java
+    - RatingsPersistence.java
+    - shoppingCartPersistence.java
     - UsersPersistence.java
-    - RatingPersistence.java
+    - WishlistPersistence.java
 
 ##### presentation 
     - BookAdapter.java
     - CLI.java
     - CreateAccountActivity.java
+    - HandleCardExceptions.java
+    - HandleUserExceptions.java
     - HomeActivity.java
     - LoggedActivity.java
     - LoginActivity.java
     - Messages.java
     - NotLoggedActivity.java
+    - OrderCompletedActivity.java
     - PaymentActivity.java
     - PersonInfo.java
+    - PurchaseHistoryActivity.java
+    - RecommendationsActivity.java
+    - ReviewPurchaseActivity.java
     - SearchActivity.java
+    - ShoppingCartActivity.java
     - ViewBookInfoActivity.java
+    - WishListActivity.java
+  
+    
+    
 
 
 #### **XML**
