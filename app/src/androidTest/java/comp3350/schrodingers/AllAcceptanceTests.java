@@ -8,7 +8,8 @@ import org.junit.runners.Suite;
         ApplicationTest.class,
         AccountTest.class,
         ShoppingCartTest.class,
-        WishlistTest.class
+        WishlistTest.class,
+        FindBookTest.class
 })
 public class AllAcceptanceTests {
 }
