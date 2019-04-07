@@ -28,7 +28,7 @@ import comp3350.schrodingers.tests.business.AccessBooksTest;
 
 
 })
-public class AllTests
+public class AllUnitTests
 {
 
 }

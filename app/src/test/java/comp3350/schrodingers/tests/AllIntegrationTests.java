@@ -16,5 +16,5 @@ import comp3350.schrodingers.tests.business. AccessBooksIT;
         AccessWishlistIT.class,
         AccessBooksIT.class
 })
-public class IntegrationTests {
+public class AllIntegrationTests {
 }
