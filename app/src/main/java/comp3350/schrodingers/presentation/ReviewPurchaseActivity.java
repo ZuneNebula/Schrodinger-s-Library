@@ -66,6 +66,10 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
     private boolean missingCvv = false;
     private boolean missingExpiry = false;
     private boolean allInfoEntered = false;
+    private boolean enoughMoney = false;
+
+    // Misc
+    private int totalCost;
 
     // Method - instantiates views when activity is created
     @Override
@@ -89,9 +93,6 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         userAddress = currUser.getAddress();
         userBilling = currUser.getBilling();
 
-        // Display information
-        displayUserInfo();
-
         // Acquire buttons
         Button enterAddress = (Button) findViewById(R.id.enterAddress);
         Button enterCredit = (Button) findViewById(R.id.enterCredit);
@@ -101,21 +102,11 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         enterAddress.setVisibility(View.INVISIBLE);
         enterCredit.setVisibility(View.INVISIBLE);
 
-        // Display button if missing info
-        if(missingUsername || missingEmail || missingAddress || missingPostal || missingCountry || missingState || missingCity) {
-            enterAddress.setVisibility(View.VISIBLE);
-        }
-
-        // Display button if missing info
-        if(missingCardNo || missingCardName || missingCvv || missingExpiry) {
-            enterCredit.setVisibility(View.VISIBLE);
-        }
-
         // Acquire parameters passed to program
         Bundle extras = getIntent().getExtras();
         if(extras != null){
 
-            // Display selected book
+            // Display selected book for purchase
             int selectedBookID = Integer.parseInt(extras.getString("SELECTED_BOOK"));
             AccessBooks access = Services.getBookAccess();
             List<Book> selectedBook = new ArrayList<Book>();
@@ -124,6 +115,8 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             BookAdapter adapter = new BookAdapter(this, R.layout.item, selectedBook);
             ListView bookListView = (ListView)findViewById(R.id.ShoppingCartReview);
             bookListView.setAdapter(adapter);
+
+            totalCost = Integer.parseInt(selectedBook.get(0).getPrice().substring(1));
 
         } else {
 
@@ -140,6 +133,19 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
                 Messages.warning(this, e.toString());
             }
 
+        }
+
+        // Display information
+        displayUserInfo();
+
+        // Display button if missing info
+        if(missingUsername || missingEmail || missingAddress || missingPostal || missingCountry || missingState || missingCity) {
+            enterAddress.setVisibility(View.VISIBLE);
+        }
+
+        // Display button if missing info
+        if(missingCardNo || missingCardName || missingCvv || missingExpiry) {
+            enterCredit.setVisibility(View.VISIBLE);
         }
 
         // Button listeners
@@ -167,7 +173,6 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 validateCheckout();
-
             }
         });
     }
@@ -294,14 +299,21 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             review_expiry.setText(expiry);
         }
         review_expiry.setTextColor(Color.parseColor("#000000"));
+
+        // Display subtotal
+        TextView review_subtotal = (TextView) findViewById(R.id.subtotal);
+        String subtotalString = "$" + String.valueOf(totalCost);
+        review_subtotal.setText(subtotalString);
+        review_subtotal.setTextColor(Color.parseColor("#000000"));
     }
 
-    public void validateCheckout(){
+    private void validateCheckout(){
 
         allInfoEntered = !missingUsername && !missingEmail && !missingAddress && !missingPostal
                 && !missingCountry && !missingState && !missingCity && !missingCardNo && !missingCardName
                 && !missingCvv && !missingExpiry;
 
+        // Check that all info is entered
         if(allInfoEntered){
             Intent intent = new Intent(ReviewPurchaseActivity.this, OrderCompletedActivity.class);
             startActivity(intent);
@@ -311,5 +323,13 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             cannotCheckout.getView().setBackgroundColor(ContextCompat.getColor(ReviewPurchaseActivity.this, R.color.colorPrimary));
             cannotCheckout.show();
         }
+    }
+
+    private int calculateCost(){
+
+
+
+    return 1;
+
     }
 }
