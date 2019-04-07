@@ -66,7 +66,6 @@ public class AccountTest {
         onView(withId(R.id.edtEmail)).perform(typeText("chris@gmail.com"));
         onView(withId(R.id.edtPassword)).perform(typeText("comp3350"));
         onView(withId(R.id.btnAccount)).perform(click());
-        //TODO: there seems to be a bug in create account logic
 
         //verify account
     }
@@ -79,11 +78,7 @@ public class AccountTest {
         String name = "Gordon Freeman";
 
         // open options from main menu
-        onView(withId(R.id.drawer_layout))
-                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
-                .perform(DrawerActions.open());
-        onView(withId(R.id.nav_view))
-                .perform(navigateTo(R.id.my_account));
+        openMenu();
 
 
         onView(withId(R.id.paymentInfo)).perform(click());
@@ -105,5 +100,39 @@ public class AccountTest {
         onView(withId(R.id.cvv)).check(matches(withText(cvv)));
         onView(withId(R.id.cardName)).check(matches(withText(name)));
 
+    }
+
+    @Test
+    public void changePersonInformation(){
+        String street = "123 Pembina ";
+        String city = "winnipeg";
+        String province = "manitoba";
+        String country = "canada";
+        String zip = "r2r2r";
+        String name = "Zune";
+
+        // open options from main menu
+        openMenu();
+
+        /*
+        onView(withId(R.id.paymentInfo)).perform(click());
+        //add payment info
+        onView(withId(R.id.billing)).perform(clearText());
+        onView(withId(R.id.billing)).perform(typeText(cardNum));
+        onView(withId(R.id.expDate)).perform(clearText());
+        onView(withId(R.id.expDate)).perform(typeText(expiry));
+        onView(withId(R.id.cvv)).perform(clearText());
+        onView(withId(R.id.cvv)).perform(typeText(cvv));
+        onView(withId(R.id.cardName)).perform(clearText());
+        onView(withId(R.id.cardName)).perform(typeText(name));
+        onView(withId(R.id.resetPayment)).perform(click());
+
+        //verify that all information was added
+        onView(withId(R.id.paymentInfo)).perform(click());
+        onView(withId(R.id.billing)).check(matches(withText(cardNum)));
+        onView(withId(R.id.expDate)).check(matches(withText(expiry)));
+        onView(withId(R.id.cvv)).check(matches(withText(cvv)));
+        onView(withId(R.id.cardName)).check(matches(withText(name)));
+        */
     }
 }
