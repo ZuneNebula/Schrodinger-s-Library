@@ -61,10 +61,8 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
             st.setBoolean(5, true);
 
             st.setLong(6, newUser.getBilling().getCardNumber());
-            st.setLong(6, 0L);
 
             st.setString(7, newUser.getAddress().getAddress());
-            st.setString(7, "");
 
             st.executeUpdate();
 
