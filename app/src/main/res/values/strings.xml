@@ -61,6 +61,7 @@
     <string name="enterCredit">Please Enter Credit Card</string>
     <string name="success">Success! You have ordered:</string>
     <string name="myGenres">Spinner Example</string>
+    <string name="checkoutComplete">Success! You have ordered:</string>
     <string name="genre">Sort By Genre</string>
     <string name="price">Sort By Price</string>
     <string-array name="genres">

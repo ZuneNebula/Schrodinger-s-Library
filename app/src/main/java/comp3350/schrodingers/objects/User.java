@@ -95,6 +95,11 @@ public class User {
             this.city = city;
         }
 
+        // Conditional
+        //public boolean noAddress() {return streetAndNumber}
+
+
+
         public String getAddress() {
             return streetAndNumber;
         }

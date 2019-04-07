@@ -90,6 +90,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         // Acquire buttons
         Button enterAddress = (Button) findViewById(R.id.enterAddress);
         Button enterCredit = (Button) findViewById(R.id.enterCredit);
+        Button checkout = (Button) findViewById(R.id.checkout);
 
         // AT FIRST - hide buttons
         enterAddress.setVisibility(View.INVISIBLE);
@@ -155,8 +156,10 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             enterCredit.setVisibility(View.VISIBLE);
         }
 
+        // Acquire parameters passed to program
         Bundle extras = getIntent().getExtras();
         if(extras != null){
+
             // Display selected book
             int selectedBookID = Integer.parseInt(extras.getString("SELECTED_BOOK"));
             AccessBooks access = Services.getBookAccess();
@@ -169,10 +172,10 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
 
         } else {
 
-            // Access shoppingcart persistence
+            // Access shopping cart persistence
             accessShoppingCart = Services.getShoppingCartAccess();
 
-            // Display either shopping shopping cart
+            // Display shopping shopping cart
             try {
                 List<Book> list = accessShoppingCart.getBooks();
                 BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
@@ -184,6 +187,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
 
         }
 
+        // Button listeners
         // Update address info
         enterAddress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,5 +206,13 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             }
         });
 
+        // Complete checkout
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ReviewPurchaseActivity.this, OrderCompletedActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

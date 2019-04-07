@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:text="Success! You have ordered:"
+            android:text="@string/checkoutComplete"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textSize="50sp" />
 
