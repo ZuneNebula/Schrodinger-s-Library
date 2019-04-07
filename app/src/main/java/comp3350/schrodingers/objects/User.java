@@ -3,11 +3,11 @@ package comp3350.schrodingers.objects;
 public class User {
 
     private int userId = -1;
-    private String email = null;  // distinct key
-    private String username = null;
-    private String password = null;
-    private Address address = null;
-    private Billing billing = null;
+    private String email = "";  // distinct key
+    private String username = "";
+    private String password = "";
+    private Address address = new Address();
+    private Billing billing = new Billing();
 
     // Constructor
     public User() {}

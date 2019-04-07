@@ -42,14 +42,25 @@ public class AccountTest {
     @Rule
     public ActivityTestRule<HomeActivity> activityRule = new ActivityTestRule<>(HomeActivity.class);
 
+
+    private void openMenu(){
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open());
+        onView(withId(R.id.nav_view))
+                .perform(navigateTo(R.id.my_account));
+    }
+
     @Test
     public void createAccount(){
+        // open options from main menu
+        openMenu();
+
         //logout from default user
-        onView(withId(R.id.my_account)).perform(click());
         onView(withId(R.id.logout)).perform(click());
 
         //create account
-        onView(withId(R.id.my_account)).perform(click());
+        openMenu();
         onView(withId(R.id.account_button)).perform(click());
         onView(withId(R.id.edtName)).perform(typeText("Chris"));
         onView(withId(R.id.edtEmail)).perform(typeText("chris@gmail.com"));
