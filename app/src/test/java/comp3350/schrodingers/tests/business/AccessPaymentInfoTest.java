@@ -3,8 +3,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import comp3350.schrodingers.business.AccessPaymentInfo;
+import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.persistence.PaymentPersistence;
+import comp3350.schrodingers.persistence.UsersPersistence;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -18,7 +20,8 @@ public class AccessPaymentInfoTest {
     @Before
     public void setUp(){
         paymentPersistence = mock(PaymentPersistence.class);
-        accessPayInfo = new AccessPaymentInfo(paymentPersistence);
+        AccessUserInfo user = new AccessUserInfo(mock(UsersPersistence.class));
+        accessPayInfo = new AccessPaymentInfo(paymentPersistence, user);
     }
 
     @Test

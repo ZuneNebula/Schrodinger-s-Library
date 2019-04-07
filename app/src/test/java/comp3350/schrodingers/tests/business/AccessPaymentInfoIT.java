@@ -28,7 +28,7 @@ public class AccessPaymentInfoIT {
 
     private AccessPaymentInfo accessPay;
     private AccessUserInfo accessUser;
-    private Billing card;
+    private Billing newCard;
     private File tempDB;
     private User user;
 
@@ -38,13 +38,13 @@ public class AccessPaymentInfoIT {
 
         final UsersPersistence userPers = new UsersPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
         final PaymentPersistence persistence = new PaymentPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
-        this.accessPay =  new AccessPaymentInfo(persistence);
         this.accessUser = new AccessUserInfo(userPers);
+        this.accessPay =  new AccessPaymentInfo(persistence, accessUser);
 
-        card = new Billing(1234123412341234L,"chris","01/25",123);
+        newCard = new Billing(1234123412341234L,"chris","01/25",123);
         user = accessUser.getUser();
-        user.setBilling(card);
-        accessUser.updateUser(user);
+//        user.setBilling(card);
+//        accessUser.updateUser(user);
     }
 
     @Test
@@ -59,8 +59,8 @@ public class AccessPaymentInfoIT {
     public void testInsertCard(){
         System.out.println("\nStarting AccessPaymentInfoIT: insertCard");
         try {
-            accessPay.insertCard(card, user.getEmail());
-            assertEquals("\tcard must be equal", accessPay.getCard(), card);
+            accessPay.insertCard(newCard, user.getEmail());
+            assertEquals("\tcard must be equal", accessPay.getCard(), newCard);
             System.out.println("Finished AccessPaymentInfoIT: insertCard");
         }catch(CardException c) {
             System.out.println("\t" + c);
@@ -72,11 +72,11 @@ public class AccessPaymentInfoIT {
     public void testUpdateCard(){
         System.out.println("\nStarting AccessPaymentInfoIT: updateCard");
         try {
-            accessPay.insertCard(card, user.getEmail());
-            Billing editedCard = new Billing(card.getCardNumber(),"zune",card.getExpiry(),card.getCvv());
+            accessPay.insertCard(newCard, user.getEmail());
+            Billing editedCard = new Billing(newCard.getCardNumber(),"zune",newCard.getExpiry(),newCard.getCvv());
             accessPay.insertCard(editedCard, user.getEmail());
             assertEquals("\tcard must be equal", accessPay.getCard(), editedCard);
-            assertNotEquals("\tcard name must not be equal", accessPay.getCard().getFullName(), card.getFullName());
+            assertNotEquals("\tcard name must not be equal", accessPay.getCard().getFullName(), newCard.getFullName());
             System.out.println("Finished AccessPaymentInfoIT: updateCard");
         }catch(CardException c) {
             System.out.println("\t" + c);
