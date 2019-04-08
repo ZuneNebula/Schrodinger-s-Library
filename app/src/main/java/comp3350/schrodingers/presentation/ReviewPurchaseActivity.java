@@ -75,6 +75,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
     private boolean missingCvv = false;
     private boolean missingExpiry = false;
     private boolean allInfoEntered = false;
+    private boolean usingCart = false;
 
     // Misc
     private int totalCost;
@@ -130,6 +131,9 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
 
         } else {
 
+            // Inform that shopping cart is being used
+            usingCart = true;
+
             // Access shopping cart persistence
             accessShoppingCart = Services.getShoppingCartAccess();
 
@@ -169,7 +173,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReviewPurchaseActivity.this, PersonInfo.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -178,7 +182,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReviewPurchaseActivity.this, PaymentActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -341,8 +345,10 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
                     purchaseIDs.add(book.getBookID());
                 }
 
-                // Empty shopping cart
-                accessShoppingCart.emptyCart();
+                // Empty shopping cart (if used)
+                if(usingCart) {
+                    accessShoppingCart.emptyCart();
+                }
 
             } catch (UserException e){
                 Messages.warning(ReviewPurchaseActivity.this, e.toString());
@@ -358,6 +364,15 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             Snackbar cannotCheckout = Snackbar.make(findViewById(R.id.review_purchase), R.string.failedCheckout, Snackbar.LENGTH_LONG);
             cannotCheckout.getView().setBackgroundColor(ContextCompat.getColor(ReviewPurchaseActivity.this, R.color.colorPrimary));
             cannotCheckout.show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            startActivity(getIntent());
+            this.finish();
         }
     }
 

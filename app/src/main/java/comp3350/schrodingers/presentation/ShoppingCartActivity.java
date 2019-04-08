@@ -60,8 +60,11 @@ public class ShoppingCartActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 try {
+
+                    // Empty shopping cart
                     accessShoppingCart.emptyCart();
 
+                    // Restart activity
                     finish();
                     startActivity(getIntent());
 

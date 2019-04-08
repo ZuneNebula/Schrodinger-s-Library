@@ -69,5 +69,4 @@ public class OrderCompletedActivity extends AppCompatActivity {
             }
         });
     }
-
 }
