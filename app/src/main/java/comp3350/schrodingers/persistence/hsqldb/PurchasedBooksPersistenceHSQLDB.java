@@ -80,14 +80,36 @@ public class PurchasedBooksPersistenceHSQLDB implements PurchasedBooksPersistenc
         }
     }
 
+    private boolean isDuplicate(int userId, int bookId){
+        try (final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("SELECT * FROM purchased WHERE userId = ?");
+            st.setInt(1, userId);
+
+            final ResultSet rs = st.executeQuery();
+            boolean found = false;
+            while (rs.next() && !found) {
+                int book = rs.getInt("bookId");
+                found = book == bookId;
+            }
+            rs.close();
+            st.close();
+
+            return found;
+        }catch (final SQLException e){
+            throw new PersistenceException((e));
+        }
+    }
+
     @Override
     public void insertBook(Book book, int userId){
         try (final Connection c = connection()) {
-            final PreparedStatement st = c.prepareStatement("INSERT INTO purchased VALUES(?, ?)");
-            st.setInt(1, userId);
-            st.setInt(2, book.getBookID());
+            if(!isDuplicate(userId, book.getBookID())) {
+                final PreparedStatement st = c.prepareStatement("INSERT INTO purchased VALUES(?, ?)");
+                st.setInt(1, userId);
+                st.setInt(2, book.getBookID());
 
-            st.executeUpdate();
+                st.executeUpdate();
+            }
 
         } catch (final SQLException e) {
             throw new PersistenceException(e);

@@ -6,6 +6,11 @@ categories = ["retrospective"]
 banner = "img/banners/banner-4.jpg"
 +++
 
+After almost 4 months of development, we gathered and talked about everything done and not done. These are some of the ideas discussed:
+
+## What do we thing about the architecture of our system?
+A 3-tier-architecture was very comfortable for us. It is every easy to learn, and the work flow was very
+
 
 A postmortem of your development experience, where you discuss some of the issues that arose during the development of your process. You can (and should) include both negative and positive points; they will not count against your project mark. It is highly recommended that you include the last three items from the list above. Also ensure that you discuss the area you identified for improvement after your iteration 2 retrospective; how did it go? This should be informal, you can choose two or three of the following items to discuss, or something else you find interesting or relevant:
 
