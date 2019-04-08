@@ -18,7 +18,6 @@ import comp3350.schrodingers.persistence.hsqldb.ShoppingCartPersistenceHSQLDB;
 import comp3350.schrodingers.persistence.hsqldb.UsersPersistenceHSQLDB;
 import comp3350.schrodingers.tests.utils.TestUtils;
 
-import static junit.framework.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -34,18 +33,6 @@ public class AccessShoppingCartIT {
         final UsersPersistence userPers = new UsersPersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
 
         this.shoppingCartAccess = new AccessShoppingCart(userPers, shoppingCartAccess);
-    }
-
-    @Test
-    public void testGet(){
-        System.out.println("\nStarting test AccessShoppingCart: getBooks");
-        try {
-            List<Book> books = shoppingCartAccess.getBooks();
-            assertNotNull("\tfirst book of default user should not be null", books.get(0));
-            System.out.println("\nFinished test AccessPurchasedBooks: getBooks");
-        }catch(UserException u){
-            System.out.println("\t"+u.toString());
-        }
     }
 
     @Test
@@ -66,6 +53,24 @@ public class AccessShoppingCartIT {
     }
 
     @Test
+    public void testGet(){
+        System.out.println("\nStarting test AccessShoppingCart: getBooks");
+
+        BookBuilder builder = new BookBuilder();
+        builder.id(1).name("Annabelle Fights Life").author("Jenny Springs").price("$200").genre("Drama").stock("10").icon("annabellefightslife");
+        Book book = builder.buildBook();
+
+        try {
+            shoppingCartAccess.insertBook(book);
+            List<Book> books = shoppingCartAccess.getBooks();
+            assertNotNull("\tfirst book of default user should not be null", books.get(0));
+            System.out.println("\nFinished test AccessPurchasedBooks: getBooks");
+        }catch(UserException u){
+            System.out.println("\t"+u.toString());
+        }
+    }
+
+    @Test
     public void testEmpty(){
         System.out.println("\nStarting AccessShoppingCart: emptyCart");
         BookBuilder builder = new BookBuilder();
@@ -78,7 +83,7 @@ public class AccessShoppingCartIT {
             assertEquals(getBook.getBookID(), book.getBookID());
 
             shoppingCartAccess.emptyCart();
-            assertNull("\tshopping cart is not empty when it should be", shoppingCartAccess.getBooks().get(0));
+            assertEquals("\tshopping cart is not empty when it should be", shoppingCartAccess.getBooks().size(), 0);
 
         }catch(UserException u){
             System.out.println("\t"+u.toString());
