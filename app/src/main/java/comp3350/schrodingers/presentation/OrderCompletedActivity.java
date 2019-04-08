@@ -46,6 +46,7 @@ public class OrderCompletedActivity extends AppCompatActivity {
         // Acquire parameter (ie list of purchased book IDs)
         ArrayList<Integer> purchaseIDs = getIntent().getIntegerArrayListExtra("purchaseIDs");
 
+        // Initialize purchases array
         purchases = new ArrayList<>();
 
         // Reacquire list of purchase books

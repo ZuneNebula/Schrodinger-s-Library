@@ -15,17 +15,17 @@ import comp3350.schrodingers.persistence.UsersPersistence;
 public class AccessShoppingCart{
 
     private AccessUserInfo accessUserInfo;
-    private ShoppingCartPersistence ShoppingCartPersistence;
+    private ShoppingCartPersistence shoppingCartPersistence;
 
     // Constructor - inject shopping cart DB access and acquire user access
     public AccessShoppingCart(final ShoppingCartPersistence cartPersistence) {
         accessUserInfo = Services.getUserInfoAccess();
-        ShoppingCartPersistence = cartPersistence;
+        shoppingCartPersistence = cartPersistence;
     }
 
     // Constructor - inject both shopping cart and DB access (testing purposes)
     public AccessShoppingCart(UsersPersistence usersPersistence, final ShoppingCartPersistence cartPersistence) {
-        ShoppingCartPersistence = cartPersistence;
+        shoppingCartPersistence = cartPersistence;
         accessUserInfo = new AccessUserInfo(usersPersistence);
     }
 
@@ -33,7 +33,7 @@ public class AccessShoppingCart{
         List<Book> books = new ArrayList<>();
         User user = accessUserInfo.getUser();
         if(user != null)
-            books = ShoppingCartPersistence.getBooks(user.getUserId());
+            books = shoppingCartPersistence.getBooks(user.getUserId());
         return books;
     }
 
@@ -48,9 +48,13 @@ public class AccessShoppingCart{
 
         User user = accessUserInfo.getUser();
         if((user != null) && (!flag) ) {
-            ShoppingCartPersistence.insertBook(book, user.getUserId());
+            shoppingCartPersistence.insertBook(book, user.getUserId());
             return true;
         }
         return false;
+    }
+
+    public void emptyCart() throws UserException{
+        shoppingCartPersistence.emptyCart();
     }
 }

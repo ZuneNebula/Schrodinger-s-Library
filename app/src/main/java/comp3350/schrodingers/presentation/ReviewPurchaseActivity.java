@@ -340,6 +340,10 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
                     accessPurchasedBooks.insertBook(book);
                     purchaseIDs.add(book.getBookID());
                 }
+
+                // Empty shopping cart
+                accessShoppingCart.emptyCart();
+
             } catch (UserException e){
                 Messages.warning(ReviewPurchaseActivity.this, e.toString());
             }
