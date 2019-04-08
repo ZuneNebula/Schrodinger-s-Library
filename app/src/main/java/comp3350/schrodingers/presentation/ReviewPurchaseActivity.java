@@ -7,7 +7,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -17,13 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.schrodingers.R;
-import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.Services;
 import comp3350.schrodingers.business.AccessBooks;
 import comp3350.schrodingers.business.AccessPurchasedBooks;
 import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.userExceptions.UserException;
-import comp3350.schrodingers.presentation.Messages.*;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.User;
 

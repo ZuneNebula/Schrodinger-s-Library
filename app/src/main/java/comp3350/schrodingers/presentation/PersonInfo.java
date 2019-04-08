@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
-import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.Services;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.User;
