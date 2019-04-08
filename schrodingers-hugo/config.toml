@@ -46,23 +46,23 @@ paginate = 10
     url = "https://code.cs.umanitoba.ca/comp3350-winter2019/schrodingers-library"
     pre = "<i class='fa fa-2x fa-github'></i>"
 
-[[menu.topbar]]
-    weight = 2
-    name = "Facebook"
-    url = "http://facebook.com"
-    pre = "<i class='fa fa-2x fa-facebook'></i>"
-
-[[menu.topbar]]
-    weight = 3
-    name = "Twitter"
-    url = "http://twitter.com"
-    pre = "<i class='fa fa-2x fa-twitter'></i>"
-
-[[menu.topbar]]
-    weight = 4
-    name = "Email"
-    url = "mailto:your@email.com"
-    pre = "<i class='fa fa-2x fa-envelope'></i>"
+# [[menu.topbar]]
+#     weight = 2
+#     name = "Facebook"
+#     url = "http://facebook.com"
+#     pre = "<i class='fa fa-2x fa-facebook'></i>"
+#
+# [[menu.topbar]]
+#     weight = 3
+#     name = "Twitter"
+#     url = "http://twitter.com"
+#     pre = "<i class='fa fa-2x fa-twitter'></i>"
+#
+# [[menu.topbar]]
+#     weight = 4
+#     name = "Email"
+#     url = "mailto:your@email.com"
+    # pre = "<i class='fa fa-2x fa-envelope'></i>"
 
 [params]
     viewMorePostLink = "/blog/"

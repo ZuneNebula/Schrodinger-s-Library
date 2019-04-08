@@ -12,7 +12,7 @@ After almost 4 months of development, we gathered and talked about everything do
 A 3-tier-architecture was very comfortable for us. It is very easy to learn, and the work flow was very
 
 ## What went wrong in the development process?
-We lacked of communication in the first months of this project. That was the key to some ...
+We lacked of communication in the first months of this project. That was the key to some delays in our development process.
 
 ## What went right in the development process?
 Although of all miscommunications, we managed to have a decent working system for each iteration. We were very lucky to have hard working teammates and with different skills.
