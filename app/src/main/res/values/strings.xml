@@ -66,6 +66,9 @@
     <string name="price">Sort By Price</string>
     <string name="failedCheckout">Please Complete Unfilled Information</string>
     <string name="genreReccs">Please select a Genre</string>
+    <string name="subtotal">Subtotal:</string>
+    <string name="returnHome">Return to Home Page</string>
+    <string name="emptyCart">Empty Shopping Cart</string>
     <string-array name="genres">
         <item>Fiction</item>
         <item>Non-Fiction</item>

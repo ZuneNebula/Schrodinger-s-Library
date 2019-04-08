@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -18,9 +19,11 @@ import java.util.List;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessBooks;
+import comp3350.schrodingers.business.AccessPurchasedBooks;
 import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.userExceptions.UserException;
+import comp3350.schrodingers.presentation.Messages.*;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.User;
 
@@ -53,6 +56,12 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
     // Shopping Cart
     private AccessShoppingCart accessShoppingCart;
 
+    // Books
+    private AccessBooks accessBooks;
+
+    // Purchase History
+    private AccessPurchasedBooks accessPurchasedBooks;
+
     // Boolean
     private boolean missingUsername = false;
     private boolean missingEmail = false;
@@ -66,6 +75,10 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
     private boolean missingCvv = false;
     private boolean missingExpiry = false;
     private boolean allInfoEntered = false;
+
+    // Misc
+    private int totalCost;
+    private List<Book> purchases;
 
     // Method - instantiates views when activity is created
     @Override
@@ -89,9 +102,6 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         userAddress = currUser.getAddress();
         userBilling = currUser.getBilling();
 
-        // Display information
-        displayUserInfo();
-
         // Acquire buttons
         Button enterAddress = (Button) findViewById(R.id.enterAddress);
         Button enterCredit = (Button) findViewById(R.id.enterCredit);
@@ -101,29 +111,22 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         enterAddress.setVisibility(View.INVISIBLE);
         enterCredit.setVisibility(View.INVISIBLE);
 
-        // Display button if missing info
-        if(missingUsername || missingEmail || missingAddress || missingPostal || missingCountry || missingState || missingCity) {
-            enterAddress.setVisibility(View.VISIBLE);
-        }
-
-        // Display button if missing info
-        if(missingCardNo || missingCardName || missingCvv || missingExpiry) {
-            enterCredit.setVisibility(View.VISIBLE);
-        }
-
         // Acquire parameters passed to program
         Bundle extras = getIntent().getExtras();
         if(extras != null){
 
-            // Display selected book
+            // Display selected book for purchase
             int selectedBookID = Integer.parseInt(extras.getString("SELECTED_BOOK"));
-            AccessBooks access = Services.getBookAccess();
-            List<Book> selectedBook = new ArrayList<Book>();
-            selectedBook.add(access.searchBookById(selectedBookID));
+            accessBooks = Services.getBookAccess();
+            purchases = new ArrayList<Book>();
+            purchases.add(accessBooks.searchBookById(selectedBookID));
 
-            BookAdapter adapter = new BookAdapter(this, R.layout.item, selectedBook);
+            BookAdapter adapter = new BookAdapter(this, R.layout.item, purchases);
             ListView bookListView = (ListView)findViewById(R.id.ShoppingCartReview);
             bookListView.setAdapter(adapter);
+
+            // Acquire cost
+            totalCost = Integer.parseInt(purchases.get(0).getPrice().substring(1));
 
         } else {
 
@@ -132,14 +135,32 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
 
             // Display shopping shopping cart
             try {
-                List<Book> list = accessShoppingCart.getBooks();
-                BookAdapter adapter = new BookAdapter(this, R.layout.item, list);
+                purchases = accessShoppingCart.getBooks();
+                BookAdapter adapter = new BookAdapter(this, R.layout.item, purchases);
                 ListView bookListView = (ListView)findViewById(R.id.ShoppingCartReview);
                 bookListView.setAdapter(adapter);
+
+                // Acquire cost
+                for(Book book : purchases){
+                    totalCost += Integer.parseInt(book.getPrice().substring(1));
+                }
             }catch(UserException e){
                 Messages.warning(this, e.toString());
             }
 
+        }
+
+        // Display information
+        displayUserInfo();
+
+        // Display button if missing info
+        if(missingUsername || missingEmail || missingAddress || missingPostal || missingCountry || missingState || missingCity) {
+            enterAddress.setVisibility(View.VISIBLE);
+        }
+
+        // Display button if missing info
+        if(missingCardNo || missingCardName || missingCvv || missingExpiry) {
+            enterCredit.setVisibility(View.VISIBLE);
         }
 
         // Button listeners
@@ -167,7 +188,6 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 validateCheckout();
-
             }
         });
     }
@@ -294,17 +314,45 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             review_expiry.setText(expiry);
         }
         review_expiry.setTextColor(Color.parseColor("#000000"));
+
+        // Display subtotal
+        TextView review_subtotal = (TextView) findViewById(R.id.subtotal);
+        String subtotalString = "$" + String.valueOf(totalCost);
+        review_subtotal.setText(subtotalString);
+        review_subtotal.setTextColor(Color.parseColor("#000000"));
     }
 
-    public void validateCheckout(){
+    private void validateCheckout(){
 
         allInfoEntered = !missingUsername && !missingEmail && !missingAddress && !missingPostal
                 && !missingCountry && !missingState && !missingCity && !missingCardNo && !missingCardName
                 && !missingCvv && !missingExpiry;
 
+        // Check that all info is entered
         if(allInfoEntered){
+
+            ArrayList<Integer> purchaseIDs = new ArrayList<>();
+
+            // Update purchase history and push purchases to next page
+            try {
+                accessPurchasedBooks = Services.getPurchasedBooksAccess();
+                for(Book book : purchases) {
+                    accessPurchasedBooks.insertBook(book);
+                    purchaseIDs.add(book.getBookID());
+                }
+
+                // Empty shopping cart
+                accessShoppingCart.emptyCart();
+
+            } catch (UserException e){
+                Messages.warning(ReviewPurchaseActivity.this, e.toString());
+            }
+
+            // Acquire next page and pass purchases
             Intent intent = new Intent(ReviewPurchaseActivity.this, OrderCompletedActivity.class);
+            intent.putIntegerArrayListExtra("purchaseIDs", purchaseIDs);
             startActivity(intent);
+
         } else {
             // Show snackbar/tool tip stating the user needs more info
             Snackbar cannotCheckout = Snackbar.make(findViewById(R.id.review_purchase), R.string.failedCheckout, Snackbar.LENGTH_LONG);
@@ -312,4 +360,5 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             cannotCheckout.show();
         }
     }
+
 }

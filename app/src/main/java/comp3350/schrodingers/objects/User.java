@@ -154,6 +154,7 @@ public class User {
         public Billing() {
             cardNumber = 0L;
             fullName = "";
+            expiry = "";
             cvv = 0;
         }
 
