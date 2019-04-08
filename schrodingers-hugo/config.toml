@@ -153,7 +153,7 @@ paginate = 10
     icon = "fa fa-file-code-o"
     title = "Do you want to see more?"
     subtitle = "Try our app, you won't be dissapointed."
-    link_url = "https://www.youtube.com/"
+    link_url = "https://drive.google.com/open?id=18CxUNfEnWZ0DiFA0vhY6Q0sI85WNAp8Q"
     link_text = "Watch a demo"
 
 [params.clients]
