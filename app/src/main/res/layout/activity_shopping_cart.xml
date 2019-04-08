@@ -30,14 +30,26 @@
         <ListView
             android:id="@+id/shoppingCart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="350dp"/>
 
         <Button
-            android:id="@+id/ProceedCheckout"
+            android:id="@+id/emptyCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/review_purchase_button_margin"
             android:layout_marginRight="@dimen/review_purchase_button_margin"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/emptyCart"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/proceedCheckout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/review_purchase_button_margin"
+            android:layout_marginRight="@dimen/review_purchase_button_margin"
+            android:layout_marginTop="10dp"
             android:background="@color/colorPrimary"
             android:text="@string/checkout"
             android:textColor="#FFFFFF" />

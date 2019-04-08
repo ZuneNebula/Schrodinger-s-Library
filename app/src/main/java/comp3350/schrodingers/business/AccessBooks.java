@@ -70,7 +70,7 @@ public class AccessBooks {
         int k=count;
         while (bookIterator.hasNext() && k>0) {
             Book nextBook = bookIterator.next();  //holds the element to be compared to find the title
-            if (nextBook.getGenre().toLowerCase() == genre.toLowerCase()) {
+            if (nextBook.getGenre().toLowerCase().compareTo(genre.toLowerCase()) == 0) {
                 titleBook.add(nextBook);
                 k--;
             }

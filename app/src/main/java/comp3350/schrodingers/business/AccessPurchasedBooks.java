@@ -41,8 +41,7 @@ public class AccessPurchasedBooks {
     public boolean insertBook(Book book) throws UserException{
         User user = accessUserInfo.getUser();
         if(user != null) {
-            purchasedBooks.insertBook(book, user.getUserId());
-            return true;
+            return purchasedBooks.insertBook(book, user.getUserId());
         }
         throw new NotLoggedException();
     }

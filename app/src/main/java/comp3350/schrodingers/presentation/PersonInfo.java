@@ -1,6 +1,5 @@
 package comp3350.schrodingers.presentation;
 
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,7 +8,6 @@ import android.widget.EditText;
 
 import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessUserInfo;
-import comp3350.schrodingers.business.UserBuilder;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.objects.User.Address;
@@ -87,13 +85,14 @@ public class PersonInfo extends AppCompatActivity {
             newUser.setAddress(address);
 
             user = userList.insertUser(newUser);
-            Snackbar.make(findViewById(R.id.person_info), R.string.changes_applied,
-                    Snackbar.LENGTH_SHORT).show();
+
+            // Inform parent activity that info has been updated
+            setResult(RESULT_OK, null);
             finish();
+
         } catch (UserException e) {
             HandleUserExceptions handleUser = new HandleUserExceptions(e);
             handleUser.showMessage(this);
         }
     }
-
 }

@@ -2,6 +2,8 @@ package comp3350.schrodingers.presentation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +17,7 @@ import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
+import comp3350.schrodingers.objects.User;
 
 // Class - handles presenting shopping cart
 public class ShoppingCartActivity extends AppCompatActivity {
@@ -24,6 +27,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
     // Checkout button
     private Button checkout;
+    private Button emptyCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -49,9 +53,31 @@ public class ShoppingCartActivity extends AppCompatActivity {
             handleUser.showMessage(this);
         }
 
+        // Checkout
+        emptyCart = (Button) findViewById(R.id.emptyCart);
+        emptyCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+
+                    // Empty shopping cart
+                    accessShoppingCart.emptyCart();
+
+                    // Restart activity
+                    finish();
+                    startActivity(getIntent());
+
+                } catch (UserException e){
+                    Messages.warning(ShoppingCartActivity.this, e.toString());
+                }
+            }
+
+        });
+
 
         // Checkout
-        checkout = (Button) findViewById(R.id.ProceedCheckout);
+        checkout = (Button) findViewById(R.id.proceedCheckout);
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

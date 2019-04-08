@@ -6,7 +6,7 @@ keywords = ["FAQ","How do I","questions","what if"]
 
 ## 1. Who can use this app?
 
-Anybody! 
+Anybody! We want anybody to be able to browse for their favorite books
 
 ## 2. Do I need to create an account to use this app?
 
