@@ -7,8 +7,6 @@ Our aim is to build a very simple and intuitive online book ordering system. See
 ## How To Run the Application
 
 
-## Technical Instructions
-
 * Install  Andriod studio first
 
 * Clone our Project's Repository
