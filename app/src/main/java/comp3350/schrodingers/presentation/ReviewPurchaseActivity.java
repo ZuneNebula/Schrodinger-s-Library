@@ -80,6 +80,8 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
     // Misc
     private int totalCost;
     private List<Book> purchases;
+    private Button enterAddress;
+    private Button enterCredit;
 
     // Method - instantiates views when activity is created
     @Override
@@ -104,8 +106,8 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         userBilling = currUser.getBilling();
 
         // Acquire buttons
-        Button enterAddress = (Button) findViewById(R.id.enterAddress);
-        Button enterCredit = (Button) findViewById(R.id.enterCredit);
+        enterAddress = (Button) findViewById(R.id.enterAddress);
+        enterCredit = (Button) findViewById(R.id.enterCredit);
         Button checkout = (Button) findViewById(R.id.checkout);
 
         // AT FIRST - hide buttons
@@ -154,18 +156,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
 
         }
 
-        // Display information
-        displayUserInfo();
-
-        // Display button if missing info
-        if(missingUsername || missingEmail || missingAddress || missingPostal || missingCountry || missingState || missingCity) {
-            enterAddress.setVisibility(View.VISIBLE);
-        }
-
-        // Display button if missing info
-        if(missingCardNo || missingCardName || missingCvv || missingExpiry) {
-            enterCredit.setVisibility(View.VISIBLE);
-        }
+        displayInformation();
 
         // Button listeners
         // Update address info
@@ -195,6 +186,22 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void displayInformation(){
+        // Display information
+        displayUserInfo();
+
+        // Display button if missing info
+        if(missingUsername || missingEmail || missingAddress || missingPostal || missingCountry || missingState || missingCity) {
+            enterAddress.setVisibility(View.VISIBLE);
+        }
+
+        // Display button if missing info
+        if(missingCardNo || missingCardName || missingCvv || missingExpiry) {
+            enterCredit.setVisibility(View.VISIBLE);
+        }
+    }
+
 
     private void displayUserInfo() {
         // Display user name
@@ -375,5 +382,13 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             this.finish();
         }
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        currUser = userAccess.getUser();
+        displayInformation();
+    }
+
 
 }
