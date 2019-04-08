@@ -1,9 +1,9 @@
 # Schrodingers-9 Library
 
 ## Purpose
-Schrodingers Library is originally a project for COMP 3350 (Software Engineering 1) at University of Manitoba.
+Schrodingers Library was originally designed as a project for COMP 3350 (Software Engineering 1) at University of Manitoba.
 
-We wanted to built a very simple and effective online book ordering system. See [VISION.md](https://code.cs.umanitoba.ca/comp3350-winter2019/schrodingers-library/blob/master/documents/VISION.md) to know more
+Our aim is to build a very simple and intuitive online book ordering system. See [VISION.md](https://code.cs.umanitoba.ca/comp3350-winter2019/schrodingers-library/blob/master/documents/VISION.md) to know more
 
 ## Instructions
 
