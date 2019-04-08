@@ -35,7 +35,7 @@
             android:textSize="50sp" />
 
         <ListView
-            android:id="@+id/Purchased_Books"
+            android:id="@+id/purchasedBooks"
             android:layout_width="match_parent"
             android:layout_height="400dp" />
 

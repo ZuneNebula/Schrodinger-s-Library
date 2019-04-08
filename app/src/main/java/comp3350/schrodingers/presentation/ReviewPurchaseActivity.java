@@ -330,20 +330,24 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         // Check that all info is entered
         if(allInfoEntered){
 
-            // Update purchase history
+            ArrayList<Integer> purchaseIDs = new ArrayList<>();
+
+            // Update purchase history and push purchases to next page
             try {
                 accessPurchasedBooks = Services.getPurchasedBooksAccess();
                 for(Book book : purchases) {
-                        accessPurchasedBooks.insertBook(book);
+                    accessPurchasedBooks.insertBook(book);
+                    purchaseIDs.add(book.getBookID());
                 }
             } catch (UserException e){
                 Messages.warning(ReviewPurchaseActivity.this, e.toString());
             }
 
-
-            // Change to order completed page
+            // Acquire next page and pass purchases
             Intent intent = new Intent(ReviewPurchaseActivity.this, OrderCompletedActivity.class);
+            intent.putIntegerArrayListExtra("purchaseIDs", purchaseIDs);
             startActivity(intent);
+
         } else {
             // Show snackbar/tool tip stating the user needs more info
             Snackbar cannotCheckout = Snackbar.make(findViewById(R.id.review_purchase), R.string.failedCheckout, Snackbar.LENGTH_LONG);

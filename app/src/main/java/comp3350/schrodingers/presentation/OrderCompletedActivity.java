@@ -6,10 +6,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.schrodingers.R;
+import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.AccessBooks;
+import comp3350.schrodingers.objects.Book;
 
 public class OrderCompletedActivity extends AppCompatActivity {
+
+    private AccessBooks bookAccess;
+    private List<Book> purchases;
 
     // Method - instantiates views when activity is created
     @Override
@@ -28,6 +38,22 @@ public class OrderCompletedActivity extends AppCompatActivity {
 
         // Acquire buttons
         Button returnHome = (Button) findViewById(R.id.returnHome);
+
+        // Acquire access to books list
+        bookAccess = Services.getBookAccess();
+
+        // Acquire parameter (ie list of purchased book IDs)
+        ArrayList<Integer> purchaseIDs = getIntent().getIntegerArrayListExtra("purchaseIDs");
+
+        // Reacquire list of purchase books
+        for (Integer bookID : purchaseIDs){
+            purchases.add(bookAccess.searchBookById(bookID));
+        }
+
+        // Display list of purchased books
+        BookAdapter adapter = new BookAdapter(this, R.layout.item, purchases);
+        ListView bookListView = (ListView)findViewById(R.id.purchasedBooks);
+        bookListView.setAdapter(adapter);
 
         // Button listeners
         // Update return home
