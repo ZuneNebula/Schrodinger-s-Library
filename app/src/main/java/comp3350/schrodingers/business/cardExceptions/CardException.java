@@ -1,6 +1,6 @@
 package comp3350.schrodingers.business.cardExceptions;
 
-// Class - dedicated exception for errors involving credit cards
+// Class - dedicated exception for errors involving ANY credit cards errors
 public class CardException extends Exception {
 
     // Stores the message returned by the exception

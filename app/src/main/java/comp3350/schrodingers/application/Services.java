@@ -24,7 +24,7 @@ import comp3350.schrodingers.persistence.hsqldb.WishlistPersistenceHSQLDB;
 
 public class Services {
 
-    // Store access to logic layer classes
+    // Store access to logic layer classes.
     private static AccessBooks bookAccess = null;
     private static AccessPaymentInfo paymentInfoAccess = null;
     private static AccessUserInfo userInfoAccess = null;
@@ -136,6 +136,7 @@ public class Services {
         return paymentPersistence;
     }
 
+    // Return reference to DB for storage and access of purchase history information.
     private static synchronized PurchasedBooksPersistence getPurchasedPersistence() {
         if (purchasedPersistence == null) {
             purchasedPersistence = new PurchasedBooksPersistenceHSQLDB(Main.getDBPathName());
@@ -143,7 +144,7 @@ public class Services {
         return purchasedPersistence;
     }
 
-
+    // Return reference to DB for storage and access of wishlist information.
     private static synchronized WishlistPersistence getWishlistPersistence() {
         if (wishlistPersistence == null) {
             wishlistPersistence = new WishlistPersistenceHSQLDB(Main.getDBPathName());
@@ -151,6 +152,7 @@ public class Services {
         return wishlistPersistence;
     }
 
+    // Return reference to DB for storage and access of shopping cart information.
     private static synchronized ShoppingCartPersistence getShoppingCartPersistence() {
         if (wishlistPersistence == null) {
             shoppingCartPersistence = new ShoppingCartPersistenceHSQLDB(Main.getDBPathName());
