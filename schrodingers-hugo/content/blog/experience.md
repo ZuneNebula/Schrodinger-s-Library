@@ -15,6 +15,7 @@ A 3-tier-architecture was very comfortable for us. It is very easy to learn, and
 We lacked of communication in the first months of this project. That was the key to some ...
 
 ## What went right in the development process?
+Although of all miscommunications, we managed to have a decent working system for each iteration. We were very lucky to have hard working teammates and with different skills.
 
 ## What took the most time? The least? Any surprises?
 Learning all the tools! mostly all the Android studio stuff. Also database implementation and integration/system tests
@@ -23,6 +24,7 @@ Learning all the tools! mostly all the Android studio stuff. Also database imple
 We are actually glad that the whole app works very good!
 
 ## Improvements after Iteration 2
+More work done, not overestimating of our time and not underestimating of out skills. Better communication
 
 - Are you using any specific techniques covered in the course (TDD, pair programming, scrums, etc)?
 - How did the project change from your initial (iteration 0) vision or stories, or did it work out as predicted?
