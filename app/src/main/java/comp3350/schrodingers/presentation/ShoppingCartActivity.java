@@ -2,8 +2,6 @@ package comp3350.schrodingers.presentation;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,11 +11,10 @@ import android.widget.ListView;
 import java.util.List;
 
 import comp3350.schrodingers.R;
-import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.Services;
 import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
-import comp3350.schrodingers.objects.User;
 
 // Class - handles presenting shopping cart
 public class ShoppingCartActivity extends AppCompatActivity {

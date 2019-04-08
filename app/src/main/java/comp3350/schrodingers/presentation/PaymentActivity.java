@@ -1,13 +1,12 @@
 package comp3350.schrodingers.presentation;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
-import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.Services;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.cardExceptions.CardException;
 import comp3350.schrodingers.objects.User.Billing;

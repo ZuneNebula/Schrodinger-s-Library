@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import comp3350.schrodingers.application.Services;
+import comp3350.schrodingers.business.Services;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.objects.User.Billing;
 import comp3350.schrodingers.persistence.PaymentPersistence;

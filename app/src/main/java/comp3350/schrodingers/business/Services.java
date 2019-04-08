@@ -1,12 +1,6 @@
-package comp3350.schrodingers.application;
+package comp3350.schrodingers.business;
 
-import comp3350.schrodingers.business.AccessBooks;
-import comp3350.schrodingers.business.AccessPaymentInfo;
-import comp3350.schrodingers.business.AccessPurchasedBooks;
-import comp3350.schrodingers.business.AccessRatings;
-import comp3350.schrodingers.business.AccessShoppingCart;
-import comp3350.schrodingers.business.AccessUserInfo;
-import comp3350.schrodingers.business.AccessWishlist;
+import comp3350.schrodingers.application.Main;
 import comp3350.schrodingers.persistence.BooksPersistence;
 import comp3350.schrodingers.persistence.hsqldb.BooksPersistenceHSQLDB;
 import comp3350.schrodingers.persistence.PurchasedBooksPersistence;
