@@ -8,13 +8,15 @@ import comp3350.schrodingers.tests.business.AccessPurchaseHistoryIT;
 import comp3350.schrodingers.tests.business.AccessUserInfoIT;
 import comp3350.schrodingers.tests.business. AccessWishlistIT;
 import comp3350.schrodingers.tests.business. AccessBooksIT;
+import comp3350.schrodingers.tests.business. AccessRatingsIT;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         AccessPaymentInfoIT.class,
         AccessUserInfoIT.class,
         AccessPurchaseHistoryIT.class,
         AccessWishlistIT.class,
-        AccessBooksIT.class
+        AccessBooksIT.class,
+        AccessRatingsIT.class
 })
 public class AllIntegrationTests {
 }
