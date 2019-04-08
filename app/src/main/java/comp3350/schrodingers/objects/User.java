@@ -67,10 +67,6 @@ public class User {
         return username.equals("");
     }
 
-    public boolean noPassword() {
-        return password.equals("");
-    }
-
     public boolean noEmail() {
         return email.equals("");
     }
@@ -154,6 +150,7 @@ public class User {
         public Billing() {
             cardNumber = 0L;
             fullName = "";
+            expiry = "";
             cvv = 0;
         }
 

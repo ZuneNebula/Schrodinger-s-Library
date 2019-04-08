@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:text="@string/reviewOrder"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textSize="50sp" />
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/review_address_heading"
@@ -34,7 +34,7 @@
             android:layout_marginStart="10dp"
             android:text="@string/billingAddressInformation"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/review_userName"
@@ -104,7 +104,7 @@
             android:layout_marginStart="10dp"
             android:text="@string/creditCardInformation"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/review_creditCard"
@@ -154,14 +154,41 @@
             android:layout_marginTop="20dp"
             android:text="@string/shoppingCart"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <ListView
             android:id="@+id/ShoppingCartReview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="70dp"/>
+            android:layout_marginBottom="100dp"/>
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/subtotalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toBottomOf="parent" >
+
+        <TextView
+            android:id="@+id/subtotal_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/subtotal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/subtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:layout_marginStart="20dp"/>
     </LinearLayout>
 
     <Button

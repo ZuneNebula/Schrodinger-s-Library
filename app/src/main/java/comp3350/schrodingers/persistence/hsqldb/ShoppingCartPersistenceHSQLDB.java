@@ -93,4 +93,16 @@ public class ShoppingCartPersistenceHSQLDB implements ShoppingCartPersistence {
             throw new PersistenceException(e);
         }
     }
+
+    @Override
+    public void emptyCart(){
+        try (final Connection c = connection()) {
+            final PreparedStatement st = c.prepareStatement("DELETE FROM shoppingcart");
+
+            st.executeUpdate();
+
+        } catch (final SQLException e) {
+            throw new PersistenceException(e);
+        }
+    }
 }
