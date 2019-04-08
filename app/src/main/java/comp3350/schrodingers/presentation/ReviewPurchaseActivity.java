@@ -22,6 +22,7 @@ import comp3350.schrodingers.business.AccessPurchasedBooks;
 import comp3350.schrodingers.business.AccessShoppingCart;
 import comp3350.schrodingers.business.AccessUserInfo;
 import comp3350.schrodingers.business.userExceptions.UserException;
+import comp3350.schrodingers.presentation.Messages.*;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.User;
 
@@ -330,8 +331,17 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
         if(allInfoEntered){
 
             // Update purchase history
+            try {
+                accessPurchasedBooks = Services.getPurchasedBooksAccess();
+                for(Book book : purchases) {
+                        accessPurchasedBooks.insertBook(book);
+                }
+            } catch (UserException e){
+                Messages.warning(ReviewPurchaseActivity.this, e.toString());
+            }
 
 
+            // Change to order completed page
             Intent intent = new Intent(ReviewPurchaseActivity.this, OrderCompletedActivity.class);
             startActivity(intent);
         } else {
