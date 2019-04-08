@@ -66,7 +66,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     startActivity(getIntent());
 
                 } catch (UserException e){
-                    Messages.warning(ShoppingCartActivity.this, e.toString());
+                    HandleUserExceptions exceptionHandler = new HandleUserExceptions(e);
+                    exceptionHandler.showMessage(ShoppingCartActivity.this);
                 }
             }
 
