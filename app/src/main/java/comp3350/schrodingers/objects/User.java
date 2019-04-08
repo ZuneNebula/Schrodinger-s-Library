@@ -3,11 +3,11 @@ package comp3350.schrodingers.objects;
 public class User {
 
     private int userId = -1;
-    private String email = null;  // distinct key
-    private String username = null;
-    private String password = null;
-    private Address address = null;
-    private Billing billing = null;
+    private String email = "";  // distinct key
+    private String username = "";
+    private String password = "";
+    private Address address = new Address();
+    private Billing billing = new Billing();
 
     // Constructor
     public User() {}
@@ -63,13 +63,16 @@ public class User {
     }
 
     // Conditional
-    public boolean addrExist(){
-        return address != null;
+    public boolean noUserName() {
+        return username.equals("");
     }
 
-    // Conditional
-    public boolean billingExist(){
-        return billing != null;
+    public boolean noPassword() {
+        return password.equals("");
+    }
+
+    public boolean noEmail() {
+        return email.equals("");
     }
 
     public static class Address {  // class which stores the address
@@ -95,6 +98,7 @@ public class User {
             this.city = city;
         }
 
+        // Getters
         public String getAddress() {
             return streetAndNumber;
         }
@@ -115,8 +119,25 @@ public class User {
             return city;
         }
 
-        public boolean isEmpty() {
-            return streetAndNumber.compareTo("NOADDRESS!") == 0;
+        // Conditional
+        public boolean noAddr() {
+            return streetAndNumber.equals("NOADDRESS!");
+        }
+
+        public boolean noPostal() {
+            return postalCode.equals("");
+        }
+
+        public boolean noState() {
+            return state.equals("");
+        }
+
+        public boolean noCountry() {
+            return country.equals("");
+        }
+
+        public boolean noCity() {
+            return city.equals("");
         }
 
         public String toString(){
@@ -143,6 +164,7 @@ public class User {
             this.cvv = cvv;
         }
 
+        // Getters
         public long getCardNumber() {
             return cardNumber;
         }
@@ -159,8 +181,21 @@ public class User {
             return cvv;
         }
 
-        public boolean isEmpty() {
+        // Conditional
+        public boolean noCardNo() {
             return cardNumber == 0L;
+        }
+
+        public boolean noCardName() {
+            return fullName.equals("");
+        }
+
+        public boolean noExpiry() {
+            return expiry.equals("");
+        }
+
+        public boolean noCvv() {
+            return cvv == 0;
         }
 
         public String toString() {

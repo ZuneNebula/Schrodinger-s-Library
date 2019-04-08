@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import comp3350.schrodingers.business.AccessUserInfo;
+import comp3350.schrodingers.business.UserBuilder;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.UsersPersistence;
 
@@ -18,17 +19,19 @@ import static org.mockito.Mockito.when;
 public class AccessUserInfoTest {
     private AccessUserInfo accessUserInfo;
     private UsersPersistence usersPersistence;
+    private UserBuilder builder;
 
     @Before
     public void setUp(){
         usersPersistence = mock(UsersPersistence.class);
         accessUserInfo = new AccessUserInfo(usersPersistence);
+        builder = new UserBuilder();
     }
 
     @Test
     public void testGetUser(){
         System.out.println("\nStarting test AccessUserInfo");
-        final User user = new User(1, "zunenebula@gmail.com","Zune","shlied-hero");
+        final User user = builder.id(1).name("Zune").email("zunenebula@gmail.com").password("shield-hero").buildUser();
         when(usersPersistence.getUser()).thenReturn(user);
         final User getUser = accessUserInfo.getUser();
         assertNotNull("\tfirst logged user should not be null", getUser);

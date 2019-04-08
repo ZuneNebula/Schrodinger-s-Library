@@ -8,6 +8,7 @@ import java.util.List;
 
 import comp3350.schrodingers.business.AccessPurchasedBooks;
 import comp3350.schrodingers.business.BookBuilder;
+import comp3350.schrodingers.business.UserBuilder;
 import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.objects.User;
@@ -25,18 +26,21 @@ public class AccessPurchaseHistoryTest {
     private AccessPurchasedBooks accessPurchased;
     private PurchasedBooksPersistence booksPersistence;
     private UsersPersistence usersPersistence;
+    private UserBuilder builder;
 
     @Before
     public void setup(){
         booksPersistence = mock(PurchasedBooksPersistence.class);
         usersPersistence = mock(UsersPersistence.class);
         accessPurchased = new AccessPurchasedBooks(booksPersistence, usersPersistence);
+        builder = new UserBuilder();
     }
 
     @Test
     public void testGet(){
         System.out.println("\nStarting test AccessPurchasedBooks");
-        User user = new User(1,"chris@gmail.com","chris","comp3350");
+
+        User user = builder.id(1).name("chris").email("chris@gmail.com").password("comp3350").buildUser();
         when(usersPersistence.getUser()).thenReturn(user);
         final Book book;
         final List<Book> books = new ArrayList<>();

@@ -17,6 +17,7 @@ import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -42,20 +43,30 @@ public class AccountTest {
     @Rule
     public ActivityTestRule<HomeActivity> activityRule = new ActivityTestRule<>(HomeActivity.class);
 
+
+    private void openMenu(){
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open());
+        onView(withId(R.id.nav_view))
+                .perform(navigateTo(R.id.my_account));
+    }
+
     @Test
     public void createAccount(){
+        // open options from main menu
+        openMenu();
+
         //logout from default user
-        onView(withId(R.id.my_account)).perform(click());
         onView(withId(R.id.logout)).perform(click());
 
         //create account
-        onView(withId(R.id.my_account)).perform(click());
+        openMenu();
         onView(withId(R.id.account_button)).perform(click());
         onView(withId(R.id.edtName)).perform(typeText("Chris"));
         onView(withId(R.id.edtEmail)).perform(typeText("chris@gmail.com"));
         onView(withId(R.id.edtPassword)).perform(typeText("comp3350"));
         onView(withId(R.id.btnAccount)).perform(click());
-        //TODO: there seems to be a bug in create account logic
 
         //verify account
     }
@@ -68,11 +79,7 @@ public class AccountTest {
         String name = "Gordon Freeman";
 
         // open options from main menu
-        onView(withId(R.id.drawer_layout))
-                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
-                .perform(DrawerActions.open());
-        onView(withId(R.id.nav_view))
-                .perform(navigateTo(R.id.my_account));
+        openMenu();
 
 
         onView(withId(R.id.paymentInfo)).perform(click());
@@ -93,6 +100,48 @@ public class AccountTest {
         onView(withId(R.id.expDate)).check(matches(withText(expiry)));
         onView(withId(R.id.cvv)).check(matches(withText(cvv)));
         onView(withId(R.id.cardName)).check(matches(withText(name)));
+
+    }
+
+    @Test
+    public void changePersonInformation(){
+        String street = "123 Pembina ";
+        String city = "winnipeg";
+        String province = "manitoba";
+        String country = "canada";
+        String zip = "r2r2r";
+        String name = "ZuneEdited";
+        String email = "zuneedited@gmail.com";
+
+        // open options from main menu
+        openMenu();
+
+
+        onView(withId(R.id.personalInfo)).perform(click());
+        //add payment info
+        onView(withId(R.id.username)).perform(clearText());
+        onView(withId(R.id.username)).perform(typeText(name));
+        onView(withId(R.id.email)).perform(clearText());
+        onView(withId(R.id.email)).perform(typeText(email));
+        onView(withId(R.id.address)).perform(clearText());
+        onView(withId(R.id.address)).perform(typeText(street));
+        onView(withId(R.id.city)).perform(clearText());
+        onView(withId(R.id.city)).perform(typeText(city));
+        onView(withId(R.id.province)).perform(clearText());
+        onView(withId(R.id.province)).perform(typeText(province));
+        onView(withId(R.id.zip)).perform(clearText());
+        onView(withId(R.id.zip)).perform(typeText(zip));
+        onView(withId(R.id.country)).perform(clearText());
+        onView(withId(R.id.country)).perform(typeText(country));
+        onView(withId(R.id.resetInfo)).perform(scrollTo());
+        onView(withId(R.id.resetInfo)).perform(click());
+
+        //verify that all information was added
+        onView(withId(R.id.personalInfo)).perform(click());
+        onView(withId(R.id.username)).check(matches(withText(name)));
+        onView(withId(R.id.address)).check(matches(withText(street)));
+        onView(withId(R.id.city)).check(matches(withText(city)));
+        onView(withId(R.id.province)).check(matches(withText(province)));
 
     }
 }

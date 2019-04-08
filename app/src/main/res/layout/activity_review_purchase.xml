@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/review_purchase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -49,18 +50,6 @@
             android:layout_marginStart="20dp"
             android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/enterAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/review_purchase_button_margin"
-            android:layout_marginRight="@dimen/review_purchase_button_margin"
-            android:layout_marginTop="@dimen/review_purchase_button_margin"
-            android:background="@color/colorPrimary"
-            android:text="@string/enterAddress"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
         <TextView
             android:id="@+id/review_address"
             android:layout_width="match_parent"
@@ -96,6 +85,18 @@
             android:layout_marginStart="20dp"
             android:textSize="20sp" />
 
+        <Button
+            android:id="@+id/enterAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/review_purchase_button_margin"
+            android:layout_marginTop="@dimen/review_purchase_button_margin"
+            android:layout_marginRight="@dimen/review_purchase_button_margin"
+            android:background="@color/colorPrimary"
+            android:text="@string/enterAddress"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
         <TextView
             android:id="@+id/review_creditcard_heading"
             android:layout_width="match_parent"
@@ -104,18 +105,6 @@
             android:text="@string/creditCardInformation"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textSize="30sp" />
-
-        <Button
-            android:id="@+id/enterCredit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/review_purchase_button_margin"
-            android:layout_marginRight="@dimen/review_purchase_button_margin"
-            android:layout_marginTop="@dimen/review_purchase_button_margin"
-            android:background="@color/colorPrimary"
-            android:text="@string/enterCredit"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/review_creditCard"
@@ -145,6 +134,18 @@
             android:layout_marginStart="20dp"
             android:textSize="20sp" />
 
+        <Button
+            android:id="@+id/enterCredit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/review_purchase_button_margin"
+            android:layout_marginTop="@dimen/review_purchase_button_margin"
+            android:layout_marginRight="@dimen/review_purchase_button_margin"
+            android:background="@color/colorPrimary"
+            android:text="@string/enterCredit"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
         <TextView
             android:id="@+id/review_books_heading"
             android:layout_width="match_parent"
@@ -164,7 +165,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/Checkout"
+        android:id="@+id/checkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"

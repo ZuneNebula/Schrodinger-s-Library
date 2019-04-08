@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import comp3350.schrodingers.application.Services;
 import comp3350.schrodingers.objects.Book;
 import comp3350.schrodingers.R;
 import comp3350.schrodingers.business.AccessBooks;
@@ -27,25 +28,13 @@ public class BookAdapter extends BaseAdapter {
     private AccessBooks bookAccess;
     private int layoutID;
 
-    // Constructor - instantiates book DB access
-    public BookAdapter(Context context, int layId, AccessBooks access) {
-
-        this.context = context;
-        this.bookAccess = access;
-
-        this.bookList = access.getAllBooks();
-
-        inflater = LayoutInflater.from(this.context);
-        arrayList = new ArrayList<>();
-        this.arrayList.addAll(bookList);
-        layoutID = layId;
-    }
-
     // Constructor - passed in a list of books
     public BookAdapter(Context context, int layId, List<Book> list) {
 
         this.context = context;
         this.bookList = list;
+
+        this.bookAccess = Services.getBookAccess();
 
         inflater = LayoutInflater.from(this.context);
         arrayList = new ArrayList<>();

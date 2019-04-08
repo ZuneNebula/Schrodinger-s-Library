@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Button;
 import android.widget.ListView;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import comp3350.schrodingers.R;
 public class RecommendationsActivity extends AppCompatActivity {
 
     private Spinner Choice;
+    private Button select;
     private AccessBooks browser = Services.getBookAccess();
 
     @Override
@@ -32,7 +34,18 @@ public class RecommendationsActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Choice.setAdapter(adapter);
 
-        Choice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        select = (Button)findViewById(R.id.confirmGenre);
+
+
+        select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                validate(Choice.toString());
+
+            }
+        });
+
+       /* Choice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -44,7 +57,7 @@ public class RecommendationsActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
     }
 

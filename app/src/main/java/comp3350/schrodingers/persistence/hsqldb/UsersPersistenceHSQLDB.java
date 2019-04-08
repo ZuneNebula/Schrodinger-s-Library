@@ -62,14 +62,17 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
             st.setString(4, newUser.getPassword());
             st.setBoolean(5, true);
             st.setLong(6, newUser.getBilling().getCardNumber());
+
             if (newUser.getAddress().getAddress().compareTo("") != 0)
                 st.setString(7, newUser.getAddress().getAddress());
             else
                 st.setString(7, "NOADDRESS!");
 
             st.executeUpdate();
+
             logged = newUser;
             return logged;
+
         } catch (final SQLException e) {
             throw new PersistenceException(e);
         }
@@ -96,21 +99,18 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
             st.setString(2, newUser.getUserName());
             st.setString(3, newUser.getPassword());
 
-            if (newUser.billingExist()) {
-                st.setLong(4, newUser.getBilling().getCardNumber());
-            } else {
-                st.setLong(4, 0L);
-            }
+            st.setLong(4, newUser.getBilling().getCardNumber());
 
-            String address = newUser.getAddress().getAddress();
+            String loggedAddr = logged.getAddress().getAddress();
+            String newUserAddr = newUser.getAddress().getAddress();
 
-            if(address.compareTo("") == 0 || address.compareTo("NOADDRESS!") == 0)
+            if(newUserAddr.compareTo("") == 0 || newUser.getAddress().noAddr())
                 st.setString(5, "NOADDRESS!");
-            else if(logged.getAddress().getAddress().compareTo(address) == 0 && !findAddress(address).isEmpty())
-                st.setString(5, address);
-            else{
+            else if (loggedAddr.compareTo(newUserAddr) == 0 && !findAddress(newUserAddr).noAddr()) {
+                st.setString(5, newUserAddr);
+            } else{
                 insertAddress(newUser.getAddress());
-                st.setString(5, address);
+                st.setString(5, newUserAddr);
             }
 
             st.setInt(6, logged.getUserId());
@@ -193,7 +193,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
 
             final User.Address address;
             if (rs.next())
-                address = fromResultAdress(rs);
+                address = fromResultAddress(rs);
             else
                 address = new User.Address();
 
@@ -206,7 +206,7 @@ public class UsersPersistenceHSQLDB implements UsersPersistence {
         }
     }
 
-    private User.Address fromResultAdress(final ResultSet rs) throws SQLException {
+    private User.Address fromResultAddress(final ResultSet rs) throws SQLException {
         final String house = rs.getString("numAndStreet");
         final String zip = rs.getString("PC");
         final String city = rs.getString("city");

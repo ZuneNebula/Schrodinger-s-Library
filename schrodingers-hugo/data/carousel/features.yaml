@@ -1,4 +1,4 @@
-weight: 3
+weight: 1
 title: "A great list of features"
 description: >
   <ul class="list-style-none">
@@ -7,4 +7,4 @@ description: >
      <li>Wishlist</li>
      <li>Search</li>
    </ul>
-image: "img/carousel/template-mac.png"
+image: "img/carousel/feat.png"
