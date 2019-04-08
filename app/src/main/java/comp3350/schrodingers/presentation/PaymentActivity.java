@@ -74,9 +74,11 @@ public class PaymentActivity extends AppCompatActivity {
         try {
             AccessUserInfo accessUser = Services.getUserInfoAccess();
             accessCards.insertCard(newCard, accessUser.getUser().getEmail());
-            Snackbar.make(findViewById(R.id.payment_info), R.string.changes_applied,
-                    Snackbar.LENGTH_SHORT).show();
+
+            // Inform parent activity that info has been updated
+            setResult(RESULT_OK, null);
             finish();
+
         } catch (CardException c) {
             HandleCardExceptions handleCard = new HandleCardExceptions(c);
             handleCard.showMessage(this);
