@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -338,6 +339,7 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
                 for(Book book : purchases) {
                     accessPurchasedBooks.insertBook(book);
                     purchaseIDs.add(book.getBookID());
+                    Log.d("BOOKID", String.valueOf(book.getBookID()));
                 }
             } catch (UserException e){
                 Messages.warning(ReviewPurchaseActivity.this, e.toString());
