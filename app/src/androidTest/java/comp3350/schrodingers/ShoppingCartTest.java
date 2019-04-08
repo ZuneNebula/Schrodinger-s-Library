@@ -10,10 +10,14 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.anything;
 
 import comp3350.schrodingers.presentation.HomeActivity;
 
@@ -25,7 +29,10 @@ public class ShoppingCartTest {
 
     @Test
     public void addToShoppingCart(){
-
+        onData(anything()).inAdapterView(withId(R.id.browseView)).atPosition(0).perform(click());
+        onView(withId(R.id.addCartButton)).perform(click());
+        onView(withId(R.id.viewCartButton)).perform(click());
+        onView(withText("Annabelle Fights Life")).check(matches(isDisplayed()));
     }
 
 }
