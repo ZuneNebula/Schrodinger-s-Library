@@ -67,6 +67,4 @@ public class AccessWishlistIT {
         // reset DB
         this.tempDB.delete();
     }
-
-
 }

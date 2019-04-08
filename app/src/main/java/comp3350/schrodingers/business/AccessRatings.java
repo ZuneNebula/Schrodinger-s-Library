@@ -9,7 +9,7 @@ import comp3350.schrodingers.business.userExceptions.UserException;
 import comp3350.schrodingers.objects.Ratings;
 import comp3350.schrodingers.objects.User;
 import comp3350.schrodingers.persistence.RatingPersistence;
-
+import comp3350.schrodingers.persistence.UsersPersistence;
 public class AccessRatings {
 
     private AccessUserInfo accessUserInfo;
@@ -19,6 +19,11 @@ public class AccessRatings {
     public AccessRatings(RatingPersistence ratePersistence){
         accessUserInfo = Services.getUserInfoAccess();
         ratingPersistence = ratePersistence;
+    }
+    // Constructor for testing
+    public AccessRatings(UsersPersistence usersPersistence, final RatingPersistence ratingPersistence) {
+        this.ratingPersistence = ratingPersistence;
+        accessUserInfo = new AccessUserInfo(usersPersistence);
     }
 
     public List<Ratings> findRatingsByBook(int bookID){
