@@ -356,7 +356,8 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
                 }
 
             } catch (UserException e){
-                Messages.warning(ReviewPurchaseActivity.this, e.toString());
+                HandleUserExceptions expectionHandler = new HandleUserExceptions(e);
+                expectionHandler.showMessage(this);
             }
 
             // Acquire next page and pass purchases
