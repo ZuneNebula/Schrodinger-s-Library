@@ -348,8 +348,8 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             try {
                 accessPurchasedBooks = Services.getPurchasedBooksAccess();
                 for(Book book : purchases) {
-                    accessPurchasedBooks.insertBook(book);
-                    purchaseIDs.add(book.getBookID());
+                    if(accessPurchasedBooks.insertBook(book))
+                        purchaseIDs.add(book.getBookID());
                 }
 
                 // Empty shopping cart (if used)
@@ -362,9 +362,12 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
             }
 
             // Acquire next page and pass purchases
-            Intent intent = new Intent(ReviewPurchaseActivity.this, OrderCompletedActivity.class);
-            intent.putIntegerArrayListExtra("purchaseIDs", purchaseIDs);
-            startActivity(intent);
+            if(purchaseIDs.size() != 0) {
+                Intent intent = new Intent(ReviewPurchaseActivity.this, OrderCompletedActivity.class);
+                intent.putIntegerArrayListExtra("purchaseIDs", purchaseIDs);
+                startActivity(intent);
+            }else
+                Messages.warning(this, "It seems you already bought all the books of the list in the past!");
 
         } else {
             // Show snackbar/tool tip stating the user needs more info

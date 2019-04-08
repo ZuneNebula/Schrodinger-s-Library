@@ -7,5 +7,5 @@ import comp3350.schrodingers.objects.User;
 
 public interface PurchasedBooksPersistence {
     List<Book> getBooks(int userId);
-    void insertBook(Book book, int userId);
+    boolean insertBook(Book book, int userId);
 }

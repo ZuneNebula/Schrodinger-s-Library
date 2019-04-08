@@ -101,7 +101,7 @@ public class PurchasedBooksPersistenceHSQLDB implements PurchasedBooksPersistenc
     }
 
     @Override
-    public void insertBook(Book book, int userId){
+    public boolean insertBook(Book book, int userId){
         try (final Connection c = connection()) {
             if(!isDuplicate(userId, book.getBookID())) {
                 final PreparedStatement st = c.prepareStatement("INSERT INTO purchased VALUES(?, ?)");
@@ -109,7 +109,9 @@ public class PurchasedBooksPersistenceHSQLDB implements PurchasedBooksPersistenc
                 st.setInt(2, book.getBookID());
 
                 st.executeUpdate();
+                return true;
             }
+            return false;
 
         } catch (final SQLException e) {
             throw new PersistenceException(e);
