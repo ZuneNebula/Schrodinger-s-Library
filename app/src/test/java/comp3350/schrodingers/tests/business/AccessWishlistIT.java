@@ -35,11 +35,11 @@ public class AccessWishlistIT {
 
     @Test
     public void testGet(){
-        System.out.println("\nStarting test AccessPurchasedBooks: getBooks");
+        System.out.println("\nStarting test AccessWishlist: getBooks");
         try {
             List<Book> books = accessWishlist.getBooks();
             assertNotNull("\tfirst book of default user should not be null", books.get(0));
-            System.out.println("\nFinished test AccessPurchasedBooks: getBooks");
+            System.out.println("\nFinished test AccessWishlist: getBooks");
         }catch(UserException u){
             System.out.println("\t"+u.toString());
         }
@@ -47,7 +47,7 @@ public class AccessWishlistIT {
 
     @Test
     public void testInsert(){
-        System.out.println("\nStarting AccessPurchasedBooks: insertBook");
+        System.out.println("\nStarting AccessWishlist: insertBook");
         BookBuilder builder = new BookBuilder();
         builder.id(1).name("Annabelle Fights Life").author("Jenny Springs").price("$200").genre("Drama").stock("10").icon("annabellefightslife");
         Book book = builder.buildBook();
@@ -59,7 +59,7 @@ public class AccessWishlistIT {
         }catch(UserException u){
             System.out.println("\t"+u.toString());
         }
-        System.out.println("Finished AccessPurchasedBooks: insertBook");
+        System.out.println("Finished AccessWishlist: insertBook");
     }
 
     @After
