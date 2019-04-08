@@ -46,9 +46,10 @@ public class OrderCompletedActivity extends AppCompatActivity {
         // Acquire parameter (ie list of purchased book IDs)
         ArrayList<Integer> purchaseIDs = getIntent().getIntegerArrayListExtra("purchaseIDs");
 
+        purchases = new ArrayList<>();
+
         // Reacquire list of purchase books
         for (Integer bookID : purchaseIDs){
-            Log.d("BOOKID", String.valueOf(bookID));
             purchases.add(bookAccess.searchBookById(bookID));
         }
 

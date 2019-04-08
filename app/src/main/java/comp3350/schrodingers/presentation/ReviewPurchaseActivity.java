@@ -339,7 +339,6 @@ public class ReviewPurchaseActivity extends AppCompatActivity {
                 for(Book book : purchases) {
                     accessPurchasedBooks.insertBook(book);
                     purchaseIDs.add(book.getBookID());
-                    Log.d("BOOKID", String.valueOf(book.getBookID()));
                 }
             } catch (UserException e){
                 Messages.warning(ReviewPurchaseActivity.this, e.toString());
