@@ -67,10 +67,6 @@ public class User {
         return username.equals("");
     }
 
-    public boolean noPassword() {
-        return password.equals("");
-    }
-
     public boolean noEmail() {
         return email.equals("");
     }
