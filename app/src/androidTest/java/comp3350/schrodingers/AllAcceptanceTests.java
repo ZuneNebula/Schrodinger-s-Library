@@ -9,7 +9,10 @@ import org.junit.runners.Suite;
         AccountTest.class,
         ShoppingCartTest.class,
         WishlistTest.class,
-        FindBookTest.class
+        FindBookTest.class,
+        RateReviewTest.class,
+        SortTest.class,
+        BookRecommendationsTest.class
 })
 public class AllAcceptanceTests {
 }
